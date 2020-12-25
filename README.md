@@ -15,3 +15,5 @@ Current commands:
 Want to help but don't know how to get started? 
 - [Contributing to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE&ab_channel=freeCodeCamp.org)
 - [Discord.js](https://discord.js.org/)
+
+Check out the state of the project here! [To-Do List](https://github.com/Deerjump/Scripticus/projects/1)
