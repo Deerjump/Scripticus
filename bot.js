@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 const shouldIgnore = (message) => !message.content.startsWith(prefix) || message.author.bot;
 const cooldowns = new Collection();
 
-client.once('ready', () =>{
+client.once('ready', () => {
    console.log(`${client.user.username} is ready!`);
    client.user.setActivity('Legends of Idleon');
 });
