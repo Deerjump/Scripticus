@@ -8,6 +8,8 @@ Current commands:
   - Helpful math formulas that LavaFlame2 uses in game
 - `help`
   - Tell you information on all commands or a specific command
+- `contribute`
+  - Informational command with links to the GitHub
 - `reload`
   - Developer command used to reload a command so you don't have to reload the bot every time
   
