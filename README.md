@@ -5,7 +5,7 @@ Current commands:
 - `wiki`
   - Search the wiki! Returns a url. 
 - `math`
-  - Helpful math formulas that Lava uses in game
+  - Helpful math formulas that LavaFlame2 uses in game
 - `help`
   - Tell you information on all commands or a specific command
 - `reload`
