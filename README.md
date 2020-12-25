@@ -1,7 +1,7 @@
 # Scripticus
 A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idleon" target="_blank" rel="noopener noreferrer">Discord Server</a>
 
-Current commands:
+### Current commands:
 - `wiki`
   - Search the wiki! Returns a url. 
 - `math`
