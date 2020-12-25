@@ -12,7 +12,7 @@ Current commands:
   - Developer command used to reload a command so you don't have to reload the bot every time
   
 
-Want to help but don't know how to get started? 
+#### Want to help but don't know how to get started? 
 - [Contributing to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE&ab_channel=freeCodeCamp.org)
 - <a href="https://discord.js.org/" target="_blank" rel="noopener noreferrer">Discord.js</a>
 
