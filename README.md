@@ -10,3 +10,8 @@ Current commands:
   - Tell you information on all commands or a specific command
 - reload
   - Developer command used to reload a command so you don't have to reload the bot every time
+  
+
+Want to help but don't know how to get started? 
+- [Contributing to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE&ab_channel=freeCodeCamp.org)
+- [Discord.js](https://discord.js.org/)
