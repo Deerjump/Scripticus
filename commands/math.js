@@ -1,10 +1,10 @@
 const util = require('../util/util.js');
-
+const options = Object.keys(util).join(', ');
 module.exports = {
    name: 'math',
    description: 'A few helpful math calculations!',
-   usage: '<formula> <x> <y> <z>',
-   options: Object.keys(util).join(', '),
+   options: options,
+   usage: `<${options}> <x> <y> <z>`,
    execute(message, args) {
       if (!args.length) {
          return message.channel.send(`You must provide a formula and 1-3 numbers to use!`);
