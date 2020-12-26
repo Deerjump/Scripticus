@@ -16,7 +16,6 @@ const cooldowns = new Collection();
 
 client.once('ready', () => {
    console.log(`${client.user.username} is ready!`);
-   client.user.setAvatar('./src/scripticus.png');
    client.user.setActivity('Legends of Idleon');
 });
 
