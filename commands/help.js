@@ -1,20 +1,20 @@
 const { prefix } = require('../config.json');
+const { MessageEmbed } = require('discord.js');
 module.exports = {
    name: 'help',
    description: 'List all of my commands or info about a specific command',
    aliases: ['commands'],
-   usage: '[command name]',
+   usage: '<commandName>',
    cooldown: 5,
    execute(message, args) {
-      const data = [];
       const { commands } = message.client;
+      const embed = new MessageEmbed()
+         .setColor('#00FF00');
 
       if(!args.length) {
-         data.push('Here\'s a list of all my commands:');
-         data.push(commands.map(command => command.name).join(', '));
-         data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
-
-         return message.author.send(data, { split:true })
+         embed.setTitle(`Help Command`);
+         embed.addField('Commands:', commands.map(command => `**${command.name}**: ${command.description}`));
+         return message.author.send(embed)
             .then(() => {
                if (message.channel.type === 'dm') return;
                message.reply('I\'ve sent you a DM with all my commands!');
@@ -31,13 +31,12 @@ module.exports = {
          return message.reply('that\'s not a valid command');
       }
 
-      data.push(`**Name:** ${command.name}`);
-      if(command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-      if(command.description) data.push(`**Description:** ${command.description}`);
-      if(command.usage) data.push(`**Usage**: ${prefix}${command.name} ${command.usage}`);
+      embed.setTitle(`**Command**: *${command.name}*`);
+      if (command.aliases) embed.addField('Aliases:', command.aliases.join(', '));
+      if (command.description) embed.addField('Description:', command.description);
+      if (command.aliases) embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
+      embed.addField('Cooldown:', `${command.cooldown || 3} seconds(s)`);
 
-      data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
-
-      message.channel.send(data, { split:true });
+      message.channel.send(embed);
    },
 };
