@@ -1,5 +1,5 @@
 module.exports = {
-   add: (a, b, c) => b != 0 ? (((b + c) / c + 0.5 * (a - 1)) / (b / c)) * a * b : b * a,
+   add: (a, b, c) => c != 0 ? (((b + c) / c + 0.5 * (a - 1)) / (b / c)) * a * b : b * a,
    addlower: (a, b, c) => b + c * (a + 1),
    decay: (a, b, c) => (a * b) / (a + c),
    decaylower: (a, b, c) => (b * (a + 1)) / (a + 1 + c) - (b * a) / (a + c),
