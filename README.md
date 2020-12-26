@@ -15,6 +15,7 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   
 
 #### Want to help but don't know how to get started? 
+- Make a suggestion through [Issues](https://github.com/Deerjump/Scripticus/issues) (Note: you'll need a github account to do this)
 - [Contributing to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE&ab_channel=freeCodeCamp.org)
 - <a href="https://discord.js.org/" target="_blank" rel="noopener noreferrer">Discord.js</a>
 
