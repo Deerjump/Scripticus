@@ -9,7 +9,6 @@ function convertCodeToDisplay(itemCode) {
 function convertInputToCode(inputName) {
 	//Converts user input into Title Case, and then into the game's item codename
 	inputName = inputName.toLowerCase().split(' ').map(str => str.charAt(0).toUpperCase() + str.substring(1)).join(' ');
-	console.log(inputName);
 	for (const itemCode of Object.keys(craftInfo.itemDefinitions)) {
 		if (convertCodeToDisplay(itemCode) === inputName) return itemCode;
 	}
@@ -19,6 +18,13 @@ function isRawMaterial(itemCode) {
 	//Checks if item/material is a raw material (aka not crafted - ex: logs, ores, bars, etc.)
 	return !craftInfo.codes.includes(itemCode);
 }
+
+function isNumeric(str) {
+	//shout out to stack overflow
+	if (typeof str != "string") return false // we only process strings!  
+	return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+		   !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+  }
 
 function getItemFullRecipe(itemCode) {
 	let totalStrArray = []
@@ -52,11 +58,17 @@ module.exports = {
 			return message.channel.send('You must provide an item.')
 		}
 		let userInput = args.join(' ');
+		let lastArg = args[args.length-1];
+		if (isNumeric(lastArg)) {
+			userInput = args.slice(0, -1).join(' ');
+		}
+		console.log(args);
+		console.log(userInput);
+		console.log(lastArg);
 
 		try {
 			//Gets recipe string array, then converts into Markdown code block
 			let recipeStrArray = getItemFullRecipe(convertInputToCode(userInput));
-			console.log(recipeStrArray);
 			let recipeStr = recipeStrArray.slice(1).join('\n');
 			let descriptionBlock = '```\n' + recipeStr + '```';
 			let embed = new MessageEmbed()
