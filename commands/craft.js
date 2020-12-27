@@ -1,4 +1,5 @@
 const craftInfo = require('../util/craftInfo.js');
+const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
 	//Returns item's display name from its code name
@@ -8,8 +9,9 @@ function convertCodeToDisplay(itemCode) {
 function convertInputToCode(inputName) {
 	//Converts user input into Title Case, and then into the game's item codename
 	inputName = inputName.toLowerCase().split(' ').map(str => str.charAt(0).toUpperCase() + str.substring(1)).join(' ');
+	console.log(inputName);
 	for (const itemCode of Object.keys(craftInfo.itemDefinitions)) {
-		if (craftInfo.itemDefinitions[itemCode] === inputName) return itemCode;
+		if (convertCodeToDisplay(itemCode) === inputName) return itemCode;
 	}
 }
 
@@ -30,7 +32,7 @@ function getItemFullRecipe(itemCode) {
 			let [itemCode, itemQty] = itemInfo;
 				itemQty = Number(itemQty);
 
-			let line = `${' '.repeat(depth*3 + 2)}- ${convertCodeToDisplay(itemCode)} (x${itemQty*multiplier})`;
+			let line = `${' '.repeat(depth*3)}- ${convertCodeToDisplay(itemCode)} (x${itemQty*multiplier})`;
 			totalStrArray.push(line)
 			
 			if (!isRawMaterial(itemCode)) generateLine(itemCode, depth+1, multiplier*itemQty);
@@ -49,19 +51,23 @@ module.exports = {
 		if (!args.length) {
 			return message.channel.send('You must provide an item.')
 		}
-		let userInput = args[0];
+		let userInput = args.join(' ');
+
 		try {
 			//Gets recipe string array, then converts into Markdown code block
 			let recipeStrArray = getItemFullRecipe(convertInputToCode(userInput));
+			console.log(recipeStrArray);
 			let recipeStr = recipeStrArray.slice(1).join('\n');
 			let descriptionBlock = '```\n' + recipeStr + '```';
 			let embed = new MessageEmbed()
-				.setTitle(`Full crafting recipe for ${recipeStrArray[0]}`)
+				.setTitle(`Crafting recipe for ${recipeStrArray[0]}`)
 				.setDescription(descriptionBlock);
 
 			message.channel.send(embed);
 		} catch {
-			message.channel.send('Invalid item, please try again! (Mind your spelling!)');
+			let embed = new MessageEmbed()
+				.setDescription('Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!');
+			message.channel.send(embed);
 		}
 
 	}
