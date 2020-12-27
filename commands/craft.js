@@ -26,10 +26,10 @@ function isNumeric(str) {
 		   !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
   }
 
-function getItemFullRecipe(itemCode) {
+function getItemFullRecipe(itemCode, baseItemQty) {
 	let totalStrArray = []
 	totalStrArray.push(convertCodeToDisplay(itemCode));
-	
+
 	function generateLine(itemCode, depth = 0, multiplier = 1) {
 		let recipeIndex = craftInfo.codes.indexOf(itemCode);
 		let recipe = craftInfo.costs[recipeIndex];
@@ -39,42 +39,38 @@ function getItemFullRecipe(itemCode) {
 				itemQty = Number(itemQty);
 
 			let line = `${' '.repeat(depth*3)}- ${convertCodeToDisplay(itemCode)} (x${itemQty*multiplier})`;
-			totalStrArray.push(line)
-			
+			totalStrArray.push(line);
+
 			if (!isRawMaterial(itemCode)) generateLine(itemCode, depth+1, multiplier*itemQty);
 		}
 	}
 
-	generateLine(itemCode);
+	generateLine(itemCode, undefined, baseItemQty);
 	return totalStrArray;
 }
 
 module.exports = {
 	name: 'craft',
 	description: 'Returns all resources/sub-items needed to craft an item!',
-	usage: '<item name>',
+	usage: '<item name> <item quantity>',
 	execute(message, args) {
 		if (!args.length) {
-			return message.channel.send('You must provide an item.')
+			return message.channel.send('You must provide an item: !craft <item name> <item quantity>')
 		}
-		let userInput = args.join(' ');
+
 		let lastArg = args[args.length-1];
-		if (isNumeric(lastArg)) {
-			userInput = args.slice(0, -1).join(' ');
-		}
-		console.log(args);
-		console.log(userInput);
-		console.log(lastArg);
+		let userInput = isNumeric(lastArg) ? args.slice(0, -1).join(' ') : args.join(' ');
+		let itemQty = isNumeric(lastArg) ? args[args.length-1] : 1;
 
 		try {
 			//Gets recipe string array, then converts into Markdown code block
-			let recipeStrArray = getItemFullRecipe(convertInputToCode(userInput));
+			let recipeStrArray = getItemFullRecipe(convertInputToCode(userInput), itemQty);
 			let recipeStr = recipeStrArray.slice(1).join('\n');
+			let title = `Crafting recipe for ${recipeStrArray[0]} (x${itemQty})`;
 			let descriptionBlock = '```\n' + recipeStr + '```';
 			let embed = new MessageEmbed()
-				.setTitle(`Crafting recipe for ${recipeStrArray[0]}`)
+				.setTitle(title)
 				.setDescription(descriptionBlock);
-
 			message.channel.send(embed);
 		} catch {
 			let embed = new MessageEmbed()
