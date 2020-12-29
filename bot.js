@@ -30,6 +30,28 @@ client.on('message', message => {
 
    if(!command) return;
 
+   if (!cooldowns.has(command.name)) {
+      cooldowns.set(command.name, new Collection());
+   }
+
+   const now = Date.now();
+   const timestamps = cooldowns.get(command.name);
+   const cooldownAmount = (command.cooldown || 5) * 1000;
+
+   if(timestamps.has(message.author.id)) {
+      const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+      if(now < expirationTime) {
+         const timeLeft = (expirationTime - now) / 1000;
+         message.react('❌').then(() => message.react('⏲️'));
+         return message.author.send(`please wait ${timeLeft.toFixed(1)} more second(s) before using the \`${command.name}\` command again!`);
+      }
+   }
+   else {
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+   }
+
    if (command.args && !args.length) {
       let reply = `You didn't provide any arguments, ${message.author}`;
 
@@ -38,27 +60,6 @@ client.on('message', message => {
       }
 
       return message.channel.send(reply);
-   }
-
-   if (!cooldowns.has(command.name)) {
-      cooldowns.set(command.name, new Collection());
-   }
-
-   const now = Date.now();
-   const timestamps = cooldowns.get(command.name);
-   const cooldownAmount = (command.cooldown || 3) * 1000;
-
-   if(timestamps.has(message.author.id)) {
-      const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-
-      if(now < expirationTime) {
-         const timeLeft = (expirationTime - now) / 1000;
-         return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before using the \`${command.name}\` command again!`);
-      }
-   }
-   else {
-      timestamps.set(message.author.id, now);
-      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
    }
 
    try {
