@@ -1,38 +1,39 @@
-const craftInfo = require('../util/craftInfo.js');
+const items = require('../util/items.js');
 const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
 	// Returns item's display name from its code name
-	return craftInfo.itemDefinitions[itemCode].replace(/[_|]+/g, ' ');
+	return items[itemCode].Name.replace(/[_|]+/g, ' ');
 }
 
 function convertInputToCode(inputName) {
 	// Converts user input into Title Case, and then into the game's item codename
 	inputName = inputName.toLowerCase().split(' ').map(str => str.charAt(0).toUpperCase() + str.substring(1)).join(' ');
-	for (const itemCode of Object.keys(craftInfo.itemDefinitions)) {
-		if (convertCodeToDisplay(itemCode) === inputName) return itemCode;
+	for (const itemCode of Object.keys(items)) {
+		if (items[itemCode].Name === inputName) return itemCode;
 	}
 }
 
 function isRawMaterial(itemCode) {
 	// Checks if item/material is a raw material (aka not crafted - ex: logs, ores, bars, etc.)
-	return !craftInfo.codes.includes(itemCode);
+	return !Object.keys(items[itemCode]).includes('recipe');
 }
 
-function isNumeric(str) {
+function isPosInteger(str) {
 	// shout out to stack overflow
 	if (typeof str != "string") return false // we only process strings!  
-	return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-		   !isNaN(parseFloat(str)); // ...and ensure strings of whitespace fail
-  }
+	return !isNaN(str) && 
+		   parseInt(Number(str)) == str && 
+		   !isNaN(parseInt(str, 10)) &&
+		   parseInt(str, 10) > 0;
+}
 
 function getItemFullRecipe(itemCode, baseItemQty) {
 	const totalStrArray = [];
 	totalStrArray.push(convertCodeToDisplay(itemCode));
 
 	function generateLine(itemCode, depth = 0, multiplier = 1) {
-		const recipeIndex = craftInfo.codes.indexOf(itemCode);
-		const recipe = craftInfo.costs[recipeIndex];
+		const recipe = items[itemCode].recipe.costs;
 
 		for (const itemInfo of recipe) {
 			let [itemCode, itemQty] = itemInfo;
@@ -57,10 +58,10 @@ module.exports = {
 		if (!args.length) {
 			return message.channel.send('You must provide an item: !craft <item name> <item quantity>')
 		}
-
+		
 		let lastArg = args[args.length-1];
-		let userInput = isNumeric(lastArg) ? args.slice(0, -1).join(' ') : args.join(' ');
-		let itemQty = isNumeric(lastArg) ? args[args.length-1] : 1;
+		let userInput = isPosInteger(lastArg) ? args.slice(0, -1).join(' ') : args.join(' ');
+		let itemQty = isPosInteger(lastArg) ? args[args.length-1] : 1;
 
 		try {
 			// Gets recipe string array, then converts into Markdown code block
