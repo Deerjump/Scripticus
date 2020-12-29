@@ -6,8 +6,6 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Search the wiki! Returns a url. 
 - `math`
   - Helpful math formulas that LavaFlame2 uses in game
-- `crafting`
-  - See how many total items you need to craft
 - `help`
   - Tell you information on all commands or a specific command
 - `contribute`
