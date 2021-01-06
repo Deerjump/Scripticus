@@ -4,10 +4,10 @@ module.exports = {
    name: 'math',
    description: 'A few helpful math calculations!',
    options: options,
-   usage: `<${options}> <x> <y> <z>`,
+   usage: `<option> <x> <y> <z>`,
    execute(message, args) {
       if (!args.length) {
-         return message.channel.send(`You must provide a formula and 1-3 numbers to use!`);
+         return message.channel.send(`You must provide a formula and 1-3 numbers to use!\n**Options**: ${this.options}`);
       }
       let answer = 0;
       const option = args[0].toLowerCase();
