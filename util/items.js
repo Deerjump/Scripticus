@@ -1,6 +1,6 @@
 module.exports = {
    Blank : {
-     Name: "ERROR",
+     name: "ERROR",
      sellPrice: 0,
      typeGen: "NothingERROR",
      id: 0,
@@ -17,7 +17,7 @@ module.exports = {
      ],
    },
    LockedInvSpace : {
-     Name: "ERROR",
+     name: "ERROR",
      sellPrice: 0,
      typeGen: "NothingERROR",
      id: 0,
@@ -31,7 +31,7 @@ module.exports = {
      },
    },
    COIN : {
-     Name: "Coins",
+     name: "Coins",
      sellPrice: 0,
      typeGen: "NothingERROR",
      id: 0,
@@ -160,7 +160,7 @@ module.exports = {
      ],
    },
    EXP : {
-     Name: "Exp",
+     name: "Exp",
      sellPrice: 0,
      typeGen: "NothingERROR",
      id: 0,
@@ -174,7 +174,7 @@ module.exports = {
      },
    },
    Copper : {
-     Name: "Copper Ore",
+     name: "Copper Ore",
      sellPrice: 3,
      typeGen: "bOre",
      id: 0,
@@ -191,7 +191,7 @@ module.exports = {
      ],
    },
    Iron : {
-     Name: "Iron Ore",
+     name: "Iron Ore",
      sellPrice: 7,
      typeGen: "bOre",
      id: 1,
@@ -210,7 +210,7 @@ module.exports = {
      ],
    },
    Gold : {
-     Name: "Gold Ore",
+     name: "Gold Ore",
      sellPrice: 13,
      typeGen: "bOre",
      id: 2,
@@ -229,7 +229,7 @@ module.exports = {
      ],
    },
    Plat : {
-     Name: "Platinum Ore",
+     name: "Platinum Ore",
      sellPrice: 20,
      typeGen: "bOre",
      id: 3,
@@ -248,7 +248,7 @@ module.exports = {
      ],
    },
    Dementia : {
-     Name: "Dementia Ore",
+     name: "Dementia Ore",
      sellPrice: 35,
      typeGen: "bOre",
      id: 4,
@@ -267,7 +267,7 @@ module.exports = {
      ],
    },
    Void : {
-     Name: "Void Ore",
+     name: "Void Ore",
      sellPrice: 60,
      typeGen: "bOre",
      id: 5,
@@ -285,7 +285,7 @@ module.exports = {
      ],
    },
    Lustre : {
-     Name: "Lustre Ore",
+     name: "Lustre Ore",
      sellPrice: 90,
      typeGen: "bOre",
      id: 6,
@@ -303,7 +303,7 @@ module.exports = {
      ],
    },
    Starfire : {
-     Name: "Starfire Ore",
+     name: "Starfire Ore",
      sellPrice: 140,
      typeGen: "bOre",
      id: 7,
@@ -321,7 +321,7 @@ module.exports = {
      ],
    },
    Dreadlo : {
-     Name: "Dreadlo Ore",
+     name: "Dreadlo Ore",
      sellPrice: 190,
      typeGen: "bOre",
      id: 8,
@@ -339,7 +339,7 @@ module.exports = {
      ],
    },
    Godshard : {
-     Name: "Godshard Ore",
+     name: "Godshard Ore",
      sellPrice: 250,
      typeGen: "bOre",
      id: 9,
@@ -357,7 +357,7 @@ module.exports = {
      ],
    },
    CopperBar : {
-     Name: "Copper Bar",
+     name: "Copper Bar",
      sellPrice: 7,
      typeGen: "bBar",
      id: 0,
@@ -368,7 +368,7 @@ module.exports = {
      ],
    },
    IronBar : {
-     Name: "Iron Bar",
+     name: "Iron Bar",
      sellPrice: 32,
      typeGen: "bBar",
      id: 1,
@@ -379,7 +379,7 @@ module.exports = {
      ],
    },
    GoldBar : {
-     Name: "Gold Bar",
+     name: "Gold Bar",
      sellPrice: 115,
      typeGen: "bBar",
      id: 2,
@@ -390,7 +390,7 @@ module.exports = {
      ],
    },
    PlatBar : {
-     Name: "Platinum Bar",
+     name: "Platinum Bar",
      sellPrice: 460,
      typeGen: "bBar",
      id: 3,
@@ -401,7 +401,7 @@ module.exports = {
      ],
    },
    DementiaBar : {
-     Name: "Dementia Bar",
+     name: "Dementia Bar",
      sellPrice: 1900,
      typeGen: "bBar",
      id: 4,
@@ -411,7 +411,7 @@ module.exports = {
      ],
    },
    VoidBar : {
-     Name: "Void Bar",
+     name: "Void Bar",
      sellPrice: 6800,
      typeGen: "bBar",
      id: 5,
@@ -421,7 +421,7 @@ module.exports = {
      ],
    },
    LustreBar : {
-     Name: "Lustre Bar",
+     name: "Lustre Bar",
      sellPrice: 1,
      typeGen: "bBar",
      id: 6,
@@ -431,7 +431,7 @@ module.exports = {
      ],
    },
    StarfireBar : {
-     Name: "Starfire Bar",
+     name: "Starfire Bar",
      sellPrice: 1,
      typeGen: "bBar",
      id: 7,
@@ -441,7 +441,7 @@ module.exports = {
      ],
    },
    DreadloBar : {
-     Name: "Dreadlo Bar",
+     name: "Dreadlo Bar",
      sellPrice: 1,
      typeGen: "bBar",
      id: 8,
@@ -451,7 +451,7 @@ module.exports = {
      ],
    },
    GodshardBar : {
-     Name: "Godshard Bar",
+     name: "Godshard Bar",
      sellPrice: 1,
      typeGen: "bBar",
      id: 9,
@@ -461,7 +461,7 @@ module.exports = {
      ],
    },
    OilBarrel1 : {
-     Name: "Crude Oil",
+     name: "Crude Oil",
      sellPrice: 8,
      typeGen: "cOil",
      id: 0,
@@ -481,7 +481,7 @@ module.exports = {
      ],
    },
    OilBarrel2 : {
-     Name: "Toxic Sludge",
+     name: "Toxic Sludge",
      sellPrice: 20,
      typeGen: "cOil",
      id: 0,
@@ -500,7 +500,7 @@ module.exports = {
      ],
    },
    OilBarrel3 : {
-     Name: "Radioactive Waste",
+     name: "Radioactive Waste",
      sellPrice: 50,
      typeGen: "cOil",
      id: 0,
@@ -516,7 +516,7 @@ module.exports = {
     },
    },
    OilBarrel4 : {
-     Name: "Glumlee's Special Tutorial Oil",
+     name: "Glumlee's Special Tutorial Oil",
      sellPrice: 350,
      typeGen: "cOil",
      id: 0,
@@ -535,7 +535,7 @@ module.exports = {
      ],
    },
    OilBarrel5 : {
-     Name: "Eco Friendly Oil",
+     name: "Eco Friendly Oil",
      sellPrice: 350,
      typeGen: "cOil",
      id: 0,
@@ -561,7 +561,7 @@ module.exports = {
      ],
    },
    OakTree : {
-     Name: "Oak Logs",
+     name: "Oak Logs",
      sellPrice: 2,
      typeGen: "bLog",
      id: 0,
@@ -572,7 +572,7 @@ module.exports = {
      ],
    },
    BirchTree : {
-     Name: "Bleach Logs",
+     name: "Bleach Logs",
      sellPrice: 3,
      typeGen: "bLog",
      id: 0,
@@ -583,7 +583,7 @@ module.exports = {
      ],
    },
    JungleTree : {
-     Name: "Jungle Logs",
+     name: "Jungle Logs",
      sellPrice: 6,
      typeGen: "bLog",
      id: 0,
@@ -594,7 +594,7 @@ module.exports = {
      ],
    },
    ForestTree : {
-     Name: "Forest Fibres",
+     name: "Forest Fibres",
      sellPrice: 10,
      typeGen: "bLog",
      id: 0,
@@ -604,7 +604,7 @@ module.exports = {
      ],
    },
    ToiletTree : {
-     Name: "Potty Rolls",
+     name: "Potty Rolls",
      sellPrice: 15,
      typeGen: "bLog",
      id: 0,
@@ -615,7 +615,7 @@ module.exports = {
      ],
    },
    PalmTree : {
-     Name: "Tropilogs",
+     name: "Tropilogs",
      sellPrice: 20,
      typeGen: "bLog",
      id: 0,
@@ -626,7 +626,7 @@ module.exports = {
      ],
    },
    StumpTree : {
-     Name: "Veiny Logs",
+     name: "Veiny Logs",
      sellPrice: 25,
      typeGen: "bLog",
      id: 0,
@@ -637,7 +637,7 @@ module.exports = {
      ],
    },
    SaharanFoal : {
-     Name: "Tundra Logs",
+     name: "Tundra Logs",
      sellPrice: 200,
      typeGen: "bLog",
      id: 0,
@@ -647,7 +647,7 @@ module.exports = {
      ],
    },
    AlienTree : {
-     Name: "Alien Hive Chunk",
+     name: "Alien Hive Chunk",
      sellPrice: 5000,
      typeGen: "bLog",
      id: 0,
@@ -657,7 +657,7 @@ module.exports = {
      ],
    },
    Leaf1 : {
-     Name: "Grass Leaf",
+     name: "Grass Leaf",
      sellPrice: 4,
      typeGen: "bLeaf",
      id: 0,
@@ -668,7 +668,7 @@ module.exports = {
      ],
    },
    Leaf2 : {
-     Name: "Twisty Leaf",
+     name: "Twisty Leaf",
      sellPrice: 50,
      typeGen: "bLeaf",
      id: 0,
@@ -678,7 +678,7 @@ module.exports = {
      ],
    },
    FillerMaterial : {
-     Name: "Not Yet",
+     name: "Not Yet",
      sellPrice: 4,
      typeGen: "dFish",
      id: 0,
@@ -689,7 +689,7 @@ module.exports = {
      ],
    },
    Fish1 : {
-     Name: "Goldfish",
+     name: "Goldfish",
      sellPrice: 4,
      typeGen: "dFish",
      id: 0,
@@ -701,7 +701,7 @@ module.exports = {
      ],
    },
    Fish2 : {
-     Name: "Hermit Can",
+     name: "Hermit Can",
      sellPrice: 11,
      typeGen: "dFish",
      id: 0,
@@ -712,7 +712,7 @@ module.exports = {
      ],
    },
    Fish3 : {
-     Name: "Jellyfish",
+     name: "Jellyfish",
      sellPrice: 14,
      typeGen: "dFish",
      id: 0,
@@ -724,7 +724,7 @@ module.exports = {
      ],
    },
    Fish4 : {
-     Name: "Bloach",
+     name: "Bloach",
      sellPrice: 18,
      typeGen: "dFish",
      id: 0,
@@ -736,7 +736,7 @@ module.exports = {
      ],
    },
    Fish5 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 5,
      typeGen: "dFish",
      id: 0,
@@ -747,7 +747,7 @@ module.exports = {
      ],
    },
    Fish6 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 5,
      typeGen: "dFish",
      id: 0,
@@ -758,7 +758,7 @@ module.exports = {
      ],
    },
    Fish7 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 5,
      typeGen: "dFish",
      id: 0,
@@ -769,7 +769,7 @@ module.exports = {
      ],
    },
    Fish8 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 5,
      typeGen: "dFish",
      id: 0,
@@ -780,7 +780,7 @@ module.exports = {
      ],
    },
    Bug1 : {
-     Name: "Fly",
+     name: "Fly",
      sellPrice: 3,
      typeGen: "dBugs",
      id: 0,
@@ -792,7 +792,7 @@ module.exports = {
      ],
    },
    Bug2 : {
-     Name: "Butterfly",
+     name: "Butterfly",
      sellPrice: 9,
      typeGen: "dBugs",
      id: 0,
@@ -803,7 +803,7 @@ module.exports = {
      ],
    },
    Bug3 : {
-     Name: "Sentient Cereal",
+     name: "Sentient Cereal",
      sellPrice: 15,
      typeGen: "dBugs",
      id: 0,
@@ -815,7 +815,7 @@ module.exports = {
      ],
    },
    Bug4 : {
-     Name: "Fruitfly",
+     name: "Fruitfly",
      sellPrice: 20,
      typeGen: "dBugs",
      id: 0,
@@ -826,7 +826,7 @@ module.exports = {
      ],
    },
    Bug5 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 30,
      typeGen: "dBugs",
      id: 0,
@@ -837,7 +837,7 @@ module.exports = {
      ],
    },
    EquipmentHats1 : {
-     Name: "Farmer Brim",
+     name: "Farmer Brim",
      sellPrice: 175,
      typeGen: "aHelmet",
      id: 4,
@@ -863,7 +863,7 @@ module.exports = {
      ],
    },
    TestObj15 : {
-     Name: "Slime Cap",
+     name: "Slime Cap",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 2,
@@ -877,7 +877,7 @@ module.exports = {
      },
    },
    EquipmentHatsBeg1 : {
-     Name: "Ice Cream Sunday",
+     name: "Ice Cream Sunday",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 24,
@@ -892,7 +892,7 @@ module.exports = {
      },
    },
    EquipmentHats15 : {
-     Name: "Leather Cap",
+     name: "Leather Cap",
      sellPrice: 400,
      typeGen: "aHelmet",
      id: 18,
@@ -919,7 +919,7 @@ module.exports = {
      ],
    },
    EquipmentHats5 : {
-     Name: "White Headband",
+     name: "White Headband",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 8,
@@ -938,7 +938,7 @@ module.exports = {
      ],
    },
    EquipmentHats6 : {
-     Name: "Green Headband",
+     name: "Green Headband",
      sellPrice: 150,
      typeGen: "aHelmet",
      id: 9,
@@ -957,7 +957,7 @@ module.exports = {
      ],
    },
    EquipmentHats7 : {
-     Name: "Red Headband",
+     name: "Red Headband",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 10,
@@ -974,7 +974,7 @@ module.exports = {
      ],
    },
    EquipmentHats8 : {
-     Name: "Purple Tupacband",
+     name: "Purple Tupacband",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 11,
@@ -999,7 +999,7 @@ module.exports = {
      ],
    },
    EquipmentHats9 : {
-     Name: "Yellow Headband",
+     name: "Yellow Headband",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 12,
@@ -1017,7 +1017,7 @@ module.exports = {
      ],
    },
    EquipmentHats10 : {
-     Name: "Pink Headband",
+     name: "Pink Headband",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 13,
@@ -1033,7 +1033,7 @@ module.exports = {
      },
    },
    EquipmentHats11 : {
-     Name: "Grey Beret",
+     name: "Grey Beret",
      sellPrice: 5,
      typeGen: "aHelmet",
      id: 14,
@@ -1049,7 +1049,7 @@ module.exports = {
      ],
    },
    EquipmentHats12 : {
-     Name: "Traffic Cone",
+     name: "Traffic Cone",
      sellPrice: 5,
      typeGen: "aHelmet",
      id: 15,
@@ -1065,7 +1065,7 @@ module.exports = {
      ],
    },
    EquipmentHats13 : {
-     Name: "Propeller Cap",
+     name: "Propeller Cap",
      sellPrice: 5,
      typeGen: "aHelmet",
      id: 16,
@@ -1081,7 +1081,7 @@ module.exports = {
      ],
    },
    EquipmentHats14 : {
-     Name: "Baseball Hat",
+     name: "Baseball Hat",
      sellPrice: 5,
      typeGen: "aHelmet",
      id: 17,
@@ -1097,7 +1097,7 @@ module.exports = {
      ],
    },
    TestObj14 : {
-     Name: "Trojan Helmet",
+     name: "Trojan Helmet",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 1,
@@ -1111,7 +1111,7 @@ module.exports = {
      },
    },
    TestObj16 : {
-     Name: "Demon Horns",
+     name: "Demon Horns",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 3,
@@ -1127,7 +1127,7 @@ module.exports = {
      },
    },
    EquipmentHats4Choppin : {
-     Name: "Stump Prop",
+     name: "Stump Prop",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 7,
@@ -1147,7 +1147,7 @@ module.exports = {
      ],
    },
    EquipmentHats17 : {
-     Name: "Copper Helmet",
+     name: "Copper Helmet",
      sellPrice: 1000,
      typeGen: "aHelmet",
      id: 20,
@@ -1174,7 +1174,7 @@ module.exports = {
      ],
    },
    EquipmentHats18 : {
-     Name: "Iron Helmet",
+     name: "Iron Helmet",
      sellPrice: 5000,
      typeGen: "aHelmet",
      id: 21,
@@ -1201,7 +1201,7 @@ module.exports = {
      ],
    },
    EquipmentHats28 : {
-     Name: "Gold Helmet",
+     name: "Gold Helmet",
      sellPrice: 15000,
      typeGen: "aHelmet",
      id: 32,
@@ -1229,7 +1229,7 @@ module.exports = {
      ],
    },
    EquipmentHats19 : {
-     Name: "Platinum Helmet",
+     name: "Platinum Helmet",
      sellPrice: 40000,
      typeGen: "aHelmet",
      id: 22,
@@ -1257,7 +1257,7 @@ module.exports = {
      ],
    },
    EquipmentHats21 : {
-     Name: "Party Hat",
+     name: "Party Hat",
      sellPrice: 1500,
      typeGen: "aHelmet",
      id: 25,
@@ -1282,7 +1282,7 @@ module.exports = {
      ],
    },
    EquipmentHats22 : {
-     Name: "Amarok Helmet",
+     name: "Amarok Helmet",
      sellPrice: 100,
      typeGen: "aHelmet",
      id: 26,
@@ -1309,7 +1309,7 @@ module.exports = {
      ],
    },
    EquipmentHats23 : {
-     Name: "Farmer Brimer",
+     name: "Farmer Brimer",
      sellPrice: 150,
      typeGen: "aHelmet",
      id: 27,
@@ -1324,7 +1324,7 @@ module.exports = {
      },
    },
    EquipmentHats24 : {
-     Name: "Farmer Brimest",
+     name: "Farmer Brimest",
      sellPrice: 400,
      typeGen: "aHelmet",
      id: 28,
@@ -1341,7 +1341,7 @@ module.exports = {
      },
    },
    EquipmentHats25 : {
-     Name: "Bored Beanie",
+     name: "Bored Beanie",
      sellPrice: 500,
      typeGen: "aHelmet",
      id: 29,
@@ -1359,7 +1359,7 @@ module.exports = {
      ],
    },
    EquipmentHats2 : {
-     Name: "Royal Turban",
+     name: "Royal Turban",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 5,
@@ -1375,7 +1375,7 @@ module.exports = {
      },
    },
    EquipmentHats27 : {
-     Name: "Paper Boat",
+     name: "Paper Boat",
      sellPrice: 1500,
      typeGen: "aHelmet",
      id: 31,
@@ -1391,7 +1391,7 @@ module.exports = {
      },
    },
    EquipmentHats29 : {
-     Name: "Alien Headband",
+     name: "Alien Headband",
      sellPrice: 1000,
      typeGen: "aHelmet",
      id: 33,
@@ -1410,7 +1410,7 @@ module.exports = {
      ],
    },
    EquipmentHats30 : {
-     Name: "Cowbo Galloneer",
+     name: "Cowbo Galloneer",
      sellPrice: 1500,
      typeGen: "aHelmet",
      id: 34,
@@ -1428,7 +1428,7 @@ module.exports = {
      ],
    },
    EquipmentHats39 : {
-     Name: "Grandma Disguise",
+     name: "Grandma Disguise",
      sellPrice: 1500,
      typeGen: "aHelmet",
      id: 42,
@@ -1450,7 +1450,7 @@ module.exports = {
      ],
    },
    EquipmentHats42 : {
-     Name: "Santa Hat",
+     name: "Santa Hat",
      sellPrice: 1,
      typeGen: "aHelmet",
      id: 45,
@@ -1466,7 +1466,7 @@ module.exports = {
      },
    },
    EquipmentHats20 : {
-     Name: "Militia Helm",
+     name: "Militia Helm",
      sellPrice: 8500,
      typeGen: "aHelmet",
      id: 23,
@@ -1492,7 +1492,7 @@ module.exports = {
      ],
    },
    TestObj13 : {
-     Name: "Viking Cap",
+     name: "Viking Cap",
      sellPrice: 200,
      typeGen: "aHelmet",
      id: 0,
@@ -1518,7 +1518,7 @@ module.exports = {
      ],
    },
    EquipmentHats3 : {
-     Name: "Thief Hood",
+     name: "Thief Hood",
      sellPrice: 8500,
      typeGen: "aHelmet",
      id: 6,
@@ -1544,7 +1544,7 @@ module.exports = {
      ],
    },
    EquipmentHats41 : {
-     Name: "Sleek Coif",
+     name: "Sleek Coif",
      sellPrice: 8500,
      typeGen: "aHelmet",
      id: 44,
@@ -1570,7 +1570,7 @@ module.exports = {
      ],
    },
    EquipmentHats16 : {
-     Name: "Top Hat",
+     name: "Top Hat",
      sellPrice: 8500,
      typeGen: "aHelmet",
      id: 19,
@@ -1596,7 +1596,7 @@ module.exports = {
      ],
    },
    EquipmentHats26 : {
-     Name: "Witch Hat",
+     name: "Witch Hat",
      sellPrice: 800,
      typeGen: "aHelmet",
      id: 30,
@@ -1622,7 +1622,7 @@ module.exports = {
      ],
    },
    EquipmentPunching1 : {
-     Name: "Boxing Gloves",
+     name: "Boxing Gloves",
      sellPrice: 1,
      typeGen: "aWeapon",
      id: 1,
@@ -1648,7 +1648,7 @@ module.exports = {
      ],
    },
    EquipmentPunching2 : {
-     Name: "The Stingers",
+     name: "The Stingers",
      sellPrice: 1800,
      typeGen: "aWeapon",
      id: 2,
@@ -1676,7 +1676,7 @@ module.exports = {
      ],
    },
    EquipmentPunching3 : {
-     Name: "Bandage Wraps",
+     name: "Bandage Wraps",
      sellPrice: 7800,
      typeGen: "aWeapon",
      id: 3,
@@ -1704,7 +1704,7 @@ module.exports = {
      ],
    },
    TestObj1 : {
-     Name: "Wooden Spear",
+     name: "Wooden Spear",
      sellPrice: 265,
      typeGen: "aWeapon",
      id: 4,
@@ -1731,7 +1731,7 @@ module.exports = {
      ],
    },
    TestObj7 : {
-     Name: "Steel Axe",
+     name: "Steel Axe",
      sellPrice: 5500,
      typeGen: "aWeapon",
      id: 6,
@@ -1758,7 +1758,7 @@ module.exports = {
      ],
    },
    TestObj3 : {
-     Name: "Royal Bayonet",
+     name: "Royal Bayonet",
      sellPrice: 12530,
      typeGen: "aWeapon",
      id: 3,
@@ -1786,7 +1786,7 @@ module.exports = {
      ],
    },
    EquipmentSword1 : {
-     Name: "Enforced Slasher",
+     name: "Enforced Slasher",
      sellPrice: 26000,
      typeGen: "aWeapon",
      id: 7,
@@ -1814,7 +1814,7 @@ module.exports = {
      ],
    },
    TestObj4 : {
-     Name: "Frozen Impaler",
+     name: "Frozen Impaler",
      sellPrice: 120,
      typeGen: "aWeapon",
      id: 99,
@@ -1833,7 +1833,7 @@ module.exports = {
      },
    },
    TestObj5 : {
-     Name: "Blood Screamer",
+     name: "Blood Screamer",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 2,
@@ -1852,7 +1852,7 @@ module.exports = {
      },
    },
    TestObj8 : {
-     Name: "Flaming Katana",
+     name: "Flaming Katana",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 99,
@@ -1869,7 +1869,7 @@ module.exports = {
      },
    },
    TestObj9 : {
-     Name: "Emerald Eizon",
+     name: "Emerald Eizon",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 99,
@@ -1886,7 +1886,7 @@ module.exports = {
      },
    },
    TestObj10 : {
-     Name: "Stalagmite",
+     name: "Stalagmite",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 99,
@@ -1904,7 +1904,7 @@ module.exports = {
      },
    },
    EquipmentWeapons1 : {
-     Name: "Iron Sword",
+     name: "Iron Sword",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 1,
@@ -1921,7 +1921,7 @@ module.exports = {
      },
    },
    TestObj2 : {
-     Name: "Steel Spear",
+     name: "Steel Spear",
      sellPrice: 223400,
      typeGen: "aWeapon",
      id: 99,
@@ -1939,7 +1939,7 @@ module.exports = {
      },
    },
    EquipmentBows1 : {
-     Name: "Wooden Bow",
+     name: "Wooden Bow",
      sellPrice: 275,
      typeGen: "aWeapon",
      id: 1,
@@ -1966,7 +1966,7 @@ module.exports = {
      ],
    },
    EquipmentBows3 : {
-     Name: "Birch Longbow",
+     name: "Birch Longbow",
      sellPrice: 1000,
      typeGen: "aWeapon",
      id: 4,
@@ -1993,7 +1993,7 @@ module.exports = {
      ],
    },
    EquipmentBows4 : {
-     Name: "Carrot Launcher",
+     name: "Carrot Launcher",
      sellPrice: 5000,
      typeGen: "aWeapon",
      id: 3,
@@ -2012,7 +2012,7 @@ module.exports = {
      ],
    },
    EquipmentBows5 : {
-     Name: "Spiked Menace",
+     name: "Spiked Menace",
      sellPrice: 4000,
      typeGen: "aWeapon",
      id: 5,
@@ -2041,7 +2041,7 @@ module.exports = {
      ],
    },
    EquipmentBows6 : {
-     Name: "Pharoah Bow",
+     name: "Pharoah Bow",
      sellPrice: 15000,
      typeGen: "aWeapon",
      id: 6,
@@ -2069,7 +2069,7 @@ module.exports = {
      ],
    },
    EquipmentBows2 : {
-     Name: "Rooted Bow",
+     name: "Rooted Bow",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 2,
@@ -2087,7 +2087,7 @@ module.exports = {
      },
    },
    EquipmentWands1 : {
-     Name: "Gnarled Wand",
+     name: "Gnarled Wand",
      sellPrice: 20,
      typeGen: "aWeapon",
      id: 3,
@@ -2113,7 +2113,7 @@ module.exports = {
      ],
    },
    EquipmentWands2 : {
-     Name: "Quarterstaff",
+     name: "Quarterstaff",
      sellPrice: 4000,
      typeGen: "aWeapon",
      id: 1,
@@ -2139,7 +2139,7 @@ module.exports = {
      ],
    },
    EquipmentWands5 : {
-     Name: "Starlight",
+     name: "Starlight",
      sellPrice: 10000,
      typeGen: "aWeapon",
      id: 5,
@@ -2167,7 +2167,7 @@ module.exports = {
      ],
    },
    EquipmentWands6 : {
-     Name: "Crows Nest",
+     name: "Crows Nest",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 4,
@@ -2196,7 +2196,7 @@ module.exports = {
      ],
    },
    EquipmentWands3 : {
-     Name: "Spriggly Staff",
+     name: "Spriggly Staff",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 2,
@@ -2213,7 +2213,7 @@ module.exports = {
      },
    },
    EquipmentWands4 : {
-     Name: "Microphone",
+     name: "Microphone",
      sellPrice: 200,
      typeGen: "aWeapon",
      id: 2,
@@ -2231,7 +2231,7 @@ module.exports = {
      },
    },
    EquipmentShirts1 : {
-     Name: "Orange Tee",
+     name: "Orange Tee",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2256,7 +2256,7 @@ module.exports = {
      ],
    },
    EquipmentShirts2 : {
-     Name: "Blue Tee",
+     name: "Blue Tee",
      sellPrice: 250,
      typeGen: "aShirt",
      id: 3,
@@ -2282,7 +2282,7 @@ module.exports = {
      ],
    },
    EquipmentShirts16 : {
-     Name: "Spore Tee",
+     name: "Spore Tee",
      sellPrice: 125,
      typeGen: "aShirt",
      id: 3,
@@ -2299,7 +2299,7 @@ module.exports = {
      ],
    },
    EquipmentShirts3 : {
-     Name: "Black Tee",
+     name: "Black Tee",
      sellPrice: 50,
      typeGen: "aShirt",
      id: 3,
@@ -2324,7 +2324,7 @@ module.exports = {
      ],
    },
    EquipmentShirts4 : {
-     Name: "Tanned Hide",
+     name: "Tanned Hide",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2340,7 +2340,7 @@ module.exports = {
      },
    },
    EquipmentShirts6 : {
-     Name: "Paralax Chest",
+     name: "Paralax Chest",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2356,7 +2356,7 @@ module.exports = {
      },
    },
    EquipmentShirts7 : {
-     Name: "Molten Chest",
+     name: "Molten Chest",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2372,7 +2372,7 @@ module.exports = {
      },
    },
    EquipmentShirts8 : {
-     Name: "REPLACE ME",
+     name: "REPLACE ME",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2388,7 +2388,7 @@ module.exports = {
      },
    },
    EquipmentShirts9 : {
-     Name: "REPLACE ME",
+     name: "REPLACE ME",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2404,7 +2404,7 @@ module.exports = {
      },
    },
    EquipmentShirts21 : {
-     Name: "Tattered Cloth",
+     name: "Tattered Cloth",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2421,7 +2421,7 @@ module.exports = {
      ],
    },
    EquipmentShirts10 : {
-     Name: "Fur Shirt",
+     name: "Fur Shirt",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2446,7 +2446,7 @@ module.exports = {
      ],
    },
    EquipmentShirts11 : {
-     Name: "Copper Platebody",
+     name: "Copper Platebody",
      sellPrice: 1500,
      typeGen: "aShirt",
      id: 3,
@@ -2472,7 +2472,7 @@ module.exports = {
      ],
    },
    EquipmentShirts12 : {
-     Name: "Iron Platebody",
+     name: "Iron Platebody",
      sellPrice: 6000,
      typeGen: "aShirt",
      id: 3,
@@ -2500,7 +2500,7 @@ module.exports = {
      ],
    },
    EquipmentShirts13 : {
-     Name: "Gold Platebody",
+     name: "Gold Platebody",
      sellPrice: 12000,
      typeGen: "aShirt",
      id: 3,
@@ -2527,7 +2527,7 @@ module.exports = {
      ],
    },
    EquipmentShirts14 : {
-     Name: "Platinum Platbody",
+     name: "Platinum Platbody",
      sellPrice: 40000,
      typeGen: "aShirt",
      id: 3,
@@ -2554,7 +2554,7 @@ module.exports = {
      ],
    },
    EquipmentShirts15 : {
-     Name: "Dementia Body",
+     name: "Dementia Body",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2569,7 +2569,7 @@ module.exports = {
      },
    },
    EquipmentShirts17 : {
-     Name: "MCR Tshirt",
+     name: "MCR Tshirt",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2587,7 +2587,7 @@ module.exports = {
      ],
    },
    EquipmentShirts18 : {
-     Name: "Amarok Bodyplate",
+     name: "Amarok Bodyplate",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2614,7 +2614,7 @@ module.exports = {
      ],
    },
    EquipmentShirts19 : {
-     Name: "Planktop",
+     name: "Planktop",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2631,7 +2631,7 @@ module.exports = {
      ],
    },
    EquipmentShirts20 : {
-     Name: "Hide Shirt",
+     name: "Hide Shirt",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2656,7 +2656,7 @@ module.exports = {
      ],
    },
    EquipmentShirts24 : {
-     Name: "Green Tee",
+     name: "Green Tee",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2681,7 +2681,7 @@ module.exports = {
      ],
    },
    EquipmentShirts25 : {
-     Name: "Purple Tee",
+     name: "Purple Tee",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2706,7 +2706,7 @@ module.exports = {
      ],
    },
    EquipmentShirts5 : {
-     Name: "Studded Hide",
+     name: "Studded Hide",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2732,7 +2732,7 @@ module.exports = {
      ],
    },
    EquipmentShirts22 : {
-     Name: "Furled Robes",
+     name: "Furled Robes",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2758,7 +2758,7 @@ module.exports = {
      ],
    },
    EquipmentShirts23 : {
-     Name: "Feral Leathering",
+     name: "Feral Leathering",
      sellPrice: 200,
      typeGen: "aShirt",
      id: 3,
@@ -2784,7 +2784,7 @@ module.exports = {
      ],
    },
    EquipmentPants1 : {
-     Name: "Torn Jeans",
+     name: "Torn Jeans",
      sellPrice: 650,
      typeGen: "aPants",
      id: 3,
@@ -2810,7 +2810,7 @@ module.exports = {
      ],
    },
    EquipmentPants2 : {
-     Name: "Copper Platelegs",
+     name: "Copper Platelegs",
      sellPrice: 3000,
      typeGen: "aPants",
      id: 3,
@@ -2836,7 +2836,7 @@ module.exports = {
      ],
    },
    EquipmentPants3 : {
-     Name: "Iron Platelegs",
+     name: "Iron Platelegs",
      sellPrice: 6000,
      typeGen: "aPants",
      id: 3,
@@ -2862,7 +2862,7 @@ module.exports = {
      ],
    },
    EquipmentPants4 : {
-     Name: "Gold Platelegs",
+     name: "Gold Platelegs",
      sellPrice: 15000,
      typeGen: "aPants",
      id: 3,
@@ -2890,7 +2890,7 @@ module.exports = {
      ],
    },
    EquipmentPants5 : {
-     Name: "Platinum Shins",
+     name: "Platinum Shins",
      sellPrice: 25000,
      typeGen: "aPants",
      id: 3,
@@ -2917,7 +2917,7 @@ module.exports = {
      ],
    },
    EquipmentPants17 : {
-     Name: "Amarok Hinds",
+     name: "Amarok Hinds",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -2944,7 +2944,7 @@ module.exports = {
      ],
    },
    EquipmentPants6 : {
-     Name: "Dementia Shins",
+     name: "Dementia Shins",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -2961,7 +2961,7 @@ module.exports = {
      },
    },
    EquipmentPants7 : {
-     Name: "Gilded Pilates",
+     name: "Gilded Pilates",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -2977,7 +2977,7 @@ module.exports = {
      },
    },
    EquipmentPants8 : {
-     Name: "Twisted Scales",
+     name: "Twisted Scales",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -2993,7 +2993,7 @@ module.exports = {
      },
    },
    EquipmentPants9 : {
-     Name: "Crystallax Shins",
+     name: "Crystallax Shins",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3009,7 +3009,7 @@ module.exports = {
      },
    },
    EquipmentPants10 : {
-     Name: "Give Up On Life Pants",
+     name: "Give Up On Life Pants",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3026,7 +3026,7 @@ module.exports = {
      ],
    },
    EquipmentPants11 : {
-     Name: "Yellow Belt Ninja Pants",
+     name: "Yellow Belt Ninja Pants",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3041,7 +3041,7 @@ module.exports = {
      },
    },
    EquipmentPants12 : {
-     Name: "Merchantile Pants",
+     name: "Merchantile Pants",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3056,7 +3056,7 @@ module.exports = {
      },
    },
    EquipmentPants13 : {
-     Name: "Ancient Leggings",
+     name: "Ancient Leggings",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3071,7 +3071,7 @@ module.exports = {
      },
    },
    EquipmentPants14 : {
-     Name: "Forensic Leggings",
+     name: "Forensic Leggings",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3086,7 +3086,7 @@ module.exports = {
      },
    },
    EquipmentPants15 : {
-     Name: "Bleached Designer Wode Patch Pants",
+     name: "Bleached Designer Wode Patch Pants",
      sellPrice: 3500,
      typeGen: "aPants",
      id: 3,
@@ -3113,7 +3113,7 @@ module.exports = {
      ],
    },
    EquipmentPants16 : {
-     Name: "Adam's Leaf",
+     name: "Adam's Leaf",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3131,7 +3131,7 @@ module.exports = {
      ],
    },
    EquipmentPants18 : {
-     Name: "Dirty Coal Miner Baggy Soot Pants",
+     name: "Dirty Coal Miner Baggy Soot Pants",
      sellPrice: 200,
      typeGen: "aPants",
      id: 3,
@@ -3156,7 +3156,7 @@ module.exports = {
      ],
    },
    EquipmentShoes1 : {
-     Name: "Copper Boots",
+     name: "Copper Boots",
      sellPrice: 1000,
      typeGen: "aShoes",
      id: 3,
@@ -3182,7 +3182,7 @@ module.exports = {
      ],
    },
    EquipmentShoes15 : {
-     Name: "Iron Boots",
+     name: "Iron Boots",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3209,7 +3209,7 @@ module.exports = {
      ],
    },
    EquipmentShoes3 : {
-     Name: "Gold Boots",
+     name: "Gold Boots",
      sellPrice: 10000,
      typeGen: "aShoes",
      id: 3,
@@ -3237,7 +3237,7 @@ module.exports = {
      ],
    },
    EquipmentShoes20 : {
-     Name: "Amarok Paws",
+     name: "Amarok Paws",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3265,7 +3265,7 @@ module.exports = {
      ],
    },
    EquipmentShoes4 : {
-     Name: "Platinum Boots",
+     name: "Platinum Boots",
      sellPrice: 20000,
      typeGen: "aShoes",
      id: 3,
@@ -3292,7 +3292,7 @@ module.exports = {
      ],
    },
    EquipmentShoes5 : {
-     Name: "Dementia Boots",
+     name: "Dementia Boots",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3308,7 +3308,7 @@ module.exports = {
      },
    },
    EquipmentShoes6 : {
-     Name: "Hermes Boots",
+     name: "Hermes Boots",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3324,7 +3324,7 @@ module.exports = {
      },
    },
    EquipmentShoes7 : {
-     Name: "Goo Galoshes",
+     name: "Goo Galoshes",
      sellPrice: 500,
      typeGen: "aShoes",
      id: 3,
@@ -3352,7 +3352,7 @@ module.exports = {
      ],
    },
    EquipmentShoes8 : {
-     Name: "Yeti Walkers",
+     name: "Yeti Walkers",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3368,7 +3368,7 @@ module.exports = {
      },
    },
    EquipmentShoes9 : {
-     Name: "Flip Flops",
+     name: "Flip Flops",
      sellPrice: 500,
      typeGen: "aShoes",
      id: 3,
@@ -3393,7 +3393,7 @@ module.exports = {
      ],
    },
    EquipmentShoes10 : {
-     Name: "Flap Flops",
+     name: "Flap Flops",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3409,7 +3409,7 @@ module.exports = {
      },
    },
    EquipmentShoes11 : {
-     Name: "Floop Flops",
+     name: "Floop Flops",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3425,7 +3425,7 @@ module.exports = {
      },
    },
    EquipmentShoes12 : {
-     Name: "Flux Flops",
+     name: "Flux Flops",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3442,7 +3442,7 @@ module.exports = {
      },
    },
    EquipmentShoes13 : {
-     Name: "Gaia Shoes",
+     name: "Gaia Shoes",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3457,7 +3457,7 @@ module.exports = {
      },
    },
    EquipmentShoes14 : {
-     Name: "Cauldrunners",
+     name: "Cauldrunners",
      sellPrice: 200,
      typeGen: "aShoes",
      id: 3,
@@ -3472,7 +3472,7 @@ module.exports = {
      },
    },
    EquipmentShoes16 : {
-     Name: "Cavern Trekkers",
+     name: "Cavern Trekkers",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3500,7 +3500,7 @@ module.exports = {
      ],
    },
    EquipmentShoes17 : {
-     Name: "Logger Heels",
+     name: "Logger Heels",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3527,7 +3527,7 @@ module.exports = {
      ],
    },
    EquipmentShoes18 : {
-     Name: "Angler Boots",
+     name: "Angler Boots",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3554,7 +3554,7 @@ module.exports = {
      ],
    },
    EquipmentShoes19 : {
-     Name: "Bandito Boots",
+     name: "Bandito Boots",
      sellPrice: 3000,
      typeGen: "aShoes",
      id: 3,
@@ -3581,7 +3581,7 @@ module.exports = {
      ],
    },
    EquipmentShoes2 : {
-     Name: "Eyern Boots",
+     name: "Eyern Boots",
      sellPrice: 20,
      typeGen: "aShoes",
      id: 3,
@@ -3595,7 +3595,7 @@ module.exports = {
      },
    },
    EquipmentPendant1 : {
-     Name: "Mint Icey",
+     name: "Mint Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3612,7 +3612,7 @@ module.exports = {
      },
    },
    EquipmentPendant2 : {
-     Name: "Strawbu Icey",
+     name: "Strawbu Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3629,7 +3629,7 @@ module.exports = {
      },
    },
    EquipmentPendant3 : {
-     Name: "Rok Road Icey",
+     name: "Rok Road Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3647,7 +3647,7 @@ module.exports = {
      },
    },
    EquipmentPendant4 : {
-     Name: "Rainbo Icey",
+     name: "Rainbo Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3665,7 +3665,7 @@ module.exports = {
      },
    },
    EquipmentPendant5 : {
-     Name: "Chocotastic Icey",
+     name: "Chocotastic Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3683,7 +3683,7 @@ module.exports = {
      },
    },
    EquipmentPendant6 : {
-     Name: "Blubbery Icey",
+     name: "Blubbery Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3701,7 +3701,7 @@ module.exports = {
      },
    },
    EquipmentPendant7 : {
-     Name: "Lava Icey",
+     name: "Lava Icey",
      sellPrice: 420,
      typeGen: "aPendant",
      id: 3,
@@ -3719,7 +3719,7 @@ module.exports = {
      },
    },
    EquipmentPendant8 : {
-     Name: "Legends Icey",
+     name: "Legends Icey",
      sellPrice: 27,
      typeGen: "aPendant",
      id: 3,
@@ -3737,7 +3737,7 @@ module.exports = {
      },
    },
    EquipmentPendant9 : {
-     Name: "Little Wooden Katana",
+     name: "Little Wooden Katana",
      sellPrice: 200,
      typeGen: "aPendant",
      id: 3,
@@ -3754,7 +3754,7 @@ module.exports = {
      ],
    },
    EquipmentPendant10 : {
-     Name: "Sleek Shank",
+     name: "Sleek Shank",
      sellPrice: 400,
      typeGen: "aPendant",
      id: 3,
@@ -3780,7 +3780,7 @@ module.exports = {
      ],
    },
    EquipmentPendant11 : {
-     Name: "Carrot Horror",
+     name: "Carrot Horror",
      sellPrice: 500,
      typeGen: "aPendant",
      id: 3,
@@ -3798,7 +3798,7 @@ module.exports = {
      ],
    },
    EquipmentPendant12 : {
-     Name: "Tarantulight",
+     name: "Tarantulight",
      sellPrice: 6500,
      typeGen: "aPendant",
      id: 3,
@@ -3817,7 +3817,7 @@ module.exports = {
      ],
    },
    EquipmentPendant13 : {
-     Name: "Quartz Pendant",
+     name: "Quartz Pendant",
      sellPrice: 6500,
      typeGen: "aPendant",
      id: 3,
@@ -3833,7 +3833,7 @@ module.exports = {
      },
    },
    EquipmentPendant14 : {
-     Name: "Fuscismatia",
+     name: "Fuscismatia",
      sellPrice: 6500,
      typeGen: "aPendant",
      id: 3,
@@ -3849,7 +3849,7 @@ module.exports = {
      },
    },
    EquipmentPendant15 : {
-     Name: "Lucky Fish Head",
+     name: "Lucky Fish Head",
      sellPrice: 6500,
      typeGen: "aPendant",
      id: 3,
@@ -3865,7 +3865,7 @@ module.exports = {
      },
    },
    EquipmentPendant16 : {
-     Name: "Strung Bludgeon",
+     name: "Strung Bludgeon",
      sellPrice: 10000,
      typeGen: "aPendant",
      id: 3,
@@ -3889,7 +3889,7 @@ module.exports = {
      ],
    },
    EquipmentPendant17 : {
-     Name: "Chaotic Amarok Pendant",
+     name: "Chaotic Amarok Pendant",
      sellPrice: 10000,
      typeGen: "aPendant",
      id: 3,
@@ -3914,7 +3914,7 @@ module.exports = {
      ],
    },
    EquipmentRings1 : {
-     Name: "Gold Ring",
+     name: "Gold Ring",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -3930,7 +3930,7 @@ module.exports = {
      },
    },
    EquipmentRings2 : {
-     Name: "Copper Band",
+     name: "Copper Band",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -3955,7 +3955,7 @@ module.exports = {
      ],
    },
    EquipmentRings3 : {
-     Name: "Steel Band",
+     name: "Steel Band",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -3981,7 +3981,7 @@ module.exports = {
      ],
    },
    EquipmentRings4 : {
-     Name: "Molden Crust",
+     name: "Molden Crust",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -3997,7 +3997,7 @@ module.exports = {
      },
    },
    EquipmentRings5 : {
-     Name: "Toxic Bubbles Band",
+     name: "Toxic Bubbles Band",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -4013,7 +4013,7 @@ module.exports = {
      },
    },
    EquipmentRings6 : {
-     Name: "Death Wish",
+     name: "Death Wish",
      sellPrice: 200,
      typeGen: "aRing",
      id: 3,
@@ -4029,7 +4029,7 @@ module.exports = {
      },
    },
    EquipmentRings7 : {
-     Name: "Pugilist Demise",
+     name: "Pugilist Demise",
      sellPrice: 4000,
      typeGen: "aRing",
      id: 3,
@@ -4047,7 +4047,7 @@ module.exports = {
      ],
    },
    EquipmentRings8 : {
-     Name: "The Used Bandaid",
+     name: "The Used Bandaid",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4064,7 +4064,7 @@ module.exports = {
      },
    },
    EquipmentRings9 : {
-     Name: "Pugilists Demise",
+     name: "Pugilists Demise",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4080,7 +4080,7 @@ module.exports = {
      },
    },
    EquipmentRings10 : {
-     Name: "Spikeweed Ring",
+     name: "Spikeweed Ring",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4095,7 +4095,7 @@ module.exports = {
      },
    },
    EquipmentRings11 : {
-     Name: "Defenders Dignity",
+     name: "Defenders Dignity",
      sellPrice: 5000,
      typeGen: "aRing",
      id: 3,
@@ -4120,7 +4120,7 @@ module.exports = {
      ],
    },
    EquipmentRingsFishing1 : {
-     Name: "Spikeweed Ring",
+     name: "Spikeweed Ring",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4136,7 +4136,7 @@ module.exports = {
      },
    },
    EquipmentRingsFishing2 : {
-     Name: "Spikeweed Ring",
+     name: "Spikeweed Ring",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4152,7 +4152,7 @@ module.exports = {
      },
    },
    EquipmentRingsFishing3 : {
-     Name: "Spikeweed Ring",
+     name: "Spikeweed Ring",
      sellPrice: 2500,
      typeGen: "aRing",
      id: 3,
@@ -4168,7 +4168,7 @@ module.exports = {
      },
    },
    EquipmentRings12 : {
-     Name: "Frisbee Ring",
+     name: "Frisbee Ring",
      sellPrice: 5000,
      typeGen: "aRing",
      id: 3,
@@ -4186,7 +4186,7 @@ module.exports = {
      ],
    },
    EquipmentRings13 : {
-     Name: "Silver Stopwatch",
+     name: "Silver Stopwatch",
      sellPrice: 5000,
      typeGen: "aRing",
      id: 3,
@@ -4206,7 +4206,7 @@ module.exports = {
      ],
    },
    EquipmentRings14 : {
-     Name: "Dooble Goopi",
+     name: "Dooble Goopi",
      sellPrice: 1,
      typeGen: "aRing",
      id: 3,
@@ -4232,7 +4232,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat1 : {
-     Name: "Love Ring",
+     name: "Love Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 1,
@@ -4250,7 +4250,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat2 : {
-     Name: "Leafy Ring",
+     name: "Leafy Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 2,
@@ -4268,7 +4268,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat3 : {
-     Name: "Wealth Ring",
+     name: "Wealth Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 3,
@@ -4286,7 +4286,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat4 : {
-     Name: "Bob Ring",
+     name: "Bob Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 4,
@@ -4304,7 +4304,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat5 : {
-     Name: "Bubble Ring",
+     name: "Bubble Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 5,
@@ -4322,7 +4322,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat6 : {
-     Name: "Cthulu's Ring",
+     name: "Cthulu's Ring",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 6,
@@ -4340,7 +4340,7 @@ module.exports = {
      ],
    },
    EquipmentRingsChat8 : {
-     Name: "Lava Sez Buy More Gems",
+     name: "Lava Sez Buy More Gems",
      sellPrice: 2500,
      typeGen: "aChatRingMTX",
      id: 7,
@@ -4358,7 +4358,7 @@ module.exports = {
      ],
    },
    EquipmentTools1 : {
-     Name: "Junk Pickaxe",
+     name: "Junk Pickaxe",
      sellPrice: 50,
      typeGen: "aPick",
      id: 0,
@@ -4375,7 +4375,7 @@ module.exports = {
      ],
    },
    EquipmentTools2 : {
-     Name: "Copper Pickaxe",
+     name: "Copper Pickaxe",
      sellPrice: 800,
      typeGen: "aPick",
      id: 1,
@@ -4400,7 +4400,7 @@ module.exports = {
      ],
    },
    EquipmentTools3 : {
-     Name: "Iron Pickaxe",
+     name: "Iron Pickaxe",
      sellPrice: 5000,
      typeGen: "aPick",
      id: 0,
@@ -4426,7 +4426,7 @@ module.exports = {
      ],
    },
    EquipmentTools5 : {
-     Name: "Gold Pickaxe",
+     name: "Gold Pickaxe",
      sellPrice: 10000,
      typeGen: "aPick",
      id: 2,
@@ -4454,7 +4454,7 @@ module.exports = {
      ],
    },
    EquipmentTools6 : {
-     Name: "Platinum Pickaxe",
+     name: "Platinum Pickaxe",
      sellPrice: 200,
      typeGen: "aPick",
      id: 3,
@@ -4482,7 +4482,7 @@ module.exports = {
      ],
    },
    EquipmentTools7 : {
-     Name: "Dementia Pickaxe",
+     name: "Dementia Pickaxe",
      sellPrice: 200,
      typeGen: "aPick",
      id: 0,
@@ -4499,7 +4499,7 @@ module.exports = {
      },
    },
    EquipmentTools8 : {
-     Name: "Lustre Pickaxe",
+     name: "Lustre Pickaxe",
      sellPrice: 200,
      typeGen: "aPick",
      id: 4,
@@ -4516,7 +4516,7 @@ module.exports = {
      },
    },
    EquipmentTools9 : {
-     Name: "Dreadlo Pickolo",
+     name: "Dreadlo Pickolo",
      sellPrice: 200,
      typeGen: "aPick",
      id: 0,
@@ -4533,7 +4533,7 @@ module.exports = {
      },
    },
    EquipmentTools10 : {
-     Name: "Poopy Pickaxe",
+     name: "Poopy Pickaxe",
      sellPrice: 200,
      typeGen: "aPick",
      id: 0,
@@ -4552,7 +4552,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet0 : {
-     Name: "Old Hatchet",
+     name: "Old Hatchet",
      sellPrice: 50,
      typeGen: "aHatchet",
      id: 0,
@@ -4570,7 +4570,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet3 : {
-     Name: "Copper Chopper",
+     name: "Copper Chopper",
      sellPrice: 650,
      typeGen: "aHatchet",
      id: 2,
@@ -4597,7 +4597,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet1 : {
-     Name: "Iron Hatchet",
+     name: "Iron Hatchet",
      sellPrice: 5000,
      typeGen: "aHatchet",
      id: 0,
@@ -4623,7 +4623,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet2 : {
-     Name: "Golden Axe",
+     name: "Golden Axe",
      sellPrice: 12000,
      typeGen: "aHatchet",
      id: 1,
@@ -4650,7 +4650,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet4 : {
-     Name: "Plat Hatchet",
+     name: "Plat Hatchet",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 3,
@@ -4677,7 +4677,7 @@ module.exports = {
      ],
    },
    EquipmentToolsHatchet5 : {
-     Name: "Dementia Dicer",
+     name: "Dementia Dicer",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 4,
@@ -4693,7 +4693,7 @@ module.exports = {
      },
    },
    EquipmentToolsHatchet6 : {
-     Name: "Lustre Logger",
+     name: "Lustre Logger",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 5,
@@ -4709,7 +4709,7 @@ module.exports = {
      },
    },
    EquipmentToolsHatchet7 : {
-     Name: "Void Hatchet",
+     name: "Void Hatchet",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 6,
@@ -4725,7 +4725,7 @@ module.exports = {
      },
    },
    EquipmentToolsHatchet8 : {
-     Name: "Starfire Hatchet",
+     name: "Starfire Hatchet",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 7,
@@ -4742,7 +4742,7 @@ module.exports = {
      },
    },
    EquipmentToolsHatchet9 : {
-     Name: "Dreadlo Eviscerator",
+     name: "Dreadlo Eviscerator",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 8,
@@ -4760,7 +4760,7 @@ module.exports = {
      },
    },
    EquipmentToolsHatchet10 : {
-     Name: "Annihilator of the Yggdrasil",
+     name: "Annihilator of the Yggdrasil",
      sellPrice: 200,
      typeGen: "aHatchet",
      id: 9,
@@ -4778,7 +4778,7 @@ module.exports = {
      },
    },
    FishingRod1 : {
-     Name: "Wood Fishing Rod",
+     name: "Wood Fishing Rod",
      sellPrice: 200,
      typeGen: "aFishingRod",
      id: 0,
@@ -4796,7 +4796,7 @@ module.exports = {
      ],
    },
    FishingRod2 : {
-     Name: "Copper Fish Rod",
+     name: "Copper Fish Rod",
      sellPrice: 500,
      typeGen: "aFishingRod",
      id: 0,
@@ -4822,7 +4822,7 @@ module.exports = {
      ],
    },
    FishingRod3 : {
-     Name: "Iron Fishing Rod",
+     name: "Iron Fishing Rod",
      sellPrice: 2500,
      typeGen: "aFishingRod",
      id: 1,
@@ -4850,7 +4850,7 @@ module.exports = {
      ],
    },
    FishingRod4 : {
-     Name: "Gold Fishing Rod",
+     name: "Gold Fishing Rod",
      sellPrice: 10000,
      typeGen: "aFishingRod",
      id: 2,
@@ -4878,7 +4878,7 @@ module.exports = {
      ],
    },
    FishingRod5 : {
-     Name: "Plat Fishing Rod",
+     name: "Plat Fishing Rod",
      sellPrice: 20000,
      typeGen: "aFishingRod",
      id: 3,
@@ -4905,7 +4905,7 @@ module.exports = {
      ],
    },
    CatchingNet1 : {
-     Name: "Bug Net",
+     name: "Bug Net",
      sellPrice: 100,
      typeGen: "aBugNet",
      id: 0,
@@ -4923,7 +4923,7 @@ module.exports = {
      ],
    },
    CatchingNet2 : {
-     Name: "Copper Netted Net",
+     name: "Copper Netted Net",
      sellPrice: 2000,
      typeGen: "aBugNet",
      id: 1,
@@ -4950,7 +4950,7 @@ module.exports = {
      ],
    },
    CatchingNet3 : {
-     Name: "Reinforced Net",
+     name: "Reinforced Net",
      sellPrice: 7500,
      typeGen: "aBugNet",
      id: 0,
@@ -4978,7 +4978,7 @@ module.exports = {
      ],
    },
    CatchingNet4 : {
-     Name: "Gilded Net",
+     name: "Gilded Net",
      sellPrice: 17000,
      typeGen: "aBugNet",
      id: 2,
@@ -5006,7 +5006,7 @@ module.exports = {
      ],
    },
    CatchingNet5 : {
-     Name: "Platinet",
+     name: "Platinet",
      sellPrice: 17000,
      typeGen: "aBugNet",
      id: 3,
@@ -5034,7 +5034,7 @@ module.exports = {
      ],
    },
    FoodHealth1 : {
-     Name: "Nomwich",
+     name: "Nomwich",
      sellPrice: 2,
      typeGen: "cFood",
      id: 0,
@@ -5055,7 +5055,7 @@ module.exports = {
      ],
    },
    FoodHealth3 : {
-     Name: "Hot Dog",
+     name: "Hot Dog",
      sellPrice: 7,
      typeGen: "cFood",
      id: 0,
@@ -5075,7 +5075,7 @@ module.exports = {
      ],
    },
    FoodHealth2 : {
-     Name: "Cheezy Pizza",
+     name: "Cheezy Pizza",
      sellPrice: 20,
      typeGen: "cFood",
      id: 0,
@@ -5097,7 +5097,7 @@ module.exports = {
      ],
    },
    Peanut : {
-     Name: "Peanut",
+     name: "Peanut",
      sellPrice: 12,
      typeGen: "cFood",
      id: 0,
@@ -5125,7 +5125,7 @@ module.exports = {
      ],
    },
    FoodHealth4 : {
-     Name: "Saucy Weiner",
+     name: "Saucy Weiner",
      sellPrice: 120,
      typeGen: "cFood",
      id: 0,
@@ -5143,7 +5143,7 @@ module.exports = {
      ],
    },
    FoodHealth5 : {
-     Name: "Cranberry Jam",
+     name: "Cranberry Jam",
      sellPrice: 32,
      typeGen: "cFood",
      id: 0,
@@ -5161,7 +5161,7 @@ module.exports = {
      ],
    },
    FoodHealth6 : {
-     Name: "Kebab Sticks",
+     name: "Kebab Sticks",
      sellPrice: 48,
      typeGen: "cFood",
      id: 0,
@@ -5179,7 +5179,7 @@ module.exports = {
      ],
    },
    FoodHealth7 : {
-     Name: "Meat Pie",
+     name: "Meat Pie",
      sellPrice: 80,
      typeGen: "cFood",
      id: 0,
@@ -5199,7 +5199,7 @@ module.exports = {
      ],
    },
    FoodHealth8 : {
-     Name: "Crabby Cake Supreme",
+     name: "Crabby Cake Supreme",
      sellPrice: 120,
      typeGen: "cFood",
      id: 0,
@@ -5215,7 +5215,7 @@ module.exports = {
      },
    },
    Meatloaf : {
-     Name: "Magic Meatloaf",
+     name: "Magic Meatloaf",
      sellPrice: 300,
      typeGen: "cFood",
      id: 0,
@@ -5236,7 +5236,7 @@ module.exports = {
      ],
    },
    FoodPotOr1 : {
-     Name: "Small Strength Potion",
+     name: "Small Strength Potion",
      sellPrice: 5,
      typeGen: "cFood",
      id: 0,
@@ -5258,7 +5258,7 @@ module.exports = {
      ],
    },
    FoodPotOr2 : {
-     Name: "Average Strength Potion",
+     name: "Average Strength Potion",
      sellPrice: 25,
      typeGen: "cFood",
      id: 0,
@@ -5279,7 +5279,7 @@ module.exports = {
      ],
    },
    FoodPotOr3 : {
-     Name: "Decent Strength Potion",
+     name: "Decent Strength Potion",
      sellPrice: 150,
      typeGen: "cFood",
      id: 0,
@@ -5295,7 +5295,7 @@ module.exports = {
      },
    },
    FoodPotRe1 : {
-     Name: "Small Life Potion",
+     name: "Small Life Potion",
      sellPrice: 4,
      typeGen: "cFood",
      id: 0,
@@ -5314,7 +5314,7 @@ module.exports = {
      ],
    },
    FoodPotRe2 : {
-     Name: "Average Life Potion",
+     name: "Average Life Potion",
      sellPrice: 30,
      typeGen: "cFood",
      id: 0,
@@ -5335,7 +5335,7 @@ module.exports = {
      ],
    },
    FoodPotRe3 : {
-     Name: "Decent Life Potion",
+     name: "Decent Life Potion",
      sellPrice: 200,
      typeGen: "cFood",
      id: 0,
@@ -5351,7 +5351,7 @@ module.exports = {
      },
    },
    FoodPotGr1 : {
-     Name: "Small Speed Potion",
+     name: "Small Speed Potion",
      sellPrice: 7,
      typeGen: "cFood",
      id: 0,
@@ -5373,7 +5373,7 @@ module.exports = {
      ],
    },
    FoodPotGr2 : {
-     Name: "Average Speed Potion",
+     name: "Average Speed Potion",
      sellPrice: 60,
      typeGen: "cFood",
      id: 0,
@@ -5395,7 +5395,7 @@ module.exports = {
      ],
    },
    FoodPotGr3 : {
-     Name: "Decent Speed Potion",
+     name: "Decent Speed Potion",
      sellPrice: 400,
      typeGen: "cFood",
      id: 0,
@@ -5411,7 +5411,7 @@ module.exports = {
      },
  },
    FoodPotMana1 : {
-     Name: "Small Mana Potion",
+     name: "Small Mana Potion",
      sellPrice: 5,
      typeGen: "cFood",
      id: 0,
@@ -5432,7 +5432,7 @@ module.exports = {
      ],
    },
    FoodPotMana2 : {
-     Name: "Average Mana Potion",
+     name: "Average Mana Potion",
      sellPrice: 25,
      typeGen: "cFood",
      id: 0,
@@ -5451,7 +5451,7 @@ module.exports = {
      ],
    },
    FoodPotMana3 : {
-     Name: "Decent Mana Potion",
+     name: "Decent Mana Potion",
      sellPrice: 175,
      typeGen: "cFood",
      id: 0,
@@ -5467,7 +5467,7 @@ module.exports = {
      },
     },
    FoodPotYe1 : {
-     Name: "Small EXP Potion",
+     name: "Small EXP Potion",
      sellPrice: 25,
      typeGen: "cFood",
      id: 0,
@@ -5487,7 +5487,7 @@ module.exports = {
      ],
    },
    FoodPotYe2 : {
-     Name: "Average EXP Potion",
+     name: "Average EXP Potion",
      sellPrice: 250,
      typeGen: "cFood",
      id: 0,
@@ -5506,7 +5506,7 @@ module.exports = {
      ],
    },
    FoodPotYe3 : {
-     Name: "Decent EXP Potion",
+     name: "Decent EXP Potion",
      sellPrice: 1500,
      typeGen: "cFood",
      id: 0,
@@ -5522,7 +5522,7 @@ module.exports = {
      },
     },
    FoodMining1 : {
-     Name: "Icing Ironbite",
+     name: "Icing Ironbite",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5549,7 +5549,7 @@ module.exports = {
      ],
    },
    FoodEvent1 : {
-     Name: "Giftybread Man",
+     name: "Giftybread Man",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5570,7 +5570,7 @@ module.exports = {
      ],
    },
    FoodChoppin1 : {
-     Name: "Saucy Logfries",
+     name: "Saucy Logfries",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5596,7 +5596,7 @@ module.exports = {
      ],
    },
    FoodEvent2 : {
-     Name: "Chogg Nog",
+     name: "Chogg Nog",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5617,7 +5617,7 @@ module.exports = {
      ],
    },
    FoodFish1 : {
-     Name: "Slurpin Herm",
+     name: "Slurpin Herm",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5643,7 +5643,7 @@ module.exports = {
      ],
    },
    FoodEvent3 : {
-     Name: "Candy Canes",
+     name: "Candy Canes",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5664,7 +5664,7 @@ module.exports = {
      ],
    },
    FoodCatch1 : {
-     Name: "Buttered Toasted Butter",
+     name: "Buttered Toasted Butter",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5690,7 +5690,7 @@ module.exports = {
      ],
    },
    FoodEvent4 : {
-     Name: "Mistleberries",
+     name: "Mistleberries",
      sellPrice: 10,
      typeGen: "cFood",
      id: 0,
@@ -5711,7 +5711,7 @@ module.exports = {
      ],
    },
    Bullet : {
-     Name: "Bullet",
+     name: "Bullet",
      sellPrice: 20,
      typeGen: "cFood",
      id: 0,
@@ -5736,7 +5736,7 @@ module.exports = {
      ],
    },
    BulletB : {
-     Name: "FMJ Bullet",
+     name: "FMJ Bullet",
      sellPrice: 20,
      typeGen: "cFood",
      id: 0,
@@ -5762,7 +5762,7 @@ module.exports = {
      ],
    },
    MidnightCookie : {
-     Name: "Midnight Cookie",
+     name: "Midnight Cookie",
      sellPrice: 300,
      typeGen: "cFood",
      id: 0,
@@ -5784,7 +5784,7 @@ module.exports = {
      ],
    },
    PeanutG : {
-     Name: "Golden Peanut",
+     name: "Golden Peanut",
      sellPrice: 125,
      typeGen: "cFood",
      id: 0,
@@ -5810,7 +5810,7 @@ module.exports = {
      ],
    },
    FoodG1 : {
-     Name: "Golden Jam",
+     name: "Golden Jam",
      sellPrice: 50,
      typeGen: "cFood",
      id: 0,
@@ -5837,7 +5837,7 @@ module.exports = {
      ],
    },
    FoodG2 : {
-     Name: "Golden Kebabs",
+     name: "Golden Kebabs",
      sellPrice: 200,
      typeGen: "cFood",
      id: 0,
@@ -5861,7 +5861,7 @@ module.exports = {
      ],
    },
    FoodG3 : {
-     Name: "Golden Meat Pie",
+     name: "Golden Meat Pie",
      sellPrice: 350,
      typeGen: "cFood",
      id: 0,
@@ -5883,7 +5883,7 @@ module.exports = {
      ],
    },
    FoodG4 : {
-     Name: "Golden Nomwich",
+     name: "Golden Nomwich",
      sellPrice: 100,
      typeGen: "cFood",
      id: 0,
@@ -5904,7 +5904,7 @@ module.exports = {
      ],
    },
    rtt0 : {
-     Name: "Bottled Town Teleport",
+     name: "Bottled Town Teleport",
      sellPrice: 150,
      typeGen: "dQuest",
      id: 1,
@@ -5920,7 +5920,7 @@ module.exports = {
      ],
    },
    ResetFrag : {
-     Name: "Talent Point Reset Fragment",
+     name: "Talent Point Reset Fragment",
      sellPrice: 200,
      typeGen: "dQuest",
      id: 1,
@@ -5937,7 +5937,7 @@ module.exports = {
      ],
    },
    ResetCompleted : {
-     Name: "Talent Point Reset Potion",
+     name: "Talent Point Reset Potion",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 1,
@@ -5952,7 +5952,7 @@ module.exports = {
      ],
    },
    ResetCompletedS : {
-     Name: "Star Talent Reset Potion",
+     name: "Star Talent Reset Potion",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 1,
@@ -5960,7 +5960,7 @@ module.exports = {
      description: `Hold down on this item to respec "ALL" your Star Talent Points! Well, except for the Star tab points, there's a different potion for... no wait, this IS the potion for that!`,
    },
    ExpBalloon1 : {
-     Name: "Small Experience Balloon",
+     name: "Small Experience Balloon",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 50,
@@ -5990,7 +5990,7 @@ module.exports = {
      ],
    },
    ExpBalloon2 : {
-     Name: "Medium Experience Balloon",
+     name: "Medium Experience Balloon",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 120,
@@ -6002,7 +6002,7 @@ module.exports = {
      ],
    },
    ExpBalloon3 : {
-     Name: "Large Experience Balloon",
+     name: "Large Experience Balloon",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 200,
@@ -6010,7 +6010,7 @@ module.exports = {
      description: `Hold down to gain EXP in the skill that's displayed in the corner of your screen. If you're in a town, you will gain EXP in the town skill. The amount of EXP you get is based on your skill's Lv.`,
    },
    JobApplication : {
-     Name: "Job Application",
+     name: "Job Application",
      sellPrice: 200,
      typeGen: "dQuest",
      id: 0,
@@ -6021,7 +6021,7 @@ module.exports = {
      ],
    },
    SmithingHammerChisel : {
-     Name: "Sculpting Tools",
+     name: "Sculpting Tools",
      sellPrice: 800,
      typeGen: "dQuest",
      id: 0,
@@ -6032,7 +6032,7 @@ module.exports = {
      ],
    },
    BobJoePickle : {
-     Name: "BobJoePickle",
+     name: "BobJoePickle",
      sellPrice: 20000,
      typeGen: "dQuest",
      id: 0,
@@ -6043,7 +6043,7 @@ module.exports = {
      ],
    },
    Quest1 : {
-     Name: "Mining Certificate",
+     name: "Mining Certificate",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6054,7 +6054,7 @@ module.exports = {
      ],
    },
    Crystal1 : {
-     Name: "Desert Topaz",
+     name: "Desert Topaz",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6062,7 +6062,7 @@ module.exports = {
      description: `Restores power to the Desert Portal in the Grasslands Town.`,
    },
    Crystal2 : {
-     Name: "Glacier Quartz",
+     name: "Glacier Quartz",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6070,14 +6070,14 @@ module.exports = {
      description: `Restores power to the Glacial Portal in the Desert Town.`,
    },
    Quest2 : {
-     Name: "Mining Certificate",
+     name: "Mining Certificate",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
      type: "QUEST_ITEM",
    },
    PeanutS : {
-     Name: "Stone Peanut",
+     name: "Stone Peanut",
      sellPrice: 5000,
      typeGen: "dQuest",
      id: 0,
@@ -6088,7 +6088,7 @@ module.exports = {
      ],
    },
    Quest3 : {
-     Name: "Ketchup Bottle",
+     name: "Ketchup Bottle",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6099,7 +6099,7 @@ module.exports = {
      ],
    },
    Quest4 : {
-     Name: "Mustard Bottle",
+     name: "Mustard Bottle",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6110,7 +6110,7 @@ module.exports = {
      ],
    },
    Quest5 : {
-     Name: "Golden Jam",
+     name: "Golden Jam",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6121,7 +6121,7 @@ module.exports = {
      ],
    },
    Quest6 : {
-     Name: "Scouting Report",
+     name: "Scouting Report",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6132,7 +6132,7 @@ module.exports = {
      ],
    },
    Quest7 : {
-     Name: "Strange Rock",
+     name: "Strange Rock",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6143,7 +6143,7 @@ module.exports = {
      ],
    },
    Quest8 : {
-     Name: "Filler bc I messed up",
+     name: "Filler bc I messed up",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6151,7 +6151,7 @@ module.exports = {
      description: `Filler.`,
    },
    Quest10 : {
-     Name: "Green Tea",
+     name: "Green Tea",
      sellPrice: 1000,
      typeGen: "dQuest",
      id: 0,
@@ -6159,7 +6159,7 @@ module.exports = {
      description: `You're playing a game right now with a sub-plot that involves a jar of sand falling in love with a cup of tea. Just thought I'd point that out.`,
    },
    Quest11 : {
-     Name: "Forest Villas Flyer Thingy",
+     name: "Forest Villas Flyer Thingy",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6167,7 +6167,7 @@ module.exports = {
      description: `Solid evidence that it's possible to have a negative crafting level.`,
    },
    Quest12 : {
-     Name: "Dog Bone",
+     name: "Dog Bone",
      sellPrice: 7,
      typeGen: "dQuest",
      id: 0,
@@ -6178,7 +6178,7 @@ module.exports = {
      ],
    },
    Quest13 : {
-     Name: "Empty Box",
+     name: "Empty Box",
      sellPrice: 7,
      typeGen: "dQuest",
      id: 0,
@@ -6197,7 +6197,7 @@ module.exports = {
      ],
    },
    Quest14 : {
-     Name: "Employment Statistics",
+     name: "Employment Statistics",
      sellPrice: 50,
      typeGen: "dQuest",
      id: 0,
@@ -6208,7 +6208,7 @@ module.exports = {
      ],
    },
    Quest15 : {
-     Name: "Red Frisbee",
+     name: "Red Frisbee",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6216,7 +6216,7 @@ module.exports = {
      description: `Sprout's red frisbee! I hope you didn't get shrunken down by a magic apple on your way up, or your stetchy dog brother might laugh at you!`,
    },
    Quest16 : {
-     Name: "Broken Mic",
+     name: "Broken Mic",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6224,7 +6224,7 @@ module.exports = {
      description: `The guy who carelessly dropped this microphone is a moron, and that's a fact. Boom, mic drop... ah crap.`,
    },
    Quest17 : {
-     Name: "Amarok Slab",
+     name: "Amarok Slab",
      sellPrice: 250,
      typeGen: "dQuest",
      id: 0,
@@ -6237,7 +6237,7 @@ module.exports = {
      ],
    },
    Quest18 : {
-     Name: "Loomi's Room Key",
+     name: "Loomi's Room Key",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6248,7 +6248,7 @@ module.exports = {
      ],
    },
    Quest19 : {
-     Name: "Golden Dubloon",
+     name: "Golden Dubloon",
      sellPrice: 3500,
      typeGen: "dQuest",
      id: 0,
@@ -6259,7 +6259,7 @@ module.exports = {
      ],
    },
    Quest20 : {
-     Name: "Signed Arrest Warrant",
+     name: "Signed Arrest Warrant",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6270,7 +6270,7 @@ module.exports = {
      ],
    },
    Quest21 : {
-     Name: "Time Thingy",
+     name: "Time Thingy",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6281,7 +6281,7 @@ module.exports = {
      ],
    },
    Quest22 : {
-     Name: "Corporatube Sub",
+     name: "Corporatube Sub",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6292,7 +6292,7 @@ module.exports = {
      ],
    },
    Quest23 : {
-     Name: "Instablab Follower",
+     name: "Instablab Follower",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6303,7 +6303,7 @@ module.exports = {
      ],
    },
    Quest24 : {
-     Name: "Cloudsound Follower",
+     name: "Cloudsound Follower",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6316,7 +6316,7 @@ module.exports = {
      ],
    },
    Quest25 : {
-     Name: "Birthday Card",
+     name: "Birthday Card",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6324,7 +6324,7 @@ module.exports = {
      description: `It'll mean more to you when you're older... or may when this game is older and I add a use for this item, can't remember which.`,
    },
    Quest26 : {
-     Name: "Pre Crime Box",
+     name: "Pre Crime Box",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6332,7 +6332,7 @@ module.exports = {
      description: `The traditional gift given to those about to be victimized. A favorite amongst criminals!`,
    },
    Quest27 : {
-     Name: "Bag o Nuts",
+     name: "Bag o Nuts",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6343,7 +6343,7 @@ module.exports = {
      ],
    },
    Quest28 : {
-     Name: "IOU One Blue Crystal",
+     name: "IOU One Blue Crystal",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6351,7 +6351,7 @@ module.exports = {
      description: `The boss doesn't drop any blue crystals yet, but it will once World 3 is ready!`,
    },
    Quest29 : {
-     Name: "Chaotic Amarok Slab",
+     name: "Chaotic Amarok Slab",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6362,7 +6362,7 @@ module.exports = {
      ],
    },
    GoldricP1 : {
-     Name: "Casual Confidante",
+     name: "Casual Confidante",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6373,7 +6373,7 @@ module.exports = {
      ],
    },
    GoldricP2 : {
-     Name: "Triumphant Treason",
+     name: "Triumphant Treason",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6383,7 +6383,7 @@ module.exports = {
      ],
    },
    GoldricP3 : {
-     Name: "Claiming Cashe",
+     name: "Claiming Cashe",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6393,7 +6393,7 @@ module.exports = {
      ],
    },
    Quest30 : {
-     Name: "Giftmas Box",
+     name: "Giftmas Box",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6420,7 +6420,7 @@ module.exports = {
      ],
    },
    Quest31 : {
-     Name: "Gem Note",
+     name: "Gem Note",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 0,
@@ -6428,7 +6428,7 @@ module.exports = {
      description: `Did you like those 20 gems you just picked up? Well you'll LOVE the 500 gems I just added to your account. This paper is worthless btw lol it's just a picture of a gem.`,
    },
    Quest9 : {
-     Name: "Picnic Token",
+     name: "Picnic Token",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6439,7 +6439,7 @@ module.exports = {
      ],
    },
    BadgeG1 : {
-     Name: "Blunderhills NPC Completion Token",
+     name: "Blunderhills NPC Completion Token",
      sellPrice: 30000,
      typeGen: "dQuest",
      id: 0,
@@ -6458,7 +6458,7 @@ module.exports = {
      ],
    },
    BadgeG2 : {
-     Name: "Blunder Skills Completion Token",
+     name: "Blunder Skills Completion Token",
      sellPrice: 25000,
      typeGen: "dQuest",
      id: 0,
@@ -6476,7 +6476,7 @@ module.exports = {
      ],
    },
    BadgeG3 : {
-     Name: "Blunderhills Misc Completion Token",
+     name: "Blunderhills Misc Completion Token",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 0,
@@ -6494,7 +6494,7 @@ module.exports = {
      ],
    },
    NPCtoken1 : {
-     Name: "Easy Blunderhills NPC Token",
+     name: "Easy Blunderhills NPC Token",
      sellPrice: 2800,
      typeGen: "dQuest",
      id: 0,
@@ -6514,7 +6514,7 @@ module.exports = {
      ],
    },
    NPCtoken2 : {
-     Name: "Med Blunderhills NPC Token",
+     name: "Med Blunderhills NPC Token",
      sellPrice: 6000,
      typeGen: "dQuest",
      id: 0,
@@ -6534,7 +6534,7 @@ module.exports = {
      ],
    },
    NPCtoken3 : {
-     Name: "Hard Blunderhills NPC Token",
+     name: "Hard Blunderhills NPC Token",
      sellPrice: 16000,
      typeGen: "dQuest",
      id: 0,
@@ -6554,7 +6554,7 @@ module.exports = {
      ],
    },
    NPCtoken4 : {
-     Name: "Stiltzcho Token",
+     name: "Stiltzcho Token",
      sellPrice: 700,
      typeGen: "dQuest",
      id: 0,
@@ -6562,7 +6562,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of Stiltzcho's main quests!`,
    },
    NPCtoken5 : {
-     Name: "Woodsman Token",
+     name: "Woodsman Token",
      sellPrice: 700,
      typeGen: "dQuest",
      id: 0,
@@ -6570,7 +6570,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of the Woodsman's quests!`,
    },
    NPCtoken6 : {
-     Name: "Glumlee Token",
+     name: "Glumlee Token",
      sellPrice: 700,
      typeGen: "dQuest",
      id: 0,
@@ -6578,7 +6578,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of Glumlee's quests!`,
    },
    NPCtoken7 : {
-     Name: "Papua Piggea Token",
+     name: "Papua Piggea Token",
      sellPrice: 700,
      typeGen: "dQuest",
      id: 0,
@@ -6589,7 +6589,7 @@ module.exports = {
      ],
    },
    NPCtoken8 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1000,
      typeGen: "dQuest",
      id: 0,
@@ -6597,7 +6597,7 @@ module.exports = {
      description: `eafwef weafwef!`,
    },
    NPCtoken9 : {
-     Name: "Funguy Token",
+     name: "Funguy Token",
      sellPrice: 1500,
      typeGen: "dQuest",
      id: 0,
@@ -6608,7 +6608,7 @@ module.exports = {
      ],
    },
    NPCtoken10 : {
-     Name: "Krunk Token",
+     name: "Krunk Token",
      sellPrice: 1500,
      typeGen: "dQuest",
      id: 0,
@@ -6616,7 +6616,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of Krunk's quests!`,
    },
    NPCtoken11 : {
-     Name: "Tiki Chief Token",
+     name: "Tiki Chief Token",
      sellPrice: 1500,
      typeGen: "dQuest",
      id: 0,
@@ -6627,7 +6627,7 @@ module.exports = {
      ],
    },
    NPCtoken12 : {
-     Name: "Sproutinald Token",
+     name: "Sproutinald Token",
      sellPrice: 4000,
      typeGen: "dQuest",
      id: 0,
@@ -6638,7 +6638,7 @@ module.exports = {
      ],
    },
    NPCtoken13 : {
-     Name: "Dog Bone Token",
+     name: "Dog Bone Token",
      sellPrice: 4000,
      typeGen: "dQuest",
      id: 0,
@@ -6646,7 +6646,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of Dog Bone's quests!`,
    },
    NPCtoken14 : {
-     Name: "Dazey Token",
+     name: "Dazey Token",
      sellPrice: 4000,
      typeGen: "dQuest",
      id: 0,
@@ -6654,7 +6654,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of Dazey's quests!`,
    },
    NPCtoken15 : {
-     Name: "TP Pete Token",
+     name: "TP Pete Token",
      sellPrice: 4000,
      typeGen: "dQuest",
      id: 0,
@@ -6662,7 +6662,7 @@ module.exports = {
      description: `Proof that you completed "ALL" of TP Pete's quests!`,
    },
    EquipmentSmithingTabs2 : {
-     Name: "Anvil Tab 2",
+     name: "Anvil Tab 2",
      sellPrice: 100,
      typeGen: "dQuest",
      id: 2,
@@ -6682,7 +6682,7 @@ module.exports = {
      ],
    },
    EquipmentSmithingTabs3 : {
-     Name: "Anvil Tab 3",
+     name: "Anvil Tab 3",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 3,
@@ -6702,7 +6702,7 @@ module.exports = {
      ],
    },
    EquipmentSmithingTabs4 : {
-     Name: "Anvil Tab 4",
+     name: "Anvil Tab 4",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 4,
@@ -6710,7 +6710,7 @@ module.exports = {
      description: `Unlocks the 4th tab of craftable items for "ALL" anvils!`,
    },
    EquipmentSmithingTabs5 : {
-     Name: "Anvil Tab 5",
+     name: "Anvil Tab 5",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 5,
@@ -6718,7 +6718,7 @@ module.exports = {
      description: `Unlocks the 5th tab of craftable items for "ALL" anvils!`,
    },
    EquipmentSmithingTabs6 : {
-     Name: "Anvil Tab 6",
+     name: "Anvil Tab 6",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 6,
@@ -6726,7 +6726,7 @@ module.exports = {
      description: `Unlocks the 6th tab of craftable items for "ALL" anvils!`,
    },
    EquipmentSmithingTabs7 : {
-     Name: "Anvil Tab 7",
+     name: "Anvil Tab 7",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 7,
@@ -6734,7 +6734,7 @@ module.exports = {
      description: `Unlocks the 7th tab of craftable items for "ALL" anvils!`,
    },
    EquipmentSmithingTabs8 : {
-     Name: "Anvil Tab 8",
+     name: "Anvil Tab 8",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 8,
@@ -6742,7 +6742,7 @@ module.exports = {
      description: `Unlocks the 8th tab of craftable items for "ALL" anvils!`,
    },
    EquipmentStatues1 : {
-     Name: "Power Statue",
+     name: "Power Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 0,
@@ -6757,7 +6757,7 @@ module.exports = {
      ],
    },
    EquipmentStatues2 : {
-     Name: "Speed Statue",
+     name: "Speed Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 1,
@@ -6771,7 +6771,7 @@ module.exports = {
      ],
    },
    EquipmentStatues3 : {
-     Name: "Mining Statue",
+     name: "Mining Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 2,
@@ -6782,7 +6782,7 @@ module.exports = {
      ],
    },
    EquipmentStatues4 : {
-     Name: "Feasty Statue",
+     name: "Feasty Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 3,
@@ -6794,7 +6794,7 @@ module.exports = {
      ],
    },
    EquipmentStatues5 : {
-     Name: "Health Statue",
+     name: "Health Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 4,
@@ -6805,7 +6805,7 @@ module.exports = {
      ],
    },
    EquipmentStatues6 : {
-     Name: "Kachow Statue",
+     name: "Kachow Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 5,
@@ -6818,7 +6818,7 @@ module.exports = {
      ],
    },
    EquipmentStatues7 : {
-     Name: "Lumberbob Statue",
+     name: "Lumberbob Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 6,
@@ -6829,7 +6829,7 @@ module.exports = {
      ],
    },
    EquipmentStatues8 : {
-     Name: "Thicc Skin Statue",
+     name: "Thicc Skin Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 7,
@@ -6842,7 +6842,7 @@ module.exports = {
      ],
    },
    EquipmentStatues9 : {
-     Name: "Oceanman Statue",
+     name: "Oceanman Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 8,
@@ -6853,7 +6853,7 @@ module.exports = {
      ],
    },
    EquipmentStatues10 : {
-     Name: "Ol Reliable Statue",
+     name: "Ol Reliable Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 9,
@@ -6864,7 +6864,7 @@ module.exports = {
      ],
    },
    EquipmentStatues11 : {
-     Name: "Exp Book Statue",
+     name: "Exp Book Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 10,
@@ -6872,7 +6872,7 @@ module.exports = {
      description: `I haven't read a book since middle school, so I'm just assuming this is what they look like.`,
    },
    EquipmentStatues12 : {
-     Name: "Anvil Statue",
+     name: "Anvil Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 11,
@@ -6880,7 +6880,7 @@ module.exports = {
      description: `Fillerzz!`,
    },
    EquipmentStatues13 : {
-     Name: "Cauldron Statue",
+     name: "Cauldron Statue",
      sellPrice: 10,
      typeGen: "dStatueStone",
      id: 12,
@@ -6888,7 +6888,7 @@ module.exports = {
      description: `Fillerzz`,
    },
    SmithingRecipes1 : {
-     Name: "Beginner Recipe",
+     name: "Beginner Recipe",
      sellPrice: 1,
      typeGen: "aRecipe",
      id: 0,
@@ -6907,7 +6907,7 @@ module.exports = {
      ],
    },
    SmithingRecipes2 : {
-     Name: "Novice Recipe",
+     name: "Novice Recipe",
      sellPrice: 1,
      typeGen: "aRecipe",
      id: 0,
@@ -6920,7 +6920,7 @@ module.exports = {
      ],
    },
    SmithingRecipes3 : {
-     Name: "Apprentice Recipe",
+     name: "Apprentice Recipe",
      sellPrice: 1,
      typeGen: "aRecipe",
      id: 0,
@@ -6929,7 +6929,7 @@ module.exports = {
      lvReqToEquip: 999,
    },
    SmithingRecipes4 : {
-     Name: "Journeyman Recipe",
+     name: "Journeyman Recipe",
      sellPrice: 1,
      typeGen: "aRecipe",
      id: 0,
@@ -6938,7 +6938,7 @@ module.exports = {
      lvReqToEquip: 999,
    },
    TalentBook1 : {
-     Name: "Special Talent Book",
+     name: "Special Talent Book",
      sellPrice: 100,
      typeGen: "aTalentBook",
      id: 0,
@@ -6957,7 +6957,7 @@ module.exports = {
      ],
    },
    TalentBook2 : {
-     Name: "Beginner Talent Book",
+     name: "Beginner Talent Book",
      sellPrice: 100,
      typeGen: "aTalentBook",
      id: 0,
@@ -6966,7 +6966,7 @@ module.exports = {
      lvReqToEquip: 999,
    },
    TalentBook3 : {
-     Name: "Warrior Talent Book",
+     name: "Warrior Talent Book",
      sellPrice: 100,
      typeGen: "aTalentBook",
      id: 0,
@@ -6978,7 +6978,7 @@ module.exports = {
      },
    },
    TalentBook4 : {
-     Name: "Archer Talent Book",
+     name: "Archer Talent Book",
      sellPrice: 100,
      typeGen: "aTalentBook",
      id: 0,
@@ -6990,7 +6990,7 @@ module.exports = {
      },
    },
    TalentBook5 : {
-     Name: "Wizard Talent Book",
+     name: "Wizard Talent Book",
      sellPrice: 100,
      typeGen: "aTalentBook",
      id: 0,
@@ -7002,7 +7002,7 @@ module.exports = {
      },
    },
    MaxCapBagT2 : {
-     Name: "Miniature Mining Pouch",
+     name: "Miniature Mining Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 3,
@@ -7019,7 +7019,7 @@ module.exports = {
      ],
    },
    MaxCapBag1 : {
-     Name: "Cramped Mining Pouch",
+     name: "Cramped Mining Pouch",
      sellPrice: 900,
      typeGen: "aCarryBag",
      id: 10,
@@ -7042,7 +7042,7 @@ module.exports = {
      ],
    },
    MaxCapBag2 : {
-     Name: "Small Mining Pouch",
+     name: "Small Mining Pouch",
      sellPrice: 13000,
      typeGen: "aCarryBag",
      id: 20,
@@ -7065,7 +7065,7 @@ module.exports = {
      ],
    },
    MaxCapBag3 : {
-     Name: "Average Mining Pouch",
+     name: "Average Mining Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 30,
@@ -7090,7 +7090,7 @@ module.exports = {
      ],
    },
    MaxCapBag4 : {
-     Name: "Sizable Mining Pouch",
+     name: "Sizable Mining Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 40,
@@ -7114,7 +7114,7 @@ module.exports = {
      ],
    },
    MaxCapBag5 : {
-     Name: "Big Mining Pouch",
+     name: "Big Mining Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 50,
@@ -7128,7 +7128,7 @@ module.exports = {
      },
    },
    MaxCapBagT1 : {
-     Name: "Miniature Choppin Pouch",
+     name: "Miniature Choppin Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 4,
@@ -7146,7 +7146,7 @@ module.exports = {
      ],
    },
    MaxCapBag7 : {
-     Name: "Cramped Choppin Pouch",
+     name: "Cramped Choppin Pouch",
      sellPrice: 1400,
      typeGen: "aCarryBag",
      id: 11,
@@ -7171,7 +7171,7 @@ module.exports = {
      ],
    },
    MaxCapBag9 : {
-     Name: "Small Choppin Pouch",
+     name: "Small Choppin Pouch",
      sellPrice: 10500,
      typeGen: "aCarryBag",
      id: 21,
@@ -7195,7 +7195,7 @@ module.exports = {
      ],
    },
    MaxCapBagT3 : {
-     Name: "Average Choppin Pouch",
+     name: "Average Choppin Pouch",
      sellPrice: 10500,
      typeGen: "aCarryBag",
      id: 31,
@@ -7221,7 +7221,7 @@ module.exports = {
      ],
    },
    MaxCapBagT4 : {
-     Name: "Sizable Choppin Pouch",
+     name: "Sizable Choppin Pouch",
      sellPrice: 10500,
      typeGen: "aCarryBag",
      id: 41,
@@ -7246,7 +7246,7 @@ module.exports = {
      ],
    },
    MaxCapBagT5 : {
-     Name: "Big Choppin Pouch",
+     name: "Big Choppin Pouch",
      sellPrice: 10500,
      typeGen: "aCarryBag",
      id: 51,
@@ -7261,7 +7261,7 @@ module.exports = {
      },
    },
    MaxCapBag6 : {
-     Name: "Miniscule Food Pouch",
+     name: "Miniscule Food Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 5,
@@ -7279,7 +7279,7 @@ module.exports = {
      ],
    },
    MaxCapBag8 : {
-     Name: "Cramped Food Pouch",
+     name: "Cramped Food Pouch",
      sellPrice: 5800,
      typeGen: "aCarryBag",
      id: 12,
@@ -7306,7 +7306,7 @@ module.exports = {
      ],
    },
    MaxCapBag10 : {
-     Name: "Small Food Pouch",
+     name: "Small Food Pouch",
      sellPrice: 5800,
      typeGen: "aCarryBag",
      id: 22,
@@ -7324,7 +7324,7 @@ module.exports = {
      ],
    },
    MaxCapBagF3 : {
-     Name: "Average Food Pouch",
+     name: "Average Food Pouch",
      sellPrice: 5800,
      typeGen: "aCarryBag",
      id: 32,
@@ -7351,7 +7351,7 @@ module.exports = {
      ],
    },
    MaxCapBagF4 : {
-     Name: "Sizable Food Pouch",
+     name: "Sizable Food Pouch",
      sellPrice: 5800,
      typeGen: "aCarryBag",
      id: 42,
@@ -7376,7 +7376,7 @@ module.exports = {
      ],
    },
    MaxCapBagF5 : {
-     Name: "Big Food Pouch",
+     name: "Big Food Pouch",
      sellPrice: 5800,
      typeGen: "aCarryBag",
      id: 52,
@@ -7391,7 +7391,7 @@ module.exports = {
      },
    },
    MaxCapBagM1 : {
-     Name: "Mini Materials Pouch",
+     name: "Mini Materials Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 5,
@@ -7409,7 +7409,7 @@ module.exports = {
      ],
    },
    MaxCapBagM2 : {
-     Name: "Cramped Material Pouch",
+     name: "Cramped Material Pouch",
      sellPrice: 4200,
      typeGen: "aCarryBag",
      id: 10,
@@ -7435,7 +7435,7 @@ module.exports = {
      ],
    },
    MaxCapBagM3 : {
-     Name: "Small Material Pouch",
+     name: "Small Material Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 20,
@@ -7453,7 +7453,7 @@ module.exports = {
      ],
    },
    MaxCapBagM4 : {
-     Name: "Average Material Pouch",
+     name: "Average Material Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 30,
@@ -7479,7 +7479,7 @@ module.exports = {
      ],
    },
    MaxCapBagM5 : {
-     Name: "Sizable Materials Pouch",
+     name: "Sizable Materials Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 40,
@@ -7504,7 +7504,7 @@ module.exports = {
      ],
    },
    MaxCapBagM6 : {
-     Name: "Big Materials Pouch",
+     name: "Big Materials Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 50,
@@ -7519,7 +7519,7 @@ module.exports = {
      },
    },
    MaxCapBagFi0 : {
-     Name: "Miniature Fish Pouch",
+     name: "Miniature Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 6,
@@ -7534,7 +7534,7 @@ module.exports = {
      },
    },
    MaxCapBagFi1 : {
-     Name: "Cramped Fish Pouch",
+     name: "Cramped Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 13,
@@ -7558,7 +7558,7 @@ module.exports = {
      ],
    },
    MaxCapBagFi2 : {
-     Name: "Small Fish Pouch",
+     name: "Small Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 23,
@@ -7583,7 +7583,7 @@ module.exports = {
      ],
    },
    MaxCapBagFi3 : {
-     Name: "Average Fish Pouch",
+     name: "Average Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 33,
@@ -7609,7 +7609,7 @@ module.exports = {
      ],
    },
    MaxCapBagFi4 : {
-     Name: "Sizable Fish Pouch",
+     name: "Sizable Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 43,
@@ -7634,7 +7634,7 @@ module.exports = {
      ],
    },
    MaxCapBagFi5 : {
-     Name: "Big Fish Pouch",
+     name: "Big Fish Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 53,
@@ -7649,7 +7649,7 @@ module.exports = {
      },
    },
    MaxCapBagB0 : {
-     Name: "Miniature Bug Pouch",
+     name: "Miniature Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 7,
@@ -7664,7 +7664,7 @@ module.exports = {
      },
    },
    MaxCapBagB1 : {
-     Name: "Cramped Bug Pouch",
+     name: "Cramped Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 14,
@@ -7688,7 +7688,7 @@ module.exports = {
      ],
    },
    MaxCapBagB2 : {
-     Name: "Small Bug Pouch",
+     name: "Small Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 24,
@@ -7713,7 +7713,7 @@ module.exports = {
      ],
    },
    MaxCapBagB3 : {
-     Name: "Average Bug Pouch",
+     name: "Average Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 34,
@@ -7739,7 +7739,7 @@ module.exports = {
      ],
    },
    MaxCapBagB4 : {
-     Name: "Sizable Bug Pouch",
+     name: "Sizable Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 44,
@@ -7764,7 +7764,7 @@ module.exports = {
      ],
    },
    MaxCapBagB5 : {
-     Name: "Big Bug Pouch",
+     name: "Big Bug Pouch",
      sellPrice: 200,
      typeGen: "aCarryBag",
      id: 54,
@@ -7779,7 +7779,7 @@ module.exports = {
      },
    },
    ObolBronze0 : {
-     Name: "Bronze STR Obol",
+     name: "Bronze STR Obol",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -7791,7 +7791,7 @@ module.exports = {
      },
    },
    ObolBronze1 : {
-     Name: "Bronze AGI Obol",
+     name: "Bronze AGI Obol",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -7803,7 +7803,7 @@ module.exports = {
      },
    },
    ObolBronze2 : {
-     Name: "Bronze WIS Obol",
+     name: "Bronze WIS Obol",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -7815,7 +7815,7 @@ module.exports = {
      },
    },
    ObolBronze3 : {
-     Name: "Bronze LUK Obol",
+     name: "Bronze LUK Obol",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7827,7 +7827,7 @@ module.exports = {
      },
    },
    ObolSilver0 : {
-     Name: "Silver STR Obol",
+     name: "Silver STR Obol",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7842,7 +7842,7 @@ module.exports = {
      ],
    },
    ObolSilver1 : {
-     Name: "Silver AGI Obol",
+     name: "Silver AGI Obol",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7854,7 +7854,7 @@ module.exports = {
      },
    },
    ObolSilver2 : {
-     Name: "Silver WIS Obol",
+     name: "Silver WIS Obol",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7866,7 +7866,7 @@ module.exports = {
      },
    },
    ObolSilver3 : {
-     Name: "Silver LUK Obol",
+     name: "Silver LUK Obol",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7878,7 +7878,7 @@ module.exports = {
      },
    },
    ObolGold0 : {
-     Name: "Gold STR Obol",
+     name: "Gold STR Obol",
      sellPrice: 8,
      typeGen: "aObolCircle",
      id: 0,
@@ -7890,7 +7890,7 @@ module.exports = {
      },
    },
    ObolGold1 : {
-     Name: "Gold AGI Obol",
+     name: "Gold AGI Obol",
      sellPrice: 8,
      typeGen: "aObolCircle",
      id: 0,
@@ -7902,7 +7902,7 @@ module.exports = {
      },
    },
    ObolGold2 : {
-     Name: "Gold WIS Obol",
+     name: "Gold WIS Obol",
      sellPrice: 8,
      typeGen: "aObolCircle",
      id: 0,
@@ -7914,7 +7914,7 @@ module.exports = {
      },
    },
    ObolGold3 : {
-     Name: "Gold LUK Obol",
+     name: "Gold LUK Obol",
      sellPrice: 8,
      typeGen: "aObolCircle",
      id: 0,
@@ -7926,7 +7926,7 @@ module.exports = {
      },
    },
    ObolBronzeDamage : {
-     Name: "Bronze Obol of Puny Damage",
+     name: "Bronze Obol of Puny Damage",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -7941,7 +7941,7 @@ module.exports = {
      ],
    },
    ObolSilverDamage : {
-     Name: "Silver Obol of Little Damage",
+     name: "Silver Obol of Little Damage",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 0,
@@ -7956,7 +7956,7 @@ module.exports = {
      },
    },
    ObolGoldDamage : {
-     Name: "Golden Obol of Big Boy Damage",
+     name: "Golden Obol of Big Boy Damage",
      sellPrice: 8,
      typeGen: "aObolCircle",
      id: 0,
@@ -7969,7 +7969,7 @@ module.exports = {
      },
    },
    ObolPlatinumDamage : {
-     Name: "Platinum Obol of Lethal Damage",
+     name: "Platinum Obol of Lethal Damage",
      sellPrice: 20,
      typeGen: "aObolCircle",
      id: 0,
@@ -7982,7 +7982,7 @@ module.exports = {
      },
    },
    ObolPinkDamage : {
-     Name: "Dementia Obol of Infinite Damage",
+     name: "Dementia Obol of Infinite Damage",
      sellPrice: 50,
      typeGen: "aObolCircle",
      id: 0,
@@ -7995,7 +7995,7 @@ module.exports = {
      },
    },
    ObolPlatinumSpeed : {
-     Name: "Platinum Obol of Blinding Speed",
+     name: "Platinum Obol of Blinding Speed",
      sellPrice: 20,
      typeGen: "aObolHexagon",
      id: 3,
@@ -8008,7 +8008,7 @@ module.exports = {
      },
    },
    ObolSilverMoney : {
-     Name: "SILVER OBOL OF POCKET CHANGE",
+     name: "SILVER OBOL OF POCKET CHANGE",
      sellPrice: 3,
      typeGen: "aObolSquare",
      id: 2,
@@ -8024,7 +8024,7 @@ module.exports = {
      },
    },
    ObolGoldMoney : {
-     Name: "GOLDEN OBOL OF PLENTIFUL RICHES",
+     name: "GOLDEN OBOL OF PLENTIFUL RICHES",
      sellPrice: 8,
      typeGen: "aObolSquare",
      id: 2,
@@ -8038,7 +8038,7 @@ module.exports = {
      },
    },
    ObolBronzeMining : {
-     Name: "Bronze Obol of Small Swings",
+     name: "Bronze Obol of Small Swings",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -8050,7 +8050,7 @@ module.exports = {
      },
    },
    ObolSilverMining : {
-     Name: "Silver Obol of Moderate Mining",
+     name: "Silver Obol of Moderate Mining",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 1,
@@ -8063,7 +8063,7 @@ module.exports = {
      },
    },
    ObolGoldMining : {
-     Name: "Golden Obol of Diligent Digging",
+     name: "Golden Obol of Diligent Digging",
      sellPrice: 8,
      typeGen: "aObolSquare",
      id: 2,
@@ -8076,7 +8076,7 @@ module.exports = {
      },
    },
    ObolPlatinumMining : {
-     Name: "Platinum Obol of Dwarven Delving",
+     name: "Platinum Obol of Dwarven Delving",
      sellPrice: 20,
      typeGen: "aObolHexagon",
      id: 3,
@@ -8089,7 +8089,7 @@ module.exports = {
      },
    },
    ObolPinkMining : {
-     Name: "Dementia Obol of Magisterial Metals",
+     name: "Dementia Obol of Magisterial Metals",
      sellPrice: 50,
      typeGen: "aObolSparkle",
      id: 4,
@@ -8102,7 +8102,7 @@ module.exports = {
      },
    },
    ObolBronzeChoppin : {
-     Name: "Bronze Obol of Chippin Chops",
+     name: "Bronze Obol of Chippin Chops",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -8114,7 +8114,7 @@ module.exports = {
      },
    },
    ObolSilverChoppin : {
-     Name: "Silver Obol of Big Bark",
+     name: "Silver Obol of Big Bark",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 1,
@@ -8127,7 +8127,7 @@ module.exports = {
      },
    },
    ObolGoldChoppin : {
-     Name: "Golden Obol of Huge Hackin",
+     name: "Golden Obol of Huge Hackin",
      sellPrice: 8,
      typeGen: "aObolSquare",
      id: 2,
@@ -8140,7 +8140,7 @@ module.exports = {
      },
    },
    ObolPlatinumChoppin : {
-     Name: "Platinum Obol of Lumby Loggo",
+     name: "Platinum Obol of Lumby Loggo",
      sellPrice: 20,
      typeGen: "aObolHexagon",
      id: 3,
@@ -8153,7 +8153,7 @@ module.exports = {
      },
    },
    ObolPinkChoppin : {
-     Name: "Dementia Obol of WOWOWOWWO",
+     name: "Dementia Obol of WOWOWOWWO",
      sellPrice: 50,
      typeGen: "aObolSparkle",
      id: 4,
@@ -8166,7 +8166,7 @@ module.exports = {
      },
    },
    ObolBronzeFishing : {
-     Name: "Bronze Obol of Finite Fish",
+     name: "Bronze Obol of Finite Fish",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -8178,7 +8178,7 @@ module.exports = {
      },
    },
    ObolSilverFishing : {
-     Name: "Silver Obol of Puny Pikes",
+     name: "Silver Obol of Puny Pikes",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 1,
@@ -8191,7 +8191,7 @@ module.exports = {
      },
    },
    ObolGoldFishing : {
-     Name: "Golden Obol of Crazy Carp",
+     name: "Golden Obol of Crazy Carp",
      sellPrice: 8,
      typeGen: "aObolSquare",
      id: 2,
@@ -8204,7 +8204,7 @@ module.exports = {
      },
    },
    ObolPlatinumFishing : {
-     Name: "Platinum Obol of Tremendous Trout",
+     name: "Platinum Obol of Tremendous Trout",
      sellPrice: 20,
      typeGen: "aObolHexagon",
      id: 3,
@@ -8217,7 +8217,7 @@ module.exports = {
      },
    },
    ObolPinkFishing : {
-     Name: "Dementia Obol of Monument Marlins",
+     name: "Dementia Obol of Monument Marlins",
      sellPrice: 50,
      typeGen: "aObolSparkle",
      id: 4,
@@ -8230,7 +8230,7 @@ module.exports = {
      },
    },
    ObolBronzeCatching : {
-     Name: "Bronze Obol of Few Flies",
+     name: "Bronze Obol of Few Flies",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -8242,7 +8242,7 @@ module.exports = {
      },
    },
    ObolSilverCatching : {
-     Name: "Silver Obol of Big Bugs",
+     name: "Silver Obol of Big Bugs",
      sellPrice: 3,
      typeGen: "aObolCircle",
      id: 1,
@@ -8255,7 +8255,7 @@ module.exports = {
      },
    },
    ObolGoldCatching : {
-     Name: "Golden Obol of Insane Insects",
+     name: "Golden Obol of Insane Insects",
      sellPrice: 8,
      typeGen: "aObolSquare",
      id: 2,
@@ -8268,7 +8268,7 @@ module.exports = {
      },
    },
    ObolPlatinumCatching : {
-     Name: "Platinum Obol of Idk Yet",
+     name: "Platinum Obol of Idk Yet",
      sellPrice: 20,
      typeGen: "aObolHexagon",
      id: 3,
@@ -8281,7 +8281,7 @@ module.exports = {
      },
    },
    ObolPinkCatching : {
-     Name: "Dementia Obol of Idk Yet",
+     name: "Dementia Obol of Idk Yet",
      sellPrice: 50,
      typeGen: "aObolSparkle",
      id: 4,
@@ -8294,7 +8294,7 @@ module.exports = {
      },
    },
    ObolSilverLuck : {
-     Name: "Silver Obol of Double Sixes",
+     name: "Silver Obol of Double Sixes",
      sellPrice: 3,
      typeGen: "aObolSquare",
      id: 4,
@@ -8307,7 +8307,7 @@ module.exports = {
      },
    },
    ObolPinkLuck : {
-     Name: "Dementia Obol of Never Ending Luck",
+     name: "Dementia Obol of Never Ending Luck",
      sellPrice: 50,
      typeGen: "aObolSparkle",
      id: 4,
@@ -8320,7 +8320,7 @@ module.exports = {
      },
    },
    ObolBronzePop : {
-     Name: "Bronze Obol of Pop",
+     name: "Bronze Obol of Pop",
      sellPrice: 1,
      typeGen: "aObolCircle",
      id: 0,
@@ -8336,7 +8336,7 @@ module.exports = {
      ],
    },
    ExpSmith1 : {
-     Name: "Smithing Exp",
+     name: "Smithing Exp",
      sellPrice: 1,
      typeGen: "dExpOrb",
      id: 1,
@@ -8344,7 +8344,7 @@ module.exports = {
      description: `A little ball of pure energy! It's sole purpose is to give the creator smithing exp. It is basically useless in its crafted state.`,
    },
    StampA1 : {
-     Name: "Sword Stamp",
+     name: "Sword Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 0,
@@ -8352,7 +8352,7 @@ module.exports = {
      description: `BaseDmg,add,1,0,5,Grasslands1,20,5,50,1.3,0,{} Base Damage,3`,
    },
    StampA2 : {
-     Name: "Heart Stamp",
+     name: "Heart Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1,
@@ -8360,7 +8360,7 @@ module.exports = {
      description: `BaseHP,add,1,0,5,OakTree,25,7,50,1.3,0,{} Base HP,3`,
    },
    StampA3 : {
-     Name: "Mana Stamp",
+     name: "Mana Stamp",
      sellPrice: 2500,
      typeGen: "aStamp",
      id: 2,
@@ -8371,7 +8371,7 @@ module.exports = {
      ],
    },
    StampA4 : {
-     Name: "Tomahawk Stamp",
+     name: "Tomahawk Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 3,
@@ -8382,7 +8382,7 @@ module.exports = {
      ],
    },
    StampA5 : {
-     Name: "Target Stamp",
+     name: "Target Stamp",
      sellPrice: 250,
      typeGen: "aStamp",
      id: 4,
@@ -8393,7 +8393,7 @@ module.exports = {
      ],
    },
    StampA6 : {
-     Name: "Shield Stamp",
+     name: "Shield Stamp",
      sellPrice: 800,
      typeGen: "aStamp",
      id: 5,
@@ -8404,7 +8404,7 @@ module.exports = {
      ],
    },
    StampA7 : {
-     Name: "Longsword Stamp",
+     name: "Longsword Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 6,
@@ -8415,7 +8415,7 @@ module.exports = {
      ],
    },
    StampA8 : {
-     Name: "Kapow Stamp",
+     name: "Kapow Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 7,
@@ -8426,7 +8426,7 @@ module.exports = {
      ],
    },
    StampA9 : {
-     Name: "Fist Stamp",
+     name: "Fist Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 8,
@@ -8437,7 +8437,7 @@ module.exports = {
      ],
    },
    StampA10 : {
-     Name: "Battleaxe Stamp",
+     name: "Battleaxe Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 9,
@@ -8448,7 +8448,7 @@ module.exports = {
      ],
    },
    StampA11 : {
-     Name: "Haste Stamp",
+     name: "Haste Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 10,
@@ -8459,7 +8459,7 @@ module.exports = {
      ],
    },
    StampA12 : {
-     Name: "Vitality Stamp",
+     name: "Vitality Stamp",
      sellPrice: 8000,
      typeGen: "aStamp",
      id: 11,
@@ -8470,7 +8470,7 @@ module.exports = {
      ],
    },
    StampA13 : {
-     Name: "Book Stamp",
+     name: "Book Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 12,
@@ -8481,7 +8481,7 @@ module.exports = {
      ],
    },
    StampA14 : {
-     Name: "Manamoar Stamp",
+     name: "Manamoar Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 13,
@@ -8492,7 +8492,7 @@ module.exports = {
      ],
    },
    StampA15 : {
-     Name: "Clover Stamp",
+     name: "Clover Stamp",
      sellPrice: 12000,
      typeGen: "aStamp",
      id: 14,
@@ -8503,7 +8503,7 @@ module.exports = {
      ],
    },
    StampA16 : {
-     Name: "Scimitar Stamp",
+     name: "Scimitar Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 15,
@@ -8514,7 +8514,7 @@ module.exports = {
      ],
    },
    StampA17 : {
-     Name: "Bullseye Stamp",
+     name: "Bullseye Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 16,
@@ -8525,7 +8525,7 @@ module.exports = {
      ],
    },
    StampA18 : {
-     Name: "Feather Stamp",
+     name: "Feather Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 17,
@@ -8533,7 +8533,7 @@ module.exports = {
      description: `PctMoveSpd,decay,8,40,5,Copper,25,6,50,1.3,0,{} Base Move Speed,0`,
    },
    StampA19 : {
-     Name: "Polearm Stamp",
+     name: "Polearm Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 18,
@@ -8544,7 +8544,7 @@ module.exports = {
      ],
    },
    StampA20 : {
-     Name: "Violence Stamp",
+     name: "Violence Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 19,
@@ -8552,7 +8552,7 @@ module.exports = {
      description: `PctSTR,decay,20,40,4,Copper,25,6,50,1.3,0,{}% STR from Talents,0`,
    },
    StampA21 : {
-     Name: "Buckler Stamp",
+     name: "Buckler Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 20,
@@ -8560,7 +8560,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA22 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 21,
@@ -8568,7 +8568,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA23 : {
-     Name: "Sukka Foo",
+     name: "Sukka Foo",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 22,
@@ -8576,7 +8576,7 @@ module.exports = {
      description: `BossDmg,decay,24,60,10,Fish3,120,7,2500,1.34,0,{}% Boss Damage,0`,
    },
    StampA24 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 23,
@@ -8584,7 +8584,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA25 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 24,
@@ -8592,7 +8592,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA26 : {
-     Name: "Steve Sword",
+     name: "Steve Sword",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 25,
@@ -8603,7 +8603,7 @@ module.exports = {
      ],
    },
    StampA27 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 26,
@@ -8611,7 +8611,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA28 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 27,
@@ -8619,7 +8619,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA29 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 28,
@@ -8627,7 +8627,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA30 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 29,
@@ -8635,7 +8635,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA31 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 30,
@@ -8643,7 +8643,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA32 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 31,
@@ -8651,7 +8651,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA33 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 32,
@@ -8659,7 +8659,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA34 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 33,
@@ -8667,7 +8667,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampA35 : {
-     Name: "FILLER",
+     name: "FILLER",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 34,
@@ -8675,7 +8675,7 @@ module.exports = {
      description: `BaseDef,add,30,0,10,Copper,25,6,50,1.3,0,{} Base Defence,0`,
    },
    StampB1 : {
-     Name: "Pickaxe Stamp",
+     name: "Pickaxe Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1e3,
@@ -8683,7 +8683,7 @@ module.exports = {
      description: `BaseMinEff,add,1,0,10,OakTree,25,7,50,1.3,1,{} Mining Efficiency,0`,
    },
    StampB2 : {
-     Name: "Hatchet Stamp",
+     name: "Hatchet Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1001,
@@ -8691,7 +8691,7 @@ module.exports = {
      description: `BaseChopEff,add,1,0,10,CraftMat1,25,6,50,1.3,3,{} Choppin Efficiency,0`,
    },
    StampB3 : {
-     Name: "Anvil Zoomer Stamp",
+     name: "Anvil Zoomer Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1002,
@@ -8702,7 +8702,7 @@ module.exports = {
      ],
    },
    StampB4 : {
-     Name: "Lil' Mining Baggy Stamp",
+     name: "Lil' Mining Baggy Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1003,
@@ -8710,7 +8710,7 @@ module.exports = {
      description: `MinCap,add,1,0,10,JungleTree,25,6,50,1.3,1,{} Mining Carry Cap,0`,
    },
    StampB5 : {
-     Name: "Twin Ores Stamp",
+     name: "Twin Ores Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1004,
@@ -8718,7 +8718,7 @@ module.exports = {
      description: `DoubleMin,decay,15,40,5,EquipmentHats3,1,3,50,1.3,1,{}% Multi Ore Chance,0`,
    },
    StampB6 : {
-     Name: "Choppin' Bag Stamp",
+     name: "Choppin' Bag Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1005,
@@ -8729,7 +8729,7 @@ module.exports = {
      ],
    },
    StampB7 : {
-     Name: "Duplogs Stamp",
+     name: "Duplogs Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1006,
@@ -8737,7 +8737,7 @@ module.exports = {
      description: `DoubleChop,decay,15,40,5,EquipmentHats20,1,3,50,1.3,3,{}% Multi Log Chance,0`,
    },
    StampB8 : {
-     Name: "Matty Bag Stamp",
+     name: "Matty Bag Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1007,
@@ -8748,7 +8748,7 @@ module.exports = {
      ],
    },
    StampB9 : {
-     Name: "Smart Dirt Stamp",
+     name: "Smart Dirt Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1008,
@@ -8759,7 +8759,7 @@ module.exports = {
      ],
    },
    StampB10 : {
-     Name: "Cool Diggy Tool Stamp",
+     name: "Cool Diggy Tool Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1009,
@@ -8767,7 +8767,7 @@ module.exports = {
      description: `BaseMinEff,add,2,0,10,EquipmentToolsHatchet1,25,6,125,1.4,1,{} Mining Efficiency,0`,
    },
    StampB11 : {
-     Name: "High IQ Lumber Stamp",
+     name: "High IQ Lumber Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1010,
@@ -8778,7 +8778,7 @@ module.exports = {
      ],
    },
    StampB12 : {
-     Name: "Swag Swingy Tool Stamp",
+     name: "Swag Swingy Tool Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1011,
@@ -8786,7 +8786,7 @@ module.exports = {
      description: `BaseChopEff,add,2,0,10,EquipmentTools3,25,6,125,1.4,3,{} Choppin Efficiency,0`,
    },
    StampB13 : {
-     Name: "Smartas Smithing Stamp",
+     name: "Smartas Smithing Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1012,
@@ -8797,7 +8797,7 @@ module.exports = {
      ],
    },
    StampB14 : {
-     Name: "Choppin Stamp",
+     name: "Choppin Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1013,
@@ -8805,7 +8805,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,2`,
    },
    StampB15 : {
-     Name: "Choppin Stamp",
+     name: "Choppin Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1014,
@@ -8813,7 +8813,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,2`,
    },
    StampB16 : {
-     Name: "Choppin Stamp",
+     name: "Choppin Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1015,
@@ -8821,7 +8821,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,2`,
    },
    StampB17 : {
-     Name: "Fishing Rod Stamp",
+     name: "Fishing Rod Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1016,
@@ -8832,7 +8832,7 @@ module.exports = {
      ],
    },
    StampB18 : {
-     Name: "Choppin Stamp",
+     name: "Choppin Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 1017,
@@ -8840,7 +8840,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,2`,
    },
    StampC1 : {
-     Name: "Questin Stamp",
+     name: "Questin Stamp",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2e3,
@@ -8851,7 +8851,7 @@ module.exports = {
      ],
    },
    StampC2 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2001,
@@ -8859,7 +8859,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC3 : {
-     Name: "Crystallin",
+     name: "Crystallin",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2002,
@@ -8871,7 +8871,7 @@ module.exports = {
      ],
    },
    StampC4 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2003,
@@ -8879,7 +8879,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC5 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2004,
@@ -8887,7 +8887,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC6 : {
-     Name: "Comin SoonTM",
+     name: "Comin SoonTM",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2005,
@@ -8898,7 +8898,7 @@ module.exports = {
      ],
    },
    StampC7 : {
-     Name: "Comin SoonTM",
+     name: "Comin SoonTM",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2006,
@@ -8909,7 +8909,7 @@ module.exports = {
      ],
    },
    StampC8 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2007,
@@ -8917,7 +8917,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC9 : {
-     Name: "Comin SoonTM",
+     name: "Comin SoonTM",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2008,
@@ -8925,7 +8925,7 @@ module.exports = {
      description: `BaseDmg,add,0,0,10,Copper,25,6,50,1.3,0,{} Idk lol,3`,
    },
    StampC10 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2009,
@@ -8933,7 +8933,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC11 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2010,
@@ -8941,7 +8941,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC12 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2011,
@@ -8949,7 +8949,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC13 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2012,
@@ -8957,7 +8957,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC14 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2013,
@@ -8965,7 +8965,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC15 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2014,
@@ -8973,7 +8973,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC16 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2015,
@@ -8981,7 +8981,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC17 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2016,
@@ -8989,7 +8989,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StampC18 : {
-     Name: "Blank",
+     name: "Blank",
      sellPrice: 1,
      typeGen: "aStamp",
      id: 2017,
@@ -8997,7 +8997,7 @@ module.exports = {
      description: `BaseDmg,add,30,0,10,Copper,25,6,50,1.3,0,{} Base HP,3`,
    },
    StoneW1 : {
-     Name: "Weapon Upgrade Stone I",
+     name: "Weapon Upgrade Stone I",
      sellPrice: 125,
      typeGen: "dStone",
      id: 0,
@@ -9022,7 +9022,7 @@ module.exports = {
      ],
    },
    StoneW2 : {
-     Name: "Weapon Upgrade Stone II",
+     name: "Weapon Upgrade Stone II",
      sellPrice: 1500,
      typeGen: "dStone",
      id: 0,
@@ -9049,7 +9049,7 @@ module.exports = {
      ],
    },
    StoneW3 : {
-     Name: "Weapon Upgrade Stone III",
+     name: "Weapon Upgrade Stone III",
      sellPrice: 25000,
      typeGen: "dStone",
      id: 0,
@@ -9071,7 +9071,7 @@ module.exports = {
      ],
    },
    StoneW6 : {
-     Name: "Warped Weapon Upgrade Stone",
+     name: "Warped Weapon Upgrade Stone",
      sellPrice: 25000,
      typeGen: "dStone",
      id: 0,
@@ -9095,7 +9095,7 @@ module.exports = {
      ],
    },
    StoneA1 : {
-     Name: "Armor Upgrade Stone I",
+     name: "Armor Upgrade Stone I",
      sellPrice: 100,
      typeGen: "dStone",
      id: 1,
@@ -9121,7 +9121,7 @@ module.exports = {
      ],
    },
    StoneA1b : {
-     Name: "Armor Upgrade Stone G",
+     name: "Armor Upgrade Stone G",
      sellPrice: 100,
      typeGen: "dStone",
      id: 1,
@@ -9142,7 +9142,7 @@ module.exports = {
      ],
    },
    StoneA2 : {
-     Name: "Armor Upgrade Stone II",
+     name: "Armor Upgrade Stone II",
      sellPrice: 850,
      typeGen: "dStone",
      id: 1,
@@ -9170,7 +9170,7 @@ module.exports = {
      ],
    },
    StoneA2b : {
-     Name: "Armor Upgrade Stone B",
+     name: "Armor Upgrade Stone B",
      sellPrice: 100,
      typeGen: "dStone",
      id: 1,
@@ -9191,7 +9191,7 @@ module.exports = {
      ],
    },
    StoneA3 : {
-     Name: "Armor Upgrade Stone III",
+     name: "Armor Upgrade Stone III",
      sellPrice: 15000,
      typeGen: "dStone",
      id: 1,
@@ -9212,7 +9212,7 @@ module.exports = {
      ],
    },
    StoneT1 : {
-     Name: "Tool Upgrade Stone I",
+     name: "Tool Upgrade Stone I",
      sellPrice: 110,
      typeGen: "dStone",
      id: 2,
@@ -9240,7 +9240,7 @@ module.exports = {
      ],
    },
    StoneT1e : {
-     Name: "Giftmas Tool Upgrade Stone",
+     name: "Giftmas Tool Upgrade Stone",
      sellPrice: 110,
      typeGen: "dStone",
      id: 2,
@@ -9257,7 +9257,7 @@ module.exports = {
     },
   },
    StoneT2 : {
-     Name: "Tool Upgrade Stone II",
+     name: "Tool Upgrade Stone II",
      sellPrice: 1250,
      typeGen: "dStone",
      id: 2,
@@ -9285,7 +9285,7 @@ module.exports = {
      ],
    },
    StoneT3 : {
-     Name: "Tool Upgrade Stone III",
+     name: "Tool Upgrade Stone III",
      sellPrice: 20000,
      typeGen: "dStone",
      id: 2,
@@ -9306,7 +9306,7 @@ module.exports = {
      ],
    },
    StoneHelm1 : {
-     Name: "Helmet Upgrade Stone I",
+     name: "Helmet Upgrade Stone I",
      sellPrice: 400,
      typeGen: "dStone",
      id: 1,
@@ -9328,7 +9328,7 @@ module.exports = {
      ],
    },
    StoneHelm6 : {
-     Name: "Warped Helmet Upgrade Stone",
+     name: "Warped Helmet Upgrade Stone",
      sellPrice: 5000,
      typeGen: "dStone",
      id: 4,
@@ -9350,7 +9350,7 @@ module.exports = {
      ],
    },
    StoneHelm1b : {
-     Name: "Giftmas Helmet Upgrade Stone",
+     name: "Giftmas Helmet Upgrade Stone",
      sellPrice: 5000,
      typeGen: "dStone",
      id: 4,
@@ -9367,7 +9367,7 @@ module.exports = {
     },
    },
    StoneZ1 : {
-     Name: "Mystery Upgrade Stone I",
+     name: "Mystery Upgrade Stone I",
      sellPrice: 777,
      typeGen: "dStone",
      id: 5,
@@ -9400,7 +9400,7 @@ module.exports = {
      ],
    },
    StonePremSTR : {
-     Name: "Premium STR Stone",
+     name: "Premium STR Stone",
      sellPrice: 777,
      typeGen: "dStone",
      id: 6,
@@ -9420,7 +9420,7 @@ module.exports = {
      ],
    },
    StonePremAGI : {
-     Name: "Premium AGI Stone",
+     name: "Premium AGI Stone",
      sellPrice: 777,
      typeGen: "dStone",
      id: 6,
@@ -9440,7 +9440,7 @@ module.exports = {
      ],
    },
    StonePremWIS : {
-     Name: "Premium WIS Stone",
+     name: "Premium WIS Stone",
      sellPrice: 777,
      typeGen: "dStone",
      id: 6,
@@ -9460,7 +9460,7 @@ module.exports = {
      ],
    },
    StonePremLUK : {
-     Name: "Premium LUK Stone",
+     name: "Premium LUK Stone",
      sellPrice: 777,
      typeGen: "dStone",
      id: 6,
@@ -9480,7 +9480,7 @@ module.exports = {
      ],
    },
    CraftMat1 : {
-     Name: "Thread",
+     name: "Thread",
      sellPrice: 3,
      typeGen: "bCraft",
      id: 0,
@@ -9491,7 +9491,7 @@ module.exports = {
      ],
    },
    CraftMat2 : {
-     Name: "Crimson String",
+     name: "Crimson String",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9502,7 +9502,7 @@ module.exports = {
      ],
    },
    CraftMat3 : {
-     Name: "Cue Tape",
+     name: "Cue Tape",
      sellPrice: 3,
      typeGen: "bCraft",
      id: 0,
@@ -9513,7 +9513,7 @@ module.exports = {
      ],
    },
    CraftMat5 : {
-     Name: "Trusty Nails",
+     name: "Trusty Nails",
      sellPrice: 12,
      typeGen: "bCraft",
      id: 0,
@@ -9524,7 +9524,7 @@ module.exports = {
      ],
    },
    CraftMat6 : {
-     Name: "Boring Brick",
+     name: "Boring Brick",
      sellPrice: 25,
      typeGen: "bCraft",
      id: 0,
@@ -9535,7 +9535,7 @@ module.exports = {
      ],
    },
    CraftMat7 : {
-     Name: "Chain Link",
+     name: "Chain Link",
      sellPrice: 40,
      typeGen: "bCraft",
      id: 0,
@@ -9546,7 +9546,7 @@ module.exports = {
      ],
    },
    CraftMat9 : {
-     Name: "Leather Hide",
+     name: "Leather Hide",
      sellPrice: 60,
      typeGen: "bCraft",
      id: 0,
@@ -9557,7 +9557,7 @@ module.exports = {
      ],
    },
    CraftMat8 : {
-     Name: "Pinion Spur",
+     name: "Pinion Spur",
      sellPrice: 80,
      typeGen: "bCraft",
      id: 0,
@@ -9568,7 +9568,7 @@ module.exports = {
      ],
    },
    CraftMat10 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 100,
      typeGen: "bCraft",
      id: 0,
@@ -9579,7 +9579,7 @@ module.exports = {
      ],
    },
    CraftMat11 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 120,
      typeGen: "bCraft",
      id: 0,
@@ -9590,7 +9590,7 @@ module.exports = {
      ],
    },
    CraftMat12 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9601,7 +9601,7 @@ module.exports = {
      ],
    },
    CraftMat13 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9612,7 +9612,7 @@ module.exports = {
      ],
    },
    CraftMat14 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9623,7 +9623,7 @@ module.exports = {
      ],
    },
    CraftMat15 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9634,7 +9634,7 @@ module.exports = {
      ],
    },
    CraftMat16 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9645,7 +9645,7 @@ module.exports = {
      ],
    },
    CraftMat17 : {
-     Name: "Filler",
+     name: "Filler",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -9656,7 +9656,7 @@ module.exports = {
      ],
    },
    PureWater : {
-     Name: "Distilled Water",
+     name: "Distilled Water",
      sellPrice: 50,
      typeGen: "bCraft",
      id: 0,
@@ -9667,7 +9667,7 @@ module.exports = {
      ],
    },
    Grasslands1 : {
-     Name: "Spore Cap",
+     name: "Spore Cap",
      sellPrice: 3,
      typeGen: "bCraft",
      id: 0,
@@ -9678,7 +9678,7 @@ module.exports = {
      ],
    },
    Grasslands2 : {
-     Name: "Frog Leg",
+     name: "Frog Leg",
      sellPrice: 5,
      typeGen: "bCraft",
      id: 0,
@@ -9699,7 +9699,7 @@ module.exports = {
      ],
    },
    Grasslands3 : {
-     Name: "Bean Slices",
+     name: "Bean Slices",
      sellPrice: 7,
      typeGen: "bCraft",
      id: 0,
@@ -9710,7 +9710,7 @@ module.exports = {
      ],
    },
    Grasslands4 : {
-     Name: "Red Spore Cap",
+     name: "Red Spore Cap",
      sellPrice: 7,
      typeGen: "bCraft",
      id: 0,
@@ -9721,7 +9721,7 @@ module.exports = {
      ],
    },
    Jungle1 : {
-     Name: "Slime Sludge",
+     name: "Slime Sludge",
      sellPrice: 10,
      typeGen: "bCraft",
      id: 0,
@@ -9732,7 +9732,7 @@ module.exports = {
      ],
    },
    Jungle2 : {
-     Name: "Snake Skin",
+     name: "Snake Skin",
      sellPrice: 13,
      typeGen: "bCraft",
      id: 0,
@@ -9743,7 +9743,7 @@ module.exports = {
      ],
    },
    Jungle3 : {
-     Name: "Carrot Cube",
+     name: "Carrot Cube",
      sellPrice: 15,
      typeGen: "bCraft",
      id: 0,
@@ -9754,7 +9754,7 @@ module.exports = {
      ],
    },
    Forest1 : {
-     Name: "Goblin Ear",
+     name: "Goblin Ear",
      sellPrice: 20,
      typeGen: "bCraft",
      id: 0,
@@ -9765,7 +9765,7 @@ module.exports = {
      ],
    },
    Forest2 : {
-     Name: "Plank",
+     name: "Plank",
      sellPrice: 25,
      typeGen: "bCraft",
      id: 0,
@@ -9776,7 +9776,7 @@ module.exports = {
      ],
    },
    Forest3 : {
-     Name: "Bullfrog Horn",
+     name: "Bullfrog Horn",
      sellPrice: 30,
      typeGen: "bCraft",
      id: 0,
@@ -9787,7 +9787,7 @@ module.exports = {
      ],
    },
    Sewers1 : {
-     Name: "Corn Kernels",
+     name: "Corn Kernels",
      sellPrice: 30,
      typeGen: "bCraft",
      id: 0,
@@ -9798,7 +9798,7 @@ module.exports = {
      ],
    },
    Sewers1b : {
-     Name: "Golden Plop",
+     name: "Golden Plop",
      sellPrice: 500,
      typeGen: "bCraft",
      id: 0,
@@ -9809,7 +9809,7 @@ module.exports = {
      ],
    },
    Sewers2 : {
-     Name: "Rats Tail",
+     name: "Rats Tail",
      sellPrice: 90,
      typeGen: "bCraft",
      id: 0,
@@ -9820,7 +9820,7 @@ module.exports = {
      ],
    },
    TreeInterior1 : {
-     Name: "Stick",
+     name: "Stick",
      sellPrice: 90,
      typeGen: "bCraft",
      id: 0,
@@ -9831,7 +9831,7 @@ module.exports = {
      ],
    },
    TreeInterior1b : {
-     Name: "Woodular Circle",
+     name: "Woodular Circle",
      sellPrice: 90,
      typeGen: "bCraft",
      id: 0,
@@ -9842,7 +9842,7 @@ module.exports = {
      ],
    },
    TreeInterior2 : {
-     Name: "Acorn",
+     name: "Acorn",
      sellPrice: 90,
      typeGen: "bCraft",
      id: 0,
@@ -9853,7 +9853,7 @@ module.exports = {
      ],
    },
    BabaYagaETC : {
-     Name: "Baba Yaga Baby Eggs",
+     name: "Baba Yaga Baby Eggs",
      sellPrice: 400,
      typeGen: "bCraft",
      id: 0,
@@ -9864,7 +9864,7 @@ module.exports = {
      ],
    },
    DesertA1 : {
-     Name: "Pocket Sand",
+     name: "Pocket Sand",
      sellPrice: 60,
      typeGen: "bCraft",
      id: 0,
@@ -9875,7 +9875,7 @@ module.exports = {
      ],
    },
    DesertA1b : {
-     Name: "Glass Shard",
+     name: "Glass Shard",
      sellPrice: 60,
      typeGen: "bCraft",
      id: 0,
@@ -9886,7 +9886,7 @@ module.exports = {
      ],
    },
    DesertA2 : {
-     Name: "Megalodon Tooth",
+     name: "Megalodon Tooth",
      sellPrice: 70,
      typeGen: "bCraft",
      id: 0,
@@ -9897,7 +9897,7 @@ module.exports = {
      ],
    },
    DesertA3 : {
-     Name: "Crabby Cakey",
+     name: "Crabby Cakey",
      sellPrice: 80,
      typeGen: "bCraft",
      id: 0,
@@ -9908,7 +9908,7 @@ module.exports = {
      ],
    },
    DesertA3b : {
-     Name: "Nuget Cake",
+     name: "Nuget Cake",
      sellPrice: 80,
      typeGen: "bCraft",
      id: 0,
@@ -9919,7 +9919,7 @@ module.exports = {
      ],
    },
    DesertB1 : {
-     Name: "Coconotnotto",
+     name: "Coconotnotto",
      sellPrice: 95,
      typeGen: "bCraft",
      id: 0,
@@ -9930,7 +9930,7 @@ module.exports = {
      ],
    },
    DesertB2 : {
-     Name: "Furled Flag",
+     name: "Furled Flag",
      sellPrice: 108,
      typeGen: "bCraft",
      id: 0,
@@ -9941,7 +9941,7 @@ module.exports = {
      ],
    },
    DesertB3 : {
-     Name: "Pincer Arm",
+     name: "Pincer Arm",
      sellPrice: 120,
      typeGen: "bCraft",
      id: 0,
@@ -9952,7 +9952,7 @@ module.exports = {
      ],
    },
    DesertB4 : {
-     Name: "Potato Remains",
+     name: "Potato Remains",
      sellPrice: 133,
      typeGen: "bCraft",
      id: 0,
@@ -9963,7 +9963,7 @@ module.exports = {
      ],
    },
    DesertC1 : {
-     Name: "High Steaks",
+     name: "High Steaks",
      sellPrice: 145,
      typeGen: "bCraft",
      id: 0,
@@ -9975,7 +9975,7 @@ module.exports = {
      ],
    },
    DesertC2 : {
-     Name: "Wakka Cherry",
+     name: "Wakka Cherry",
      sellPrice: 160,
      typeGen: "bCraft",
      id: 0,
@@ -9986,7 +9986,7 @@ module.exports = {
      ],
    },
    DesertC3 : {
-     Name: "Singlecle",
+     name: "Singlecle",
      sellPrice: 180,
      typeGen: "bCraft",
      id: 0,
@@ -9997,7 +9997,7 @@ module.exports = {
      ],
    },
    DesertC4 : {
-     Name: "Shrapshell",
+     name: "Shrapshell",
      sellPrice: 200,
      typeGen: "bCraft",
      id: 0,
@@ -10008,7 +10008,7 @@ module.exports = {
      ],
    },
    IceMountains2 : {
-     Name: "Ice A La Crem",
+     name: "Ice A La Crem",
      sellPrice: 1,
      typeGen: "bCraft",
      id: 0,
@@ -10016,7 +10016,7 @@ module.exports = {
      description: `It's just a normal ice cream. It's been given a fancy name so people would pay more for it in a store.`,
    },
    Trophy1 : {
-     Name: "King of Food",
+     name: "King of Food",
      sellPrice: 10000,
      typeGen: "aTrophy",
      id: 15,
@@ -10037,7 +10037,7 @@ module.exports = {
      ],
    },
    Trophy2 : {
-     Name: "Lucky Lad",
+     name: "Lucky Lad",
      sellPrice: 777,
      typeGen: "aTrophy",
      id: 15,
@@ -10054,7 +10054,7 @@ module.exports = {
      ],
    },
    Trophy3 : {
-     Name: "Club Member",
+     name: "Club Member",
      sellPrice: 777,
      typeGen: "aTrophy",
      id: 15,
@@ -10072,7 +10072,7 @@ module.exports = {
      ],
    },
    Trophy4 : {
-     Name: "I Made This Game",
+     name: "I Made This Game",
      sellPrice: 777,
      typeGen: "aTrophy",
      id: 15,
@@ -10086,7 +10086,7 @@ module.exports = {
      },
    },
    Trophy5 : {
-     Name: "Dice Dynamo",
+     name: "Dice Dynamo",
      sellPrice: 777,
      typeGen: "aTrophy",
      id: 15,
@@ -10100,7 +10100,7 @@ module.exports = {
      },
    },
    Trophy6 : {
-     Name: "Blunder Hero",
+     name: "Blunder Hero",
      sellPrice: 777,
      typeGen: "aTrophy",
      id: 15,
@@ -10122,7 +10122,7 @@ module.exports = {
      ],
    },
    Trophy7 : {
-     Name: "Original Gamer",
+     name: "Original Gamer",
      sellPrice: 69,
      typeGen: "aTrophy",
      id: 15,
@@ -10138,7 +10138,7 @@ module.exports = {
      },
    },
    Trophy8 : {
-     Name: "Trailblazer",
+     name: "Trailblazer",
      sellPrice: 69,
      typeGen: "aTrophy",
      id: 15,
@@ -10155,7 +10155,7 @@ module.exports = {
      },
    },
    Starlight : {
-     Name: "Starlight Ore",
+     name: "Starlight Ore",
      sellPrice: 5,
      typeGen: "bOre",
      id: 0,
@@ -10171,7 +10171,7 @@ module.exports = {
      ],
    },
    AlienTreetutorial : {
-     Name: "Alien Logs",
+     name: "Alien Logs",
      sellPrice: 50,
      typeGen: "bLog",
      id: 0,
@@ -10181,7 +10181,7 @@ module.exports = {
      ],
    },
    EquipmentWeapons2 : {
-     Name: "Flesh Reaper",
+     name: "Flesh Reaper",
      sellPrice: 40,
      typeGen: "aWeapon",
      id: 5,
@@ -10197,7 +10197,7 @@ module.exports = {
      },
    },
    Secretstone : {
-     Name: "Secretstone",
+     name: "Secretstone",
      sellPrice: 1,
      typeGen: "dQuest",
      id: 200,
@@ -10205,7 +10205,7 @@ module.exports = {
      description: `It's almost as if the very essence of wonder and mystery has been infused into this little stone. Keep this secret to yourself, don't tell the noobs about it!`,
    },
    Timecandy1 : {
-     Name: "1 HR Time Candy",
+     name: "1 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 60,
@@ -10220,7 +10220,7 @@ module.exports = {
      ],
    },
    Timecandy2 : {
-     Name: "2 HR Time Candy",
+     name: "2 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 120,
@@ -10234,7 +10234,7 @@ module.exports = {
      ],
    },
    Timecandy3 : {
-     Name: "4 HR Time Candy",
+     name: "4 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 240,
@@ -10246,7 +10246,7 @@ module.exports = {
      ],
    },
    Timecandy4 : {
-     Name: "12 HR Time Candy",
+     name: "12 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 720,
@@ -10257,7 +10257,7 @@ module.exports = {
      ],
    },
    Timecandy5 : {
-     Name: "24 HR Time Candy",
+     name: "24 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 1440,
@@ -10268,7 +10268,7 @@ module.exports = {
      ],
    },
    Timecandy6 : {
-     Name: "72 HR Time Candy",
+     name: "72 HR Time Candy",
      sellPrice: 1,
      typeGen: "dTimeCandy",
      id: 4320,
@@ -10279,7 +10279,7 @@ module.exports = {
      ],
    },
    InvBag1 : {
-     Name: "Inventory Bag A",
+     name: "Inventory Bag A",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 0,
@@ -10295,7 +10295,7 @@ module.exports = {
      ],
    },
    InvBag2 : {
-     Name: "Inventory Bag B",
+     name: "Inventory Bag B",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 1,
@@ -10311,7 +10311,7 @@ module.exports = {
      ],
    },
    InvBag3 : {
-     Name: "Inventory Bag C",
+     name: "Inventory Bag C",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 2,
@@ -10327,7 +10327,7 @@ module.exports = {
      ],
    },
    InvBag4 : {
-     Name: "Inventory Bag D",
+     name: "Inventory Bag D",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 3,
@@ -10343,7 +10343,7 @@ module.exports = {
      ],
    },
    InvBag5 : {
-     Name: "Inventory Bag E",
+     name: "Inventory Bag E",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 4,
@@ -10359,7 +10359,7 @@ module.exports = {
      ],
    },
    InvBag6 : {
-     Name: "Inventory Bag F",
+     name: "Inventory Bag F",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 5,
@@ -10375,7 +10375,7 @@ module.exports = {
      ],
    },
    InvBag7 : {
-     Name: "Inventory Bag G",
+     name: "Inventory Bag G",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 6,
@@ -10391,7 +10391,7 @@ module.exports = {
      ],
    },
    InvBag8 : {
-     Name: "Inventory Bag H",
+     name: "Inventory Bag H",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 7,
@@ -10407,7 +10407,7 @@ module.exports = {
      ],
    },
    InvBag9 : {
-     Name: "Inventory Bag I",
+     name: "Inventory Bag I",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 8,
@@ -10420,7 +10420,7 @@ module.exports = {
      },
    },
    InvBag21 : {
-     Name: "Inventory Bag U",
+     name: "Inventory Bag U",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 20,
@@ -10433,7 +10433,7 @@ module.exports = {
      },
    },
    InvBag22 : {
-     Name: "Inventory Bag V",
+     name: "Inventory Bag V",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 21,
@@ -10446,7 +10446,7 @@ module.exports = {
      },
    },
    InvBag23 : {
-     Name: "Inventory Bag W",
+     name: "Inventory Bag W",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 22,
@@ -10459,7 +10459,7 @@ module.exports = {
      },
    },
    InvBag24 : {
-     Name: "Inventory Bag X",
+     name: "Inventory Bag X",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 23,
@@ -10472,7 +10472,7 @@ module.exports = {
      },
    },
    InvBag25 : {
-     Name: "Inventory Bag Y",
+     name: "Inventory Bag Y",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 24,
@@ -10485,7 +10485,7 @@ module.exports = {
      },
    },
    InvBag26 : {
-     Name: "Inventory Bag Z",
+     name: "Inventory Bag Z",
      sellPrice: 200,
      typeGen: "aInventoryBag",
      id: 25,
@@ -10498,7 +10498,7 @@ module.exports = {
      },
    },
    InvBag100 : {
-     Name: "Snakeskinventory Bag",
+     name: "Snakeskinventory Bag",
      sellPrice: 2500,
      typeGen: "aInventoryBag",
      id: 100,
@@ -10514,7 +10514,7 @@ module.exports = {
      ],
    },
    InvBag101 : {
-     Name: "Totally Normal and not fake Bag",
+     name: "Totally Normal and not fake Bag",
      sellPrice: 2500,
      typeGen: "aInventoryBag",
      id: 101,
@@ -10530,7 +10530,7 @@ module.exports = {
      ],
    },
    InvBag102 : {
-     Name: "Blunderbag",
+     name: "Blunderbag",
      sellPrice: 2500,
      typeGen: "aInventoryBag",
      id: 102,
@@ -10554,7 +10554,7 @@ module.exports = {
      ],
    },
    InvBag103 : {
-     Name: "Sandy Satchel",
+     name: "Sandy Satchel",
      sellPrice: 2500,
      typeGen: "aInventoryBag",
      id: 103,
@@ -10577,7 +10577,7 @@ module.exports = {
      ],
    },
    InvBag104 : {
-     Name: "Bummo Bag",
+     name: "Bummo Bag",
      sellPrice: 24,
      typeGen: "aInventoryBag",
      id: 104,
@@ -10592,7 +10592,7 @@ module.exports = {
      ],
    },
    InvBag105 : {
-     Name: "Capitalist Case",
+     name: "Capitalist Case",
      sellPrice: 2499,
      typeGen: "aInventoryBag",
      id: 105,
@@ -10607,7 +10607,7 @@ module.exports = {
      ],
    },
    InvBag106 : {
-     Name: "Wealthy Wallet",
+     name: "Wealthy Wallet",
      sellPrice: 249999,
      typeGen: "aInventoryBag",
      id: 106,
@@ -10622,7 +10622,7 @@ module.exports = {
      ],
    },
    InvBag107 : {
-     Name: "Prosperous Pouch",
+     name: "Prosperous Pouch",
      sellPrice: 24999999,
      typeGen: "aInventoryBag",
      id: 107,
@@ -10634,7 +10634,7 @@ module.exports = {
      },
    },
    InvBag108 : {
-     Name: "Sack of Success",
+     name: "Sack of Success",
      sellPrice: 2499999999,
      typeGen: "aInventoryBag",
      id: 108,
@@ -10646,7 +10646,7 @@ module.exports = {
      },
    },
    InvStorage1 : {
-     Name: "Storage Chest 1",
+     name: "Storage Chest 1",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 0,
@@ -10662,7 +10662,7 @@ module.exports = {
      ],
    },
    InvStorage2 : {
-     Name: "Storage Chest 2",
+     name: "Storage Chest 2",
      sellPrice: 1000,
      typeGen: "aStorageChest",
      id: 1,
@@ -10678,7 +10678,7 @@ module.exports = {
      ],
    },
    InvStorage3 : {
-     Name: "Storage Chest 3",
+     name: "Storage Chest 3",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 2,
@@ -10694,7 +10694,7 @@ module.exports = {
      ],
    },
    InvStorage4 : {
-     Name: "Storage Chest 4",
+     name: "Storage Chest 4",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 3,
@@ -10710,7 +10710,7 @@ module.exports = {
      ],
    },
    InvStorage5 : {
-     Name: "Storage Chest 5",
+     name: "Storage Chest 5",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 4,
@@ -10726,7 +10726,7 @@ module.exports = {
      ],
    },
    InvStorage6 : {
-     Name: "Storage Chest 6",
+     name: "Storage Chest 6",
      sellPrice: 2500,
      typeGen: "aStorageChest",
      id: 5,
@@ -10742,7 +10742,7 @@ module.exports = {
      ],
    },
    InvStorage7 : {
-     Name: "Storage Chest 7",
+     name: "Storage Chest 7",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 6,
@@ -10755,7 +10755,7 @@ module.exports = {
      },
    },
    InvStorage8 : {
-     Name: "Storage Chest 8",
+     name: "Storage Chest 8",
      sellPrice: 5000,
      typeGen: "aStorageChest",
      id: 7,
@@ -10771,7 +10771,7 @@ module.exports = {
      ],
    },
    InvStorage9 : {
-     Name: "Storage Chest 9",
+     name: "Storage Chest 9",
      sellPrice: 8900,
      typeGen: "aStorageChest",
      id: 8,
@@ -10787,7 +10787,7 @@ module.exports = {
      ],
    },
    InvStorage10 : {
-     Name: "Storage Chest 10",
+     name: "Storage Chest 10",
      sellPrice: 25000,
      typeGen: "aStorageChest",
      id: 9,
@@ -10802,7 +10802,7 @@ module.exports = {
      ],
    },
    InvStorage11 : {
-     Name: "Storage Chest 11",
+     name: "Storage Chest 11",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 10,
@@ -10814,7 +10814,7 @@ module.exports = {
      },
    },
    InvStorage12 : {
-     Name: "Storage Chest 12",
+     name: "Storage Chest 12",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 11,
@@ -10826,7 +10826,7 @@ module.exports = {
      },
    },
    InvStorage13 : {
-     Name: "Storage Chest 13",
+     name: "Storage Chest 13",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 12,
@@ -10838,7 +10838,7 @@ module.exports = {
      },
    },
    InvStorage14 : {
-     Name: "Storage Chest 14",
+     name: "Storage Chest 14",
      sellPrice: 1,
      typeGen: "aStorageChest",
      id: 14,
@@ -10850,7 +10850,7 @@ module.exports = {
      },
    },
    InvStorage15 : {
-     Name: "Storage Chest 15",
+     name: "Storage Chest 15",
      sellPrice: 100000,
      typeGen: "aStorageChest",
      id: 13,
@@ -10866,7 +10866,7 @@ module.exports = {
      ],
    },
    InvStorage31 : {
-     Name: "Storage Chest 90",
+     name: "Storage Chest 90",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 30,
@@ -10879,7 +10879,7 @@ module.exports = {
      },
    },
    InvStorage32 : {
-     Name: "Storage Chest 91",
+     name: "Storage Chest 91",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 31,
@@ -10892,7 +10892,7 @@ module.exports = {
      },
    },
    InvStorage33 : {
-     Name: "Storage Chest 92",
+     name: "Storage Chest 92",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 32,
@@ -10905,7 +10905,7 @@ module.exports = {
      },
    },
    InvStorage34 : {
-     Name: "Storage Chest 93",
+     name: "Storage Chest 93",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 33,
@@ -10918,7 +10918,7 @@ module.exports = {
      },
    },
    InvStorage35 : {
-     Name: "Storage Chest 94",
+     name: "Storage Chest 94",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 34,
@@ -10931,7 +10931,7 @@ module.exports = {
      },
    },
    InvStorage36 : {
-     Name: "Storage Chest 95",
+     name: "Storage Chest 95",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 35,
@@ -10944,7 +10944,7 @@ module.exports = {
      },
    },
    InvStorage37 : {
-     Name: "Storage Chest 96",
+     name: "Storage Chest 96",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 36,
@@ -10957,7 +10957,7 @@ module.exports = {
      },
    },
    InvStorage38 : {
-     Name: "Storage Chest 97",
+     name: "Storage Chest 97",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 37,
@@ -10970,7 +10970,7 @@ module.exports = {
      },
    },
    InvStorage39 : {
-     Name: "Storage Chest 98",
+     name: "Storage Chest 98",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 38,
@@ -10983,7 +10983,7 @@ module.exports = {
      },
    },
    InvStorage40 : {
-     Name: "Storage Chest 99",
+     name: "Storage Chest 99",
      sellPrice: 200,
      typeGen: "aStorageChest",
      id: 39,
@@ -10996,7 +10996,7 @@ module.exports = {
      },
    },
    InvStorageF : {
-     Name: "Dank Paypay Chest",
+     name: "Dank Paypay Chest",
      sellPrice: 1000,
      typeGen: "aStorageChest",
      id: 100,
@@ -11011,7 +11011,7 @@ module.exports = {
      ],
    },
    Key1 : {
-     Name: "Forest Villa Key",
+     name: "Forest Villa Key",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: 0,
@@ -11025,7 +11025,7 @@ module.exports = {
      ],
    },
    Key2 : {
-     Name: "Efaunt's Tomb Key",
+     name: "Efaunt's Tomb Key",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: 1,
@@ -11039,7 +11039,7 @@ module.exports = {
      ],
    },
    ObolFrag : {
-     Name: "Obol Fragment",
+     name: "Obol Fragment",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: -1,
@@ -11047,7 +11047,7 @@ module.exports = {
      description: `Hold down to add these Obol Fragments to your account. Account items are shared between "ALL" your Characters!`,
    },
    DoubleAFKtix : {
-     Name: "Double AFK Gain Ticket",
+     name: "Double AFK Gain Ticket",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: -1,
@@ -11055,7 +11055,7 @@ module.exports = {
      description: `Hold down to add these Double AFK tickets to your account. Account items are shared between "ALL" your Characters!`,
    },
    TixCol : {
-     Name: "Colosseum Ticket",
+     name: "Colosseum Ticket",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: -1,
@@ -11066,7 +11066,7 @@ module.exports = {
      ],
    },
    DeliveryBox : {
-     Name: "Delivery Box",
+     name: "Delivery Box",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: -1,
@@ -11074,7 +11074,7 @@ module.exports = {
      description: `Hold down to add these Delivery Boxes to your Post-Office Upgrade amount! These will be shared between "ALL" your Characters!`,
    },
    SilverPen : {
-     Name: "Silver Pen",
+     name: "Silver Pen",
      sellPrice: 50,
      typeGen: "dCurrency",
      id: -1,
@@ -11085,7 +11085,7 @@ module.exports = {
      ],
    },
    PremiumGem : {
-     Name: "Gem",
+     name: "Gem",
      sellPrice: 69,
      typeGen: "dCurrency",
      id: -1,
@@ -11127,7 +11127,7 @@ module.exports = {
      ],
    },
    TalentPoint1 : {
-     Name: "Talent Point Tab 1",
+     name: "Talent Point Tab 1",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 0,
@@ -11135,7 +11135,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the first tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    TalentPoint2 : {
-     Name: "Talent Point Tab 2",
+     name: "Talent Point Tab 2",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 1,
@@ -11143,7 +11143,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the second tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    TalentPoint3 : {
-     Name: "Talent Point Tab 3",
+     name: "Talent Point Tab 3",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 2,
@@ -11151,7 +11151,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the third tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    TalentPoint4 : {
-     Name: "Talent Point Tab 4",
+     name: "Talent Point Tab 4",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 3,
@@ -11159,7 +11159,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the fourth tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    TalentPoint5 : {
-     Name: "Talent Point Tab 4",
+     name: "Talent Point Tab 4",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 4,
@@ -11167,7 +11167,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the fifth tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    TalentPoint6 : {
-     Name: "Talent Point Special Tab",
+     name: "Talent Point Special Tab",
      sellPrice: 1,
      typeGen: "dCurrency",
      id: 5,
@@ -11175,7 +11175,7 @@ module.exports = {
      description: `Hold down to gain a Talent Point for the Special tab of talents. THIS APPLIES TO "ALL" CHARACTERS, even ones you haven't made yet, so it doesn't matter which character uses this item.`,
    },
    Line1 : {
-     Name: "Copper Twine",
+     name: "Copper Twine",
      sellPrice: 3500,
      typeGen: "dFishToolkit",
      id: 1,
@@ -11186,7 +11186,7 @@ module.exports = {
      ],
    },
    Line2 : {
-     Name: "Silver Twine",
+     name: "Silver Twine",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 2,
@@ -11194,7 +11194,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line3 : {
-     Name: "Gold Twine",
+     name: "Gold Twine",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 3,
@@ -11202,7 +11202,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line4 : {
-     Name: "Platinum Twine",
+     name: "Platinum Twine",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 4,
@@ -11210,7 +11210,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line5 : {
-     Name: "Leafy Vines",
+     name: "Leafy Vines",
      sellPrice: 7500,
      typeGen: "dFishToolkit",
      id: 5,
@@ -11221,7 +11221,7 @@ module.exports = {
      ],
    },
    Line6 : {
-     Name: "Fun Flags",
+     name: "Fun Flags",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 6,
@@ -11229,7 +11229,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line7 : {
-     Name: "Electrical Wiring",
+     name: "Electrical Wiring",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 7,
@@ -11237,7 +11237,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line8 : {
-     Name: "Wiener Links",
+     name: "Wiener Links",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 8,
@@ -11245,7 +11245,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line9 : {
-     Name: "Zeus Gon Fishin",
+     name: "Zeus Gon Fishin",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 9,
@@ -11253,7 +11253,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line10 : {
-     Name: "Needledrop",
+     name: "Needledrop",
      sellPrice: 15000,
      typeGen: "dFishToolkit",
      id: 10,
@@ -11264,7 +11264,7 @@ module.exports = {
      ],
    },
    Line11 : {
-     Name: "Spoons Lol",
+     name: "Spoons Lol",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 11,
@@ -11275,7 +11275,7 @@ module.exports = {
      ],
    },
    Line12 : {
-     Name: "Its a Boy Celebration",
+     name: "Its a Boy Celebration",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 12,
@@ -11283,7 +11283,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line13 : {
-     Name: "Its a Girl Celebration",
+     name: "Its a Girl Celebration",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 13,
@@ -11291,7 +11291,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Line14 : {
-     Name: "Its Alright Celebration",
+     name: "Its Alright Celebration",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 14,
@@ -11299,7 +11299,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight1 : {
-     Name: "Wormie Weight",
+     name: "Wormie Weight",
      sellPrice: 5000,
      typeGen: "dFishToolkit",
      id: 1,
@@ -11311,7 +11311,7 @@ module.exports = {
      ],
    },
    Weight2 : {
-     Name: "Iron Hook",
+     name: "Iron Hook",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 2,
@@ -11322,7 +11322,7 @@ module.exports = {
      ],
    },
    Weight3 : {
-     Name: "Basic Bobber",
+     name: "Basic Bobber",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 3,
@@ -11333,7 +11333,7 @@ module.exports = {
      ],
    },
    Weight4 : {
-     Name: "Dualhook Prongs",
+     name: "Dualhook Prongs",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 4,
@@ -11341,7 +11341,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight5 : {
-     Name: "One Pound of Steel",
+     name: "One Pound of Steel",
      sellPrice: 10000,
      typeGen: "dFishToolkit",
      id: 5,
@@ -11352,7 +11352,7 @@ module.exports = {
      ],
    },
    Weight6 : {
-     Name: "One Pound of Feathers",
+     name: "One Pound of Feathers",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 6,
@@ -11360,7 +11360,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight7 : {
-     Name: "Massless Unit for Physics Questions",
+     name: "Massless Unit for Physics Questions",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 7,
@@ -11368,7 +11368,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight8 : {
-     Name: "Literal Elephant",
+     name: "Literal Elephant",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 8,
@@ -11376,7 +11376,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight9 : {
-     Name: "Valve Patented Circle Thingies",
+     name: "Valve Patented Circle Thingies",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 9,
@@ -11384,7 +11384,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight10 : {
-     Name: "Dynamite",
+     name: "Dynamite",
      sellPrice: 17500,
      typeGen: "dFishToolkit",
      id: 10,
@@ -11395,7 +11395,7 @@ module.exports = {
      ],
    },
    Weight11 : {
-     Name: "Not Dynamite",
+     name: "Not Dynamite",
      sellPrice: 55000,
      typeGen: "dFishToolkit",
      id: 11,
@@ -11406,7 +11406,7 @@ module.exports = {
      ],
    },
    Weight12 : {
-     Name: "Triple Threat",
+     name: "Triple Threat",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 12,
@@ -11414,7 +11414,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters!`,
    },
    Weight13 : {
-     Name: "Crash Box",
+     name: "Crash Box",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 11,
@@ -11422,7 +11422,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters! Woah. Woah! WOAAHHH!!!`,
    },
    Weight14 : {
-     Name: "Fat Albert",
+     name: "Fat Albert",
      sellPrice: 50,
      typeGen: "dFishToolkit",
      id: 12,
@@ -11430,7 +11430,7 @@ module.exports = {
      description: `Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by "ALL" characters! Oh Albert, what were you thinking? Seriously, I genuinely can't comprehend what you were thinking haha!`,
    },
    CardsA0 : {
-     Name: "Green Mushroom Card",
+     name: "Green Mushroom Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11447,7 +11447,7 @@ module.exports = {
      ],
    },
    CardsA1 : {
-     Name: "Red Mushroom Card",
+     name: "Red Mushroom Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11464,7 +11464,7 @@ module.exports = {
      ],
    },
    CardsA2 : {
-     Name: "Frog Card",
+     name: "Frog Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11481,7 +11481,7 @@ module.exports = {
      ],
    },
    CardsA3 : {
-     Name: "Bored Bean Card",
+     name: "Bored Bean Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11498,7 +11498,7 @@ module.exports = {
      ],
    },
    CardsA4 : {
-     Name: "Slime Card",
+     name: "Slime Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11515,7 +11515,7 @@ module.exports = {
      ],
    },
    CardsA5 : {
-     Name: "Baby Boa Card",
+     name: "Baby Boa Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11532,7 +11532,7 @@ module.exports = {
      ],
    },
    CardsA6 : {
-     Name: "Carrotman Card",
+     name: "Carrotman Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11549,7 +11549,7 @@ module.exports = {
      ],
    },
    CardsA7 : {
-     Name: "Glublin Card",
+     name: "Glublin Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11566,7 +11566,7 @@ module.exports = {
      ],
    },
    CardsA8 : {
-     Name: "Wode Board Card",
+     name: "Wode Board Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11583,7 +11583,7 @@ module.exports = {
      ],
    },
    CardsA9 : {
-     Name: "Gigafrog Card",
+     name: "Gigafrog Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11600,7 +11600,7 @@ module.exports = {
      ],
    },
    CardsA10 : {
-     Name: "Poop Card",
+     name: "Poop Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11617,7 +11617,7 @@ module.exports = {
      ],
    },
    CardsA11 : {
-     Name: "Rat Card",
+     name: "Rat Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11634,7 +11634,7 @@ module.exports = {
      ],
    },
    CardsA12 : {
-     Name: "Walking Stick Card",
+     name: "Walking Stick Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11651,7 +11651,7 @@ module.exports = {
      ],
    },
    CardsA13 : {
-     Name: "Nutto Card",
+     name: "Nutto Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11668,7 +11668,7 @@ module.exports = {
      ],
    },
    CardsA14 : {
-     Name: "Crystal Carrot Card",
+     name: "Crystal Carrot Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11685,7 +11685,7 @@ module.exports = {
      ],
    },
    CardsB1 : {
-     Name: "Sandy Pot Card",
+     name: "Sandy Pot Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11702,7 +11702,7 @@ module.exports = {
      ],
    },
    CardsB2 : {
-     Name: "Mimic Card",
+     name: "Mimic Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11719,7 +11719,7 @@ module.exports = {
      ],
    },
    CardsB3 : {
-     Name: "Crabcake Card",
+     name: "Crabcake Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11736,7 +11736,7 @@ module.exports = {
      ],
    },
    CardsB4 : {
-     Name: "Mafioso Card",
+     name: "Mafioso Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11753,7 +11753,7 @@ module.exports = {
      ],
    },
    CardsB5 : {
-     Name: "Sand Castle Card",
+     name: "Sand Castle Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11770,7 +11770,7 @@ module.exports = {
      ],
    },
    CardsB6 : {
-     Name: "Pincermin Card",
+     name: "Pincermin Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11787,7 +11787,7 @@ module.exports = {
      ],
    },
    CardsB7 : {
-     Name: "Mashed Potato Card",
+     name: "Mashed Potato Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11804,7 +11804,7 @@ module.exports = {
      ],
    },
    CardsB8 : {
-     Name: "Tyson Card",
+     name: "Tyson Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11821,7 +11821,7 @@ module.exports = {
      ],
    },
    CardsB9 : {
-     Name: "Moonmoon Card",
+     name: "Moonmoon Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11838,7 +11838,7 @@ module.exports = {
      ],
    },
    CardsB10 : {
-     Name: "Sand Giant Card",
+     name: "Sand Giant Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11855,7 +11855,7 @@ module.exports = {
      ],
    },
    CardsB11 : {
-     Name: "Snelbie Card",
+     name: "Snelbie Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11872,7 +11872,7 @@ module.exports = {
      ],
    },
    CardsB12 : {
-     Name: "Dig Doug Card",
+     name: "Dig Doug Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11889,7 +11889,7 @@ module.exports = {
      ],
    },
    CardsB13 : {
-     Name: "Desert Topaz Card",
+     name: "Desert Topaz Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11906,7 +11906,7 @@ module.exports = {
      ],
    },
    CardsC1 : {
-     Name: "Copper Ore Card",
+     name: "Copper Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11923,7 +11923,7 @@ module.exports = {
      ],
    },
    CardsC2 : {
-     Name: "Iron Ore Card",
+     name: "Iron Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11940,7 +11940,7 @@ module.exports = {
      ],
    },
    CardsC3 : {
-     Name: "Gold Ore Card",
+     name: "Gold Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11957,7 +11957,7 @@ module.exports = {
      ],
    },
    CardsC4 : {
-     Name: "Oak Logs Card",
+     name: "Oak Logs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11974,7 +11974,7 @@ module.exports = {
      ],
    },
    CardsC5 : {
-     Name: "Bleach Logs Card",
+     name: "Bleach Logs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -11991,7 +11991,7 @@ module.exports = {
      ],
    },
    CardsC6 : {
-     Name: "Jungle Logs Card",
+     name: "Jungle Logs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12008,7 +12008,7 @@ module.exports = {
      ],
    },
    CardsC7 : {
-     Name: "Forest Fibres Card",
+     name: "Forest Fibres Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12025,7 +12025,7 @@ module.exports = {
      ],
    },
    CardsC8 : {
-     Name: "Goldfish Card",
+     name: "Goldfish Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12039,7 +12039,7 @@ module.exports = {
      },
    },
    CardsC9 : {
-     Name: "Hermit Can Card",
+     name: "Hermit Can Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12053,7 +12053,7 @@ module.exports = {
      },
    },
    CardsC10 : {
-     Name: "Jellyfish Card",
+     name: "Jellyfish Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12067,7 +12067,7 @@ module.exports = {
      },
    },
    CardsC11 : {
-     Name: "Fly Card",
+     name: "Fly Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12084,7 +12084,7 @@ module.exports = {
      ],
    },
    CardsC12 : {
-     Name: "Butterfly Card",
+     name: "Butterfly Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12101,7 +12101,7 @@ module.exports = {
      ],
    },
    CardsD1 : {
-     Name: "Dementia Ore Card",
+     name: "Dementia Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12118,7 +12118,7 @@ module.exports = {
      ],
    },
    CardsD2 : {
-     Name: "Platinum Ore Card",
+     name: "Platinum Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12135,7 +12135,7 @@ module.exports = {
      ],
    },
    CardsD3 : {
-     Name: "Void Ore Card",
+     name: "Void Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12149,7 +12149,7 @@ module.exports = {
      },
    },
    CardsD4 : {
-     Name: "Lustre Ore Card",
+     name: "Lustre Ore Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12163,7 +12163,7 @@ module.exports = {
      },
    },
    CardsD5 : {
-     Name: "Potty Rolls Card",
+     name: "Potty Rolls Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12180,7 +12180,7 @@ module.exports = {
      ],
    },
    CardsD6 : {
-     Name: "Veiny Logs Card",
+     name: "Veiny Logs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12197,7 +12197,7 @@ module.exports = {
      ],
    },
    CardsD7 : {
-     Name: "Tropilogs Card",
+     name: "Tropilogs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12214,7 +12214,7 @@ module.exports = {
      ],
    },
    CardsD8 : {
-     Name: "Tundra Logs Card",
+     name: "Tundra Logs Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12231,7 +12231,7 @@ module.exports = {
      ],
    },
    CardsD9 : {
-     Name: "Fruitfly Card",
+     name: "Fruitfly Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12248,7 +12248,7 @@ module.exports = {
      ],
    },
    CardsD10 : {
-     Name: "Sentient Cereal Card",
+     name: "Sentient Cereal Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12265,7 +12265,7 @@ module.exports = {
      ],
    },
    CardsD11 : {
-     Name: "Bloach Card",
+     name: "Bloach Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12279,7 +12279,7 @@ module.exports = {
      },
    },
    CardsD12 : {
-     Name: "DONTFILL",
+     name: "DONTFILL",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12287,7 +12287,7 @@ module.exports = {
      description: ` Butterflies`,
    },
    CardsD13 : {
-     Name: "DONTFILL",
+     name: "DONTFILL",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12295,7 +12295,7 @@ module.exports = {
      description: ` Sentient Cereal`,
    },
    CardsY0 : {
-     Name: "Ghost Card",
+     name: "Ghost Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12314,7 +12314,7 @@ module.exports = {
      ],
    },
    CardsY1 : {
-     Name: "Giftmas Blobulyte Card",
+     name: "Giftmas Blobulyte Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12328,7 +12328,7 @@ module.exports = {
      },
    },
    CardsY2 : {
-     Name: "Meaning of Giftmas Card",
+     name: "Meaning of Giftmas Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12342,7 +12342,7 @@ module.exports = {
      },
    },
    CardsZ0 : {
-     Name: "Baba Yaga Card",
+     name: "Baba Yaga Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12359,7 +12359,7 @@ module.exports = {
      ],
    },
    CardsZ1 : {
-     Name: "Dr Defecaus Card",
+     name: "Dr Defecaus Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12376,7 +12376,7 @@ module.exports = {
      ],
    },
    CardsZ2 : {
-     Name: "Amarok Card",
+     name: "Amarok Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12394,7 +12394,7 @@ module.exports = {
      ],
    },
    CardsZ3 : {
-     Name: "Efaunt Card",
+     name: "Efaunt Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12414,7 +12414,7 @@ module.exports = {
      ],
    },
    CardsZ4 : {
-     Name: "Chaotic Amarok Card",
+     name: "Chaotic Amarok Card",
      sellPrice: 1,
      typeGen: "dCard",
      id: 0,
@@ -12431,7 +12431,7 @@ module.exports = {
      ],
    },
    CardPack1 : {
-     Name: "Newbie Card Pack",
+     name: "Newbie Card Pack",
      sellPrice: 1,
      typeGen: "dCardPack",
      id: 0,
@@ -12442,7 +12442,7 @@ module.exports = {
      ],
    },
    CardPack2 : {
-     Name: "Ancient Card Pack",
+     name: "Ancient Card Pack",
      sellPrice: 1,
      typeGen: "dCardPack",
      id: 0,
@@ -12453,7 +12453,7 @@ module.exports = {
      ],
    },
    EquipmentHats31 : {
-     Name: "Smitty's Bubble Blowing Hat",
+     name: "Smitty's Bubble Blowing Hat",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 35,
@@ -12472,7 +12472,7 @@ module.exports = {
      ],
    },
    EquipmentHats32 : {
-     Name: "Bandit Bob Mask",
+     name: "Bandit Bob Mask",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 36,
@@ -12491,7 +12491,7 @@ module.exports = {
      ],
    },
    EquipmentHats33 : {
-     Name: "Paper Bag",
+     name: "Paper Bag",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 37,
@@ -12510,7 +12510,7 @@ module.exports = {
      ],
    },
    EquipmentHats34 : {
-     Name: "Parasite",
+     name: "Parasite",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 38,
@@ -12529,7 +12529,7 @@ module.exports = {
      ],
    },
    EquipmentHats35 : {
-     Name: "Diamon Horns",
+     name: "Diamon Horns",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 39,
@@ -12548,7 +12548,7 @@ module.exports = {
      ],
    },
    EquipmentHats36 : {
-     Name: "Halloween Pumpkin",
+     name: "Halloween Pumpkin",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 40,
@@ -12567,7 +12567,7 @@ module.exports = {
      ],
    },
    EquipmentHats40 : {
-     Name: "Pardoned Turkey",
+     name: "Pardoned Turkey",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 43,
@@ -12586,7 +12586,7 @@ module.exports = {
      ],
    },
    EquipmentHats37 : {
-     Name: "Hotdog Hero",
+     name: "Hotdog Hero",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 41,
@@ -12605,7 +12605,7 @@ module.exports = {
      ],
    },
    EquipmentHats38 : {
-     Name: "Invisible Hat",
+     name: "Invisible Hat",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 0,
@@ -12624,7 +12624,7 @@ module.exports = {
      ],
    },
    EquipmentHats43 : {
-     Name: "Snowman",
+     name: "Snowman",
      sellPrice: 1,
      typeGen: "aHelmetMTX",
      id: 46,
@@ -12643,7 +12643,7 @@ module.exports = {
      ],
    },
    GemP1 : {
-     Name: "Infinite Forge",
+     name: "Infinite Forge",
      sellPrice: 1,
      typeGen: "aError",
      id: 0,

@@ -3,14 +3,14 @@ const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
 	// Returns item's display name from its code name
-	return items[itemCode].Name.replace(/[_|]+/g, ' ');
+	return items[itemCode].name.replace(/[_|]+/g, ' ');
 }
 
 function convertInputToCode(inputName) {
 	// Converts user input into Title Case, and then into the game's item codename
 	inputName = inputName.toLowerCase().split(' ').map(str => str.charAt(0).toUpperCase() + str.substring(1)).join(' ');
 	for (const itemCode of Object.keys(items)) {
-		if (items[itemCode].Name === inputName) return itemCode;
+		if (items[itemCode].name === inputName) return itemCode;
 	}
 }
 
