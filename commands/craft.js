@@ -48,33 +48,44 @@ function generateRecipe(itemCode, totalRecipe = {}) {
 		let itemObj = {
 			isRaw: isRawMaterial(itemCode),
 			qty: itemQty,
+			name: convertCodeToDisplay(itemCode)
 		};
+		totalRecipe[itemCode] = itemObj;
 		if (!itemObj.isRaw) {
 			itemObj.recipe = generateRecipe(itemCode);
-		}
-		totalRecipe[itemCode] = itemObj;
+		}	
 	}
-
-	return totalRecipe;
+	return totalRecipe
 }
 
-function generateRecipeText(recipe, depth = 0, multiplier = 1, recipeTextArr = []) {
-	// Print raw materials first
-	// Print craftables second
-	for (const itemCode in recipe) {
-		if (recipe[itemCode].isRaw) {
-			let line = `${' '.repeat(depth * 3)}- ${convertCodeToDisplay(itemCode)} (x${recipe[itemCode].qty * multiplier})`;
-			recipeTextArr.push(line);
+function generateRecipeText(recipe, depth=0, multiplier=1, recipeTextArr = []) {
+	//Sort recipe object so raw materials appear first
+	let sorted = Object.entries(recipe).sort(([, {isRaw: a}], [, {isRaw: b}]) => b - a);
+	for (let i = 0; i < sorted.length; i++) {
+		let item = sorted[i][1];
+		let line = `${' '.repeat(depth*3)}- ${item.name} (x${item.qty * multiplier})`;
+		recipeTextArr.push(line);
+
+		if(!item.isRaw) generateRecipeText(item.recipe, depth+1, multiplier*item.qty, recipeTextArr)
+	}
+	return recipeTextArr.join('\n')
+
+}
+
+function generateTotalMaterials(recipeObj, multiplier=1, totalMaterials={}) {
+	for (const itemCode in recipeObj) {
+		if (recipeObj[itemCode].isRaw) {
+			if (totalMaterials[itemCode] == undefined) totalMaterials[itemCode] = 0;
+			totalMaterials[itemCode] += recipeObj[itemCode].qty * multiplier;	 
+		} else {
+			generateTotalMaterials(recipeObj[itemCode].recipe, multiplier*recipeObj[itemCode].qty, totalMaterials)
 		}
 	}
-	for (const itemCode in recipe) {
-		if (!recipe[itemCode].isRaw) {
-			let line = `${' '.repeat(depth * 3)}- ${convertCodeToDisplay(itemCode)} (x${recipe[itemCode].qty * multiplier})`;
-			recipeTextArr.push(line);
-			generateRecipeText(recipe[itemCode].recipe, depth + 1, multiplier * recipe[itemCode].qty, recipeTextArr);
-		}
-	}
-	return recipeTextArr;
+	return totalMaterials
+}
+
+function generateTotalMaterialsText(materialsObj) {
+	return Object.entries(materialsObj).map(([itemCode, qty]) => `- ${convertCodeToDisplay(itemCode)} (x${qty})`).join('\n');
 }
 
 
@@ -83,6 +94,7 @@ module.exports = {
 	description: 'Returns all resources/sub-items needed to craft an item!',
 	usage: '<item name> <item quantity>',
 	execute(message, args) {
+
 		if (!args.length) {
 			return message.channel.send('You must provide an item: !craft <item name> <item quantity>');
       }
@@ -93,14 +105,29 @@ module.exports = {
 
 		try {
 			let recipeObj = generateRecipe(convertInputToCode(userInput));
-			let recipeText = generateRecipeText(recipeObj, 0, itemQty).join('\n');
+			let recipeText = generateRecipeText(recipeObj, 0, itemQty);
+
+			let materialsObj = generateTotalMaterials(recipeObj);
+			let materialsText = generateTotalMaterialsText(materialsObj)
 
 			let title = `Crafting recipe for ${convertToTitleCase(userInput)} (x${itemQty})`;
-			let descriptionBlock = '```\n' + recipeText + '```';
-			let embed = new MessageEmbed()
+			let description = '```\n' + recipeText + '```';
+			const embed = new MessageEmbed()
 				.setTitle(title)
-				.setDescription(descriptionBlock);
-			message.channel.send(embed);
+				.setDescription(description)
+				.setFooter('To see total material costs, react with 👍')
+
+			message.channel.send(embed).then(sentEmbed => {
+				sentEmbed.react('👍');
+
+				const filter = (reaction, user) => ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id
+				sentEmbed.awaitReactions(filter, {max: 1})
+					.then(collected => {
+						const newEmbed = new MessageEmbed(sentEmbed.embeds[0]);
+						newEmbed.setDescription('```'+materialsText+'```');
+						sentEmbed.edit(newEmbed);
+					})
+			})
 		} catch {
 			let embed = new MessageEmbed()
 				.setDescription('Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!');
