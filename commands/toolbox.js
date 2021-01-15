@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 36ac65243a0847068fa36b571d37e36c0ccc7490
 const { MessageEmbed } = require('discord.js');
 module.exports = {
    name: 'toolbox',
    description: 'Provides direct access to the Legends of Idleon Toolbox',
-<<<<<<< HEAD
-=======
    // eslint-disable-next-line no-unused-vars
->>>>>>> 36ac65243a0847068fa36b571d37e36c0ccc7490
    execute(message, args) {
     const embed = new MessageEmbed()
        .setColor('#F9AF9F')
@@ -20,8 +13,4 @@ module.exports = {
        );
     message.channel.send(embed);
  },
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 36ac65243a0847068fa36b571d37e36c0ccc7490
