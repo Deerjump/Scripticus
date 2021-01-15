@@ -5719,7 +5719,8 @@ module.exports = {
      recipe: {
        lvReqToCraft: 10,
        costs: [
-         ["FillerMaterial", " 6"],
+         ["ForestTree", " 10"],
+         ["Bug1", " 10"],
        ],
      },
      effect:"WeaponPowerBoosts",
@@ -5792,8 +5793,8 @@ module.exports = {
      recipe: {
        lvReqToCraft: 10,
        costs: [
-         ["FillerMaterial", " 1"],
-         ["Copper", " 1"],
+         ["Peanut", " 100"],
+         ["GoldBar", " 50"],
        ],
      },
      effect:"MiningEff",
@@ -12657,5 +12658,17 @@ module.exports = {
        luk: 1,
        upgradeSlotsLeft: 5,
      },
+   },
+   yourMom : {
+      name: "Your Mom",
+      recipe: {
+      lvReqToCraft: 420,
+      costs: [
+         ["joke", " 69"],
+      ],
+      },
+   },
+   joke : {
+      name: "Kuakacoin sucks",
    },
  };
