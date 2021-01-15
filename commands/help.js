@@ -34,7 +34,8 @@ module.exports = {
       embed.setTitle(`**Command**: *${command.name}*`);
       if (command.aliases) embed.addField('Aliases:', command.aliases.join(', '));
       if (command.description) embed.addField('Description:', command.description);
-      if (command.aliases) embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
+      if (command.usage) embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
+      if (command.options) embed.addField('Options:', command.options);
       embed.addField('Cooldown:', `${command.cooldown || 3} seconds(s)`);
 
       message.channel.send(embed);

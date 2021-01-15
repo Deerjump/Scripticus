@@ -1,8 +1,8 @@
-
 const { MessageEmbed } = require('discord.js');
 module.exports = {
    name: 'toolbox',
    description: 'Provides direct access to the Legends of Idleon Toolbox',
+   // eslint-disable-next-line no-unused-vars
    execute(message, args) {
     const embed = new MessageEmbed()
        .setColor('#F9AF9F')

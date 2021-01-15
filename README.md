@@ -8,12 +8,16 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Helpful math formulas that LavaFlame2 uses in game
 - `help`
   - Tell you information on all commands or a specific command
+- `craft`
+  - See how much it costs total to craft an item! (Special thanks to Granttank!)
+- `toolbox`
+  - Provides a link to the toolbox from Abgreyd and Hateling
 - `contribute`
   - Informational command with links to the GitHub
 - `toolbox`
   - Provides a link to the toolbox from Abgreyd and Hateling
 - `reload`
-  - Developer command used to reload a command so you don't have to reload the bot every time
+  - Developer command used to reload a command so you don't have to reload the bot every time (Currently restricted to just Deerjump)
   
 
 #### Want to help but don't know how to get started? 
