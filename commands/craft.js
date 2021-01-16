@@ -114,32 +114,35 @@ module.exports = {
 			const recipeObj = generateRecipe(convertInputToCode(userInput));
 			const recipeTitle = `Crafting recipe for ${convertToTitleCase(userInput)} (x${itemQty})`;
 			const recipeText = generateRecipeText(recipeObj, 0, itemQty);
-			const recipeFooter = `To see total material costs, react with 👎`;
+			const recipeFooter = `To see total material costs, click 🔄`;
 
 			const materialsObj = generateTotalMaterials(recipeObj);
 			const materialsTitle = `Total material costs for ${convertToTitleCase(userInput)} (x${itemQty})`;
 			const materialsText = generateTotalMaterialsText(materialsObj);
-			const materialsFooter = `To see full recipe, react with 👍`;
+			const materialsFooter = `To see full recipe, click 🔄`;
 
 			const initialEmbed = createEmbed(recipeTitle, '```'+recipeText+'```', recipeFooter)
 
 			message.channel.send(initialEmbed).then(sentEmbed => {
-				sentEmbed.react('👍');
-				sentEmbed.react('👎');
+				sentEmbed.react('🔄');
 
-				const filter = (reaction, user) => ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-				const collectorLifespan = 10000;
-				const collector = sentEmbed.createReactionCollector(filter, {time: collectorLifespan});
-				collector.on('collect', (reaction, user) => {
-					if (reaction.emoji.name === '👍') {
-						editEmbed(sentEmbed, recipeTitle, recipeText, recipeFooter);
-					} else if (reaction.emoji.name === '👎') {
+				const filter = (reaction, user) => reaction.emoji.name === '🔄' && user.id === message.author.id;
+				const collectorLifespan = 30000;
+				const collector = sentEmbed.createReactionCollector(filter, {time: collectorLifespan, dispose: true});
+				collector.on('collect', (reaction) => {
+					if (reaction.emoji.name === '🔄') {
 						editEmbed(sentEmbed, materialsTitle, materialsText, materialsFooter);
 					}
 				})
 
+				collector.on('remove', (reaction) => {
+					if (reaction.emoji.name === '🔄') {
+						editEmbed(sentEmbed, recipeTitle, recipeText, recipeFooter);
+					}
+				})
+
 				collector.on('end', collected => {
-					let expiredEmbed = createEmbed(sentEmbed.embeds[0].title, sentEmbed.embeds[0].description, 'Message expiration message');
+					const expiredEmbed = createEmbed(sentEmbed.embeds[0].title, sentEmbed.embeds[0].description, 'Message expiration message');
 					sentEmbed.edit(expiredEmbed);
 				})
 
