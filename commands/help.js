@@ -47,9 +47,10 @@ module.exports = {
     if (command.description) {
       embed.addField('Description:', command.description);
     }
-    if (command.aliases) {
+    if (command.usage) {
       embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
     }
+    if (command.options) embed.addField('Options:', command.options);
     embed.addField('Cooldown:', `${command.cooldown || 3} seconds(s)`);
 
     message.channel.send(embed);
