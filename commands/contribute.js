@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'contribute',
-  description: 'Seach the Legends of Idleon Wiki!',
+  description: 'Learn how to contribute!',
   execute(message) {
     const embed = new MessageEmbed()
       .setColor('#0000FF')
