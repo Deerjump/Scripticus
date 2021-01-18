@@ -11,6 +11,7 @@ const commandFiles = fs
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
+  if(command.init) command.init(client);
 }
 
 const shouldIgnore = (message) =>
