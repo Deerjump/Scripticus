@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // This template is a WIP. I plan on adding to it as we add more features to our command handlers
 module.exports = {
   // REQUIRED FIELDS
@@ -18,14 +19,18 @@ module.exports = {
   // How long before the user can use the command again, in seconds.
   // DEFAULT: 3
   cooldown: 10,
-  // Set this to true if your command requires args to function.
+  // Set this to true if your execute() requires args to function.
   // DEFAULT: false
   args: false,
-
+  // This function is called when the bot is started
+  init(client) {
+    // start a scheduled task (see notify.js) or whatever else you need to do.
+  },
   // This is the function that is run when the command is called.
   // It must be called `execute(message, args)` the parameters CAN
   // be renamed, but it is not recommended.
-  execute(message) {
-    message.channel.send();
+  // 'args' may also be omitted if you do not require arguments
+  execute(message, args) {
+    // do whatever you need to do
   },
 };
