@@ -2,8 +2,8 @@ const items = require('../util/items.js');
 const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
-	// Returns item's display name from its code name
-	return items[itemCode].name.replace(/[_|]+/g, ' ');
+  // Returns item's display name from its code name
+  return items[itemCode].name.replace(/[_|]+/g, ' ');
 }
 
 function convertInputToCode(inputName) {
@@ -94,7 +94,6 @@ function editEmbed(embedInstance, title, description, footer) {
 	const newEmbed = createEmbed(title, '```'+description+'```', footer);
 	embedInstance.edit(newEmbed);
 }
-
 
 module.exports = {
 	name: 'craft',
