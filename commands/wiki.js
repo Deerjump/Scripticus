@@ -26,12 +26,6 @@ module.exports = {
       .then((res) => {
         console.log(res.url);
         embed.setColor('#FF0000').setTitle(res.url).setURL(res.url);
-        // .addFields(
-        //    { name: 'Definition', value: trim(answer.definition, 1024) },
-        //    { name: 'Example', value: trim(answer.example, 1024) },
-        //    // eslint-disable-next-line comma-dangle
-        //    { name: 'Rating', value: `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.` }
-        //    );
         message.channel.send(embed);
       })
       .catch((err) => console.error(err));
