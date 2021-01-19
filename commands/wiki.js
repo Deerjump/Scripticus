@@ -8,7 +8,8 @@ module.exports = {
   name: 'wiki',
   description: 'Seach the Legends of Idleon Wiki!',
   usage: '<search word>',
-  async execute(message, args) {
+  args: true,
+  execute(message, args) {
     const embed = new MessageEmbed();
     if (!args.length) {
       embed

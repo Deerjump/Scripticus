@@ -1,6 +1,7 @@
 module.exports = {
   name: 'reload',
   description: 'Reloads a command',
+  args: true,
   execute(message, args) {
     if (message.author.id != '191085842469486592') {
       return message.channel.send('Only Deerjump can use that command!');

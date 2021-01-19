@@ -131,6 +131,7 @@ module.exports = {
   name: 'craft',
   description: 'Returns all resources/sub-items needed to craft an item!',
   usage: '<item name> <item quantity>',
+  args: true,
   execute(message, args) {
     if (!args.length) {
       return message.channel.send(

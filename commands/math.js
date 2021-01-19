@@ -7,6 +7,7 @@ module.exports = {
   description: 'A few helpful math calculations!',
   options: options,
   usage: '<option> <x> <y> <z>',
+  args: true,
   execute(message, args) {
     if (!args.length) {
       return message.channel.send(
