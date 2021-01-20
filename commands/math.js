@@ -1,11 +1,11 @@
 const util = require('../util/util.js');
 
-const options = Object.keys(util).join(', ');
-
 module.exports = {
   name: 'math',
   description: 'A few helpful math calculations!',
-  options: options,
+  get options() {
+    return Object.keys(util).join(', ');
+  },
   usage: '<option> <x> <y> <z>',
   args: true,
   execute(message, args) {
