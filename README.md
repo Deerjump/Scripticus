@@ -29,4 +29,4 @@ Check out the state of the project here! [To-Do List](https://github.com/Deerjum
 
 #### Running bot locally
 
-Create `.env` file and put your token there: `TOKEN=YOUR_TOKEN_HERE`
+Create `.env` file in the main directory and put your token there: `TOKEN=YOUR_TOKEN_HERE`
