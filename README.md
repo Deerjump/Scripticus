@@ -16,8 +16,6 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Provides a link to the toolbox from Abgreyd and Hateling
 - `contribute`
   - Informational command with links to the GitHub
-- `toolbox`
-  - Provides a link to the toolbox from Abgreyd and Hateling
 - `reload`
   - Developer command used to reload a command so you don't have to reload the bot every time (Currently restricted to just Deerjump)
 
@@ -28,3 +26,7 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
 - Run through some tutorials or read the documentation for the discord.js API: <a href="https://discord.js.org/" target="_blank" rel="noopener noreferrer">Discord.js</a>
 
 Check out the state of the project here! [To-Do List](https://github.com/Deerjump/Scripticus/projects/1)
+
+#### Running bot locally
+
+Create `.env` file in the main directory and put your token there: `TOKEN=YOUR_TOKEN_HERE`
