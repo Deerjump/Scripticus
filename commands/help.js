@@ -1,4 +1,4 @@
-const { prefix } = require('../config.json');
+const { prefix, DEFAULT_COOLDOWN } = require('../config.json');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
       embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
     }
     if (command.options) embed.addField('Options:', command.options);
-    embed.addField('Cooldown:', `${command.cooldown || 3} seconds(s)`);
+    embed.addField('Cooldown:', `${command.cooldown || DEFAULT_COOLDOWN} seconds(s)`);
 
     message.channel.send(embed);
   },
