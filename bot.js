@@ -1,6 +1,8 @@
 const { Client, Collection } = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix } = require('./config.json');
 const fs = require('fs');
+
+require('dotenv').config();
 
 const client = new Client();
 client.commands = new Collection();
@@ -80,4 +82,4 @@ client.on('message', (message) => {
   }
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
