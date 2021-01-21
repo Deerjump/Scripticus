@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-const url = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
 
 module.exports = {
   async addSubscriber(id, hours) {
