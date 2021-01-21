@@ -25,10 +25,10 @@ module.exports = {
       '0 55 */1 * * *',
       async () => {
         try {
-          const subscribers = await getSubscribers();
+          let subscribers = await getSubscribers();
           if (subscribers.length === 0) return;
 
-          console.log('Firing Baba/Spikes Alert ' + new Date());
+          console.log(`Firing Baba/Spikes Alert: ${new Date().toLocaleString()}`);
 
           subscribers.forEach(async (subscriber) => {
             const { id } = subscriber;
@@ -40,7 +40,7 @@ module.exports = {
               await removeSubscriber(id);
             }
           }, subscribers);
-          subscribers.filter(({ hours }) => hours >= 1);
+          subscribers = subscribers.filter(({ hours }) => hours >= 1);
           updateSubscribers(subscribers);
         } catch (error) {
           console.error(error);
