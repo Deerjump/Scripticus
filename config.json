@@ -1,3 +1,4 @@
 {
-  "prefix": "!"
+  "prefix": "!",
+  "DEFAULT_COOLDOWN": 5
 }

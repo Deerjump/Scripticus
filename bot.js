@@ -1,5 +1,5 @@
 const { Client, Collection } = require('discord.js');
-const { prefix } = require('./config.json');
+const { prefix, DEFAULT_COOLDOWN } = require('./config.json');
 const fs = require('fs');
 
 require('dotenv').config();
@@ -45,7 +45,7 @@ client.on('message', (message) => {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
-  const cooldownAmount = (command.cooldown || 5) * 1000;
+  const cooldownAmount = (command.cooldown || DEFAULT_COOLDOWN) * 1000;
 
   if (timestamps.has(message.author.id)) {
     const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
