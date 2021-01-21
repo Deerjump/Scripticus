@@ -8,7 +8,7 @@ const {
   updateSubscribers,
 } = require('../mongo/mongo.js');
 const path = require('path');
-// const subscribers = {};
+
 let cronJob;
 
 module.exports = {
