@@ -197,7 +197,7 @@ module.exports = {
           const expiredEmbed = createEmbed(
             sentEmbed.embeds[0].title,
             sentEmbed.embeds[0].description,
-            'Message has expired! "❌"'
+            '❌Message has expired! '
           );
           sentEmbed.edit(expiredEmbed);
         });
