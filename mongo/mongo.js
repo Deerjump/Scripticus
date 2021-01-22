@@ -1,4 +1,3 @@
-const { MongoClient } = require('mongodb');
 const { Connection } = require('./connection.js');
 require('dotenv').config();
 
