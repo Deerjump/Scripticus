@@ -2,9 +2,6 @@ const { Client, Collection } = require('discord.js');
 const { prefix, DEFAULT_COOLDOWN } = require('./config.json');
 const fs = require('fs');
 
-const { MongoConnection } = require('./mongo/connection.js');
-MongoConnection.connectToDatabase();
-
 const client = new Client();
 client.commands = new Collection();
 const commandFiles = fs
