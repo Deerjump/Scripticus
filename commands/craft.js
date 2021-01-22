@@ -19,7 +19,7 @@ function convertToTitleCase(str) {
   return str
     .toLowerCase()
     .split(' ')
-    .map((str) => str.charAt(0).toUpperCase() + str.substring(1))
+    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
     .join(' ');
 }
 
@@ -197,7 +197,7 @@ module.exports = {
           const expiredEmbed = createEmbed(
             sentEmbed.embeds[0].title,
             sentEmbed.embeds[0].description,
-            'Message expiration message'
+            'Message has expired! "❌"'
           );
           sentEmbed.edit(expiredEmbed);
         });
