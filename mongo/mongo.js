@@ -1,4 +1,4 @@
-const { Connection } = require('./connection.js');
+const { MongoConnection } = require('./connection.js');
 require('dotenv').config();
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
     try {
       const myobj = { id: String(id), hours: hours };
 
-      await Connection.db.collection('subscribers').insertOne(myobj);
+      await MongoConnection.db.collection('subscribers').insertOne(myobj);
     } catch (err) {
       console.error(err);
     }
@@ -16,7 +16,7 @@ module.exports = {
       const query = { id: id };
       const options = { projection: { _id: 0, id: 1, hours: 1 } };
 
-      const subscriber = await Connection.db
+      const subscriber = await MongoConnection.db
         .collection('subscribers')
         .findOne(query, options);
       return subscriber;
@@ -29,7 +29,7 @@ module.exports = {
     try {
       const options = { projection: { _id: 0, id: 1, hours: 1 } };
 
-      subscribers = await Connection.db
+      subscribers = await MongoConnection.db
         .collection('subscribers')
         .find({}, options)
         .toArray();
@@ -43,7 +43,7 @@ module.exports = {
       const filter = { id: id };
       const options = { upsert: true };
       const updateDoc = { $set: { hours: hours } };
-      const { matchedCount, modifiedCount, upsertedCount } = await Connection.db
+      const { matchedCount, modifiedCount, upsertedCount } = await MongoConnection.db
         .collection('subscribers')
         .updateOne(filter, updateDoc, options);
       console.log(
@@ -71,7 +71,7 @@ module.exports = {
         matchedCount,
         modifiedCount,
         upsertedCount,
-      } = await Connection.db.collection('subscribers').bulkWrite(operations);
+      } = await MongoConnection.db.collection('subscribers').bulkWrite(operations);
       console.log(
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
@@ -82,7 +82,7 @@ module.exports = {
   async removeSubscriber(id) {
     const query = { id: String(id) };
     try {
-      const result = await Connection.db
+      const result = await MongoConnection.db
         .collection('subscribers')
         .deleteOne(query);
       if (result.deletedCount === 1) {
@@ -105,7 +105,7 @@ module.exports = {
       operations.push(operation);
     });
     try {
-      const result = await Connection.db
+      const result = await MongoConnection.db
         .collection('subscribers')
         .bulkWrite(operations);
       console.log(`Deleted ${result.deletedCount} document(s)`);
