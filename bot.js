@@ -2,7 +2,8 @@ const { Client, Collection } = require('discord.js');
 const { prefix, DEFAULT_COOLDOWN } = require('./config.json');
 const fs = require('fs');
 
-require('dotenv').config();
+const { Connection } = require('./mongo/connection.js');
+Connection.mongoConnect();
 
 const client = new Client();
 client.commands = new Collection();
