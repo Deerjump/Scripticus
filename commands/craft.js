@@ -153,7 +153,7 @@ module.exports = {
       const recipeText = generateRecipeText(recipeObj, 0, itemQty);
       const recipeFooter = 'To see total material costs, click 🔄';
 
-      const materialsObj = generateTotalMaterials(recipeObj);
+      const materialsObj = generateTotalMaterials(recipeObj, itemQty);
       const materialsTitle = `Total material costs for ${convertToTitleCase(
         userInput
       )} (x${itemQty})`;
