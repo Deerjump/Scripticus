@@ -3,14 +3,14 @@ const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
   // Returns item's display name from its code name
-  return items[itemCode].name.replace(/[_|]+/g, ' ');
+  return items[itemCode].Name.replace(/[_|]+/g, ' ');
 }
 
 function convertInputToCode(inputName) {
   // Converts user input into Title Case then returns the item's code name
   inputName = convertToTitleCase(inputName);
   for (const itemCode of Object.keys(items)) {
-    if (items[itemCode].name === inputName) return itemCode;
+    if (items[itemCode].Name === inputName) return itemCode;
   }
 }
 
@@ -19,7 +19,7 @@ function convertToTitleCase(str) {
   return str
     .toLowerCase()
     .split(' ')
-    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
     .join(' ');
 }
 
