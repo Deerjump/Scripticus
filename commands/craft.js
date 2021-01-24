@@ -19,7 +19,7 @@ function convertToTitleCase(str) {
   return str
     .toLowerCase()
     .split(' ')
-    .map((str) => str.charAt(0).toUpperCase() + str.substring(1))
+    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
     .join(' ');
 }
 
