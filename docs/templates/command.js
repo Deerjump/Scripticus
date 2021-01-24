@@ -15,7 +15,7 @@ module.exports = {
       i.e if the command should be used like "!math decay 100 23 25"
       then it should look like this "usage:<formula> <number1> <number1> <number1>"
    */
-  usage: '<command name>',
+  usage: '<command args>',
   // How long before the user can use the command again, in seconds.
   // DEFAULT: 3
   cooldown: 10,

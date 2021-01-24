@@ -28,7 +28,11 @@ module.exports = {
           let subscribers = await getSubscribers();
           if (subscribers.length === 0) return;
 
-          console.log(`Firing Baba/Spikes Alert: ${new Date().toLocaleString()}`);
+          console.log(
+            `Firing Baba/Spikes Alert: ${new Date().toLocaleString()}\nNotifying ${
+              subscribers.length
+            } ${subscribers.length > 1 ? 'users' : 'user'}.`
+          );
 
           subscribers.forEach(async (subscriber) => {
             const { id } = subscriber;
@@ -41,7 +45,9 @@ module.exports = {
             }
           }, subscribers);
           subscribers = subscribers.filter(({ hours }) => hours >= 1);
-          updateSubscribers(subscribers);
+          if (subscribers.length > 0) {
+            updateSubscribers(subscribers);
+          }
         } catch (error) {
           console.error(error);
         }
@@ -63,8 +69,11 @@ module.exports = {
     const { id } = message.author;
     const user = await getSubscriber(id);
 
-    if(param === 'check') {
-      const reply = user != null ? `You have ${user.hours} hours left!` : 'You aren\'t subscribed to notifications!' ;
+    if (param === 'check') {
+      const reply =
+        user != null
+          ? `You have ${user.hours} hours left!`
+          : "You aren't subscribed to notifications!";
       return message.reply(reply);
     }
 
@@ -105,7 +114,7 @@ async function notifySubscriber(client, id) {
   );
   try {
     const user = await client.users.fetch(id);
-    if(user) {
+    if (user) {
       return user.send(attachment);
     }
   } catch (error) {
