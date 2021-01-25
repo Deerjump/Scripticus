@@ -11,7 +11,7 @@ module.exports = {
         .then(console.log('MongoConnection disconnected'))
         .catch(err => console.error(err));
       message.client.commands
-        .filter(command => command.stop != null)
+        .filter(command => command.stop)
         .forEach(command => command.stop());
       process.exit(0);
     } else {
