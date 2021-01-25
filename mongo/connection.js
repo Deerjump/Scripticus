@@ -5,8 +5,14 @@ const MongoConnection = {
   connectToDatabase() {
     if (this.db) return Promise.resolve(this.db);
     return MongoClient.connect(this.url, this.options)
-      .then(client => this.db = client.db())
+      .then(connection => {
+        this.db = connection.db();
+        this.connection = connection;
+      })
       .catch(err => console.error(err));
+  },
+  disconnect() {
+    return this.connection.close();
   }
 };
 
@@ -16,7 +22,5 @@ MongoConnection.options = {
   useUnifiedTopology: true,
   useNewUrlParser: true
 };
-
 MongoConnection.connectToDatabase();
-
 module.exports = { MongoConnection };
