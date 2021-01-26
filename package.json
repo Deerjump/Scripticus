@@ -4,7 +4,9 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "start": "node ."
+    "start": "pm2 start bot.js --name Scripticus",
+    "poststart": "pm2 monit",
+    "logs": "pm2 logs"
   },
   "author": "Deerjump",
   "license": "ISC",
