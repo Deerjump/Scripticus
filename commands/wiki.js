@@ -9,7 +9,7 @@ module.exports = {
   description: 'Seach the Legends of Idleon Wiki!',
   usage: '<search word>',
   args: true,
-  execute(message, args) {
+  async execute(message, args) {
     const embed = new MessageEmbed();
     if (!args.length) {
       embed
@@ -22,13 +22,14 @@ module.exports = {
       // message.channel.send('You need to supply a search term!');
       return;
     }
-    const query = querystring.stringify({ search: args.join(' ') });
-    fetch(`https://idleon.info/w/index.php?${query}`)
-      .then((res) => {
-        console.log(res.url);
-        embed.setColor('#FF0000').setTitle(res.url).setURL(res.url);
-        message.channel.send(embed);
-      })
-      .catch((err) => console.error(err));
+    try {
+      const query = querystring.stringify({ search: args.join(' ') });
+      const res = await fetch(`https://idleon.info/w/index.php?${query}`);
+      console.log(res.url);
+      embed.setColor('#FF0000').setTitle(res.url).setURL(res.url);
+      message.channel.send(embed);
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
