@@ -27,6 +27,7 @@ client.once('ready', async () => {
   client.user.setActivity('Legends of Idleon');
   try {
     const prefixes = await getGuildPrefixes();
+    console.log(prefixes);
     prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
       const guild = client.guildSettings.get(guildID) || {};
       client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
@@ -37,11 +38,11 @@ client.once('ready', async () => {
 });
 
 client.on('message', (message) => {
-  // Ensures each server uses its own prefix (if defined), uses default prefix in dms
-  let prefix;
-  if (message.channel.type !== 'dm') {
-    prefix = client.guildSettings.get(message.guild.id).prefix || DEFAULT_PREFIX;
-  }
+  // Ensures each server uses its own settings (if defined), uses default settings in dms
+  const settings = (message.channel.type !== 'dm') ?
+    client.guildSettings.get(message.guild.id) :
+    undefined;
+  const prefix = settings ? settings.prefix : DEFAULT_PREFIX;
 
   if (shouldIgnore(message, prefix)) return;
 
@@ -60,6 +61,7 @@ client.on('message', (message) => {
     cooldowns.set(command.name, new Collection());
   }
 
+  // Cooldown implementation
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || DEFAULT_COOLDOWN) * 1000;
@@ -81,6 +83,7 @@ client.on('message', (message) => {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   }
 
+  // Handles command uses with no arguments (when necessary)
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}`;
 
