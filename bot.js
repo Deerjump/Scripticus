@@ -1,11 +1,13 @@
 const { Client, Collection } = require('discord.js');
-const { prefix, DEFAULT_COOLDOWN } = require('./config.json');
+const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
+const { getServerPrefixes } = require('./mongo/settings.js');
 const fs = require('fs');
 require('dotenv').config();
 
 
 const client = new Client();
 client.commands = new Collection();
+client.guildSettings = new Collection();
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js'));
@@ -16,17 +18,32 @@ for (const file of commandFiles) {
   if (command.init) command.init(client);
 }
 
-const shouldIgnore = (message) =>
+const shouldIgnore = (message, prefix) =>
   !message.content.startsWith(prefix) || message.author.bot;
 const cooldowns = new Collection();
 
-client.once('ready', () => {
+client.once('ready', async () => {
   console.log(`${client.user.username} is ready!`);
   client.user.setActivity('Legends of Idleon');
+  try {
+    const prefixes = await getServerPrefixes();
+    prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
+      const guild = client.guildSettings.get(guildID) || {};
+      client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
+    });
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 client.on('message', (message) => {
-  if (shouldIgnore(message)) return;
+  // Ensures each server uses its own prefix (if defined), uses default prefix in dms
+  let prefix;
+  if (message.channel.type !== 'dm') {
+    prefix = client.guildSettings.get(message.guild.id).prefix || DEFAULT_PREFIX;
+  }
+
+  if (shouldIgnore(message, prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
