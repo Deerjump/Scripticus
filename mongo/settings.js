@@ -1,25 +1,28 @@
 const { MongoConnection } = require('./connection.js');
 
 module.exports = {
-  async updateServerPrefix(guildID, newPrefix) {
+  async updateGuildPrefix(guildID, newPrefix) {
     const filter = { guildID: String(guildID) };
     const updateOp = { $set: { prefix: newPrefix } };
     const options = { upsert: true };
     await MongoConnection.db
-      .collection('servers')
+      .collection('guilds')
       .updateOne(filter, updateOp, options);
   },
-  async getServerPrefixes() {
+  async getGuildPrefixes() {
     const query = {};
     const options = { projection: { guildID: 1, prefix: 1 } };
     try {
-      const serverPrefixes = await MongoConnection.db
-        .collection('servers')
+      const guildPrefixes = await MongoConnection.db
+        .collection('guilds')
         .find(query, options)
         .toArray();
-      return serverPrefixes;
+      return guildPrefixes;
     } catch (err) {
       console.error(err);
     }
+  },
+  async updateGuildCooldown(guildID) {
+    console.log(guildID);
   }
 };

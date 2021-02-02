@@ -1,4 +1,4 @@
-const { updateServerPrefix } = require('../mongo/settings.js');
+const { updateGuildPrefix } = require('../mongo/settings.js');
 
 module.exports = {
   name: 'prefix',
@@ -11,7 +11,7 @@ module.exports = {
     try {
       const guildID = message.guild.id;
       const guildSettings = message.client.guildSettings.get(guildID) || {};
-      updateServerPrefix(guildID, newPrefix);
+      updateGuildPrefix(guildID, newPrefix);
       message.client.guildSettings.set(guildID, { ...guildSettings, prefix: newPrefix });
       message.channel.send(`Prefix is now sent to ${newPrefix}`);
     } catch (err) {

@@ -1,6 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
-const { getServerPrefixes } = require('./mongo/settings.js');
+const { getGuildPrefixes } = require('./mongo/settings.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -26,7 +26,7 @@ client.once('ready', async () => {
   console.log(`${client.user.username} is ready!`);
   client.user.setActivity('Legends of Idleon');
   try {
-    const prefixes = await getServerPrefixes();
+    const prefixes = await getGuildPrefixes();
     prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
       const guild = client.guildSettings.get(guildID) || {};
       client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
