@@ -1,11 +1,13 @@
 const { Client, Collection } = require('discord.js');
-const { prefix, DEFAULT_COOLDOWN } = require('./config.json');
+const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
+const { getGuildPrefixes } = require('./mongo/settings.js');
 const fs = require('fs');
 require('dotenv').config();
 
 
 const client = new Client();
 client.commands = new Collection();
+client.guildSettings = new Collection();
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js'));
@@ -16,17 +18,33 @@ for (const file of commandFiles) {
   if (command.init) command.init(client);
 }
 
-const shouldIgnore = (message) =>
+const shouldIgnore = (message, prefix) =>
   !message.content.startsWith(prefix) || message.author.bot;
 const cooldowns = new Collection();
 
-client.once('ready', () => {
+client.once('ready', async () => {
   console.log(`${client.user.username} is ready!`);
   client.user.setActivity('Legends of Idleon');
+  try {
+    const prefixes = await getGuildPrefixes();
+    console.log(prefixes);
+    prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
+      const guild = client.guildSettings.get(guildID) || {};
+      client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
+    });
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 client.on('message', (message) => {
-  if (shouldIgnore(message)) return;
+  // Ensures each server uses its own settings (if defined), uses default settings in dms
+  const settings = (message.channel.type !== 'dm') ?
+    client.guildSettings.get(message.guild.id) :
+    undefined;
+  const prefix = settings ? settings.prefix : DEFAULT_PREFIX;
+
+  if (shouldIgnore(message, prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -43,6 +61,7 @@ client.on('message', (message) => {
     cooldowns.set(command.name, new Collection());
   }
 
+  // Cooldown implementation
   const now = Date.now();
   const timestamps = cooldowns.get(command.name);
   const cooldownAmount = (command.cooldown || DEFAULT_COOLDOWN) * 1000;
@@ -64,6 +83,7 @@ client.on('message', (message) => {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   }
 
+  // Handles command uses with no arguments (when necessary)
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}`;
 
