@@ -207,7 +207,6 @@ module.exports = {
         'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
       );
       message.channel.send(embed);
-      console.log(err);
     }
   },
 };

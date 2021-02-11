@@ -10,12 +10,12 @@ module.exports = {
   cooldown: 1,
   execute(message, args) {
     const lowerCaseArgs = args.join(' ').toLowerCase();
-    console.log(lowerCaseArgs);
     const item = getItem(lowerCaseArgs);
+
     let itemDesc;
     if (item) {
-      console.log(item);
-      itemDesc = `Name: ${item.Name}, Sell Price: ${item.sellPrice}, type: ${item.type}, Level Required: ${item.lvReqToEquip}`;
+      return message.reply(getItemDetailsEmbed(item));
+      // itemDesc = `Name: ${item.Name}, Sell Price: ${item.sellPrice}, type: ${item.type}, Level Required: ${item.lvReqToEquip}`;
     }
     const monster = getMonster(lowerCaseArgs);
 
@@ -53,4 +53,40 @@ function getItem(name) {
   }
 
   return toReturn;
+}
+
+function getItemDetailsEmbed(item) {
+  const embed = new MessageEmbed();
+  embed.setTitle(item.Name);
+  const fields = [];
+
+  fields.push({ name: 'Sell Price', value: item.sellPrice });
+  fields.push({ name: 'Type', value: item.type });
+  if (item.stats && !item.description) {
+    fields.push({ name: 'Class', value: item.class });
+    fields.push({ name:'Stats', value:'--------------------------------' });
+    Object.keys(item.stats).forEach((key) => {
+      fields.push({ name: [key], value: item.stats[key], inline:true });
+    });
+  }
+
+  // To exclude card item from providing it's description
+  if (item.description && !item.cardData) {
+    fields.push({ name: 'Description', value: item.description });
+  }
+
+  if (item.cardData) {
+    fields.push({
+      name: 'Card Bonus',
+      value: `${item.cardData.value}${item.cardData.bonus.replaceAll(
+        '_',
+        ' '
+      )}`,
+    });
+  }
+  if (item.sources) {
+    fields.push({ name: 'Sources', value: item.sources.join(', ') });
+  }
+
+  return embed.addFields(fields);
 }

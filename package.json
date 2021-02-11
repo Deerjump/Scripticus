@@ -5,7 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "start": "pm2 start bot.js --name Scripticus",
-    "poststart": "pm2 monit",
+    "poststart": "npm run monitor",
+    "monitor": "pm2 monit",
     "logs": "pm2 logs"
   },
   "author": "Deerjump",
