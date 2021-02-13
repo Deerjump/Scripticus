@@ -1,5 +1,5 @@
 const { Client, Collection } = require('discord.js');
-const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
+const { DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
 const { getGuildPrefixes } = require('./mongo/settings.js');
 const { init: startMongo } = require('./mongo/mongo.js');
 const fs = require('fs');
@@ -37,7 +37,6 @@ const cooldowns = new Collection();
 client.once('ready', async () => {
   try {
     console.info('-----Starting up Scripticus!-----');
-    console.info(display);
     await startMongo();
     const prefixes = await getGuildPrefixes();
     if (prefixes) {
@@ -50,22 +49,18 @@ client.once('ready', async () => {
     console.error(err);
   }
   client.user.setActivity('Legends of Idleon');
+  console.info(display);
   console.log(`${client.user.username} is ready!`);
 });
 
 client.on('message', (message) => {
-  // Ensures each server uses its own settings (if defined), uses default settings in dms
-  const settings =
-    message.channel.type !== 'dm'
-      ? client.guildSettings.get(message.guild.id)
-      : undefined;
-  const prefix = settings ? settings.prefix : DEFAULT_PREFIX;
+  // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
+  const prefix = client.getPrefix(message);
 
   if (shouldIgnore(message, prefix)) return;
 
-  const args = message.channel.type !== 'dm'
-    ? message.content.slice(prefix.length).trim().split(/ +/)
-    : message.content.trim().split(/ +/);
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+
   const commandName = args.shift().toLowerCase();
 
   const command =
@@ -120,5 +115,16 @@ client.on('message', (message) => {
     message.reply('there was an error trying to execute that command!');
   }
 });
+
+client.getPrefix = function(message) {
+  let prefix;
+  if (message.channel.type !== 'dm') {
+    const settings = client.guildSettings.get(message.guild.id);
+    prefix = settings ? settings.prefix : DEFAULT_PREFIX;
+  } else {
+    prefix = '';
+  }
+  return prefix;
+};
 
 client.login(process.env.TOKEN);
