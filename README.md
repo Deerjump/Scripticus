@@ -16,8 +16,8 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Provides a link to the toolbox from Abgreyd and Hateling
 - `contribute`
   - Informational command with links to the GitHub
-- `reload`
-  - Developer command used to reload a command so you don't have to reload the bot every time (Currently restricted to just Deerjump)
+- `info`
+  - Provides information on items or monsters from Legends of Idleon!
 
 #### Want to help but don't know how to get started?
 
