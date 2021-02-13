@@ -6,6 +6,7 @@
   "scripts": {
     "start": "pm2 start bot.js --name Scripticus",
     "poststart": "npm run monitor",
+    "stop": "pm2 stop 0",
     "monitor": "pm2 monit",
     "logs": "pm2 logs"
   },
