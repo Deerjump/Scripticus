@@ -22,7 +22,7 @@ module.exports = {
       message.channel.send(`The answer is ${answer.toFixed(2)}`);
     } catch (error) {
       message.channel.send(
-        `\`${args[0]}\` is not a valid option\n**Options!**: ${this.options}`
+        `\`${args[0]}\` is not a valid option\n**Options**: ${this.options}`
       );
     }
   },
