@@ -30,3 +30,5 @@ Check out the state of the project here! [To-Do List](https://github.com/Deerjum
 #### Running bot locally
 
 Create `.env` file in the main directory and put your token there: `TOKEN=YOUR_TOKEN_HERE`
+
+You'll also need to create a MongoDB database if you plan to make use of that as well.
