@@ -15,13 +15,11 @@ module.exports = {
     let itemDesc;
     if (item) {
       return message.reply(getItemDetailsEmbed(item));
-      // itemDesc = `Name: ${item.Name}, Sell Price: ${item.sellPrice}, type: ${item.type}, Level Required: ${item.lvReqToEquip}`;
     }
     const monster = getMonster(lowerCaseArgs);
 
     let monstDesc;
     if (monster) {
-      console.log(monster);
       monstDesc = `Name: ${monster.Name.replace('_', ' ')}, Activity: ${
         monster.AFKtype
       }, HP: ${monster.MonsterHPTotal}, Defence: ${monster.Defence}`;
