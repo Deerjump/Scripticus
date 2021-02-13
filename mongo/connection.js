@@ -6,13 +6,13 @@ const MONGO = '[MongoDb]';
 const MongoConnection = {
   url: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`,
   // url: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.63urb.mongodb.net/scripticus?retryWrites=true&w=majority`,
-  options:  {
+  options: {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
   },
   async connectToDatabase() {
     console.log(MONGO, 'Connecting to Mongo Database!');
-    try{
+    try {
       const connection = await MongoClient.connect(this.url, this.options);
       this.db = connection.db();
       this.connection = connection;
@@ -23,7 +23,7 @@ const MongoConnection = {
   },
   disconnect() {
     return this.connection.close();
-  }
+  },
 };
 
 module.exports = { MongoConnection };

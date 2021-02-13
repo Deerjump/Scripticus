@@ -20,7 +20,6 @@ module.exports = {
         console.info('Scripticus is Restarting!');
       } catch (err) {
         console.error('ERROR:', err);
-
       } finally {
         console.info('-----Exiting process-----');
         process.exit(0);

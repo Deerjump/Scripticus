@@ -62,9 +62,9 @@ function getItemDetailsEmbed(item) {
   fields.push({ name: 'Type', value: item.type });
   if (item.stats && !item.description) {
     fields.push({ name: 'Class', value: item.class });
-    fields.push({ name:'Stats', value:'--------------------------------' });
+    fields.push({ name: 'Stats', value: '--------------------------------' });
     Object.keys(item.stats).forEach((key) => {
-      fields.push({ name: [key], value: item.stats[key], inline:true });
+      fields.push({ name: [key], value: item.stats[key], inline: true });
     });
   }
 
