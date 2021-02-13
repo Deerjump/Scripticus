@@ -19,7 +19,6 @@ module.exports = {
         .addField('You could also:', 'Supply a search term!\n!wiki Mafioso');
 
       message.channel.send(embed);
-      // message.channel.send('You need to supply a search term!');
       return;
     }
     try {
