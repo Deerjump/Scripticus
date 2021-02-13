@@ -9,6 +9,7 @@ module.exports = {
   async execute(message, args) {
     if (this.whitelist.includes(message.author.id)) {
       if (args[0] && args[0].length === 0) return message.channel.send('Prefix must be at least 1 character!');
+      if (message.channel.type === 'dm') return message.reply('You can\'t use this command in a private message!');
 
       try {
         const newPrefix = args[0];
