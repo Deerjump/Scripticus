@@ -1,4 +1,4 @@
-const { prefix, DEFAULT_COOLDOWN } = require('../config.json');
+const { DEFAULT_COOLDOWN } = require('../config.json');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -9,6 +9,7 @@ module.exports = {
   cooldown: 5,
   execute(message, args) {
     const { commands } = message.client;
+    const prefix = message.client.getPrefix(message);
     const embed = new MessageEmbed().setColor('#00FF00');
 
     if (!args.length) {
