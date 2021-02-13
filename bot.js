@@ -1,8 +1,19 @@
 const { Client, Collection } = require('discord.js');
 const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
 const { getGuildPrefixes } = require('./mongo/settings.js');
+const { init:startMongo } = require('./mongo/mongo.js');
 const fs = require('fs');
 require('dotenv').config();
+
+const display = '*******************************************************\n' +
+'*  ______             _            _                  *\n' +
+'* / _____)           (_)       _  (_)                 *\n' +
+'*( (____   ____  ____ _ ____ _| |_ _  ____ _   _  ___ *\n' +
+'* \\____ \\ / ___)/ ___) |  _ (_   _) |/ ___) | | |/___)*\n' +
+'* _____) | (___| |   | | |_| || |_| ( (___| |_| |___ |*\n' +
+'*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
+'*                      |_|                            *\n' +
+'*******************************************************';
 
 
 const client = new Client();
@@ -23,18 +34,22 @@ const shouldIgnore = (message, prefix) =>
 const cooldowns = new Collection();
 
 client.once('ready', async () => {
-  console.log(`${client.user.username} is ready!`);
-  client.user.setActivity('Legends of Idleon');
   try {
+    console.info('-----Starting up Scripticus!-----');
+    console.info(display);
+    await startMongo();
     const prefixes = await getGuildPrefixes();
-    console.log(prefixes);
-    prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
-      const guild = client.guildSettings.get(guildID) || {};
-      client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
-    });
+    if (prefixes) {
+      prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
+        const guild = client.guildSettings.get(guildID) || {};
+        client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
+      });
+    }
   } catch (err) {
     console.error(err);
   }
+  client.user.setActivity('Legends of Idleon');
+  console.log(`${client.user.username} is ready!`);
 });
 
 client.on('message', (message) => {

@@ -13,16 +13,15 @@ module.exports = {
     const query = {};
     const options = { projection: { guildID: 1, prefix: 1 } };
     try {
-      const guildPrefixes = await MongoConnection.db
+      return await MongoConnection.db
         .collection('guilds')
         .find(query, options)
         .toArray();
-      return guildPrefixes;
     } catch (err) {
       console.error(err);
     }
   },
   async updateGuildCooldown(guildID) {
     console.log(guildID);
-  }
+  },
 };

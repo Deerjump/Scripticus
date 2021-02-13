@@ -2,6 +2,9 @@ const { MongoConnection } = require('./connection.js');
 require('dotenv').config();
 
 module.exports = {
+  async init() {
+    await MongoConnection.connectToDatabase();
+  },
   async addSubscriber(id, hours) {
     try {
       const myobj = { id: String(id), hours: hours };
