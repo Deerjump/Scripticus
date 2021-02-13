@@ -1,20 +1,20 @@
 const { Client, Collection } = require('discord.js');
 const { prefix: DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
 const { getGuildPrefixes } = require('./mongo/settings.js');
-const { init:startMongo } = require('./mongo/mongo.js');
+const { init: startMongo } = require('./mongo/mongo.js');
 const fs = require('fs');
 require('dotenv').config();
 
-const display = '*******************************************************\n' +
-'*  ______             _            _                  *\n' +
-'* / _____)           (_)       _  (_)                 *\n' +
-'*( (____   ____  ____ _ ____ _| |_ _  ____ _   _  ___ *\n' +
-'* \\____ \\ / ___)/ ___) |  _ (_   _) |/ ___) | | |/___)*\n' +
-'* _____) | (___| |   | | |_| || |_| ( (___| |_| |___ |*\n' +
-'*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
-'*                      |_|                            *\n' +
-'*******************************************************';
-
+const display =
+  '*******************************************************\n' +
+  '*  ______             _            _                  *\n' +
+  '* / _____)           (_)       _  (_)                 *\n' +
+  '*( (____   ____  ____ _ ____ _| |_ _  ____ _   _  ___ *\n' +
+  '* \\____ \\ / ___)/ ___) |  _ (_   _) |/ ___) | | |/___)*\n' +
+  '* _____) | (___| |   | | |_| || |_| ( (___| |_| |___ |*\n' +
+  '*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
+  '*                      |_|                            *\n' +
+  '*******************************************************';
 
 const client = new Client();
 client.commands = new Collection();
@@ -30,7 +30,8 @@ for (const file of commandFiles) {
 }
 
 const shouldIgnore = (message, prefix) =>
-  !message.content.startsWith(prefix) || message.author.bot;
+  (message.channel.type !== 'dm' && !message.content.startsWith(prefix)) ||
+  message.author.bot;
 const cooldowns = new Collection();
 
 client.once('ready', async () => {
@@ -54,14 +55,17 @@ client.once('ready', async () => {
 
 client.on('message', (message) => {
   // Ensures each server uses its own settings (if defined), uses default settings in dms
-  const settings = (message.channel.type !== 'dm') ?
-    client.guildSettings.get(message.guild.id) :
-    undefined;
+  const settings =
+    message.channel.type !== 'dm'
+      ? client.guildSettings.get(message.guild.id)
+      : undefined;
   const prefix = settings ? settings.prefix : DEFAULT_PREFIX;
 
   if (shouldIgnore(message, prefix)) return;
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const args = message.channel.type !== 'dm'
+    ? message.content.slice(prefix.length).trim().split(/ +/)
+    : message.content.trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   const command =

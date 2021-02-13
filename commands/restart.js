@@ -8,7 +8,7 @@ module.exports = {
     if (this.whitelist.includes(message.author.id)) {
       try {
         await message.channel.send('Restarting bot!');
-        console.info('Restarting bot!');
+        console.info('-----Restarting bot!-----');
 
         await MongoConnection.disconnect();
         console.log('MongoConnection disconnected');
