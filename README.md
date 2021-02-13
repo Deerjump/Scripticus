@@ -16,8 +16,8 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Provides a link to the toolbox from Abgreyd and Hateling
 - `contribute`
   - Informational command with links to the GitHub
-- `reload`
-  - Developer command used to reload a command so you don't have to reload the bot every time (Currently restricted to just Deerjump)
+- `info`
+  - Provides information on items or monsters from Legends of Idleon!
 
 #### Want to help but don't know how to get started?
 
@@ -30,3 +30,5 @@ Check out the state of the project here! [To-Do List](https://github.com/Deerjum
 #### Running bot locally
 
 Create `.env` file in the main directory and put your token there: `TOKEN=YOUR_TOKEN_HERE`
+
+You'll also need to create a MongoDB database if you plan to make use of that as well.
