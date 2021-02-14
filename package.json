@@ -4,11 +4,11 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "start": "pm2 start bot.js --name Scripticus",
+    "start": "pm2 start ecosystem.config.js",
     "poststart": "npm run monitor",
-    "restart": "pm2 restart Scripticus",
+    "restart": "pm2 restart ecosystem.config.js",
     "postrestart": "npm run monitor",
-    "stop": "pm2 stop Scripticus",
+    "stop": "pm2 stop ecosystem.config.js",
     "monitor": "pm2 monit",
     "logs": "pm2 logs Scripticus",
     "updatepm2": "pm2 update"
