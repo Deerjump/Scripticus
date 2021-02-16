@@ -2369,7 +2369,7 @@ Bb.addNewMonster('behemoth', {
   Damages: [0, 1],
 });
 Bb.addNewMonster('Nothing', {
-  Name: '_',
+  Name: 'a_b_c_d',
   AFKtype: 'Nothing',
   MonsterFace: 0,
   MonsterOffsetX: 22,
