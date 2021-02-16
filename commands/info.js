@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { decaymulti, decay } = require('../util/util.js');
 const itemList = require('../util/items.js');
 const monsterList = require('./../util/monsters.js');
 
@@ -105,9 +104,9 @@ function getItemDetailsEmbed(item) {
   fields.push({ name: 'Type', value: item.type });
   if (item.stats && !item.description) {
     fields.push({ name: 'Class', value: item.class });
-    fields.push({ name:'Stats', value:'--------------------------------' });
+    fields.push({ name: 'Stats', value: '--------------------------------' });
     Object.keys(item.stats).forEach((key) => {
-      fields.push({ name: [key], value: item.stats[key], inline:true });
+      fields.push({ name: [key], value: item.stats[key], inline: true });
     });
   }
 

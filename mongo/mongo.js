@@ -2,6 +2,9 @@ const { MongoConnection } = require('./connection.js');
 require('dotenv').config();
 
 module.exports = {
+  async init() {
+    await MongoConnection.connectToDatabase();
+  },
   async addSubscriber(id, hours) {
     try {
       const myobj = { id: String(id), hours: hours };
@@ -43,7 +46,11 @@ module.exports = {
       const filter = { id: id };
       const options = { upsert: true };
       const updateDoc = { $set: { hours: hours } };
-      const { matchedCount, modifiedCount, upsertedCount } = await MongoConnection.db
+      const {
+        matchedCount,
+        modifiedCount,
+        upsertedCount,
+      } = await MongoConnection.db
         .collection('subscribers')
         .updateOne(filter, updateDoc, options);
       console.log(
@@ -54,7 +61,6 @@ module.exports = {
     }
   },
   async updateSubscribers(subscribers) {
-    // const client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true });
     const operations = [];
     subscribers.forEach(({ id, hours }) => {
       const operation = {
@@ -71,7 +77,9 @@ module.exports = {
         matchedCount,
         modifiedCount,
         upsertedCount,
-      } = await MongoConnection.db.collection('subscribers').bulkWrite(operations);
+      } = await MongoConnection.db
+        .collection('subscribers')
+        .bulkWrite(operations);
       console.log(
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
