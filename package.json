@@ -1,16 +1,31 @@
 {
-  "name": "node-test",
-  "version": "1.0.0",
+  "name": "scripticus",
+  "version": "1.1.0",
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "pm2 start ecosystem.config.js",
+    "poststart": "npm run monitor",
+    "restart": "pm2 restart ecosystem.config.js",
+    "postrestart": "npm run monitor",
+    "stop": "pm2 stop ecosystem.config.js",
+    "monitor": "pm2 monit",
+    "logs": "pm2 logs Scripticus",
+    "updatepm2": "pm2 update"
   },
   "author": "Deerjump",
   "license": "ISC",
   "dependencies": {
+    "cron": "^1.8.2",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1"
+    "mongodb": "^3.6.3",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "pm2": "^4.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "prettier": "^2.2.1"
   }
 }
