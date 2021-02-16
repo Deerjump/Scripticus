@@ -45,17 +45,17 @@ function getMonsterDetailsEmbed(monster) {
   const embed = new MessageEmbed();
   const monsterName = monster.Name.replace(/_/g, ' ');
   embed.setTitle(monsterName);
-  const fields = [];
+  let fields = [];
 
   switch (monster.AFKtype) {
   case 'FIGHTING':
     fields.push(
-      { name: ':dart: HP', value: `${monster.MonsterHPTotal}`, inline: true },
-      { name: ':dagger: Attack', value: `${monster.Damages[0]}`, inline: true },
+      { name: ':heart: HP', value: `${monster.MonsterHPTotal}`, inline: true },
+      { name: ':dagger: Attack', value: `${Math.max(...monster.Damages)}`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
-      { name: ':dart: Accuracy for 5%', value: `${(monster.Defence * 0.5)}`, inline: true },
-      { name: ':dart: Accuracy for 50%', value: `${monster.Defence}`, inline: true },
-      { name: ':dart: Accuracy for 100%', value: `${(monster.Defence * 1.5)}`, inline: true },
+      { name: ':dart: Accuracy for 5%', value: `${monster.Defence * 0.5}`, inline: true },
+      { name: ':dart: Accuracy for 100%', value: `${monster.Defence * 1.5}`, inline: true },
+      { name: '\u200B', value: '\u200B', inline: true },
       { name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true },
       { name: ':coffin: Respawn Time', value: `${monster.RespawnTime}s`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
@@ -71,7 +71,7 @@ function getMonsterDetailsEmbed(monster) {
       { name: ':dart: 100%', value: `${getProwessReq(monster.Defence, 1)}`, inline: true },
     );
     for (let i = 2; i <= 5; i++) {
-      fields.push({ name: `:dart: x${i}`, value: `${getProwessReq(monster.Defence, i).toLocaleString()}`, inline: true });
+      fields.push({ name: `:dart: x${i}`, value: `${getProwessReq(monster.Defence, i)}`, inline: true });
     }
     fields.push({ name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true });
     embed.setFooter('All values are base values (no Prowess bonuses included!)');
@@ -81,6 +81,12 @@ function getMonsterDetailsEmbed(monster) {
     console.error('Unknown AFKtype!');
   }
 
+  fields = fields.map(field => {
+    if (!isNaN(parseFloat(field.value))) {
+      field.value = parseFloat(field.value).toLocaleString();
+    }
+    return field;
+  });
   return embed.addFields(fields);
 }
 
