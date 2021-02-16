@@ -89,7 +89,7 @@ Bb.addNewMonster('frogG', {
   Damages: [5, 1],
 });
 Bb.addNewMonster('beanG', {
-  Name: 'Bored_Bean_Great',
+  Name: 'Bored_Bean',
   AFKtype: 'FIGHTING',
   MonsterFace: 7,
   MonsterOffsetX: 38,
