@@ -21,8 +21,6 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
 - `info`
   - Provides information on items or monsters from Legends of Idleon!
 
-#### Want to help but don't know how to get started?
-
 - Make a suggestion through [Issues](https://github.com/Deerjump/Scripticus/issues) (Note: you'll need a github account to do this)
 - Learn more about how to use GitHub to contribute to the project: [Contributing to Open Source](https://www.youtube.com/watch?v=yzeVMecydCE&ab_channel=freeCodeCamp.org)
 - Run through some tutorials or read the documentation for the discord.js API: <a href="https://discord.js.org/" target="_blank" rel="noopener noreferrer">Discord.js</a>
