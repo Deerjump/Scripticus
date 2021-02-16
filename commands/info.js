@@ -10,7 +10,6 @@ module.exports = {
   cooldown: 1,
   execute(message, args) {
     const lowerCaseArgs = args.join(' ').toLowerCase();
-
     const item = getItem(lowerCaseArgs);
     if (item) {
       return message.reply(getItemDetailsEmbed(item));
@@ -31,6 +30,23 @@ function getProwessReq(defense, level) {
   return defense * 10 * Math.pow(level, 1 / (0.25)) ;
 }
 
+function parseAttackStat({ Damages, SpecialType }) {
+  if (SpecialType !== 'a') return Damages[0];
+
+  return `${Math.min(...Damages)} - ${Math.max(...Damages)}`;
+}
+
+function parseRespawnTime(respawnTime) {
+  // For bosses with respawnTime = 'Special'
+  if (isNaN(respawnTime)) return respawnTime;
+
+  const h = Math.floor(respawnTime / 3600);
+  const m = Math.floor(respawnTime % 3600 / 60);
+  const s = Math.floor(respawnTime % 3600 % 60);
+  const timeString = `${h}h ${m}m ${s}s`;
+  return timeString;
+}
+
 function getMonster(name) {
   let toReturn;
   for (const [, value] of Object.entries(monsterList)) {
@@ -46,18 +62,20 @@ function getMonsterDetailsEmbed(monster) {
   const monsterName = monster.Name.replace(/_/g, ' ');
   embed.setTitle(monsterName);
   let fields = [];
-
+  const attackText = parseAttackStat(monster);
+  const respawnTimeText = parseRespawnTime(monster.RespawnTime);
   switch (monster.AFKtype) {
   case 'FIGHTING':
     fields.push(
-      { name: ':heart: HP', value: `${monster.MonsterHPTotal}`, inline: true },
-      { name: ':dagger: Attack', value: `${Math.max(...monster.Damages)}`, inline: true },
+      { name: ':heart: HP', value: monster.MonsterHPTotal, inline: true },
+      { name: ':dagger: Attack', value: `\u200B${attackText}`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
       { name: ':dart: Accuracy for 5%', value: `${monster.Defence * 0.5}`, inline: true },
       { name: ':dart: Accuracy for 100%', value: `${monster.Defence * 1.5}`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
-      { name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true },
-      { name: ':coffin: Respawn Time', value: `${monster.RespawnTime}s`, inline: true },
+      { name: ':star: Base XP', value: monster.ExpGiven, inline: true },
+      // For whatever reason, starting a field's value with a number causes following characters to not display at all. \u200B was added as a fix.
+      { name: ':coffin: Respawn Time', value: `\u200B${respawnTimeText}`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
     );
     embed.setURL(`https://idleon.info/wiki/${monster.Name}`);
