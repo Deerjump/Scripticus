@@ -16,6 +16,8 @@ A Discord Bot for the Legends of Idleon <a href="https://discord.com/invite/idle
   - Provides a link to the toolbox from Abgreyd and Hateling
 - `contribute`
   - Informational command with links to the GitHub
+- `toolbox`
+  - Provides a link to the toolbox from Abgreyd and Hateling
 - `info`
   - Provides information on items or monsters from Legends of Idleon!
 
