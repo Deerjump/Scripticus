@@ -1,188 +1,4 @@
 module.exports = {
-  Blank: {
-    Name: 'ERROR',
-    sellPrice: 0,
-    typeGen: 'NothingERROR',
-    id: 0,
-    type: 'FISTICUFF',
-    class: 'ALL',
-    lvReqToEquip: 0,
-    stats: {
-      reach: 55,
-      speed: 3,
-      weaponPower: 2,
-    },
-    sources: ['QuestNameFiller2', 'None'],
-  },
-  LockedInvSpace: {
-    Name: 'ERROR',
-    sellPrice: 0,
-    typeGen: 'NothingERROR',
-    id: 0,
-    type: 'FISTICUFF',
-    class: 'ALL',
-    lvReqToEquip: 0,
-    stats: {
-      reach: 55,
-      speed: 3,
-      weaponPower: 2,
-    },
-  },
-  COIN: {
-    Name: 'Coins',
-    sellPrice: 0,
-    typeGen: 'NothingERROR',
-    id: 0,
-    type: 'FISTICUFF',
-    class: 'ALL',
-    lvReqToEquip: 0,
-    stats: {
-      reach: 55,
-      speed: 3,
-      weaponPower: 2,
-    },
-    sources: [
-      'babaMummy',
-      'Centurion2',
-      'carrotO',
-      'wolfC',
-      'goblinG',
-      'frogG',
-      'Scripticus2',
-      'sandgiant',
-      'moonman',
-      'BugNest1',
-      'DropTable11',
-      'Builder_Bird1',
-      'Goldric3',
-      'Boss2B',
-      'Fish3',
-      'Bug2',
-      'Scripticus8',
-      'Crystal1',
-      'ToiletTree',
-      'SuperDropTable1',
-      'frogBIG',
-      'Cowbo_Jones2',
-      'Mutton1',
-      'Centurion4',
-      'EfauntArm',
-      'Speccius2',
-      'Goldric1',
-      'Bug3',
-      'poopBig',
-      'DropTable9',
-      'ratB',
-      'Picnic_Stowaway1',
-      'BugNest3',
-      'PalmTree',
-      'DropTable7',
-      'Tiki_Chief4',
-      'Secretkeeper1',
-      'Whattso1',
-      'Woodsman1',
-      'coconut',
-      'mimicA',
-      'Funguy2',
-      'Boss2A',
-      'jarSand',
-      'Starfire',
-      'Goldric5',
-      'Fish2',
-      'Scripticus6',
-      'sandcastle',
-      'AlienTree',
-      'snailZ',
-      'Fish1',
-      'Papua_Piggea3',
-      'Centurion5',
-      'Centurion3',
-      'xmasEvent2',
-      'Bushlyte3',
-      'Bug1',
-      'OakTree',
-      'poopD',
-      'beanG',
-      'BugNest4',
-      'plank',
-      'Lustre',
-      'Fish4',
-      'DropTable3b',
-      'Copper',
-      'Plat',
-      'DropTable3c',
-      'shovelR',
-      'FishSmall',
-      'Dreadlo',
-      'DropTable12',
-      'BugNest2',
-      'wolfA',
-      'Iron',
-      'DropTable2',
-      'None',
-      'bloque',
-      'StumpTree',
-      'mushG',
-      'DropTable4',
-      'BirchTree',
-      'xmasEvent',
-      'Void',
-      'Scripticus11',
-      'DropTable1',
-      'Promotheus2',
-      'Promotheus1',
-      'Godshard',
-      'ghost',
-      'DropTable5',
-      'potato',
-      'poopSmall',
-      'DropTable6',
-      'Bushlyte2',
-      'Woodsman2',
-      'Colosseum',
-      'Boss2C',
-      'SaharanFoal',
-      'DropTable8',
-      'Gold',
-      'babayaga',
-      'wolfB',
-      'snakeG',
-      'Dementia',
-      'ForestTree',
-      'mushR',
-      'Bug4',
-      'acorn',
-      'crabcake',
-      'XxX_Cattleprod_XxX3',
-      'thermostat',
-      'Crystal0',
-      'Stiltzcho2',
-      'DropTable3',
-      'Scripticus5',
-      'slimeG',
-      'DropTable10',
-      'pincermin',
-      'Bushlyte1',
-      'branch',
-      'steak',
-      'babaHour',
-      'JungleTree',
-    ],
-  },
-  EXP: {
-    Name: 'Exp',
-    sellPrice: 0,
-    typeGen: 'NothingERROR',
-    id: 0,
-    type: 'FISTICUFF',
-    class: 'ALL',
-    lvReqToEquip: 0,
-    stats: {
-      reach: 55,
-      speed: 3,
-      weaponPower: 2,
-    },
-  },
   Copper: {
     Name: 'Copper Ore',
     sellPrice: 3,
@@ -195,7 +11,7 @@ module.exports = {
       cooldown: 100,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining', 'Colosseum'],
   },
@@ -211,7 +27,7 @@ module.exports = {
       cooldown: 400,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining', 'Colosseum'],
   },
@@ -227,7 +43,7 @@ module.exports = {
       cooldown: 1000,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining', 'Colosseum'],
   },
@@ -243,7 +59,7 @@ module.exports = {
       cooldown: 2200,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining', 'Colosseum'],
   },
@@ -259,7 +75,7 @@ module.exports = {
       cooldown: 3500,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining', 'Colosseum'],
   },
@@ -275,7 +91,7 @@ module.exports = {
       cooldown: 6000,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining'],
   },
@@ -291,7 +107,7 @@ module.exports = {
       cooldown: 12500,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining'],
   },
@@ -307,7 +123,7 @@ module.exports = {
       cooldown: 25000,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining'],
   },
@@ -323,7 +139,7 @@ module.exports = {
       cooldown: 100,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining'],
   },
@@ -339,7 +155,7 @@ module.exports = {
       cooldown: 100,
     },
     get description() {
-      return `Smelt down ${this.stats.ammount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
+      return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
     sources: ['Mining'],
   },
@@ -436,7 +252,7 @@ module.exports = {
       cooldown: 75,
     },
     get description() {
-      return `Increases Forging Speed by ${this.stats.ammount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
+      return `Increases Forging Speed by ${this.stats.amount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
     sources: ['Blunder Hills', 'Glumlee2', 'None'],
   },
@@ -453,7 +269,7 @@ module.exports = {
       cooldown: 60,
     },
     get description() {
-      return `Increases Extra Bar chance by ${this.stats.ammount}% for the Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
+      return `Increases Extra Bar chance by ${this.stats.amount}% for the Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
     sources: ['slimeG'],
   },
@@ -470,7 +286,7 @@ module.exports = {
       cooldown: 60,
     },
     get description() {
-      return `Increases chance to Not Use Up Ores by ${this.stats.ammount}% for the Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
+      return `Increases chance to Not Use Up Ores by ${this.stats.amount}% for the Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
   },
   OilBarrel4: {
@@ -486,7 +302,7 @@ module.exports = {
       cooldown: 200,
     },
     get description() {
-      return `Increases Forging Speed by ${this.stats.ammount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
+      return `Increases Forging Speed by ${this.stats.amount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
     sources: ['None', 'Glumlee1'],
   },
@@ -510,7 +326,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Increases Forging Speed by ${this.stats.ammount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
+      return `Increases Forging Speed by ${this.stats.amount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
     sources: ['Smithing'],
   },
@@ -4708,7 +4524,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['Scripticus4', 'mushG', 'None', 'Blunder Hills', 'DropTable1'],
   },
@@ -4725,7 +4541,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['DropTable2', 'Blunder Hills', 'Encroaching Forest Villas'],
   },
@@ -4742,7 +4558,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: [
       'DropTable3',
@@ -4773,7 +4589,7 @@ module.exports = {
       cooldown: 20,
     },
     get description() {
-      return `Auto-Used when your health goes below 75%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown. The favorite snack of all bloblytes!`;
+      return `Auto-Used when your health goes below 75%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown. The favorite snack of all bloblytes!`;
     },
     sources: ['Smithing', 'Simple Shippin'],
   },
@@ -4790,7 +4606,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['YumYum Grotto'],
   },
@@ -4807,7 +4623,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['Encroaching Forest Villas'],
   },
@@ -4824,7 +4640,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['YumYum Grotto'],
   },
@@ -4841,7 +4657,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Auto-Used when your health goes below 50%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['YumYum Grotto'],
   },
@@ -4858,7 +4674,7 @@ module.exports = {
       cooldown: 60,
     },
     get description() {
-      return `Auto-Used when your health goes below 35%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 35%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
   },
   Meatloaf: {
@@ -4874,7 +4690,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Auto-Used when your health goes below 30%. Restores ${this.stats.ammount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
+      return `Auto-Used when your health goes below 30%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: ['wolfC', 'wolfA', 'wolfB'],
   },
@@ -4891,7 +4707,7 @@ module.exports = {
       cooldown: 15,
     },
     get description() {
-      return `Increases Base Dmg by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base Dmg by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['DropTable11', 'Blunder Hills', 'DropTable5', 'DropTable12'],
   },
@@ -4908,7 +4724,7 @@ module.exports = {
       cooldown: 13,
     },
     get description() {
-      return `Increases Base Dmg by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base Dmg by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['DropTable2', 'YumYum Grotto', 'Encroaching Forest Villas'],
   },
@@ -4925,7 +4741,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Base Dmg by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base Dmg by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
   },
   FoodPotRe1: {
@@ -4941,7 +4757,7 @@ module.exports = {
       cooldown: 5,
     },
     get description() {
-      return `Increases Base HP by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Blunder Hills', 'DropTable3b', 'DropTable3c'],
   },
@@ -4958,7 +4774,7 @@ module.exports = {
       cooldown: 4,
     },
     get description() {
-      return `Increases Base HP by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Picnic_Stowaway4', 'YumYum Grotto', 'None', 'frogBIG'],
   },
@@ -4975,7 +4791,7 @@ module.exports = {
       cooldown: 3,
     },
     get description() {
-      return `Increases Base HP by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
   },
   FoodPotGr1: {
@@ -4991,7 +4807,7 @@ module.exports = {
       cooldown: 15,
     },
     get description() {
-      return `Increases Move Spd by ${this.stats.ammount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Move Spd by ${this.stats.amount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['DropTable2', 'DropTable4', 'Blunder Hills', 'DropTable10'],
   },
@@ -5008,7 +4824,7 @@ module.exports = {
       cooldown: 13,
     },
     get description() {
-      return `Increases Move Spd by ${this.stats.ammount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Move Spd by ${this.stats.amount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: [
       'YumYum Grotto',
@@ -5031,7 +4847,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Move Spd by ${this.stats.ammount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot toller give its bonus.`;
+      return `Increases Move Spd by ${this.stats.amount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot toller give its bonus.`;
     },
   },
   FoodPotMana1: {
@@ -5047,7 +4863,7 @@ module.exports = {
       cooldown: 40,
     },
     get description() {
-      return `Boosts Mana Regen Rate by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
+      return `Boosts Mana Regen Rate by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: [
       'frogG',
@@ -5070,7 +4886,7 @@ module.exports = {
       cooldown: 35,
     },
     get description() {
-      return `Boosts Mana Regen Rate by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
+      return `Boosts Mana Regen Rate by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['DropTable3'],
   },
@@ -5087,7 +4903,7 @@ module.exports = {
       cooldown: 30,
     },
     get description() {
-      return `Boosts Mana Regen Rate by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
+      return `Boosts Mana Regen Rate by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
     },
   },
   FoodPotYe1: {
@@ -5103,7 +4919,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Main Exp Gain by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Plan-it Express', 'Encroaching Forest Villas'],
   },
@@ -5120,7 +4936,7 @@ module.exports = {
       cooldown: 8,
     },
     get description() {
-      return `Increases Main Exp Gain by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Dudes Next Door'],
   },
@@ -5137,7 +4953,7 @@ module.exports = {
       cooldown: 6,
     },
     get description() {
-      return `Increases Main Exp Gain by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
   },
   FoodMining1: {
@@ -5160,7 +4976,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Mining Speed by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Mining Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing', 'None', 'Krunk1'],
   },
@@ -5177,7 +4993,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Mining Speed by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Mining Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['xmasEvent2', 'xmasEvent', 'ghost'],
   },
@@ -5201,7 +5017,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Choppin' Speed by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Choppin' Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing'],
   },
@@ -5218,7 +5034,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Choppin' Speed by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Choppin' Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['xmasEvent2', 'xmasEvent', 'ghost'],
   },
@@ -5242,7 +5058,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Fishing Spd by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Fishing Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing'],
   },
@@ -5259,7 +5075,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Fishing Spd by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Fishing Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['xmasEvent2', 'xmasEvent', 'ghost'],
   },
@@ -5283,7 +5099,7 @@ module.exports = {
       cooldown: 10,
     },
     get description() {
-      return `Increases Catching Spd by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Catching Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing'],
   },
@@ -5300,7 +5116,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Catching Spd by ${this.stats.ammount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Catching Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['xmasEvent2', 'xmasEvent', 'ghost'],
   },
@@ -5324,7 +5140,7 @@ module.exports = {
       cooldown: 15,
     },
     get description() {
-      return `Increases Weapon Power by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing'],
   },
@@ -5348,7 +5164,7 @@ module.exports = {
       cooldown: 12,
     },
     get description() {
-      return `Increases Weapon Power by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['Smithing'],
   },
@@ -5365,7 +5181,7 @@ module.exports = {
       cooldown: 2,
     },
     get description() {
-      return `Increases Weapon Power by ${this.stats.ammount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
+      return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: ['babaMummy', 'Boss2C', 'DropTable8', 'Boss2B', 'Boss2A'],
   },
@@ -5389,7 +5205,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Mining Efficiency by ${this.stats.ammount}%. Golden foods are never consumed.`;
+      return `Increases Mining Efficiency by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
     sources: ['Smithing'],
   },
@@ -5406,7 +5222,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases your Max Health by ${this.stats.ammount}%. Golden foods are never consumed.`;
+      return `Increases your Max Health by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
     sources: [
       'Picnic_Stowaway3',
@@ -5435,7 +5251,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Damage Dealt to all monsters by ${this.stats.ammount}%. Golden foods are never consumed.`;
+      return `Increases Damage Dealt to all monsters by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
     sources: [
       'Picnic_Stowaway6',
@@ -5460,7 +5276,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases your Total Defence by ${this.stats.ammount}. Golden foods are never consumed`;
+      return `Increases your Total Defence by ${this.stats.amount}. Golden foods are never consumed`;
     },
     sources: [
       'Picnic_Stowaway10',
@@ -5483,7 +5299,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Increases Base Damage Dealt to all monsters by ${this.stats.ammount}. Golden foods are never consumed.`;
+      return `Increases Base Damage Dealt to all monsters by ${this.stats.amount}. Golden foods are never consumed.`;
     },
     sources: ['SuperDropTable1', 'Plan-it Express', 'Colosseum'],
   },
@@ -8629,7 +8445,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'NYI',
@@ -8656,7 +8472,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'YumYum Grotto',
@@ -8684,7 +8500,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: ['Dudes Next Door', 'Colosseum'],
   },
@@ -8704,7 +8520,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
+      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
     sources: ['None', 'Funguy5', 'Goldric4', 'Bandit_Bob1'],
   },
@@ -8723,7 +8539,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'NYI',
@@ -8752,7 +8568,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: ['Krunk2', 'None'],
   },
@@ -8771,7 +8587,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'YumYum Grotto',
@@ -8798,7 +8614,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
     sources: ['DropTable7'],
   },
@@ -8817,7 +8633,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: ['Colosseum'],
   },
@@ -8837,7 +8653,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Drag onto any Armor to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
     sources: ['babaHour', 'None', 'Meel2', 'babaMummy'],
   },
@@ -8856,7 +8672,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Tool to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'Faraway Piers',
@@ -8881,7 +8697,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Tool to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
   },
   StoneT2: {
@@ -8899,7 +8715,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Tool to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
       'Faraway Piers',
@@ -8928,7 +8744,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Tool to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: ['None', 'Goldric2'],
   },
@@ -8944,7 +8760,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful`;
+      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: ['Plan-it Express', 'goblinG', 'Simple Shippin'],
   },
@@ -8961,7 +8777,7 @@ module.exports = {
       cooldown: 1,
     },
     get description() {
-      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
+      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
     sources: ['None', 'Snake_Jar1', 'Cowbo_Jones9', 'Picnic_Stowaway10'],
   },
@@ -8977,7 +8793,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} item slots.`;
+      return `Drag onto any Helmet to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots.`;
     },
   },
   StoneZ1: {
@@ -8992,7 +8808,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Equip to apply. Success Chance; ${this.stats.ammount}% Uses up ${this.stats.trigger} slots only if Successful. WARNING:Mystery Stat has a chance to be Negative, and reduce stats!`;
+      return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful. WARNING:Mystery Stat has a chance to be Negative, and reduce stats!`;
     },
     sources: [
       'wolfC',
@@ -9027,7 +8843,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Equip to apply. Success Chance; ${this.stats.ammount}% Can only be used on Premium Equips!`;
+      return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}% Can only be used on Premium Equips!`;
     },
     sources: ['Gem Shop'],
   },
@@ -9043,7 +8859,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Equip to apply. Success Chance; ${this.stats.ammount}%`;
+      return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}%`;
     },
     sources: ['Gem Shop'],
   },
@@ -9059,7 +8875,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Equip to apply. Success Chance; ${this.stats.ammount}%`;
+      return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}%`;
     },
     sources: ['Gem Shop'],
   },
@@ -9075,7 +8891,7 @@ module.exports = {
       trigger: 1,
     },
     get description() {
-      return `Drag onto any Equip to apply. Success Chance; ${this.stats.ammount}%`;
+      return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}%`;
     },
     sources: ['Gem Shop'],
   },

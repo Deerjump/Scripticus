@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { decaymulti, decay } = require('../util/util.js');
 const itemList = require('../util/items.js');
 const monsterList = require('./../util/monsters.js');
 
@@ -10,27 +11,26 @@ module.exports = {
   cooldown: 1,
   execute(message, args) {
     const lowerCaseArgs = args.join(' ').toLowerCase();
-    console.log('User input args:' + lowerCaseArgs);
-    const response = new MessageEmbed();
 
     const item = getItem(lowerCaseArgs);
-    let itemDesc;
     if (item) {
-      console.log(item);
-      itemDesc = `Name: ${item.Name}, Sell Price: ${item.sellPrice}, type: ${item.type}, Level Required: ${item.lvReqToEquip}`;
+      return message.reply(getItemDetailsEmbed(item));
     }
 
     const monster = getMonster(lowerCaseArgs);
-
     if (monster) {
-      console.log(monster);
-      message.reply(buildMonsterEmbed(monster, response));
+      return message.reply(getMonsterDetailsEmbed(monster));
     }
+
     if (!item && !monster) {
       return message.reply("That item/monster doesn't exist!");
     }
   },
 };
+
+function getProwessReq(defense, level) {
+  return defense * 10 * Math.pow(level, 1 / (0.25)) ;
+}
 
 function getMonster(name) {
   let toReturn;
@@ -42,65 +42,47 @@ function getMonster(name) {
   return toReturn;
 }
 
-function buildMonsterEmbed(monster, embed) {
+function getMonsterDetailsEmbed(monster) {
+  const embed = new MessageEmbed();
   const monsterName = monster.Name.replace(/_/g, ' ');
-  embed.setColor('#e53935');
+  embed.setTitle(monsterName);
+  const fields = [];
+
   switch (monster.AFKtype) {
   case 'FIGHTING':
-    embed.setTitle(monsterName);
-    embed.addFields(
-      { name: ':dart: HP', value: `${monster.MonsterHPTotal.toLocaleString()}`, inline: true },
-      { name: ':dagger: Attack', value: `${monster.Damages[0].toLocaleString()}`, inline: true },
+    fields.push(
+      { name: ':dart: HP', value: `${monster.MonsterHPTotal}`, inline: true },
+      { name: ':dagger: Attack', value: `${monster.Damages[0]}`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
-      { name: ':dart: Accuracy for 5%', value: `${(monster.Defence * 0.5).toLocaleString()}`, inline: true },
-      { name: ':dart: Accuracy for 50%', value: `${monster.Defence.toLocaleString()}`, inline: true },
-      { name: ':dart: Accuracy for 100%', value: `${(monster.Defence * 1.5).toLocaleString()}`, inline: true },
-      { name: ':star: Base XP', value: `${monster.ExpGiven.toLocaleString()}`, inline: true },
-      { name: ':coffin: Respawn Time', value: `${monster.RespawnTime.toLocaleString()}s`, inline: true },
+      { name: ':dart: Accuracy for 5%', value: `${(monster.Defence * 0.5)}`, inline: true },
+      { name: ':dart: Accuracy for 50%', value: `${monster.Defence}`, inline: true },
+      { name: ':dart: Accuracy for 100%', value: `${(monster.Defence * 1.5)}`, inline: true },
+      { name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true },
+      { name: ':coffin: Respawn Time', value: `${monster.RespawnTime}s`, inline: true },
       { name: '\u200B', value: '\u200B', inline: true },
     );
     embed.setURL(`https://idleon.info/wiki/${monster.Name}`);
     break;
   case 'MINING':
-    // TODO: Figure out how required eff. scales with x2, x3, etc.
-    embed.setTitle(monsterName + ' Node');
-    embed.addFields(
-      { name: '5%', value: `${monster.Defence / 4}`, inline: true },
-      { name: '100%', value: `${monster.Defence * 10}`, inline: true },
-      { name: '\u200B', value: '\u200B', inline: true },
-      { name: 'x2', value: `${monster.Defence * 10 * 16}`, inline: true },
-      { name: 'x3', value: `${monster.Defence * 10 * 16 * 5.0625}`, inline: true },
-      { name: 'x4', value: `${monster.Defence * 10 * 16 * 5.0625}`, inline: true },
-      { name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true },
-    );
-    embed.setFooter('All values for % to mine are base values (no Prowess included!)');
-    embed.setURL('https://idleon.info/wiki/Mining');
-    break;
   case 'CHOPPIN':
-    // TODO: Figure out how required eff. scales with x2, x3, etc.
-    embed.setTitle(monsterName);
-    embed.addFields(
-      { name: '5%', value: `${monster.Defence / 4}`, inline: true },
-      { name: '100%', value: `${monster.Defence * 10}`, inline: true },
-      { name: '\u200B', value: '\u200B', inline: true },
-      { name: 'x2', value: `${monster.Defence * 10 * 16}`, inline: true },
-      { name: 'x3', value: `${monster.Defence * 10 * 16 * 5.0625}`, inline: true },
-      { name: 'x4', value: `${monster.Defence * 10 * 16 * 5.0625}`, inline: true },
-      { name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true },
-    );
-    break;
-  case 'FISHING':
-    break;
   case 'CATCHING':
+  case 'FISHING':
+    fields.push(
+      { name: ':dart: 5%', value: `${monster.Defence / 4}`, inline: true },
+      { name: ':dart: 100%', value: `${getProwessReq(monster.Defence, 1)}`, inline: true },
+    );
+    for (let i = 2; i <= 5; i++) {
+      fields.push({ name: `:dart: x${i}`, value: `${getProwessReq(monster.Defence, i).toLocaleString()}`, inline: true });
+    }
+    fields.push({ name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true });
+    embed.setFooter('All values are base values (no Prowess bonuses included!)');
+    embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
     break;
   default:
-    console.log('????');
-
+    console.error('Unknown AFKtype!');
   }
-  // embed.setAuthor('Link to Wiki Page', 'https://static.miraheze.org/idleonwiki/0/0e/LoIFavicon.png', `https://idleon.info/wiki/${monster.Name}`);
-  // embed.setFooter(`https://idleon.info/wiki/${monsterName}`, 'https://static.miraheze.org/idleonwiki/0/0e/LoIFavicon.png');
-  // embed.setThumbnail('https://static.miraheze.org/idleonwiki/0/0e/LoIFavicon.png');
-  return embed;
+
+  return embed.addFields(fields);
 }
 
 function getItem(name) {
@@ -112,4 +94,40 @@ function getItem(name) {
   }
 
   return toReturn;
+}
+
+function getItemDetailsEmbed(item) {
+  const embed = new MessageEmbed();
+  embed.setTitle(item.Name);
+  const fields = [];
+
+  fields.push({ name: 'Sell Price', value: item.sellPrice });
+  fields.push({ name: 'Type', value: item.type });
+  if (item.stats && !item.description) {
+    fields.push({ name: 'Class', value: item.class });
+    fields.push({ name:'Stats', value:'--------------------------------' });
+    Object.keys(item.stats).forEach((key) => {
+      fields.push({ name: [key], value: item.stats[key], inline:true });
+    });
+  }
+
+  // To exclude card item from providing it's description
+  if (item.description && !item.cardData) {
+    fields.push({ name: 'Description', value: item.description });
+  }
+
+  if (item.cardData) {
+    fields.push({
+      name: 'Card Bonus',
+      value: `${item.cardData.value}${item.cardData.bonus.replaceAll(
+        '_',
+        ' '
+      )}`,
+    });
+  }
+  if (item.sources) {
+    fields.push({ name: 'Sources', value: item.sources.join(', ') });
+  }
+
+  return embed.addFields(fields);
 }

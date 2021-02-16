@@ -13,11 +13,17 @@ module.exports = {
     const query = {};
     const options = { projection: { guildID: 1, prefix: 1 } };
     try {
-      const guildPrefixes = await MongoConnection.db
-        .collection('guilds')
-        .find(query, options)
-        .toArray();
-      return guildPrefixes;
+      const db = await MongoConnection.db;
+      if (db) {
+        const guildPrefixes = await MongoConnection.db
+          .collection('guilds')
+          .find(query, options)
+          .toArray();
+        return guildPrefixes;
+      } else {
+        return console.error('ERROR: db could not be found!');
+      }
+
     } catch (err) {
       console.error(err);
     }
