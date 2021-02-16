@@ -29,6 +29,9 @@ Check out the state of the project here! [To-Do List](https://github.com/Deerjum
 
 #### Running bot locally
 
+You'll need to go [here](https://discord.com/developers/applications) and create your own bot. 
+Then in the `Bot` tab, grab the token for the step below
+
 Create `.env` file in the main directory and put your token there: `TOKEN=YOUR_TOKEN_HERE`
 
 You'll also need to create a MongoDB database if you plan to make use of that as well.
