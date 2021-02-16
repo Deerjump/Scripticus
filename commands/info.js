@@ -49,7 +49,7 @@ function parseRespawnTime(respawnTime) {
 
 function getMonster(name) {
   let toReturn;
-  for (const [, value] of Object.entries(monsterList)) {
+  for (value of Object.values(monsterList)) {
     if (value.Name && value.Name.toLowerCase().replace(/_/g, ' ') === name) {
       toReturn = value;
     }
