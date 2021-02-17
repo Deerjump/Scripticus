@@ -2,7 +2,7 @@
 scratch.js
 
 # vscode config files
-vscode/
+.vscode/
 
 # Logs
 logs
