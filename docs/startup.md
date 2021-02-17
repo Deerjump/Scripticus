@@ -7,7 +7,7 @@
     - [Discord.js Help Docs](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
 4. Then in the `Bot` tab, copy the token for the step below.
 
-5. Create a `.env` file in the main directory as seen [below](#example-.env)
+5. Create a `.env` file in the main directory as seen [below](#example-env)
     - If you need to use a database, you'll need to create your own MongoDB to use.
     - You'll place your credentials in the `.env` and you'll need to configure [connection.js](../mongo/connection.js) with your database url.
 
