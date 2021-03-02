@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const itemList = require('../util/items.js');
 const monsterList = require('./../util/monsters.js');
+const alias = require('./../util/alias');
 
 module.exports = {
   name: 'info',
@@ -21,13 +22,13 @@ module.exports = {
     }
 
     if (!item && !monster) {
-      return message.reply("That item/monster doesn't exist!");
+      return message.reply('That item/monster doesn\'t exist!');
     }
-  },
+  }
 };
 
 function getProwessReq(defense, level) {
-  return defense * 10 * Math.pow(level, 1 / (0.25)) ;
+  return defense * 10 * Math.pow(level, 1 / (0.25));
 }
 
 function parseAttackStat({ Damages, SpecialType }) {
@@ -48,13 +49,17 @@ function parseRespawnTime(respawnTime) {
 }
 
 function getMonster(name) {
-  let toReturn;
   for (const value of Object.values(monsterList)) {
-    if (value.Name && value.Name.toLowerCase().replace(/_/g, ' ') === name) {
-      toReturn = value;
+    if (!value.Name) continue;
+    let displayName = value.Name.toLowerCase().replace(/_/g, ' ');
+    if (value.Name && displayName === name) {
+      return value;
     }
+    let found = alias.find(name, value, displayName);
+    if (found)
+      return value;
   }
-  return toReturn;
+  return undefined;
 }
 
 function getMonsterDetailsEmbed(monster) {
@@ -65,38 +70,42 @@ function getMonsterDetailsEmbed(monster) {
   const attackText = parseAttackStat(monster);
   const respawnTimeText = parseRespawnTime(monster.RespawnTime);
   switch (monster.AFKtype) {
-  case 'FIGHTING':
-    fields.push(
-      { name: ':heart: HP', value: monster.MonsterHPTotal, inline: true },
-      { name: ':dagger: Attack', value: `\u200B${attackText}`, inline: true },
-      { name: '\u200B', value: '\u200B', inline: true },
-      { name: ':dart: Accuracy for 5%', value: `${monster.Defence * 0.5}`, inline: true },
-      { name: ':dart: Accuracy for 100%', value: `${monster.Defence * 1.5}`, inline: true },
-      { name: '\u200B', value: '\u200B', inline: true },
-      { name: ':star: Base XP', value: monster.ExpGiven, inline: true },
+    case 'FIGHTING':
+      fields.push(
+        { name: ':heart: HP', value: monster.MonsterHPTotal, inline: true },
+        { name: ':dagger: Attack', value: `\u200B${attackText}`, inline: true },
+        { name: '\u200B', value: '\u200B', inline: true },
+        { name: ':dart: Accuracy for 5%', value: `${monster.Defence * 0.5}`, inline: true },
+        { name: ':dart: Accuracy for 100%', value: `${monster.Defence * 1.5}`, inline: true },
+        { name: '\u200B', value: '\u200B', inline: true },
+        { name: ':star: Base XP', value: monster.ExpGiven, inline: true },
       // For whatever reason, starting a field's value with a number causes following characters to not display at all. \u200B was added as a fix.
-      { name: ':coffin: Respawn Time', value: `\u200B${respawnTimeText}`, inline: true },
-      { name: '\u200B', value: '\u200B', inline: true },
-    );
-    embed.setURL(`https://idleon.info/wiki/${monster.Name}`);
-    break;
-  case 'MINING':
-  case 'CHOPPIN':
-  case 'CATCHING':
-  case 'FISHING':
-    fields.push(
-      { name: ':dart: 5%', value: `${monster.Defence / 4}`, inline: true },
-      { name: ':dart: 100%', value: `${getProwessReq(monster.Defence, 1)}`, inline: true },
-    );
-    for (let i = 2; i <= 5; i++) {
-      fields.push({ name: `:dart: x${i}`, value: `${getProwessReq(monster.Defence, i)}`, inline: true });
-    }
-    fields.push({ name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true });
-    embed.setFooter('All values are base values (no Prowess bonuses included!)');
-    embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
-    break;
-  default:
-    console.error('Unknown AFKtype!');
+        { name: ':coffin: Respawn Time', value: `\u200B${respawnTimeText}`, inline: true },
+        { name: '\u200B', value: '\u200B', inline: true }
+      );
+      embed.setURL(`https://idleon.info/wiki/${monster.Name}`);
+      break;
+    case 'MINING':
+    case 'CHOPPIN':
+    case 'CATCHING':
+    case 'FISHING':
+      fields.push(
+        { name: ':dart: 5%', value: `${monster.Defence / 4}`, inline: true },
+        { name: ':dart: 100%', value: `${getProwessReq(monster.Defence, 1)}`, inline: true }
+      );
+      for (let i = 2; i <= 5; i++) {
+        fields.push({
+          name: `:dart: x${i}`,
+          value: `${getProwessReq(monster.Defence, i)}`,
+          inline: true
+        });
+      }
+      fields.push({ name: ':star: Base XP', value: `${monster.ExpGiven}`, inline: true });
+      embed.setFooter('All values are base values (no Prowess bonuses included!)');
+      embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
+      break;
+    default:
+      console.error('Unknown AFKtype!');
   }
 
   fields = fields.map(field => {
@@ -109,14 +118,16 @@ function getMonsterDetailsEmbed(monster) {
 }
 
 function getItem(name) {
-  let toReturn;
-  for (const [, value] of Object.entries(itemList)) {
+  for (const value of Object.values(itemList)) {
     if (value.Name && value.Name.toLowerCase() === name) {
-      toReturn = value;
+      return value;
     }
+    let found = alias.find(name, value);
+    if (found)
+      return value;
   }
 
-  return toReturn;
+  return undefined;
 }
 
 function getItemDetailsEmbed(item) {
@@ -142,10 +153,7 @@ function getItemDetailsEmbed(item) {
   if (item.cardData) {
     fields.push({
       name: 'Card Bonus',
-      value: `${item.cardData.value}${item.cardData.bonus.replaceAll(
-        '_',
-        ' '
-      )}`,
+      value: `${item.cardData.value}${item.cardData.bonus.replaceAll('_', ' ')}`
     });
   }
   if (item.sources) {
