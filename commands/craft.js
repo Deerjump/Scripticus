@@ -1,4 +1,5 @@
 const items = require('../util/items.js');
+const alias = require('../util/alias');
 const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
@@ -11,6 +12,9 @@ function convertInputToCode(inputName) {
   inputName = convertToTitleCase(inputName);
   for (const itemCode of Object.keys(items)) {
     if (items[itemCode].Name === inputName) return itemCode;
+    let found = alias.find(inputName, items[itemCode])
+    if (found)
+      return itemCode;
   }
 }
 

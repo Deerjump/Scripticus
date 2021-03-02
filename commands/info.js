@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const itemList = require('../util/items.js');
 const monsterList = require('./../util/monsters.js');
+const alias = require('./../util/alias');
 
 module.exports = {
   name: 'info',
@@ -32,13 +33,17 @@ function getProwessReq(defense, level) {
 }
 
 function getMonster(name) {
-  let toReturn;
-  for (const [, value] of Object.entries(monsterList)) {
-    if (value.Name && value.Name.toLowerCase().replace(/_/g, ' ') === name) {
-      toReturn = value;
+  for (const value of Object.values(monsterList)) {
+    if (!value.Name) continue;
+    let displayName = value.Name.toLowerCase().replace(/_/g, ' ');
+    if (value.Name && displayName === name) {
+      return value;
     }
+    let found = alias.find(name, value, displayName);
+    if (found)
+      return value;
   }
-  return toReturn;
+  return undefined;
 }
 
 function getMonsterDetailsEmbed(monster) {
@@ -85,14 +90,16 @@ function getMonsterDetailsEmbed(monster) {
 }
 
 function getItem(name) {
-  let toReturn;
-  for (const [, value] of Object.entries(itemList)) {
+  for (const value of Object.values(itemList)) {
     if (value.Name && value.Name.toLowerCase() === name) {
-      toReturn = value;
+      return value;
     }
+    let found = alias.find(name, value);
+    if (found)
+      return value;
   }
 
-  return toReturn;
+  return undefined;
 }
 
 function getItemDetailsEmbed(item) {
