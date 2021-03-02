@@ -1,6 +1,9 @@
 # Scratch file
 scratch.js
 
+# vscode config files
+.vscode/settings.json
+
 # Logs
 logs
 *.log
