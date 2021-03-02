@@ -44,7 +44,8 @@ module.exports = {
           .addFields(message.embeds[0].fields)
           .setFooter('❌Message has expired! ');
         message.edit(expiredEmbed);
-        message.reactions.removeAll().then(() => {})
+        message.reactions.removeAll().then(() => {
+        });
       });
     });
 

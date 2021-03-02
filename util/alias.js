@@ -66,7 +66,7 @@ const alias = {
 
     let parts = name.split(' ');
     let candidates = parts.map(part => alias.aliases[part] && alias.aliases[part].length > 0 ? alias.aliases[part] : [part]);
-    return Array.from(cartesian(...candidates)).map(a => a.join(" "));
+    return Array.from(cartesian(...candidates)).map(a => a.join(' '));
   },
   aliases: {}
 };
@@ -77,6 +77,7 @@ function* cartesian(head, ...tail) {
     for (let r of remainder) yield [h, ...r];
   }
 }
+
 // Item aliases
 alias.add('pouch', ['bag']);
 // Size aliases
