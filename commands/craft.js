@@ -1,4 +1,5 @@
 const items = require('../util/items.js');
+const alias = require('../util/alias');
 const { MessageEmbed } = require('discord.js');
 
 function convertCodeToDisplay(itemCode) {
@@ -11,6 +12,9 @@ function convertInputToCode(inputName) {
   inputName = convertToTitleCase(inputName);
   for (const itemCode of Object.keys(items)) {
     if (items[itemCode].Name === inputName) return itemCode;
+    let found = alias.find(inputName, items[itemCode]);
+    if (found)
+      return itemCode;
   }
 }
 
@@ -49,7 +53,7 @@ function generateRecipe(itemCode, totalRecipe = {}) {
     const itemObj = {
       isRaw: isRawMaterial(itemCode),
       qty: itemQty,
-      name: convertCodeToDisplay(itemCode),
+      name: convertCodeToDisplay(itemCode)
     };
     totalRecipe[itemCode] = itemObj;
     if (!itemObj.isRaw) {
@@ -146,16 +150,17 @@ module.exports = {
     const itemQty = isPosInteger(lastArg) ? args[args.length - 1] : 1;
 
     try {
-      const recipeObj = generateRecipe(convertInputToCode(userInput));
+      const codeName = convertInputToCode(userInput);
+      const recipeObj = generateRecipe(codeName);
       const recipeTitle = `Crafting recipe for ${convertToTitleCase(
-        userInput
+        items[codeName].Name
       )} (x${itemQty})`;
       const recipeText = generateRecipeText(recipeObj, 0, itemQty);
       const recipeFooter = 'To see total material costs, click 🔄';
 
       const materialsObj = generateTotalMaterials(recipeObj, itemQty);
       const materialsTitle = `Total material costs for ${convertToTitleCase(
-        userInput
+        items[codeName].Name
       )} (x${itemQty})`;
       const materialsText = generateTotalMaterialsText(materialsObj);
       const materialsFooter = 'To see full recipe, click 🔄';
@@ -174,7 +179,7 @@ module.exports = {
         const collectorLifespan = 30000;
         const collector = sentEmbed.createReactionCollector(filter, {
           time: collectorLifespan,
-          dispose: true,
+          dispose: true
         });
         collector.on('collect', (reaction) => {
           if (reaction.emoji.name === '🔄') {
@@ -208,5 +213,5 @@ module.exports = {
       );
       message.channel.send(embed);
     }
-  },
+  }
 };
