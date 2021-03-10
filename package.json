@@ -22,7 +22,7 @@
     "mongodb": "^3.6.3",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
-    "pm2": "^4.5.1"
+    "pm2": "^4.5.5"
   },
   "devDependencies": {
     "eslint": "^7.17.0",
