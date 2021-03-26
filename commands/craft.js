@@ -12,9 +12,10 @@ function convertInputToCode(inputName) {
   inputName = convertToTitleCase(inputName);
   for (const itemCode of Object.keys(items)) {
     if (items[itemCode].Name === inputName) return itemCode;
-    let found = alias.find(inputName, items[itemCode]);
-    if (found)
+    const found = alias.find(inputName, items[itemCode]);
+    if (found) {
       return itemCode;
+    }
   }
 }
 
@@ -48,16 +49,16 @@ function generateRecipe(itemCode, totalRecipe = {}) {
 
   for (let i = 0; i < recipe.length; i++) {
     // For some reason item quantities in each cost array has a leading space in it
-    const itemCode = recipe[i][0],
+    const realItemCode = recipe[i][0],
       itemQty = recipe[i][1].replace(' ', '');
     const itemObj = {
-      isRaw: isRawMaterial(itemCode),
+      isRaw: isRawMaterial(realItemCode),
       qty: itemQty,
-      name: convertCodeToDisplay(itemCode)
+      name: convertCodeToDisplay(realItemCode)
     };
-    totalRecipe[itemCode] = itemObj;
+    totalRecipe[realItemCode] = itemObj;
     if (!itemObj.isRaw) {
-      itemObj.recipe = generateRecipe(itemCode);
+      itemObj.recipe = generateRecipe(realItemCode);
     }
   }
   return totalRecipe;

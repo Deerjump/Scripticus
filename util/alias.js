@@ -1,4 +1,4 @@
-const alias = {
+const self = {
   /*
     Adds the aliases to the name and the name to the aliases
     So e.g. alias.add("axe", ["chopper", "hatchet", "dicer", "logger"]
@@ -13,13 +13,14 @@ const alias = {
     @param aliases the list of aliases to add
    */
   add(name, aliases) {
-    let al = [name];
+    const al = [name];
     al.push(...aliases);
     for (let i = 0; i < al.length; i++) {
-      let alias1 = al[i];
-      if (!this.aliases[alias1])
+      const alias1 = al[i];
+      if (!this.aliases[alias1]) {
         this.aliases[alias1] = [];
-      let arr = Array.from(al);
+      }
+      const arr = Array.from(al);
       this.aliases[alias1] = this.aliases[alias1].concat(arr);
       this.aliases[alias1] = Array.from(new Set(this.aliases[alias1]));
     }
@@ -38,7 +39,7 @@ const alias = {
     // }
     // first try finding the whole name to catch special cases
     if (this.aliases[name]) {
-      for (let cand of this.aliases[name]) {
+      for (const cand of this.aliases[name]) {
         if (cand === targetName) {
           return true;
         }
@@ -46,11 +47,15 @@ const alias = {
       return false;
     }
     // e.g. name = "t3 mat bag"
-    let parts = name.split(' ');
-    let candidates = parts.map(part => this.aliases[part] && this.aliases[part].length > 0 ? this.aliases[part] : [part]);
-    let aliases = cartesian(...candidates);
-    for (const alias of aliases) {
-      if (alias.join(' ') === targetName) {
+    const parts = name.split(' ');
+    const candidates = parts.map((part) =>
+      this.aliases[part] && this.aliases[part].length > 0
+        ? this.aliases[part]
+        : [part]
+    );
+    const aliases = cartesian(...candidates);
+    for (const al of aliases) {
+      if (al.join(' ') === targetName) {
         return true;
       }
     }
@@ -61,98 +66,118 @@ const alias = {
    * @param name a string to find all the aliases for
    */
   getAliases(name) {
-    let aliases = this.aliases[name];
+    const aliases = this.aliases[name];
     if (aliases) return aliases;
 
-    let parts = name.split(' ');
-    let candidates = parts.map(part => alias.aliases[part] && alias.aliases[part].length > 0 ? alias.aliases[part] : [part]);
-    return Array.from(cartesian(...candidates)).map(a => a.join(' '));
+    const parts = name.split(' ');
+    const candidates = parts.map((part) =>
+      self.aliases[part] && self.aliases[part].length > 0
+        ? self.aliases[part]
+        : [part]
+    );
+    return Array.from(cartesian(...candidates)).map((a) => a.join(' '));
   },
-  aliases: {}
+  aliases: {},
 };
 
 function* cartesian(head, ...tail) {
-  for (let h of head) {
+  for (const h of head) {
     const remainder = tail.length > 0 ? cartesian(...tail) : [[]];
-    for (let r of remainder) yield [h, ...r];
+    for (const r of remainder) yield [h, ...r];
   }
 }
 
 // Item aliases
-alias.add('pouch', ['bag']);
+self.add('pouch', ['bag']);
 // Size aliases
-alias.add('cramped', ['t1']);
-alias.add('small', ['t2']);
-alias.add('average', ['t3', 'gold']);
-alias.add('sizable', ['t4', 'plat', 'platinum']);
-alias.add('big', ['t5', 'dem']);
+self.add('cramped', ['t1']);
+self.add('small', ['t2']);
+self.add('average', ['t3', 'gold']);
+self.add('sizable', ['t4', 'plat', 'platinum']);
+self.add('big', ['t5', 'dem']);
 // Bag type/skill name aliases
-alias.add('mining', ['mine', 'ore', 'cavern']);
-alias.add('choppin', ['wood', 'chop', 'logger']);
-alias.add('food', []);
-alias.add('mat', ['material', 'materials']);
-alias.add('fish', ['fishing', 'angler']);
-alias.add('bug', ['catching', 'bandito']);
+self.add('mining', ['mine', 'ore', 'cavern']);
+self.add('choppin', ['wood', 'chop', 'logger']);
+self.add('food', []);
+self.add('mat', ['material', 'materials']);
+self.add('fish', ['fishing', 'angler']);
+self.add('bug', ['catching', 'bandito']);
 // Tool name aliases
-alias.add('pick', ['pickaxe', 'pickolo']);
-alias.add('axe', ['chopper', 'hatchet', 'dicer', 'logger']);
-alias.add('rod', ['fishing rod', 'fish rod']);
-alias.add('net', []);
+self.add('pick', ['pickaxe', 'pickolo']);
+self.add('axe', ['chopper', 'hatchet', 'dicer', 'logger']);
+self.add('rod', ['fishing rod', 'fish rod']);
+self.add('net', []);
 // Material name aliases
-alias.add('copper', ['t1']);
-alias.add('iron', ['t2']);
-alias.add('gold', ['t3', 'golden', 'gilded']);
-alias.add('plat', ['t4', 'platinum']);
-alias.add('dem', ['t5', 'dementia']);
-alias.add('lustre', ['t6']);
-alias.add('dreadlo', ['t7']);
+self.add('copper', ['t1']);
+self.add('iron', ['t2']);
+self.add('gold', ['t3', 'golden', 'gilded']);
+self.add('plat', ['t4', 'platinum']);
+self.add('dem', ['t5', 'dementia']);
+self.add('lustre', ['t6']);
+self.add('dreadlo', ['t7']);
 // Equip name aliases
-alias.add('helmet', ['helm', 'head', 'hat', 'beanie']);
-alias.add('platebody', ['chest', 'chestplate', 'platbody', 'bodyplate', 'body', 'shirt', 'tee']);
-alias.add('platelegs', ['legs', 'pants', 'shins', 'hinds']);
-alias.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels']);
+self.add('helmet', ['helm', 'head', 'hat', 'beanie']);
+self.add('platebody', [
+  'chest',
+  'chestplate',
+  'platbody',
+  'bodyplate',
+  'body',
+  'shirt',
+  'tee',
+]);
+self.add('platelegs', ['legs', 'pants', 'shins', 'hinds']);
+self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels']);
 // Special cases
-alias.add('copper netted net', ['copper net', 't1 net']);
-alias.add('reinforced net', ['iron net', 't2 net']);
-alias.add('platinet', ['plat net', 't4 net']);
-alias.add('bleached designer wode patch pants', ['wood pants', 'chop pants', 'chopping pants']);
-alias.add('dirty coal miner baggy soot pants', ['ore pants', 'mine pants', 'mining pants']);
+self.add('copper netted net', ['copper net', 't1 net']);
+self.add('reinforced net', ['iron net', 't2 net']);
+self.add('platinet', ['plat net', 't4 net']);
+self.add('bleached designer wode patch pants', [
+  'wood pants',
+  'chop pants',
+  'chopping pants',
+]);
+self.add('dirty coal miner baggy soot pants', [
+  'ore pants',
+  'mine pants',
+  'mining pants',
+]);
 
 // Monsters
 // World 1
-alias.add('green mushroom', ['spore']);
-alias.add('frog', []);
-alias.add('bored bean', ['beans']);
-alias.add('slime', []);
-alias.add('baby boa', ['snake']);
-alias.add('carrotman', ['carrot']);
-alias.add('glublin', ['goblin']);
-alias.add('wode board', ['planks']);
-alias.add('gigafrog', ['big frog', 'bullfrog']);
-alias.add('poop', []);
-alias.add('rat', []);
-alias.add('walking stick', ['sticks']);
-alias.add('nutto', ['nuts']);
+self.add('green mushroom', ['spore']);
+self.add('frog', []);
+self.add('bored bean', ['beans']);
+self.add('slime', []);
+self.add('baby boa', ['snake']);
+self.add('carrotman', ['carrot']);
+self.add('glublin', ['goblin']);
+self.add('wode board', ['planks']);
+self.add('gigafrog', ['big frog', 'bullfrog']);
+self.add('poop', []);
+self.add('rat', []);
+self.add('walking stick', ['sticks']);
+self.add('nutto', ['nuts']);
 // World 2
-alias.add('sandy pot', ['sand pots', 'pots']);
-alias.add('mimic', []);
-alias.add('crabcake', ['crab']);
-alias.add('mafioso', ['coconuts']);
-alias.add('sand castle', ['castles']);
-alias.add('pincermin', ['pincer']);
-alias.add('mashed potato', ['potato']);
-alias.add('tyson', ['steak']);
-alias.add('moonmoon', ['moon']);
-alias.add('sand giant', ['sg']);
-alias.add('snelbie', ['snail', 'snails']);
-alias.add('dig doug', []);
+self.add('sandy pot', ['sand pots', 'pots']);
+self.add('mimic', []);
+self.add('crabcake', ['crab']);
+self.add('mafioso', ['coconuts']);
+self.add('sand castle', ['castles']);
+self.add('pincermin', ['pincer']);
+self.add('mashed potato', ['potato']);
+self.add('tyson', ['steak']);
+self.add('moonmoon', ['moon']);
+self.add('sand giant', ['sg']);
+self.add('snelbie', ['snail', 'snails']);
+self.add('dig doug', []);
 // Bosses
-alias.add('baba yaga', ['house', 'baba', 'house monster']);
-alias.add('dr defecaus', ['big poop', 'poop boss']);
-alias.add('amarok', ['w1 boss']);
-alias.add('chaotic amarok', ['camarok']);
-alias.add('biggie hours', ['hourglass']);
-alias.add('king doot', ['doot']);
-alias.add('efaunt', ['w2 boss']);
+self.add('baba yaga', ['house', 'baba', 'house monster']);
+self.add('dr defecaus', ['big poop', 'poop boss']);
+self.add('amarok', ['w1 boss']);
+self.add('chaotic amarok', ['camarok']);
+self.add('biggie hours', ['hourglass']);
+self.add('king doot', ['doot']);
+self.add('efaunt', ['w2 boss']);
 
-module.exports = alias;
+module.exports = self;
