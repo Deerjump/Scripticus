@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const alias = require('./../util/alias');
+const alias = require('../util/alias');
 
 module.exports = {
   name: 'alias',

@@ -1,5 +1,3 @@
-const { updateGuildPrefix } = require('../mongo/settings.js');
-
 module.exports = {
   name: 'prefix',
   description: 'Changes prefix for current server',
@@ -22,7 +20,7 @@ module.exports = {
         const newPrefix = args[0];
         const guildID = message.guild.id;
         const guildSettings = message.client.guildSettings.get(guildID) || {};
-        updateGuildPrefix(guildID, newPrefix);
+        message.client.mongo.updateGuildPrefix(guildID, newPrefix);
         message.client.guildSettings.set(guildID, {
           ...guildSettings,
           prefix: newPrefix,

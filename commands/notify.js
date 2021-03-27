@@ -1,12 +1,5 @@
 const { CronJob } = require('cron');
 const { MessageAttachment } = require('discord.js');
-const {
-  removeSubscriber,
-  getSubscriber,
-  getSubscribers,
-  updateSubscriber,
-  updateSubscribers,
-} = require('../mongo/mongo.js');
 const path = require('path');
 
 let cronJob;
@@ -21,11 +14,12 @@ module.exports = {
   args: true,
   // run on client start
   init(client) {
+    const mongo = client.mongo;
     cronJob = new CronJob(
       '0 55 */1 * * *',
       async () => {
         try {
-          let subscribers = await getSubscribers();
+          let subscribers = await mongo.getSubscribers();
           if (subscribers.length === 0) return;
 
           console.log(
@@ -41,12 +35,12 @@ module.exports = {
             subscriber.hours--;
 
             if (subscriber.hours < 1) {
-              await removeSubscriber(id);
+              await mongo.removeSubscriber(id);
             }
           }, subscribers);
           subscribers = subscribers.filter(({ hours }) => hours >= 1);
           if (subscribers.length > 0) {
-            updateSubscribers(subscribers);
+            mongo.updateSubscribers(subscribers);
           }
         } catch (error) {
           console.error(error);
@@ -63,11 +57,12 @@ module.exports = {
     cronJob.stop();
   },
   async execute(message, args) {
+    const mongo = message.client.mongo;
     const param = args[0];
-    if (param === 'list') return console.log(await getSubscribers());
+    if (param === 'list') return console.log(await mongo.getSubscribers());
 
     const { id } = message.author;
-    const user = await getSubscriber(id);
+    const user = await mongo.getSubscriber(id);
 
     if (param === 'check') {
       const reply =
@@ -83,7 +78,7 @@ module.exports = {
       let reply;
       if (!user) {
         reply = "You're not subscribed!";
-      } else if (removeSubscriber(id)) {
+      } else if (mongo.removeSubscriber(id)) {
         reply = 'You have unsubscribed to notifications!';
       } else {
         reply = 'Something went wrong!';
@@ -100,7 +95,7 @@ module.exports = {
         `You're already subscribed! You have ${user.hours} hours left`
       );
     }
-    updateSubscriber(id, hours);
+    mongo.updateSubscriber(id, hours);
     console.log(
       `${message.author.username} just subscribed for ${hours} hours`
     );
