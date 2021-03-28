@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 function diceRoll(num) {
-  return Math.floor(Math.random() * (num + 1));
+  return Math.ceil(Math.random() * num);
 }
 
 module.exports = {
@@ -8,8 +8,12 @@ module.exports = {
   description: 'Roll a dice! 🎲',
   usage: '<sides>',
   async execute(message, args) {
+    let isNum;
+    let num = -1;
+
     if (args.length > 0) {
-      if (isNaN(args[0])) {
+      isNum = !isNaN(args[0]);
+      if (!isNum) {
         let response;
         switch (args[0]) {
           case 'rick':
@@ -19,20 +23,15 @@ module.exports = {
             response = 'https://giphy.com/gifs/pool-EXXmpsOzC0m0E';
             break;
           default:
-            response = `You must provide a number greater than 1! Provided: ${args[0]}`;
+            response = `You must provide a number! Provided: ${args[0]}`;
         }
-        return message.reply(response);
+        return message.channel.send(response);
       }
+      num = parseInt(args[0]);
+      if (num < 0) return message.reply('You must provide a number great than 1!');
     }
 
-    let sides;
-    if (args.length === 0) {
-      sides = 6;
-    }
-    if (args.length > 0 && !isNaN(args[0])) {
-      sides = parseInt(args[0]);
-    }
-
+    const sides = args.length === 0 ? 6 : num;
     const roll = diceRoll(sides);
 
     return message.reply(
