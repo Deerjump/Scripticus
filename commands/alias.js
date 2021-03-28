@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const alias = require('./../util/alias');
+const alias = require('../util/alias');
 
 module.exports = {
   name: 'alias',
@@ -9,15 +9,15 @@ module.exports = {
   cooldown: 1,
   execute(message, args) {
     const lowerCaseArgs = args.join(' ').toLowerCase();
-    let s = 10;
+    const s = 10;
 
     const author = message.author;
-    let aliases = alias.getAliases(lowerCaseArgs);
-    let title = `Aliases for ${lowerCaseArgs}`;
-    message.reply(getAliasEmbed(title, aliases)).then(message => {
+    const aliases = alias.getAliases(lowerCaseArgs);
+    const title = `Aliases for ${lowerCaseArgs}`;
+    message.reply(getAliasEmbed(title, aliases)).then(msg => {
       if (aliases.length < s) return;
-      message.react('➡️');
-      const collector = message.createReactionCollector(
+      msg.react('➡️');
+      const collector = msg.createReactionCollector(
         // only collect left and right arrow reactions from the message author
         (reaction, user) => ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === author.id,
         // time out after a minute
@@ -27,25 +27,24 @@ module.exports = {
       let currentIndex = 0;
       collector.on('collect', reaction => {
         // remove the existing reactions
-        message.reactions.removeAll().then(async () => {
+        msg.reactions.removeAll().then(async () => {
           // increase/decrease index
           reaction.emoji.name === '⬅️' ? currentIndex -= s : currentIndex += s;
           // edit message with new embed
-          message.edit(getAliasEmbed(title, aliases, currentIndex));
+          msg.edit(getAliasEmbed(title, aliases, currentIndex));
           // react with left arrow if it isn't the start (await is used so that the right arrow always goes after the left)
-          if (currentIndex !== 0) await message.react('⬅️');
+          if (currentIndex !== 0) await msg.react('⬅️');
           // react with right arrow if it isn't the end
-          if (currentIndex + s < aliases.length) await message.react('➡️');
+          if (currentIndex + s < aliases.length) await msg.react('➡️');
         });
       });
       collector.on('end', () => {
         const expiredEmbed = new MessageEmbed()
-          .setTitle(message.embeds[0].title)
-          .addFields(message.embeds[0].fields)
+          .setTitle(msg.embeds[0].title)
+          .addFields(msg.embeds[0].fields)
           .setFooter('❌Message has expired! ');
-        message.edit(expiredEmbed);
-        message.reactions.removeAll().then(() => {
-        });
+        msg.edit(expiredEmbed);
+        msg.reactions.removeAll().catch((err) => console.log(err));
       });
     });
 

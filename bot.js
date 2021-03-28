@@ -1,7 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const { DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
-const { getGuildPrefixes } = require('./mongo/settings.js');
-const { init: startMongo } = require('./mongo/mongo.js');
+const mongo = require('./mongo/mongo.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -19,6 +18,7 @@ const display =
 const client = new Client();
 client.commands = new Collection();
 client.guildSettings = new Collection();
+client.mongo = mongo;
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js'));
@@ -37,8 +37,8 @@ const cooldowns = new Collection();
 client.once('ready', async () => {
   try {
     console.info('-----Starting up Scripticus!-----');
-    await startMongo();
-    const prefixes = await getGuildPrefixes();
+    await mongo.init();
+    const prefixes = await mongo.getGuildPrefixes();
     if (prefixes) {
       prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
         const guild = client.guildSettings.get(guildID) || {};

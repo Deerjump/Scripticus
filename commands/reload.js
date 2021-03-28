@@ -3,9 +3,7 @@ module.exports = {
   description: 'Reloads a command',
   args: true,
   execute(message, args) {
-    if (message.author.id != '191085842469486592') {
-      return message.channel.send('Only Deerjump can use that command!');
-    }
+    if (message.author.id != '191085842469486592') return;
     if (!args.length) {
       return message.channel.send(
         `Don't forget the command, ${message.author}!`

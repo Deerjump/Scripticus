@@ -1,5 +1,3 @@
-const { MongoConnection } = require('../mongo/connection.js');
-
 module.exports = {
   name: 'restart',
   description: 'Restarts the bot!',
@@ -10,7 +8,7 @@ module.exports = {
         await message.channel.send('Restarting bot!');
         console.info('-----Restarting bot!-----');
 
-        await MongoConnection.disconnect();
+        await message.client.mongo.disconnect();
         console.log('MongoConnection disconnected');
 
         console.info('Running command stop() methods');
