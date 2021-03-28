@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 function diceRoll(num) {
   return Math.floor(Math.random() * (num + 1));
 }
@@ -7,10 +8,21 @@ module.exports = {
   description: 'Roll a dice! 🎲',
   usage: '<sides>',
   async execute(message, args) {
-    if (args.length > 0 && isNaN(args[0])) {
-      return message.reply(
-        `You must provide a number greater than 1! Provided: ${args[0]}`
-      );
+    if (args.length > 0) {
+      if (isNaN(args[0])) {
+        let response;
+        switch (args[0]) {
+          case 'rick':
+            response = 'https://tenor.com/view/dance-moves-dancing-singer-groovy-gif-17029825';
+            break;
+          case 'barrel':
+            response = 'https://giphy.com/gifs/pool-EXXmpsOzC0m0E';
+            break;
+          default:
+            response = `You must provide a number greater than 1! Provided: ${args[0]}`;
+        }
+        return message.reply(response);
+      }
     }
 
     let sides;
