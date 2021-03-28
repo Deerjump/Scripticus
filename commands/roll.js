@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 function diceRoll(num) {
-  return Math.floor(Math.random() * (num + 1));
+  return Math.ceil(Math.random() * (num));
 }
 
 module.exports = {
