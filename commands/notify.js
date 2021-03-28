@@ -14,7 +14,7 @@ module.exports = {
   args: true,
   // run on client start
   init(client) {
-    const mongo = client.mongo;
+    const { mongo } = client;
     cronJob = new CronJob(
       '0 55 */1 * * *',
       async () => {
@@ -57,7 +57,7 @@ module.exports = {
     cronJob.stop();
   },
   async execute(message, args) {
-    const mongo = message.client.mongo;
+    const { mongo } = message.client;
     const param = args[0];
     if (param === 'list') return console.log(await mongo.getSubscribers());
 
