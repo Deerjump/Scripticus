@@ -1,6 +1,6 @@
 # Scripticus
 
-A Discord Bot for the Legends of Idleon [Discord Server](https://discord.com/invite/idleon)!
+A Discord Bot for the Legends of Idleon [Discord Server](https://discord.com/invite/idleon)
 
 ## Current commands:
 
