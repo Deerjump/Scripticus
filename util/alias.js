@@ -77,7 +77,7 @@ const self = {
     );
     return Array.from(cartesian(...candidates)).map((a) => a.join(' '));
   },
-  aliases: {},
+  aliases: {}
 };
 
 function* cartesian(head, ...tail) {
@@ -115,6 +115,7 @@ self.add('plat', ['t4', 'platinum']);
 self.add('dem', ['t5', 'dementia']);
 self.add('lustre', ['t6']);
 self.add('dreadlo', ['t7']);
+self.add("efaunts", ["efaunt"]);
 // Equip name aliases
 self.add('helmet', ['helm', 'head', 'hat', 'beanie']);
 self.add('platebody', [
@@ -122,12 +123,34 @@ self.add('platebody', [
   'chestplate',
   'platbody',
   'bodyplate',
+  'ribcage',
   'body',
   'shirt',
-  'tee',
+  'tee'
 ]);
-self.add('platelegs', ['legs', 'pants', 'shins', 'hinds']);
-self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels']);
+self.add('platelegs', ['legs', 'pants', 'shins', 'hinds', 'hipilium']);
+self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels', 'broken ankles']);
+// weapons
+self.add('t1', ['wooden', 'gnarled', 'boxing']);
+self.add('wand', ['staff']);
+
+self.add('wooden spear', ['spear']);
+self.add('wooden bow', []);
+self.add('gnarled wand', []);
+
+self.add('the stingers', ['t2 gloves']);
+self.add('steel axe', ['t2 spear']);
+self.add('birch longbow', ['t2 bow']);
+self.add('quarterstaff', ['t2 staff', 't2 wand']);
+
+self.add('bandage wraps', ['t3 gloves']);
+self.add('royal bayonet', ['t3 spear']);
+self.add('spiked menace', ['t3 bow']);
+self.add('starlight', ['t3 staff', 't3 wand']);
+
+self.add('enforced slasher', ['t4 spear']);
+self.add('pharoah bow', ['t4 bow', 'pharaoh bow']);
+self.add('crows nest', ['t4 staff', 't4 wand']);
 // Special cases
 self.add('copper netted net', ['copper net', 't1 net']);
 self.add('reinforced net', ['iron net', 't2 net']);
@@ -135,13 +158,14 @@ self.add('platinet', ['plat net', 't4 net']);
 self.add('bleached designer wode patch pants', [
   'wood pants',
   'chop pants',
-  'chopping pants',
+  'chopping pants'
 ]);
 self.add('dirty coal miner baggy soot pants', [
   'ore pants',
   'mine pants',
-  'mining pants',
+  'mining pants'
 ]);
+self.add("trunculus", ["efaunt ring"]);
 
 // Monsters
 // World 1
@@ -158,6 +182,7 @@ self.add('poop', []);
 self.add('rat', []);
 self.add('walking stick', ['sticks']);
 self.add('nutto', ['nuts']);
+self.add('wood mushroom', ['wood shrooom', 'wroom', 'tree mushroom', 'tree shroom']);
 // World 2
 self.add('sandy pot', ['sand pots', 'pots']);
 self.add('mimic', []);
@@ -179,5 +204,6 @@ self.add('chaotic amarok', ['camarok']);
 self.add('biggie hours', ['hourglass']);
 self.add('king doot', ['doot']);
 self.add('efaunt', ['w2 boss']);
+self.add('chaotic efaunt', ['cefaunt']);
 
 module.exports = self;
