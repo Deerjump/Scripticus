@@ -50,10 +50,11 @@ module.exports = {
       true,
       null
     );
+    console.log('Starting CronJob for notify command.');
     cronJob.start();
   },
-  // Currently unused, setting up for future changes
   stop() {
+    console.log('Stopping Cron Job');
     cronJob.stop();
   },
   async execute(message, args) {
