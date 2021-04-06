@@ -127,4 +127,22 @@ client.getPrefix = function(message) {
   return prefix;
 };
 
+client.stop = async function () {
+  try {
+    console.log('-----Restarting bot!-----');
+
+    console.log('Running MongoConnection disconnect');
+    await mongo.disconnect();
+    console.log('MongoConnection disconnected');
+    
+    console.log('Running command stop() methods');
+    this.commands.forEach((command) => command.stop?.());
+
+    console.log('-----Exiting process-----');
+    process.exit(0);
+  } catch (err) {
+    console.error('ERROR:', err);
+  } 
+}
+
 client.login(process.env.TOKEN);
