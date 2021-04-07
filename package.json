@@ -4,6 +4,7 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
+    "prestart": "git pull",
     "start": "pm2 start ecosystem.config.js",
     "poststart": "npm run monitor",
     "restart": "pm2 restart ecosystem.config.js",
@@ -25,6 +26,7 @@
     "pm2": "^4.5.5"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.23.0",
     "prettier": "^2.2.1"
   }
