@@ -4,7 +4,7 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "prestart": "git checkout main && git pull && npm install && npm audit fix",
+    "prestart": "git fetch --all && git reset --hard origin/main && npm install && npm audit fix",
     "start": "pm2 start ecosystem.config.js",
     "poststart": "npm run monitor",
     "restart": "pm2 restart ecosystem.config.js",
