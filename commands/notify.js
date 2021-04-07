@@ -2,6 +2,8 @@ const { CronJob } = require('cron');
 const { MessageAttachment } = require('discord.js');
 const path = require('path');
 
+
+const NOTIFY = '[Notify]';
 let cronJob;
 
 module.exports = {
@@ -23,6 +25,7 @@ module.exports = {
           if (subscribers.length === 0) return;
 
           console.log(
+            NOTIFY,
             `Firing Baba/Spikes Alert: ${new Date().toLocaleString()}\nNotifying ${
               subscribers.length
             } ${subscribers.length > 1 ? 'users' : 'user'}.`
@@ -43,23 +46,24 @@ module.exports = {
             mongo.updateSubscribers(subscribers);
           }
         } catch (error) {
-          console.error(error);
+          console.error(NOTIFY, error);
         }
       },
       null,
       true,
       null
     );
+    console.log(NOTIFY, 'Starting CronJob for notify command.');
     cronJob.start();
   },
-  // Currently unused, setting up for future changes
   stop() {
+    console.log(NOTIFY, 'Stopping Cron Job');
     cronJob.stop();
   },
   async execute(message, args) {
     const { mongo } = message.client;
     const param = args[0];
-    if (param === 'list') return console.log(await mongo.getSubscribers());
+    if (param === 'list') return console.log(NOTIFY, await mongo.getSubscribers());
 
     const { id } = message.author;
     const user = await mongo.getSubscriber(id);
@@ -97,6 +101,7 @@ module.exports = {
     }
     mongo.updateSubscriber(id, hours);
     console.log(
+      NOTIFY, 
       `${message.author.username} just subscribed for ${hours} hours`
     );
     message.reply(`You've subscribed for ${hours} hours!`);
@@ -113,6 +118,6 @@ async function notifySubscriber(client, id) {
       return user.send(attachment);
     }
   } catch (error) {
-    console.error(error);
+    console.error(NOTIFY, error);
   }
 }
