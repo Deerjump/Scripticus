@@ -27,7 +27,10 @@ class Mongo {
     }
   }
   disconnect() {
-    return this.connection.close();
+    console.log(MONGO, 'Running MongoConnection disconnect');
+    return this.connection.close()
+      .then(console.log(MONGO, 'MongoConnection disconnected'))
+      .catch(err => console.log(MONGO, err));
   }
 
   async init() {

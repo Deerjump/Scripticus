@@ -1,9 +1,11 @@
-const { Client, Collection } = require('discord.js');
 const { DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
+const WebhookListener = require('./webhook/WebhookListener.js')
+const { Client, Collection } = require('discord.js');
 const mongo = require('./mongo/mongo.js');
 const fs = require('fs');
 require('dotenv').config();
 
+const BOT = '[Bot]';  
 const display =
   '*******************************************************\n' +
   '*  ______             _            _                  *\n' +
@@ -36,7 +38,9 @@ const cooldowns = new Collection();
 
 client.once('ready', async () => {
   try {
-    console.info('-----Starting up Scripticus!-----');
+    console.info(BOT, '-----Starting up Scripticus!-----');
+    client.githubListener = new WebhookListener(client).start();
+    
     await mongo.init();
     const prefixes = await mongo.getGuildPrefixes();
     if (prefixes) {
@@ -46,11 +50,11 @@ client.once('ready', async () => {
       });
     }
   } catch (err) {
-    console.error(err);
+    console.error(BOT, err);
   }
   client.user.setActivity('Legends of Idleon');
   console.info(display);
-  console.log(`${client.user.username} is ready!`);
+  console.log(BOT, `${client.user.username} is ready!`);
 });
 
 client.on('message', (message) => {
@@ -111,7 +115,7 @@ client.on('message', (message) => {
   try {
     command.execute(message, args);
   } catch (error) {
-    console.error(error);
+    console.error(BOT, error);
     message.reply('there was an error trying to execute that command!');
   }
 });
@@ -127,21 +131,18 @@ client.getPrefix = function(message) {
   return prefix;
 };
 
-client.stop = async function () {
+client.stop = function () {
   try {
-    console.log('-----Restarting bot!-----');
-
-    console.log('Running MongoConnection disconnect');
-    await mongo.disconnect();
-    console.log('MongoConnection disconnected');
+    console.log(BOT, '-----Stopping Scripticus!-----');
+    mongo.disconnect();
     
-    console.log('Running command stop() methods');
+    console.log(BOT, 'Running command stop() methods');
     this.commands.forEach((command) => command.stop?.());
 
-    console.log('-----Exiting process-----');
+    console.log(BOT, '-----Exiting process-----');
     process.exit(0);
   } catch (err) {
-    console.error('ERROR:', err);
+    console.error(BOT, 'ERROR:', err);
   } 
 }
 
