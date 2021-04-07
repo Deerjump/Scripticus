@@ -1,6 +1,6 @@
 const { DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
-const { Client, Collection } = require('discord.js');
 const WebhookListener = require('./webhook/WebhookListener.js')
+const { Client, Collection } = require('discord.js');
 const mongo = require('./mongo/mongo.js');
 const fs = require('fs');
 require('dotenv').config();
