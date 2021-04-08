@@ -4,8 +4,8 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "prestart": "git checkout main && git pull && npm install && npm audit fix",
-    "start": "pm2 start ecosystem.config.js",
+    "prestart": "node auto-update/Updater.js",
+    "start": "node bot.js",
     "poststart": "npm run monitor",
     "restart": "pm2 restart ecosystem.config.js",
     "postrestart": "npm run monitor",
