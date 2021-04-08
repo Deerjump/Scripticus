@@ -1,8 +1,7 @@
-const { autoUpdate: { branch, enabled } } = require('../config.json');
+const { autoUpdate: { branch } } = require('../config.json');
 const { exec } = require('child_process');
 const express = require('express');
 const crypto = require('crypto');
-const { rejects } = require('assert');
 require('dotenv').config();
 
 const WEBHOOK = '[Webhook]';
@@ -46,9 +45,9 @@ class WebhookListener {
 
     app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
-      // "ref": "refs/heads/main",
-      if (req.body.refs !== `refs/heads/${branch}`) {
-        return console.log(`Ignoring merge on branch: ${req.body.refs}`)
+
+      if (req.body.ref !== `refs/heads/${branch}`) {
+        return console.log(WEBHOOK, `Ignoring merge on branch: ${req.body.ref}`)
       }
 
       console.log(WEBHOOK, 'Github webhook received.');
