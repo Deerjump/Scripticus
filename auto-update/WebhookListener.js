@@ -44,7 +44,9 @@ class WebhookListener {
     app.post('/hook', verifyPostData, (req, res) => {
       res.status(200).send('Request body was signed!');
       console.log(WEBHOOK, 'Github webhook received.')
-      this.client.stop();
+      if (autoUpdate) {
+        this.client.stop();
+      }
     });
 
     app.use((err, req, res, next) => {
