@@ -75,8 +75,9 @@ class WebhookListener {
 }
 
 function handleExec(err, stdout, stderr) {
-  if(stderr) return console.log(stderr);
-  if(stdout) return console.log(stdout);
+  if (err) return console.log(err);
+  if (stderr) return console.log(stderr);
+  if (stdout) return console.log(stdout);
 }
 
 module.exports = WebhookListener;
