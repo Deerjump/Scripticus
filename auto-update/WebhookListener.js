@@ -45,7 +45,7 @@ class WebhookListener {
 
     app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
-      // "ref": "refs/heads/main",
+
       const body = JSON.stringify(req.rawBody);
       if (body.ref !== `refs/heads/${branch}`) {
         return console.log(`Ignoring merge on branch: ${body.ref}`)
