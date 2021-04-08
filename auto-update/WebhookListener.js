@@ -47,15 +47,17 @@ class WebhookListener {
     app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
       console.log(WEBHOOK, 'Github webhook received.');
-
-        await runCommand('git remote update');
-        await runCommand(`git reset --hard origin/${branch}`);
-        await runCommand('npm install');
-        await runCommand('npm audit fix');
-
-        console.log(WEBHOOK, 'Updated to new commit from Github!')
-      
-        this.client.stop();
+      try {
+        console.log(await runCommand('git remote update'));
+        console.log(await runCommand(`git reset --hard origin/${branch}`));
+        console.log(await runCommand('npm install'));
+        console.log(await runCommand('npm audit fix'));
+      } catch(err) {
+        console.log(err);
+      }
+      console.log(WEBHOOK, 'Updated to new commit from Github!')
+    
+      this.client.stop();
     });
 
     app.use((err, req, res, next) => {
