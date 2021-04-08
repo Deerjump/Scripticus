@@ -4,13 +4,11 @@
   "description": "Discord bot",
   "main": "bot.js",
   "scripts": {
-    "prestart": "git fetch --all && git reset --hard origin/main && npm install && npm audit fix",
     "start": "pm2 start ecosystem.config.js",
-    "poststart": "npm run monitor",
+    "poststart": "pm2 monit",
     "restart": "pm2 restart ecosystem.config.js",
-    "postrestart": "npm run monitor",
+    "postrestart": "pm2 monit",
     "stop": "pm2 stop ecosystem.config.js",
-    "monitor": "pm2 monit",
     "logs": "pm2 logs Scripticus",
     "updatepm2": "pm2 update"
   },
@@ -24,7 +22,7 @@
     "mongodb": "^3.6.5",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
-    "pm2": "^4.5.5"
+    "pm2": "^4.5.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

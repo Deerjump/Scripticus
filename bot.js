@@ -1,9 +1,9 @@
-const { DEFAULT_PREFIX, DEFAULT_COOLDOWN } = require('./config.json');
-const WebhookListener = require('./webhook/WebhookListener.js')
+const { DEFAULT_PREFIX, DEFAULT_COOLDOWN, autoUpdate } = require('./config.json');
+const WebhookListener = require('./auto-update/WebhookListener.js')
 const { Client, Collection } = require('discord.js');
 const mongo = require('./mongo/mongo.js');
-const fs = require('fs');
 require('dotenv').config();
+const fs = require('fs');
 
 const BOT = '[Bot]';  
 const display =
@@ -16,6 +16,7 @@ const display =
   '*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
   '*                      |_|                            *\n' +
   '*******************************************************';
+console.info(display);
 
 const client = new Client();
 client.commands = new Collection();
@@ -39,7 +40,10 @@ const cooldowns = new Collection();
 client.once('ready', async () => {
   try {
     console.info(BOT, '-----Starting up Scripticus!-----');
-    client.githubListener = new WebhookListener(client).start();
+
+    if (autoUpdate.enabled) {
+      client.githubListener = new WebhookListener(client).start();
+    }
     
     await mongo.init();
     const prefixes = await mongo.getGuildPrefixes();
@@ -53,7 +57,6 @@ client.once('ready', async () => {
     console.error(BOT, err);
   }
   client.user.setActivity('Legends of Idleon');
-  console.info(display);
   console.log(BOT, `${client.user.username} is ready!`);
 });
 

@@ -55,12 +55,12 @@ class Mongo {
         .find(query, options)
         .toArray();
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
   async updateGuildCooldown(guildID) {
-    console.log(guildID);
+    console.log(MONGO, guildID);
   }
 
   async addSubscriber(id, hours) {
@@ -69,7 +69,7 @@ class Mongo {
 
       await this.db.collection('subscribers').insertOne(myobj);
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
@@ -83,7 +83,7 @@ class Mongo {
         .findOne(query, options);
       return subscriber;
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
@@ -97,7 +97,7 @@ class Mongo {
         .find({}, options)
         .toArray();
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
     return subscribers;
   }
@@ -115,10 +115,11 @@ class Mongo {
         .collection('subscribers')
         .updateOne(filter, updateDoc, options);
       console.log(
+        MONGO,
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
@@ -143,10 +144,11 @@ class Mongo {
         .collection('subscribers')
         .bulkWrite(operations);
       console.log(
+        MONGO,
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
@@ -157,12 +159,12 @@ class Mongo {
         .collection('subscribers')
         .deleteOne(query);
       if (result.deletedCount === 1) {
-        console.log('Successfully deleted 1 document!');
+        console.log(MONGO, 'Successfully deleted 1 document!');
       } else {
-        console.log(`No matches found for ${id}`);
+        console.log(MONGO, `No matches found for ${id}`);
       }
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 
@@ -180,9 +182,9 @@ class Mongo {
       const result = await this.db
         .collection('subscribers')
         .bulkWrite(operations);
-      console.log(`Deleted ${result.deletedCount} document(s)`);
+      console.log(MONGO, `Deleted ${result.deletedCount} document(s)`);
     } catch (err) {
-      console.error(err);
+      console.error(MONGO, err);
     }
   }
 }
