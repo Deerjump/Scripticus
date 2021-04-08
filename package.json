@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "prestart": "node auto-update/Updater.js",
-    "start": "node start.js",
+    "start": "node bot.js",
     "poststart": "pm2 monit",
     "restart": "pm2 restart ecosystem.config.js",
     "postrestart": "pm2 monit",
