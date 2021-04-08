@@ -1,3 +1,5 @@
+const { autoUpdate: { branch } } = require('../config.json');
+const { exec } = require('child_process');
 const express = require('express');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -41,12 +43,26 @@ class WebhookListener {
       return next();
     }
 
-    app.post('/hook', verifyPostData, (req, res) => {
+    app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
-      console.log(WEBHOOK, 'Github webhook received.')
-      if (autoUpdate) {
-        this.client.stop();
+
+      const body = JSON.stringify(req.rawBody);
+      if (body.ref !== `refs/heads/${branch}`) {
+        return console.log(`Ignoring merge on branch: ${body.ref}`)
       }
+
+      console.log(WEBHOOK, 'Github webhook received.');
+      try {
+        console.log(WEBHOOK, await runCommand('git remote update'));
+        console.log(WEBHOOK, await runCommand(`git reset --hard origin/${branch}`));
+        console.log(WEBHOOK, await runCommand('npm install'));
+        console.log(WEBHOOK, await runCommand('npm audit fix'));
+      } catch(err) {
+        console.log(WEBHOOK, err);
+      }
+      console.log(WEBHOOK, 'Updated to new commit from Github!')
+    
+      this.client.stop();
     });
 
     app.use((err, req, res, next) => {
@@ -60,6 +76,16 @@ class WebhookListener {
       console.log(WEBHOOK, `Listening on ${PORT}`);
     });
   }
+}
+
+function runCommand(command) {
+  return new Promise((resolve, reject) => {
+    exec(command, (err, stdout, stderr) => {
+      if (err)  reject(err);
+      if (stderr) reject(stderr);
+      if (stdout) resolve(stdout);
+    });
+  })
 }
 
 module.exports = WebhookListener;
