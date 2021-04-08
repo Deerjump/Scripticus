@@ -46,6 +46,11 @@ class WebhookListener {
 
     app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
+      // "ref": "refs/heads/main",
+      if (req.body.refs !== `refs/heads/${branch}`) {
+        return console.log(`Ignoring merge on branch: ${req.body.refs}`)
+      }
+
       console.log(WEBHOOK, 'Github webhook received.');
       try {
         console.log(WEBHOOK, await runCommand('git remote update'));
