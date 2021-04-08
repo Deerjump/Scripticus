@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 const alias = require('../util/alias');
-
 module.exports = {
   name: 'alias',
   description: 'Find all the accepted aliases for a monster or item!',

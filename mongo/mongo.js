@@ -8,7 +8,8 @@ class Mongo {
   // url: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.63urb.mongodb.net/scripticus?retryWrites=true&w=majority`,
   async connectToDatabase() {
     console.log(MONGO, 'Connecting to Mongo Database!');
-    const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
+    const url = process.env.MONGO_CONNECTION; 
+    //const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
     const options = {
       useUnifiedTopology: true,
       useNewUrlParser: true,

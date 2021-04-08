@@ -2,6 +2,8 @@ const { CronJob } = require('cron');
 const { MessageAttachment } = require('discord.js');
 const path = require('path');
 
+const log = require('loglevel');
+const remote = require('loglevel-plugin-remote');
 
 const NOTIFY = '[Notify]';
 let cronJob;
@@ -43,6 +45,9 @@ module.exports = {
           }, subscribers);
           subscribers = subscribers.filter(({ hours }) => hours >= 1);
           if (subscribers.length > 0) {
+            const msg = `Subscribers to be notified: ${subscribers.length}`;
+            remote.apply(log);
+            log.trace(msg);
             mongo.updateSubscribers(subscribers);
           }
         } catch (error) {
