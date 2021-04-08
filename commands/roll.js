@@ -1,3 +1,6 @@
+
+const log = require('loglevel');
+log.enableAll();
 /* eslint-disable indent */
 function diceRoll(num) {
   return Math.ceil(Math.random() * num);
@@ -33,7 +36,13 @@ module.exports = {
 
     const sides = args.length === 0 ? 6 : num;
     const roll = diceRoll(sides);
-
+    
+    const msg = `Test Log Roll: ${roll}`;
+    log.trace(msg)
+    log.debug(msg)
+    log.info(msg)
+    log.warn(msg)
+    log.error(msg)
     return message.reply(
       `You rolled a ${sides}-sided die! 🎲 You rolled ${roll}!`
     );
