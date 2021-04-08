@@ -1,3 +1,5 @@
+const { autoUpdate: { branch, enabled } } = require('../config.json');
+const { exec } = require('child_process');
 const express = require('express');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -41,12 +43,22 @@ class WebhookListener {
       return next();
     }
 
-    app.post('/hook', verifyPostData, (req, res) => {
+    app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
-      console.log(WEBHOOK, 'Github webhook received.')
-      if (autoUpdate) {
+      console.log(WEBHOOK, 'Github webhook received.');
+
+      if (enabled) {
+        exec('git remote update', handleExec);
+        exec(`git reset --hard origin/${branch}`, handleExec);
+        exec('npm install', handleExec);
+        exec('npm audit fix', handleExec);
+
+        console.log(WEBHOOK, 'Updated to new commit from Github!')
+      
         this.client.stop();
+        return;
       }
+      console.log(WEBHOOK, 'AutoUpdate is disabled!');
     });
 
     app.use((err, req, res, next) => {
@@ -60,6 +72,11 @@ class WebhookListener {
       console.log(WEBHOOK, `Listening on ${PORT}`);
     });
   }
+}
+
+function handleExec(err, stdout, stderr) {
+  if(stderr) return console.log(stderr);
+  if(stdout) return console.log(stdout);
 }
 
 module.exports = WebhookListener;
