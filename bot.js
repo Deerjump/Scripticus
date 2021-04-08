@@ -38,7 +38,7 @@ const cooldowns = new Collection();
 
 client.once('ready', async () => {
   try {
-    console.info(BOT, '-----Starting up Scripticus!-----');
+    console.info(BOT, '-----Starting up Scripticus fool!!-----');
 
     if (autoUpdate.enabled) {
       client.githubListener = new WebhookListener(client).start();
