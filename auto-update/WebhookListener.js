@@ -47,8 +47,9 @@ class WebhookListener {
     app.post('/hook', verifyPostData, async (req, res) => {
       res.status(200).send('Request body was signed!');
       // "ref": "refs/heads/main",
-      if (req.body.refs !== `refs/heads/${branch}`) {
-        return console.log(`Ignoring merge on branch: ${req.body.refs}`)
+      const body = JSON.stringify(req.rawBody);
+      if (body.refs !== `refs/heads/${branch}`) {
+        return console.log(`Ignoring merge on branch: ${body.refs}`)
       }
 
       console.log(WEBHOOK, 'Github webhook received.');
