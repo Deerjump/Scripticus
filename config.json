@@ -3,6 +3,6 @@
   "DEFAULT_COOLDOWN": 5,
   "autoUpdate" : {
     "enabled" : true,
-    "branch": "auto-update"
+    "branch": "main"
   }
 }
