@@ -2,6 +2,7 @@ const { autoUpdate: { branch, enabled } } = require('../config.json');
 const { exec } = require('child_process');
 const express = require('express');
 const crypto = require('crypto');
+const { rejects } = require('assert');
 require('dotenv').config();
 
 const WEBHOOK = '[Webhook]';
@@ -47,18 +48,14 @@ class WebhookListener {
       res.status(200).send('Request body was signed!');
       console.log(WEBHOOK, 'Github webhook received.');
 
-      if (enabled) {
-        exec('git remote update', handleExec);
-        exec(`git reset --hard origin/${branch}`, handleExec);
-        exec('npm install', handleExec);
-        exec('npm audit fix', handleExec);
+        await runCommand('git remote update');
+        await runCommand(`git reset --hard origin/${branch}`);
+        await runCommand('npm install');
+        await runCommand('npm audit fix');
 
         console.log(WEBHOOK, 'Updated to new commit from Github!')
       
         this.client.stop();
-        return;
-      }
-      console.log(WEBHOOK, 'AutoUpdate is disabled!');
     });
 
     app.use((err, req, res, next) => {
@@ -74,10 +71,14 @@ class WebhookListener {
   }
 }
 
-function handleExec(err, stdout, stderr) {
-  if (err) return console.log(err);
-  if (stderr) return console.log(stderr);
-  if (stdout) return console.log(stdout);
+function runCommand(command) {
+  return new Promise((resolve, reject) => {
+    exec(command, (err, stdout, stderr) => {
+      if (err)  reject(err);
+      if (stderr) reject(stderr);
+      if (stdout) resolve(stdout);
+    });
+  })
 }
 
 module.exports = WebhookListener;
