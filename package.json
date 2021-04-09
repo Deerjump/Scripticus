@@ -15,6 +15,7 @@
   "author": "Deerjump",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.4.2",
     "cron": "^1.8.2",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
