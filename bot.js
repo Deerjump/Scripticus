@@ -2,6 +2,7 @@ const { DEFAULT_PREFIX, DEFAULT_COOLDOWN, autoUpdate } = require('./config.json'
 const WebhookListener = require('./auto-update/WebhookListener.js')
 const { Client, Collection } = require('discord.js');
 const mongo = require('./mongo/mongo.js');
+const chalk = require('chalk');
 require('dotenv').config();
 const fs = require('fs');
 
@@ -16,7 +17,7 @@ const display =
   '*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
   '*                      |_|                            *\n' +
   '*******************************************************';
-console.info(display);
+console.info(chalk.yellow(display));
 
 const client = new Client();
 client.commands = new Collection();
