@@ -1,8 +1,8 @@
 {
   "DEFAULT_PREFIX": "!",
   "DEFAULT_COOLDOWN": 5,
-  "autoUpdate" : {
-    "enabled" : false,
-    "branch" : "main"
+  "autoUpdate": {
+    "enabled": true,
+    "branch": "main"
   }
 }

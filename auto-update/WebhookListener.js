@@ -88,5 +88,4 @@ function runCommand(command) {
   })
 }
 
-
 module.exports = WebhookListener;
