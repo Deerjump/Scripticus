@@ -1,9 +1,10 @@
 const { CronJob } = require('cron');
 const { MessageAttachment } = require('discord.js');
+const Logger = require('../util/Logger.js');
 const path = require('path');
 
+const logger = new Logger('Notify')
 
-const NOTIFY = '[Notify]';
 let cronJob;
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
           let subscribers = await mongo.getSubscribers();
           if (subscribers.length === 0) return;
 
-          console.log(
+          logger.log(
             NOTIFY,
             `Firing Baba/Spikes Alert: ${new Date().toLocaleString()}\nNotifying ${
               subscribers.length
@@ -46,24 +47,24 @@ module.exports = {
             mongo.updateSubscribers(subscribers);
           }
         } catch (error) {
-          console.error(NOTIFY, error);
+          logger.error(error);
         }
       },
       null,
       true,
       null
     );
-    console.log(NOTIFY, 'Starting CronJob for notify command.');
+    logger.log('Starting CronJob for notify command.');
     cronJob.start();
   },
   stop() {
-    console.log(NOTIFY, 'Stopping Cron Job');
+    logger.log('Stopping Cron Job');
     cronJob.stop();
   },
   async execute(message, args) {
     const { mongo } = message.client;
     const param = args[0];
-    if (param === 'list') return console.log(NOTIFY, await mongo.getSubscribers());
+    if (param === 'list') return logger.log(await mongo.getSubscribers());
 
     const { id } = message.author;
     const user = await mongo.getSubscriber(id);
@@ -100,8 +101,7 @@ module.exports = {
       );
     }
     mongo.updateSubscriber(id, hours);
-    console.log(
-      NOTIFY, 
+    logger.log(
       `${message.author.username} just subscribed for ${hours} hours`
     );
     message.reply(`You've subscribed for ${hours} hours!`);
@@ -118,6 +118,6 @@ async function notifySubscriber(client, id) {
       return user.send(attachment);
     }
   } catch (error) {
-    console.error(NOTIFY, error);
+    logger.error(error);
   }
 }

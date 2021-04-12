@@ -1,3 +1,7 @@
+const Logger = require('../util/Logger.js');
+
+const logger = new Logger('Reload');
+
 module.exports = {
   name: 'reload',
   description: 'Reloads a command',
@@ -28,7 +32,7 @@ module.exports = {
       message.client.commands.set(newCommand.name, newCommand);
       message.channel.send(`Command \`${command.name}\` was reloaded!`);
     } catch (error) {
-      console.error(error);
+      logger.error(error);
       message.channel.send(
         `There was an error while reloading a command \`${command.name}\`:\n\`${error.message}\``
       );

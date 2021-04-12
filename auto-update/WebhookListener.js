@@ -1,10 +1,11 @@
 const { autoUpdate: { branch } } = require('../config.json');
+const Logger = require('../util/Logger.js');
 const { exec } = require('child_process');
 const express = require('express');
 const crypto = require('crypto');
 require('dotenv').config();
 
-const WEBHOOK = '[Webhook]';
+const logger = new Logger('Webhook');
 
 class WebhookListener {
   
@@ -18,7 +19,7 @@ class WebhookListener {
     const sigHashAlg = 'sha256';
     const app = express();
 
-    console.log(WEBHOOK, 'Starting WebHookListener')
+    logger.log('Starting WebHookListener')
 
     app.use(express.json({ 
       verify: (req, res, buf, encoding) => {
@@ -48,32 +49,32 @@ class WebhookListener {
 
       const body = JSON.parse(req.rawBody);
       if (body.ref !== `refs/heads/${branch}`) {
-        return console.log(`Ignoring merge on branch: ${body.ref}`)
+        return logger.log(`Ignoring merge on branch: ${body.ref}`)
       }
 
-      console.log(WEBHOOK, 'Github webhook received.');
+      logger.log('Github webhook received.');
       try {
-        console.log(WEBHOOK, await runCommand('git remote update'));
-        console.log(WEBHOOK, await runCommand(`git reset --hard origin/${branch}`));
-        console.log(WEBHOOK, await runCommand('npm install'));
-        console.log(WEBHOOK, await runCommand('npm audit fix'));
+        logger.log(await runCommand('git remote update'));
+        logger.log(await runCommand(`git reset --hard origin/${branch}`));
+        logger.log(await runCommand('npm install'));
+        logger.log(await runCommand('npm audit fix'));
       } catch(err) {
-        console.log(WEBHOOK, err);
+        logger.log(err);
       }
-      console.log(WEBHOOK, 'Updated to new commit from Github!')
+      logger.log('Updated to new commit from Github!')
     
       this.client.stop();
     });
 
     app.use((err, req, res, next) => {
-      if (err) console.error(WEBHOOK, err);
+      if (err) logger.error(err);
       res.status(403).send('Request body was not signed or verification failed!');
     })
 
     app.all('*', (req, res) => res.status(404).end());
 
     app.listen(PORT, async () => {
-      console.log(WEBHOOK, `Listening on ${PORT}`);
+      logger.log(`Listening on ${PORT}`);
     });
   }
 }
