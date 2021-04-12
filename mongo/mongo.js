@@ -5,11 +5,10 @@ require('dotenv').config();
 const logger = new Logger('MongoDb');
 class Mongo {
 
-
-  // url: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.63urb.mongodb.net/scripticus?retryWrites=true&w=majority`,
   async connectToDatabase() {
     logger.log('Connecting to Mongo Database!');
-    const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
+    const url = process.env.MONGO_URL;
+
     const options = {
       useUnifiedTopology: true,
       useNewUrlParser: true,
@@ -21,7 +20,7 @@ class Mongo {
       if (typeof this.db !== 'undefined') {
         logger.log('Connected!');
       } else {
-        throw new Error(`${MONGO} could not connect to the database.`);
+        throw new Error(`[MongoDB] could not connect to the database.`);
       }
     } catch (err) {
       logger.error(err);
