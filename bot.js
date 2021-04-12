@@ -1,12 +1,14 @@
 const { DEFAULT_PREFIX, DEFAULT_COOLDOWN, autoUpdate } = require('./config.json');
 const WebhookListener = require('./auto-update/WebhookListener.js')
 const { Client, Collection } = require('discord.js');
+const Logger = require('./util/Logger.js');
 const mongo = require('./mongo/mongo.js');
 const chalk = require('chalk');
 require('dotenv').config();
 const fs = require('fs');
 
-const BOT = '[Bot]';  
+const logger = new Logger('Bot');
+
 const display =
   '*******************************************************\n' +
   '*  ______             _            _                  *\n' +
@@ -40,7 +42,7 @@ const cooldowns = new Collection();
 
 client.once('ready', async () => {
   try {
-    console.info(BOT, '-----Starting up Scripticus!-----');
+    logger.log('-----Starting up Scripticus!-----');
 
     if (autoUpdate.enabled) {
       client.githubListener = new WebhookListener(client).start();
@@ -55,10 +57,10 @@ client.once('ready', async () => {
       });
     }
   } catch (err) {
-    console.error(BOT, err);
+    logger.error(err);
   }
   client.user.setActivity('Legends of Idleon');
-  console.log(BOT, `${client.user.username} is ready!`);
+  logger.log(`${client.user.username} is ready!`);
 });
 
 client.on('message', (message) => {
@@ -119,7 +121,7 @@ client.on('message', (message) => {
   try {
     command.execute(message, args);
   } catch (error) {
-    console.error(BOT, error);
+    logger.error(error);
     message.reply('there was an error trying to execute that command!');
   }
 });
@@ -137,16 +139,16 @@ client.getPrefix = function(message) {
 
 client.stop = function () {
   try {
-    console.log(BOT, '-----Stopping Scripticus!-----');
+    logger.log('-----Stopping Scripticus!-----');
     mongo.disconnect();
     
-    console.log(BOT, 'Running command stop() methods');
+    logger.log('Running command stop() methods');
     this.commands.forEach((command) => command.stop?.());
 
-    console.log(BOT, '-----Exiting process-----');
+    logger.log('-----Exiting process-----');
     process.exit(0);
   } catch (err) {
-    console.error(BOT, 'ERROR:', err);
+    logger.error('ERROR:', err);
   } 
 }
 

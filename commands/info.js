@@ -1,7 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 const itemList = require('../util/items.js');
 const monsterList = require('../util/monsters.js');
+const Logger = require('../util/Logger.js');
 const alias = require('../util/alias.js');
+
+const logger = new Logger('Info');
 
 module.exports = {
   name: 'info',
@@ -106,7 +109,7 @@ function getMonsterDetailsEmbed(monster) {
     embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
     break;
   default:
-    console.error('Unknown AFKtype!');
+    logger.error('Unknown AFKtype!');
   }
 
   fields = fields.map(field => {
