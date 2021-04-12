@@ -8,6 +8,7 @@ class Mongo {
   async connectToDatabase() {
     logger.log('Connecting to Mongo Database!');
     const url = process.env.MONGO_URL;
+
     const options = {
       useUnifiedTopology: true,
       useNewUrlParser: true,
