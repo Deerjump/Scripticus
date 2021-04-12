@@ -20,7 +20,7 @@ class Mongo {
       if (typeof this.db !== 'undefined') {
         logger.log('Connected!');
       } else {
-        throw new Error(`[MongoDB] could not connect to the database.`);
+        throw new Error('Could not connect to the database!');
       }
     } catch (err) {
       logger.error(err);
