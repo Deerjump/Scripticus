@@ -1,13 +1,14 @@
 const { MongoClient } = require('mongodb');
+const Logger = require('../util/Logger.js');
 require('dotenv').config();
 
-const MONGO = '[MongoDb]';
+const logger = new Logger('MongoDb');
 class Mongo {
 
 
   // url: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.63urb.mongodb.net/scripticus?retryWrites=true&w=majority`,
   async connectToDatabase() {
-    console.log(MONGO, 'Connecting to Mongo Database!');
+    logger.log('Connecting to Mongo Database!');
     const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@scripticus.jwgax.mongodb.net/Scripticus?retryWrites=true&w=majority`;
     const options = {
       useUnifiedTopology: true,
@@ -18,19 +19,19 @@ class Mongo {
       this.db = this.connection.db();
 
       if (typeof this.db !== 'undefined') {
-        console.log(MONGO, 'Connected!');
+        logger.log('Connected!');
       } else {
         throw new Error(`${MONGO} could not connect to the database.`);
       }
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
   disconnect() {
-    console.log(MONGO, 'Running MongoConnection disconnect');
+    logger.log('Running MongoConnection disconnect');
     return this.connection.close()
-      .then(console.log(MONGO, 'MongoConnection disconnected'))
-      .catch(err => console.log(MONGO, err));
+      .then(logger.log('MongoConnection disconnected'))
+      .catch(err => logger.log(err));
   }
 
   async init() {
@@ -55,12 +56,12 @@ class Mongo {
         .find(query, options)
         .toArray();
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
   async updateGuildCooldown(guildID) {
-    console.log(MONGO, guildID);
+    logger.log(guildID);
   }
 
   async addSubscriber(id, hours) {
@@ -69,7 +70,7 @@ class Mongo {
 
       await this.db.collection('subscribers').insertOne(myobj);
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
@@ -83,7 +84,7 @@ class Mongo {
         .findOne(query, options);
       return subscriber;
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
@@ -97,7 +98,7 @@ class Mongo {
         .find({}, options)
         .toArray();
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
     return subscribers;
   }
@@ -114,12 +115,11 @@ class Mongo {
       } = await this.db
         .collection('subscribers')
         .updateOne(filter, updateDoc, options);
-      console.log(
-        MONGO,
+      logger.log(
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
@@ -143,12 +143,11 @@ class Mongo {
       } = await this.db
         .collection('subscribers')
         .bulkWrite(operations);
-      console.log(
-        MONGO,
+      logger.log(
         `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
       );
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
@@ -159,12 +158,12 @@ class Mongo {
         .collection('subscribers')
         .deleteOne(query);
       if (result.deletedCount === 1) {
-        console.log(MONGO, 'Successfully deleted 1 document!');
+        logger.log('Successfully deleted 1 document!');
       } else {
-        console.log(MONGO, `No matches found for ${id}`);
+        logger.log(`No matches found for ${id}`);
       }
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 
@@ -182,9 +181,9 @@ class Mongo {
       const result = await this.db
         .collection('subscribers')
         .bulkWrite(operations);
-      console.log(MONGO, `Deleted ${result.deletedCount} document(s)`);
+      logger.log(`Deleted ${result.deletedCount} document(s)`);
     } catch (err) {
-      console.error(MONGO, err);
+      logger.error(err);
     }
   }
 }

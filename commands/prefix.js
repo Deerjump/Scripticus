@@ -1,3 +1,7 @@
+const Logger = require('../util/Logger.js');
+
+const logger = new Logger('Prefix');
+
 module.exports = {
   name: 'prefix',
   description: 'Changes prefix for current server',
@@ -27,7 +31,7 @@ module.exports = {
         });
         message.channel.send(`Prefix is now sent to ${newPrefix}`);
       } catch (err) {
-        console.log(err);
+        logger.log(err);
       }
     } else {
       message.channel.send('You cannot use this command!');

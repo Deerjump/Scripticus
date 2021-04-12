@@ -34,9 +34,6 @@ const self = {
    */
   find(name, target, targetName = target.Name.toLowerCase()) {
     name = name.toLowerCase();
-    // if (target.Name === 'Gold Platebody') {
-    //   console.log('test');
-    // }
     // first try finding the whole name to catch special cases
     if (this.aliases[name]) {
       for (const cand of this.aliases[name]) {

@@ -1,5 +1,8 @@
 const { DEFAULT_COOLDOWN } = require('../config.json');
+const Logger = require('../util/Logger.js');
 const { MessageEmbed } = require('discord.js');
+
+const logger = new Logger('Help');
 
 module.exports = {
   name: 'help',
@@ -24,7 +27,7 @@ module.exports = {
           message.reply("I've sent you a DM with all my commands!");
         })
         .catch((error) => {
-          console.error(
+          logger.error(
             `Could not send help DM to ${message.author.tag}.\n`,
             error
           );

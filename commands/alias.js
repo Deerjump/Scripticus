@@ -1,5 +1,8 @@
 const { MessageEmbed } = require('discord.js');
+const Logger = require('../util/Logger.js');
 const alias = require('../util/alias');
+
+const logger = new Logger('Alias')
 
 module.exports = {
   name: 'alias',
@@ -44,7 +47,7 @@ module.exports = {
           .addFields(msg.embeds[0].fields)
           .setFooter('❌Message has expired! ');
         msg.edit(expiredEmbed);
-        msg.reactions.removeAll().catch((err) => console.log(err));
+        msg.reactions.removeAll().catch((err) => logger.log(err));
       });
     });
 

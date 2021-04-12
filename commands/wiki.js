@@ -1,7 +1,9 @@
 const fetch = require('node-fetch');
 const querystring = require('querystring');
 const { MessageEmbed } = require('discord.js');
+const Logger = require('../util/Logger.js');
 
+const logger = new Logger('Wiki');
 const wikiUrl = 'https://idleon.info/';
 
 module.exports = {
@@ -24,11 +26,11 @@ module.exports = {
     try {
       const query = querystring.stringify({ search: args.join(' ') });
       const res = await fetch(`https://idleon.info/w/index.php?${query}`);
-      console.log(res.url);
+      logger.log(res.url);
       embed.setColor('#FF0000').setTitle(res.url).setURL(res.url);
       message.channel.send(embed);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
   },
 };
