@@ -21,7 +21,7 @@ module.exports = {
         'Commands:',
         commands.map((command) => `**${command.name}**: ${command.description}`)
       );
-      return message.reply(embed)
+      return message.author.send(embed)
         .then(() => {
           if (message.channel.type === 'dm') return;
           message.reply("I've sent you a DM with all my commands!");
