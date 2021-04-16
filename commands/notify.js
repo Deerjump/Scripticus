@@ -26,7 +26,6 @@ module.exports = {
           if (subscribers.length === 0) return;
 
           logger.log(
-            NOTIFY,
             `Firing Baba/Spikes Alert: ${new Date().toLocaleString()}\nNotifying ${
               subscribers.length
             } ${subscribers.length > 1 ? 'users' : 'user'}.`
