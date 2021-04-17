@@ -1,8 +1,9 @@
 const { autoUpdate: { branch } } = require('../config.json');
 const chalk = require('chalk');
 const Logger = require('../util/Logger.js');
+const { exec, spawnSync } = require('child_process');
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const exec = util.promisify(exec);
 const express = require('express');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -56,10 +57,10 @@ class WebhookListener {
 
       logger.log('Github webhook received.');
       try {
-        await runCommand('git remote update');
-        await runCommand(`git reset --hard origin/${branch}`);
-        await runCommand('npm install');
-        await runCommand('npm audit fix');
+        runCommand('git remote update');
+        runCommand(`git reset --hard origin/${branch}`);
+        runCommand('npm install');
+        runCommand('npm audit fix');
         logger.log('Updated to new commit from Github!')
       } catch(err) {
         logger.error(err);
@@ -81,13 +82,25 @@ class WebhookListener {
   }
 }
 
-async function runCommand(command) {
+// async function runCommand(command) {
+//   console.log(chalk.cyan(command));
+//   const { stdout, stderr } = await exec(command);
+//   if (stdout)
+//     console.log(stdout);
+//   if (stderr)
+//     console.error(stderr);
+// }
+
+function runCommand(command) {
   console.log(chalk.cyan(command));
-  const { stdout, stderr } = await exec(command);
-  if (stdout)
-    console.log(stdout);
+  const { output, stdout, stderr, err } = spawnSync(command);
+  if (err)
+    console.error(err);
   if (stderr)
     console.error(stderr);
+  if (stdout)
+    console.error(stdout);
+  console.error(output);
 }
 
 module.exports = WebhookListener;
