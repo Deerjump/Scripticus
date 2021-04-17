@@ -83,9 +83,17 @@ function runCommand(command) {
   logger.log(command);
   return new Promise((resolve, reject) => {
     exec(command, (err, stdout, stderr) => {
-      if (err)  reject(err);
-      if (stderr) reject(stderr);
-      if (stdout) resolve(stdout);
+      if (err) {
+        console.error(err);
+        //  reject(err);
+      }
+      if (stderr) {
+        console.error(stderr)
+        // reject(stderr);
+      }
+      if (stdout) {
+        resolve('Done!');
+      }
     });
   })
 }
