@@ -84,8 +84,10 @@ class WebhookListener {
 async function runCommand(command) {
   logger.log(chalk.cyan(command));
   const { stdout, stderr } = await exec(command);
-  console.log('stdout:', stdout);
-  console.error('stderr:', stderr);
+  if (stdout)
+    console.log(stdout);
+  if (stderr)
+    console.error(stderr);
 }
 
 module.exports = WebhookListener;
