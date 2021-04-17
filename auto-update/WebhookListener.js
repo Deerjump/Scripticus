@@ -86,7 +86,7 @@ function runCommand(command) {
     exec(command, (err, stdout, stderr) => {
       if (err)  reject(err);
       if (stderr) logger.log(stderr);
-      if (stdout) console.log(stdout);
+      if (stdout) logger.log(stdout);
       resolve();
     });
   })
