@@ -93,7 +93,8 @@ function runCommand(command) {
         // reject(stderr);
       }
       if (stdout) {
-        resolve('Done!');
+        console.log('Done!');
+        resolve(stdout);
       }
     });
   })
