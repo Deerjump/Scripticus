@@ -1,4 +1,5 @@
 const { autoUpdate: { branch } } = require('../config.json');
+const chalk = require('chalk');
 const Logger = require('../util/Logger.js');
 const { exec } = require('child_process');
 const express = require('express');
@@ -80,7 +81,7 @@ class WebhookListener {
 }
 
 function runCommand(command) {
-  logger.log(command);
+  logger.log(chalk.cyan(command));
   return new Promise((resolve, reject) => {
     exec(command, (err, stdout, stderr) => {
       if (err) {
