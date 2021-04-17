@@ -82,7 +82,7 @@ class WebhookListener {
 }
 
 async function runCommand(command) {
-  logger.log(chalk.cyan(command));
+  console.log(chalk.cyan(command));
   const { stdout, stderr } = await exec(command);
   if (stdout)
     console.log(stdout);
