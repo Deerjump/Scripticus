@@ -3,7 +3,7 @@ const { MessageAttachment } = require('discord.js');
 const Logger = require('../util/Logger.js');
 const path = require('path');
 
-const logger = new Logger('Notify')
+const logger = new Logger('Notify');
 
 let cronJob;
 
@@ -26,9 +26,9 @@ module.exports = {
           if (subscribers.length === 0) return;
 
           logger.log(
-            `Firing Baba/Spikes Alert: ${new Date().toLocaleString()}\nNotifying ${
-              subscribers.length
-            } ${subscribers.length > 1 ? 'users' : 'user'}.`
+            `Notifying ${subscribers.length} ${
+              subscribers.length > 1 ? 'users' : 'user'
+            }.`
           );
 
           subscribers.forEach(async (subscriber) => {
@@ -100,9 +100,7 @@ module.exports = {
       );
     }
     mongo.updateSubscriber(id, hours);
-    logger.log(
-      `${message.author.username} just subscribed for ${hours} hours`
-    );
+    logger.log(`${message.author.username} just subscribed for ${hours} hours`);
     message.reply(`You've subscribed for ${hours} hours!`);
   },
 };
