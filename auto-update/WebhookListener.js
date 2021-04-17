@@ -1,9 +1,9 @@
 const { autoUpdate: { branch } } = require('../config.json');
 const chalk = require('chalk');
 const Logger = require('../util/Logger.js');
-const { exec, spawnSync } = require('child_process');
+let { exec, spawnSync } = require('child_process');
 const util = require('util');
-const exec = util.promisify(exec);
+exec = util.promisify(exec);
 const express = require('express');
 const crypto = require('crypto');
 require('dotenv').config();
