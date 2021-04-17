@@ -80,6 +80,7 @@ class WebhookListener {
 }
 
 function runCommand(command) {
+  logger.log(command);
   return new Promise((resolve, reject) => {
     exec(command, (err, stdout, stderr) => {
       if (err)  reject(err);
