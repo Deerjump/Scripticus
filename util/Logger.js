@@ -23,7 +23,7 @@ const createFormat = function(tag) {
     const timestamp = chalk.green(getDate());
     const label = chalk.blue(tag);
   
-    return `(${timestamp})[${label}]${level}${message}`;
+    return `${timestamp}[${label}]${level}${message}`;
   })
 }
 
