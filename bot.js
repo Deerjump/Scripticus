@@ -27,7 +27,6 @@ console.info(chalk.yellow(display));
 
 const client = new Client();
 client.commands = new Collection();
-client.guildSettings = new Collection();
 client.mongo = mongo;
 const commandFiles = fs
   .readdirSync('./commands')
@@ -158,5 +157,10 @@ client.stop = function () {
     logger.error('ERROR:', err);
   }
 };
+
+function initGuildSettings() {
+  client.guildSettings = new Collection();
+  
+}
 
 client.login(process.env.TOKEN);
