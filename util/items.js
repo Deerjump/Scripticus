@@ -29,7 +29,7 @@ module.exports = {
     get description() {
       return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
-    sources: ['ChestB1', 'Mining'],
+    sources: ['Mining', 'ChestB1'],
   },
   Gold: {
     Name: 'Gold Ore',
@@ -45,7 +45,7 @@ module.exports = {
     get description() {
       return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
-    sources: ['ChestA2', 'Mining', 'ChestC1'],
+    sources: ['Mining', 'ChestA2', 'ChestA3', 'ChestC1'],
   },
   Plat: {
     Name: 'Platinum Ore',
@@ -61,7 +61,7 @@ module.exports = {
     get description() {
       return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
-    sources: ['Mining', 'ChestB2'],
+    sources: ['Mining', 'ChestB3', 'ChestB2'],
   },
   Dementia: {
     Name: 'Dementia Ore',
@@ -77,7 +77,7 @@ module.exports = {
     get description() {
       return `Smelt down ${this.stats.amount} Ores into 1 Bar at the Forge. Smelting will take ${this.stats.cooldown} per Bar using Forge Slot 1.`;
     },
-    sources: ['ChestC2', 'Mining'],
+    sources: ['ChestC2', 'ChestC3', 'Mining'],
   },
   Void: {
     Name: 'Void Ore',
@@ -165,7 +165,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 0,
     type: 'BAR',
-    sources: ['ChestA1', 'ChestB1', 'Forging'],
+    sources: ['ChestA1', 'Forging', 'ForgeA', 'ChestB1'],
   },
   IronBar: {
     Name: 'Iron Bar',
@@ -173,7 +173,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 1,
     type: 'BAR',
-    sources: ['ChestC1', 'Forging'],
+    sources: ['Forging', 'ForgeA', 'ChestC1'],
   },
   GoldBar: {
     Name: 'Gold Bar',
@@ -181,7 +181,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 2,
     type: 'BAR',
-    sources: ['ChestA2', 'ChestB2', 'Forging'],
+    sources: ['ChestA2', 'ChestB3', 'Forging', 'ChestB2', 'ChestA3', 'ForgeA'],
   },
   PlatBar: {
     Name: 'Platinum Bar',
@@ -189,7 +189,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 3,
     type: 'BAR',
-    sources: ['ChestC2', 'Forging'],
+    sources: ['ChestC2', 'ChestC3', 'ForgeB', 'Forging'],
   },
   DementiaBar: {
     Name: 'Dementia Bar',
@@ -197,7 +197,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 4,
     type: 'BAR',
-    sources: ['Forging'],
+    sources: ['ForgeB', 'Forging'],
   },
   VoidBar: {
     Name: 'Void Bar',
@@ -205,7 +205,7 @@ module.exports = {
     typeGen: 'bBar',
     id: 5,
     type: 'BAR',
-    sources: ['Forging'],
+    sources: ['ForgeB', 'Forging'],
   },
   LustreBar: {
     Name: 'Lustre Bar',
@@ -328,7 +328,7 @@ module.exports = {
     get description() {
       return `Increases Forging Speed by ${this.stats.amount}% for the Forge Slot it's in. ${this.stats.cooldown}% chance to be consumed when a bar is forged.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   OakTree: {
     Name: 'Oak Logs',
@@ -336,7 +336,7 @@ module.exports = {
     typeGen: 'bLog',
     id: 0,
     type: 'LOG',
-    sources: ['ChestA1', 'Choppin'],
+    sources: ['Choppin', 'ChestA1'],
   },
   BirchTree: {
     Name: 'Bleach Logs',
@@ -344,7 +344,7 @@ module.exports = {
     typeGen: 'bLog',
     id: 0,
     type: 'LOG',
-    sources: ['ChestB1', 'Choppin'],
+    sources: ['Choppin', 'ChestB1'],
   },
   JungleTree: {
     Name: 'Jungle Logs',
@@ -352,7 +352,7 @@ module.exports = {
     typeGen: 'bLog',
     id: 0,
     type: 'LOG',
-    sources: ['ChestB1', 'Choppin'],
+    sources: ['Choppin', 'ChestB1'],
   },
   ForestTree: {
     Name: 'Forest Fibres',
@@ -376,7 +376,7 @@ module.exports = {
     typeGen: 'bLog',
     id: 0,
     type: 'LOG',
-    sources: ['Choppin', 'ChestB2'],
+    sources: ['Choppin', 'ChestB3', 'ChestB2'],
   },
   StumpTree: {
     Name: 'Veiny Logs',
@@ -408,7 +408,7 @@ module.exports = {
     typeGen: 'bLeaf',
     id: 0,
     type: 'LEAF',
-    sources: ['Choppin', 'DropTable5'],
+    sources: ['DropTable5', 'Choppin'],
   },
   Leaf2: {
     Name: 'Twisty Leaf',
@@ -438,7 +438,7 @@ module.exports = {
     effect: '',
     description:
       "It's not a snack, and it certainly doesn't smile back... for copyright reasons!",
-    sources: ['ChestA2', 'Fishing'],
+    sources: ['ChestA2', 'ChestA3', 'Fishing'],
   },
   Fish2: {
     Name: 'Hermit Can',
@@ -449,7 +449,7 @@ module.exports = {
     effect: '',
     description:
       'The branding on the soda can must have gotten washed off by some kind of liquidy, wavey substance. Oh, right.',
-    sources: ['Fishing'],
+    sources: ['ChestA2', 'Fishing'],
   },
   Fish3: {
     Name: 'Jellyfish',
@@ -460,7 +460,7 @@ module.exports = {
     effect: '',
     description:
       "Don't let it sting you, unless you're into getting tinkled on by random beach-goers.",
-    sources: ['Fishing', 'ChestB2'],
+    sources: ['ChestB3', 'Fishing', 'ChestB2'],
   },
   Fish4: {
     Name: 'Bloach',
@@ -471,7 +471,7 @@ module.exports = {
     effect: '',
     description:
       'The result of putting Blood and Leech into a bad pokemon generator.',
-    sources: ['ChestC2', 'Fishing'],
+    sources: ['ChestC2', 'ChestC3', 'Fishing'],
   },
   Fish5: {
     Name: 'Filler',
@@ -526,7 +526,7 @@ module.exports = {
     effect: '',
     description:
       "I don't know whyyyy she swallowed a flyyy, perhaps she'll cry from being perpetually made fun of in the form of a nursey rhyme just because she made one bad decision... er, die!",
-    sources: ['ChestA2', 'Catching'],
+    sources: ['ChestA2', 'ChestA3', 'Catching'],
   },
   Bug2: {
     Name: 'Butterfly',
@@ -548,7 +548,7 @@ module.exports = {
     effect: '',
     description:
       'Honestly, I was shocked too at first when I learned that cereal in real life was harvested from Cereal Bugs. Like for real... look it up, there are genuine cereal hives that are harvested!',
-    sources: ['ChestB2', 'Catching'],
+    sources: ['Catching', 'ChestB3', 'ChestB2'],
   },
   Bug4: {
     Name: 'Fruitfly',
@@ -569,6 +569,189 @@ module.exports = {
     effect: '',
     description: 'BRUH',
     sources: ['Catching'],
+  },
+  Critter1: {
+    Name: 'Froge',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      'The living embodiment of the classic cryptocurrency Frogecoin',
+  },
+  Critter1A: {
+    Name: 'Poison Froge',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      'The living embodiment of the classic cryptocurrency Frogecoin',
+  },
+  Critter2: {
+    Name: 'Crabbo',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: "Argg, yer spendin' all me money!",
+  },
+  Critter2A: {
+    Name: 'Mutant Crabbo',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "Argghgg, yershpend annual memo knee!!... Yea mutants can't speak very well, probably on account of the radiation poisioning and all that. ",
+  },
+  Critter3: {
+    Name: 'Scorpie',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "This cutie will stab its way into your heart if you aren't careful! No seriosuly please be careful the bugger pricked my foot the other day and it hurt bad.",
+  },
+  Critter3A: {
+    Name: 'Crescent Scropie',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      'This chrome coloured scorpion came straight from the future! Fuuuutuuuuureee! FUUTUUURREE!!!',
+  },
+  Critter4: {
+    Name: 'Mousey',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "Adorable!!! Look how cute it's tail is, and that itty bitty nose, and the fact that it's a mouse and not a rat so I don't want to hit it with a broom!",
+  },
+  Critter4A: {
+    Name: 'Nakeo Moleo',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "This mole ain't got no fur! Ew, gross!!! Disgusting even!!!!! Imagine an animal with no fur... eugh just the thought...",
+  },
+  Critter5: {
+    Name: 'Owlio',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: 'Hoot hoot! Yea thats all I got for this one.',
+  },
+  Critter5A: {
+    Name: 'Minervowl',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "It's a more expensive hoot, I guess. Sorry I ain't got no jokes for owls.",
+  },
+  Critter6: {
+    Name: 'Pingy',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: "It's basically just Gunter but with RTX off.",
+  },
+  Critter6A: {
+    Name: 'Eternal Lord of  The Undying Ember',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      "Bow before the destroyer of all that lies outside his domain, the ruler of the 8th dimension and all that it's flame encompasses, the bringer of light to the blind and darkness to umm... people who can't remember what to say. Ah crap.",
+  },
+  Critter7: {
+    Name: 'Bunny',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: "It could use a carrot, the lil' guy needs some food!",
+  },
+  Critter7A: {
+    Name: 'Purbunni',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: 'The other bunny is brilliant... But I like this one more.',
+  },
+  Critter8: {
+    Name: 'Dung Beat',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: 'Dodo tshh do dodo tss dodo tss badabada dodoooo',
+  },
+  Critter8A: {
+    Name: 'Jade Scarab',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      'Oh I guess this one is a scarab, not a beetle. You can tell because of the way it is.',
+  },
+  Critter9: {
+    Name: 'Honker',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description: 'HONK! HONK!',
+  },
+  Critter9A: {
+    Name: 'Diamond Duck',
+    sellPrice: 3,
+    typeGen: 'dCritters',
+    id: 0,
+    type: 'CRITTER',
+    effect: '',
+    description:
+      'One of the only beings strong enough to take on the Eternal Lord of the Undying Ember realm... their battle would be legendary.',
+  },
+  Soul: {
+    Name: 'Forest Soul',
+    sellPrice: 3,
+    typeGen: 'dSouls',
+    id: 0,
+    type: 'SOUL',
+    effect: '',
+    description:
+      "The soul moans ooOOOOooOOOoo, because it's the only key on his keyboard that works.",
   },
   EquipmentHats1: {
     Name: 'Farmer Brim',
@@ -592,7 +775,7 @@ module.exports = {
       defence: 2,
       upgradeSlotsLeft: 1,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   TestObj15: {
     Name: 'Slime Cap',
@@ -633,8 +816,8 @@ module.exports = {
       lvReqToCraft: 1,
       costs: [
         ['Grasslands2', ' 25'],
-        ['OakTree', ' 75'],
-        ['CraftMat1', ' 25'],
+        ['OakTree', ' 45'],
+        ['CraftMat1', ' 13'],
       ],
     },
     class: 'ALL',
@@ -706,9 +889,9 @@ module.exports = {
     recipe: {
       lvReqToCraft: 1,
       costs: [
-        ['BirchTree', ' 150'],
-        ['Iron', ' 75'],
-        ['OilBarrel1', ' 100'],
+        ['BirchTree', ' 100'],
+        ['Iron', ' 50'],
+        ['OilBarrel1', ' 60'],
       ],
     },
     class: 'ALL',
@@ -835,6 +1018,7 @@ module.exports = {
       str: 3,
       agi: 3,
       luk: 3,
+      defence: 10000,
       upgradeSlotsLeft: 2,
     },
   },
@@ -865,7 +1049,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 5,
       costs: [
-        ['CopperBar', ' 75'],
+        ['CopperBar', ' 50'],
         ['Grasslands3', ' 75'],
       ],
     },
@@ -878,7 +1062,7 @@ module.exports = {
       defence: 5,
       upgradeSlotsLeft: 2,
     },
-    sources: ['ChestB1', 'Smithing'],
+    sources: ['Smithing', 'ChestB1'],
   },
   EquipmentHats18: {
     Name: 'Iron Helmet',
@@ -889,7 +1073,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 5,
       costs: [
-        ['IronBar', ' 225'],
+        ['IronBar', ' 180'],
         ['Forest1', ' 400'],
       ],
     },
@@ -902,7 +1086,7 @@ module.exports = {
       defence: 9,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'ChestB2'],
+    sources: ['Smithing', 'ChestB3', 'ChestB2'],
   },
   EquipmentHats28: {
     Name: 'Gold Helmet',
@@ -930,55 +1114,6 @@ module.exports = {
     },
     sources: ['Smithing'],
   },
-  EquipmentHats19: {
-    Name: 'Platinum Helmet',
-    sellPrice: 40000,
-    typeGen: 'aHelmet',
-    id: 22,
-    type: 'HELMET',
-    recipe: {
-      lvReqToCraft: 5,
-      costs: [
-        ['Fish3', ' 4000'],
-        ['EquipmentHats18', ' 4'],
-        ['PlatBar', ' 750'],
-      ],
-    },
-    class: 'ALL',
-    lvReqToEquip: 60,
-    stats: {
-      str: 9,
-      agi: 9,
-      wis: 9,
-      defence: 25,
-      misc1: '5% DEFENCE',
-      upgradeSlotsLeft: 4,
-    },
-    sources: ['Smithing'],
-  },
-  EquipmentHats21: {
-    Name: 'Party Hat',
-    sellPrice: 1500,
-    typeGen: 'aHelmet',
-    id: 25,
-    type: 'HELMET',
-    recipe: {
-      lvReqToCraft: 5,
-      costs: [
-        ['IronBar', ' 200'],
-        ['EquipmentHats17', ' 4'],
-      ],
-    },
-    class: 'BEGINNER',
-    lvReqToEquip: 10,
-    stats: {
-      luk: 5,
-      defence: 10,
-      misc1: '5% XP FROM MONSTERS',
-      upgradeSlotsLeft: 5,
-    },
-    sources: ['Smithing'],
-  },
   EquipmentHats22: {
     Name: 'Amarok Helmet',
     sellPrice: 100,
@@ -1003,7 +1138,121 @@ module.exports = {
       defence: 20,
       upgradeSlotsLeft: 6,
     },
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
+  },
+  EquipmentHats19: {
+    Name: 'Platinum Helmet',
+    sellPrice: 40000,
+    typeGen: 'aHelmet',
+    id: 22,
+    type: 'HELMET',
+    recipe: {
+      lvReqToCraft: 5,
+      costs: [
+        ['Fish3', ' 4000'],
+        ['EquipmentHats18', ' 4'],
+        ['PlatBar', ' 750'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 55,
+    stats: {
+      str: 9,
+      agi: 9,
+      wis: 9,
+      defence: 25,
+      misc1: '5% DEFENCE',
+      upgradeSlotsLeft: 4,
+    },
     sources: ['Smithing'],
+  },
+  EquipmentHats53: {
+    Name: 'Dementia Helmet',
+    sellPrice: 1,
+    typeGen: 'aHelmet',
+    id: 56,
+    type: 'HELMET',
+    class: 'ALL',
+    lvReqToEquip: 70,
+    stats: {
+      str: 12,
+      agi: 12,
+      wis: 12,
+      luk: 12,
+      defence: 34,
+      misc1: '6% DEFENCE',
+      upgradeSlotsLeft: 4,
+    },
+  },
+  EquipmentHats52: {
+    Name: 'Efaunt Helmet',
+    sellPrice: 1,
+    typeGen: 'aHelmet',
+    id: 55,
+    type: 'HELMET',
+    recipe: {
+      lvReqToCraft: 5,
+      costs: [
+        ['EfauntDrop1', ' 20'],
+        ['EquipmentPants19', ' 1'],
+        ['StoneA3b', ' 2'],
+        ['Quest36', ' 3'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 80,
+    stats: {
+      weaponPower: 1,
+      str: 8,
+      agi: 8,
+      wis: 8,
+      luk: 8,
+      defence: 38,
+      misc1: '5% DROP CHANCE',
+      upgradeSlotsLeft: 6,
+    },
+    sources: ['Smithing'],
+  },
+  EquipmentHats54: {
+    Name: 'Void Imperium Helmet',
+    sellPrice: 1,
+    typeGen: 'aHelmet',
+    id: 57,
+    type: 'HELMET',
+    class: 'ALL',
+    lvReqToEquip: 90,
+    stats: {
+      str: 15,
+      agi: 15,
+      wis: 15,
+      luk: 15,
+      defence: 46,
+      misc1: '8% DEFENCE',
+      upgradeSlotsLeft: 5,
+    },
+  },
+  EquipmentHats21: {
+    Name: 'Party Hat',
+    sellPrice: 1500,
+    typeGen: 'aHelmet',
+    id: 25,
+    type: 'HELMET',
+    recipe: {
+      lvReqToCraft: 5,
+      costs: [
+        ['IronBar', ' 200'],
+        ['EquipmentHats17', ' 4'],
+      ],
+    },
+    class: 'BEGINNER',
+    lvReqToEquip: 10,
+    stats: {
+      luk: 5,
+      defence: 10,
+      misc1: '5% XP FROM MONSTERS',
+      upgradeSlotsLeft: 5,
+    },
+    sources: ['Alchemy (Level up Gift) Vendor'],
   },
   EquipmentHats23: {
     Name: 'Farmer Brimer',
@@ -1067,7 +1316,7 @@ module.exports = {
       misc1: '15% GOLD FOOD EFFECT',
       upgradeSlotsLeft: 6,
     },
-    sources: ['Boss2C', 'Boss2B', 'Boss2A'],
+    sources: ['Boss2B', 'Boss2C', 'Boss2A'],
   },
   EquipmentHats27: {
     Name: 'Paper Boat',
@@ -1132,7 +1381,7 @@ module.exports = {
       misc1: '7% XP FROM MONSTERS',
       upgradeSlotsLeft: 6,
     },
-    sources: ['wolfB', 'wolfA', 'wolfC'],
+    sources: ['wolfA', 'wolfC', 'wolfB'],
   },
   EquipmentHats42: {
     Name: 'Santa Hat',
@@ -1180,23 +1429,34 @@ module.exports = {
       upgradeSlotsLeft: 3,
     },
   },
-  EquipmentHats52: {
-    Name: 'Efaunt Helmet',
+  EquipmentHats55: {
+    Name: 'Steam Cap',
     sellPrice: 1,
     typeGen: 'aHelmet',
-    id: 55,
+    id: 58,
     type: 'HELMET',
     class: 'ALL',
-    lvReqToEquip: 80,
+    lvReqToEquip: 1,
     stats: {
-      weaponPower: 2,
-      str: 10,
-      agi: 10,
-      wis: 10,
-      luk: 10,
-      defence: 32,
-      misc1: '7% MASTERY',
-      upgradeSlotsLeft: 6,
+      str: 1,
+      agi: 1,
+      wis: 1,
+      luk: 1,
+      misc1: '3% XP FROM MONSTERS',
+    },
+  },
+  EquipmentHats56: {
+    Name: 'Bunny Ears',
+    sellPrice: 1,
+    typeGen: 'aHelmet',
+    id: 59,
+    type: 'HELMET',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      agi: 4,
+      misc1: '4% XP FROM MONSTERS',
+      upgradeSlotsLeft: 3,
     },
   },
   EquipmentHats20: {
@@ -1208,8 +1468,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 1,
       costs: [
-        ['IronBar', ' 35'],
-        ['Copper', ' 300'],
+        ['IronBar', ' 25'],
+        ['Copper', ' 150'],
         ['EquipmentHats17', ' 2'],
       ],
     },
@@ -1221,7 +1481,7 @@ module.exports = {
       defence: 11,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   TestObj13: {
     Name: 'Viking Cap',
@@ -1245,7 +1505,7 @@ module.exports = {
       defence: 21,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentHats3: {
     Name: 'Thief Hood',
@@ -1256,8 +1516,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 1,
       costs: [
-        ['IronBar', ' 35'],
-        ['CraftMat1', ' 300'],
+        ['IronBar', ' 25'],
+        ['CraftMat1', ' 150'],
         ['EquipmentHats17', ' 2'],
       ],
     },
@@ -1269,7 +1529,7 @@ module.exports = {
       defence: 9,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentHats41: {
     Name: 'Sleek Coif',
@@ -1293,7 +1553,7 @@ module.exports = {
       defence: 18,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentHats16: {
     Name: 'Top Hat',
@@ -1304,8 +1564,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 1,
       costs: [
-        ['IronBar', ' 35'],
-        ['OakTree', ' 550'],
+        ['IronBar', ' 25'],
+        ['OakTree', ' 200'],
         ['EquipmentHats17', ' 2'],
       ],
     },
@@ -1317,7 +1577,7 @@ module.exports = {
       defence: 7,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentHats26: {
     Name: 'Witch Hat',
@@ -1341,7 +1601,7 @@ module.exports = {
       defence: 15,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentPunching1: {
     Name: 'Boxing Gloves',
@@ -1376,9 +1636,9 @@ module.exports = {
     recipe: {
       lvReqToCraft: 10,
       costs: [
-        ['CopperBar', ' 30'],
-        ['OakTree', ' 100'],
-        ['CraftMat5', ' 50'],
+        ['CopperBar', ' 20'],
+        ['OakTree', ' 75'],
+        ['CraftMat5', ' 20'],
       ],
     },
     class: 'ALL',
@@ -1417,7 +1677,7 @@ module.exports = {
       luk: 10,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   TestObj1: {
     Name: 'Wooden Spear',
@@ -1453,8 +1713,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 20,
       costs: [
-        ['Jungle1', ' 300'],
-        ['CraftMat6', ' 200'],
+        ['Jungle1', ' 150'],
+        ['CraftMat6', ' 125'],
       ],
     },
     class: 'WARRIOR',
@@ -1467,7 +1727,7 @@ module.exports = {
       wis: 3,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   TestObj3: {
     Name: 'Royal Bayonet',
@@ -1493,7 +1753,7 @@ module.exports = {
       wis: 2,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentSword1: {
     Name: 'Enforced Slasher',
@@ -1504,13 +1764,13 @@ module.exports = {
     recipe: {
       lvReqToCraft: 50,
       costs: [
-        ['DesertA3b', ' 10'],
-        ['CraftMat9', ' 12000'],
-        ['TestObj3', ' 3'],
+        ['DesertA3b', ' 8'],
+        ['CraftMat9', ' 9000'],
+        ['TestObj3', ' 2'],
       ],
     },
     class: 'WARRIOR',
-    lvReqToEquip: 45,
+    lvReqToEquip: 50,
     stats: {
       reach: 80,
       speed: 5,
@@ -1519,7 +1779,24 @@ module.exports = {
       wis: 4,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
+  },
+  EquipmentSword2: {
+    Name: 'The Ice Breaker',
+    sellPrice: 26000,
+    typeGen: 'aWeapon',
+    id: 8,
+    type: 'SPEAR',
+    class: 'WARRIOR',
+    lvReqToEquip: 75,
+    stats: {
+      reach: 76,
+      speed: 5,
+      weaponPower: 33,
+      str: 20,
+      misc1: '5% CRIT DAMAGE',
+      upgradeSlotsLeft: 4,
+    },
   },
   TestObj4: {
     Name: 'Frozen Impaler',
@@ -1680,8 +1957,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 22,
       costs: [
-        ['Jungle1', ' 300'],
-        ['BirchTree', ' 400'],
+        ['Jungle1', ' 150'],
+        ['BirchTree', ' 250'],
       ],
     },
     class: 'ARCHER',
@@ -1694,7 +1971,7 @@ module.exports = {
       agi: 5,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentBows4: {
     Name: 'Carrot Launcher',
@@ -1738,7 +2015,7 @@ module.exports = {
       luk: 3,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentBows6: {
     Name: 'Pharoah Bow',
@@ -1749,22 +2026,39 @@ module.exports = {
     recipe: {
       lvReqToCraft: 22,
       costs: [
-        ['TreeInterior1b', ' 10'],
-        ['Fish4', ' 7000'],
-        ['EquipmentBows5', ' 3'],
+        ['TreeInterior1b', ' 8'],
+        ['Fish4', ' 5200'],
+        ['EquipmentBows5', ' 2'],
       ],
     },
     class: 'ARCHER',
-    lvReqToEquip: 45,
+    lvReqToEquip: 50,
     stats: {
       reach: 200,
-      speed: 5,
+      speed: 6,
       weaponPower: 23,
       str: 1,
       agi: 13,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
+  },
+  EquipmentBows7: {
+    Name: 'Blizzard Bow',
+    sellPrice: 15000,
+    typeGen: 'aWeapon',
+    id: 7,
+    type: 'BOW',
+    class: 'ARCHER',
+    lvReqToEquip: 75,
+    stats: {
+      reach: 200,
+      speed: 6,
+      weaponPower: 30,
+      str: 5,
+      agi: 13,
+      upgradeSlotsLeft: 4,
+    },
   },
   EquipmentBows2: {
     Name: 'Rooted Bow',
@@ -1817,8 +2111,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 22,
       costs: [
-        ['Jungle1', ' 300'],
-        ['CopperBar', ' 175'],
+        ['Jungle1', ' 150'],
+        ['CopperBar', ' 100'],
       ],
     },
     class: 'MAGE',
@@ -1830,7 +2124,7 @@ module.exports = {
       wis: 9,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentWands5: {
     Name: 'Starlight',
@@ -1856,7 +2150,7 @@ module.exports = {
       wis: 11,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentWands6: {
     Name: 'Crows Nest',
@@ -1867,13 +2161,13 @@ module.exports = {
     recipe: {
       lvReqToCraft: 22,
       costs: [
-        ['Sewers1b', ' 10'],
-        ['Bug4', ' 11000'],
-        ['EquipmentWands5', ' 3'],
+        ['Sewers1b', ' 8'],
+        ['Bug4', ' 8500'],
+        ['EquipmentWands5', ' 2'],
       ],
     },
     class: 'MAGE',
-    lvReqToEquip: 45,
+    lvReqToEquip: 50,
     stats: {
       reach: 160,
       speed: 3,
@@ -1883,7 +2177,7 @@ module.exports = {
       misc1: '5% MOVEMENT SPEED',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentWands3: {
     Name: 'Spriggly Staff',
@@ -1965,7 +2259,7 @@ module.exports = {
       defence: 3,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from Scripticus Vendor'],
   },
   EquipmentShirts16: {
     Name: 'Spore Tee',
@@ -2003,7 +2297,7 @@ module.exports = {
       defence: 5,
       upgradeSlotsLeft: 5,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts4: {
     Name: 'Tanned Hide',
@@ -2121,7 +2415,11 @@ module.exports = {
       defence: 13,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [
+      'Smithing',
+      ' Recipe from Glublin Vendor',
+      ' Recipe from Funguy Vendor',
+    ],
   },
   EquipmentShirts11: {
     Name: 'Copper Platebody',
@@ -2132,7 +2430,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 55,
       costs: [
-        ['CopperBar', ' 90'],
+        ['CopperBar', ' 65'],
         ['CraftMat5', ' 150'],
       ],
     },
@@ -2156,7 +2454,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 55,
       costs: [
-        ['IronBar', ' 275'],
+        ['IronBar', ' 200'],
         ['JungleTree', ' 800'],
       ],
     },
@@ -2197,6 +2495,31 @@ module.exports = {
     },
     sources: ['Smithing'],
   },
+  EquipmentShirts18: {
+    Name: 'Amarok Bodyplate',
+    sellPrice: 200,
+    typeGen: 'aShirt',
+    id: 3,
+    type: 'SHIRT',
+    recipe: {
+      lvReqToCraft: 55,
+      costs: [
+        ['Quest17', ' 10'],
+        ['IronBar', ' 500'],
+        ['Sewers1', ' 1200'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 35,
+    stats: {
+      str: 3,
+      agi: 3,
+      wis: 3,
+      defence: 22,
+      upgradeSlotsLeft: 5,
+    },
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
+  },
   EquipmentShirts14: {
     Name: 'Platinum Platbody',
     sellPrice: 40000,
@@ -2231,10 +2554,53 @@ module.exports = {
     class: 'ALL',
     lvReqToEquip: 70,
     stats: {
-      str: 8,
-      agi: 8,
-      wis: 8,
-      upgradeSlotsLeft: 2,
+      str: 10,
+      agi: 10,
+      wis: 10,
+      defence: 35,
+      upgradeSlotsLeft: 4,
+    },
+  },
+  EquipmentShirts26: {
+    Name: 'Efaunt Ribcage',
+    sellPrice: 200,
+    typeGen: 'aShirt',
+    id: 3,
+    type: 'SHIRT',
+    recipe: {
+      lvReqToCraft: 55,
+      costs: [
+        ['EfauntDrop1', ' 10'],
+        ['MidnightCookie', ' 10'],
+        ['PureWater', ' 25'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 80,
+    stats: {
+      str: 5,
+      agi: 5,
+      wis: 5,
+      defence: 30,
+      misc1: '4% MASTERY',
+      upgradeSlotsLeft: 6,
+    },
+    sources: ['Smithing'],
+  },
+  EquipmentShirts27: {
+    Name: 'Void Imperium Platebody',
+    sellPrice: 200,
+    typeGen: 'aShirt',
+    id: 3,
+    type: 'SHIRT',
+    class: 'ALL',
+    lvReqToEquip: 90,
+    stats: {
+      str: 10,
+      agi: 10,
+      wis: 10,
+      defence: 35,
+      upgradeSlotsLeft: 4,
     },
   },
   EquipmentShirts17: {
@@ -2252,31 +2618,6 @@ module.exports = {
       upgradeSlotsLeft: 4,
     },
     sources: ['Sprout3'],
-  },
-  EquipmentShirts18: {
-    Name: 'Amarok Bodyplate',
-    sellPrice: 200,
-    typeGen: 'aShirt',
-    id: 3,
-    type: 'SHIRT',
-    recipe: {
-      lvReqToCraft: 55,
-      costs: [
-        ['Quest17', ' 10'],
-        ['IronBar', ' 500'],
-        ['Sewers1', ' 1200'],
-      ],
-    },
-    class: 'ALL',
-    lvReqToEquip: 35,
-    stats: {
-      str: 3,
-      agi: 3,
-      wis: 3,
-      defence: 22,
-      upgradeSlotsLeft: 5,
-    },
-    sources: ['Smithing'],
   },
   EquipmentShirts19: {
     Name: 'Planktop',
@@ -2314,7 +2655,7 @@ module.exports = {
       defence: 4,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts24: {
     Name: 'Green Tee',
@@ -2337,7 +2678,7 @@ module.exports = {
       defence: 4,
       upgradeSlotsLeft: 1,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts25: {
     Name: 'Purple Tee',
@@ -2360,7 +2701,7 @@ module.exports = {
       defence: 3,
       upgradeSlotsLeft: 1,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts5: {
     Name: 'Studded Hide',
@@ -2384,7 +2725,7 @@ module.exports = {
       defence: 22,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts22: {
     Name: 'Furled Robes',
@@ -2408,7 +2749,7 @@ module.exports = {
       defence: 14,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShirts23: {
     Name: 'Feral Leathering',
@@ -2432,7 +2773,7 @@ module.exports = {
       defence: 18,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentPants1: {
     Name: 'Torn Jeans',
@@ -2467,7 +2808,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 55,
       costs: [
-        ['CopperBar', ' 110'],
+        ['CopperBar', ' 80'],
         ['BirchTree', ' 200'],
       ],
     },
@@ -2491,7 +2832,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 55,
       costs: [
-        ['IronBar', ' 300'],
+        ['IronBar', ' 225'],
         ['CraftMat6', ' 300'],
       ],
     },
@@ -2529,7 +2870,7 @@ module.exports = {
       defence: 16,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing', 'ChestC2'],
+    sources: ['ChestC2', 'Smithing', 'ChestC3'],
   },
   EquipmentPants17: {
     Name: 'Amarok Hinds',
@@ -2546,7 +2887,7 @@ module.exports = {
       ],
     },
     class: 'ALL',
-    lvReqToEquip: 35,
+    lvReqToEquip: 40,
     stats: {
       str: 2,
       agi: 2,
@@ -2554,7 +2895,7 @@ module.exports = {
       defence: 18,
       upgradeSlotsLeft: 5,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentPants5: {
     Name: 'Platinum Shins',
@@ -2588,14 +2929,56 @@ module.exports = {
     id: 3,
     type: 'PANTS',
     class: 'ALL',
-    lvReqToEquip: 15,
+    lvReqToEquip: 70,
     stats: {
       weaponPower: 5,
       str: 7,
       agi: 7,
       wis: 7,
-      defence: 25,
-      upgradeSlotsLeft: 2,
+      defence: 28,
+      upgradeSlotsLeft: 4,
+    },
+  },
+  EquipmentPants20: {
+    Name: 'Efaunt Hipilium',
+    sellPrice: 200,
+    typeGen: 'aPants',
+    id: 3,
+    type: 'PANTS',
+    recipe: {
+      lvReqToCraft: 25,
+      costs: [
+        ['EfauntDrop1', ' 7'],
+        ['Hgg', ' 3'],
+        ['PureWater', ' 25'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 75,
+    stats: {
+      str: 4,
+      agi: 4,
+      wis: 4,
+      defence: 32,
+      upgradeSlotsLeft: 6,
+    },
+    sources: ['Smithing'],
+  },
+  EquipmentPants21: {
+    Name: 'Void Imperium Slablegs',
+    sellPrice: 200,
+    typeGen: 'aPants',
+    id: 3,
+    type: 'PANTS',
+    class: 'ALL',
+    lvReqToEquip: 90,
+    stats: {
+      weaponPower: 5,
+      str: 7,
+      agi: 7,
+      wis: 7,
+      defence: 28,
+      upgradeSlotsLeft: 4,
     },
   },
   EquipmentPants7: {
@@ -2744,7 +3127,7 @@ module.exports = {
       misc1: '5% CHOP EFFICIENCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from Wode_Board Vendor'],
   },
   EquipmentPants16: {
     Name: "Adam's Leaf",
@@ -2783,7 +3166,7 @@ module.exports = {
       misc1: '5% MINING EFFICINCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentPants19: {
     Name: 'Trimmed Rune Platelegs',
@@ -2792,7 +3175,7 @@ module.exports = {
     id: 3,
     type: 'PANTS',
     class: 'ALL',
-    lvReqToEquip: 45,
+    lvReqToEquip: 82,
     stats: {
       str: 4,
       agi: 2,
@@ -2864,7 +3247,7 @@ module.exports = {
       ],
     },
     class: 'ALL',
-    lvReqToEquip: 35,
+    lvReqToEquip: 30,
     stats: {
       str: 3,
       agi: 3,
@@ -2890,7 +3273,7 @@ module.exports = {
       ],
     },
     class: 'ALL',
-    lvReqToEquip: 30,
+    lvReqToEquip: 35,
     stats: {
       str: 1,
       agi: 1,
@@ -2899,7 +3282,7 @@ module.exports = {
       misc1: '3% DEFENCE',
       upgradeSlotsLeft: 5,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShoes4: {
     Name: 'Platinum Boots',
@@ -2935,13 +3318,59 @@ module.exports = {
     id: 3,
     type: 'SHOES',
     class: 'ALL',
-    lvReqToEquip: 15,
+    lvReqToEquip: 65,
     stats: {
-      weaponPower: 5,
-      str: 3,
-      agi: 3,
-      luk: 3,
-      upgradeSlotsLeft: 2,
+      str: 7,
+      agi: 7,
+      wis: 7,
+      luk: 7,
+      defence: 22,
+      misc1: '7% DEFENCE',
+      upgradeSlotsLeft: 4,
+    },
+  },
+  EquipmentShoes21: {
+    Name: 'Efaunts Broken Ankles',
+    sellPrice: 20,
+    typeGen: 'aShoes',
+    id: 3,
+    type: 'SHOES',
+    recipe: {
+      lvReqToCraft: 55,
+      costs: [
+        ['EfauntDrop1', ' 5'],
+        ['DesertA3b', ' 3'],
+        ['EquipmentShoes4', ' 1'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 75,
+    stats: {
+      str: 2,
+      agi: 2,
+      wis: 2,
+      defence: 18,
+      misc1: '2% MOVEMENT SPEED',
+      upgradeSlotsLeft: 6,
+    },
+    sources: ['Smithing'],
+  },
+  EquipmentShoes22: {
+    Name: 'Void Imperium Kicks',
+    sellPrice: 200,
+    typeGen: 'aShoes',
+    id: 3,
+    type: 'SHOES',
+    class: 'ALL',
+    lvReqToEquip: 85,
+    stats: {
+      str: 7,
+      agi: 7,
+      wis: 7,
+      luk: 7,
+      defence: 22,
+      misc1: '7% DEFENCE',
+      upgradeSlotsLeft: 4,
     },
   },
   EquipmentShoes6: {
@@ -2984,7 +3413,7 @@ module.exports = {
       misc1: '5% MONEY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from Slime Vendor'],
   },
   EquipmentShoes8: {
     Name: 'Yeti Walkers',
@@ -3128,7 +3557,7 @@ module.exports = {
       misc1: '20% MINING EFFICINCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShoes17: {
     Name: 'Logger Heels',
@@ -3153,7 +3582,7 @@ module.exports = {
       misc1: '20% CHOP EFFICIENCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShoes18: {
     Name: 'Angler Boots',
@@ -3178,7 +3607,7 @@ module.exports = {
       misc1: '20% FISHIN EFFICINCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShoes19: {
     Name: 'Bandito Boots',
@@ -3203,7 +3632,7 @@ module.exports = {
       misc1: '20% CATCH EFFICINCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentShoes2: {
     Name: 'Eyern Boots',
@@ -3398,7 +3827,7 @@ module.exports = {
       defence: 4,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentPendant11: {
     Name: 'Carrot Horror',
@@ -3501,7 +3930,7 @@ module.exports = {
       weaponPower: 4,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from Mafioso Vendor', 'Smithing'],
   },
   EquipmentPendant17: {
     Name: 'Chaotic Amarok Pendant',
@@ -3524,7 +3953,23 @@ module.exports = {
       wis: 12,
       upgradeSlotsLeft: 4,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
+  },
+  EquipmentPendant18: {
+    Name: 'Strung Steamy',
+    sellPrice: 1,
+    typeGen: 'aPendant',
+    id: 3,
+    type: 'PENDANT',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      str: 1,
+      agi: 1,
+      wis: 1,
+      luk: 3,
+      misc1: '3% DROP CHANCE',
+    },
   },
   EquipmentRings1: {
     Name: 'Gold Ring',
@@ -3561,7 +4006,7 @@ module.exports = {
       luk: 3,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from DropTable1 Vendor'],
   },
   EquipmentRings3: {
     Name: 'Steel Band',
@@ -3583,7 +4028,11 @@ module.exports = {
       defence: 1,
       upgradeSlotsLeft: 4,
     },
-    sources: ['Smithing'],
+    sources: [
+      ' Recipe from task unlocks Vendor',
+      'Smithing',
+      ' Recipe from DropTable3 Vendor',
+    ],
   },
   EquipmentRings4: {
     Name: 'Molden Crust',
@@ -3624,7 +4073,7 @@ module.exports = {
     id: 3,
     type: 'RING',
     class: 'ALL',
-    lvReqToEquip: 50,
+    lvReqToEquip: 55,
     stats: {
       weaponPower: 4,
       defence: 6,
@@ -3717,10 +4166,10 @@ module.exports = {
       defence: 10,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from Mimic Vendor', 'Smithing'],
   },
   EquipmentRingsFishing1: {
-    Name: 'Spikeweed Ring',
+    Name: 'Shallow Watering',
     sellPrice: 2500,
     typeGen: 'aRing',
     id: 3,
@@ -3736,7 +4185,7 @@ module.exports = {
     },
   },
   EquipmentRingsFishing2: {
-    Name: 'Spikeweed Ring',
+    Name: 'Oceanic Ring',
     sellPrice: 2500,
     typeGen: 'aRing',
     id: 3,
@@ -3752,7 +4201,7 @@ module.exports = {
     },
   },
   EquipmentRingsFishing3: {
-    Name: 'Spikeweed Ring',
+    Name: 'Deepwater Trench Ring',
     sellPrice: 2500,
     typeGen: 'aRing',
     id: 3,
@@ -3822,7 +4271,7 @@ module.exports = {
       misc1: '5% MONEY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from Slime Vendor'],
   },
   EquipmentRings15: {
     Name: 'Sanic Ring',
@@ -3839,6 +4288,32 @@ module.exports = {
       misc1: '1% MOVEMENT SPEED',
       upgradeSlotsLeft: 4,
     },
+  },
+  EquipmentRings16: {
+    Name: 'Efaunt Trunculus',
+    sellPrice: 1,
+    typeGen: 'aRing',
+    id: 3,
+    type: 'RING',
+    recipe: {
+      lvReqToCraft: 55,
+      costs: [
+        ['EfauntDrop2', ' 4'],
+        ['EfauntDrop1', ' 15'],
+        ['EquipmentPunching3', ' 1'],
+        ['EquipmentBows6', ' 1'],
+      ],
+    },
+    class: 'ALL',
+    lvReqToEquip: 85,
+    stats: {
+      weaponPower: 3,
+      agi: 10,
+      defence: 8,
+      misc1: '2% CRIT CHANCE',
+      upgradeSlotsLeft: 4,
+    },
+    sources: ['Smithing'],
   },
   EquipmentRingsChat1: {
     Name: 'Love Ring',
@@ -3971,7 +4446,6 @@ module.exports = {
       misc1: '-1% SELF ESTEEM',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Gem Shop'],
   },
   EquipmentRingsChat9: {
     Name: 'HONK Ring',
@@ -4016,8 +4490,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 4,
       costs: [
-        ['CopperBar', ' 20'],
-        ['Grasslands2', ' 50'],
+        ['CopperBar', ' 13'],
+        ['Grasslands2', ' 30'],
       ],
     },
     class: 'ALL',
@@ -4039,8 +4513,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 55,
       costs: [
-        ['IronBar', ' 175'],
-        ['Jungle3', ' 300'],
+        ['IronBar', ' 140'],
+        ['Jungle3', ' 250'],
       ],
     },
     class: 'ALL',
@@ -4077,7 +4551,7 @@ module.exports = {
       agi: 3,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentTools6: {
     Name: 'Platinum Pickaxe',
@@ -4103,7 +4577,7 @@ module.exports = {
       misc1: '1% MINING EFFICINCY',
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentTools7: {
     Name: 'Dementia Pickaxe',
@@ -4160,18 +4634,18 @@ module.exports = {
     Name: 'Poopy Pickaxe',
     sellPrice: 200,
     typeGen: 'aPick',
-    id: 0,
+    id: 1,
     type: 'PICKAXE',
     class: 'ALL',
     lvReqToEquip: 15,
     stats: {
       speed: 2,
-      weaponPower: 19,
+      weaponPower: 18,
       defence: 3,
       misc1: '2% MINING EFFICINCY',
       upgradeSlotsLeft: 6,
     },
-    sources: ['TP_Pete3'],
+    sources: ['poopBig', 'TP_Pete3'],
   },
   EquipmentToolsHatchet0: {
     Name: 'Old Hatchet',
@@ -4198,9 +4672,9 @@ module.exports = {
     recipe: {
       lvReqToCraft: 15,
       costs: [
-        ['CopperBar', ' 20'],
+        ['CopperBar', ' 13'],
         ['OakTree', ' 30'],
-        ['CraftMat1', ' 30'],
+        ['CraftMat1', ' 15'],
       ],
     },
     class: 'ALL',
@@ -4223,8 +4697,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 15,
       costs: [
-        ['JungleTree', ' 450'],
-        ['CraftMat6', ' 250'],
+        ['JungleTree', ' 370'],
+        ['CraftMat6', ' 200'],
       ],
     },
     class: 'ALL',
@@ -4237,6 +4711,23 @@ module.exports = {
       upgradeSlotsLeft: 2,
     },
     sources: ['Smithing'],
+  },
+  EquipmentToolsHatchet2b: {
+    Name: 'Stinky Axe',
+    sellPrice: 10000,
+    typeGen: 'aHatchet',
+    id: 2,
+    type: 'HATCHET',
+    class: 'ALL',
+    lvReqToEquip: 20,
+    stats: {
+      speed: 2,
+      weaponPower: 19,
+      wis: 8,
+      luk: 4,
+      upgradeSlotsLeft: 2,
+    },
+    sources: ['poopBig'],
   },
   EquipmentToolsHatchet2: {
     Name: 'Golden Axe',
@@ -4261,7 +4752,7 @@ module.exports = {
       luk: 4,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentToolsHatchet4: {
     Name: 'Plat Hatchet',
@@ -4284,9 +4775,9 @@ module.exports = {
       weaponPower: 18,
       agi: 5,
       wis: 14,
-      upgradeSlotsLeft: 2,
+      upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   EquipmentToolsHatchet5: {
     Name: 'Dementia Dicer',
@@ -4426,7 +4917,7 @@ module.exports = {
       str: 2,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'Fishing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Fishing'],
   },
   FishingRod3: {
     Name: 'Iron Fishing Rod',
@@ -4451,7 +4942,7 @@ module.exports = {
       wis: 1,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'Fishing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Fishing'],
   },
   FishingRod4: {
     Name: 'Gold Fishing Rod',
@@ -4476,7 +4967,7 @@ module.exports = {
       luk: 4,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing', 'Fishing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Fishing'],
   },
   FishingRod5: {
     Name: 'Plat Fishing Rod',
@@ -4487,8 +4978,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 15,
       costs: [
-        ['Fish4', ' 12000'],
-        ['PlatBar', ' 2000'],
+        ['Fish4', ' 7000'],
+        ['PlatBar', ' 1000'],
         ['FishingRod4', ' 3'],
       ],
     },
@@ -4500,7 +4991,7 @@ module.exports = {
       str: 9,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing', 'Fishing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Fishing'],
   },
   CatchingNet1: {
     Name: 'Bug Net',
@@ -4540,7 +5031,7 @@ module.exports = {
       agi: 3,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'Catching'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Catching'],
   },
   CatchingNet3: {
     Name: 'Reinforced Net',
@@ -4565,7 +5056,7 @@ module.exports = {
       agi: 4,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'Catching'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Catching'],
   },
   CatchingNet4: {
     Name: 'Gilded Net',
@@ -4590,7 +5081,7 @@ module.exports = {
       agi: 6,
       upgradeSlotsLeft: 2,
     },
-    sources: ['Smithing', 'Catching'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Catching'],
   },
   CatchingNet5: {
     Name: 'Platinet',
@@ -4615,7 +5106,157 @@ module.exports = {
       agi: 7,
       upgradeSlotsLeft: 3,
     },
-    sources: ['Smithing', 'Catching'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Catching'],
+  },
+  TrapBoxSet1: {
+    Name: 'Cardboard Trap',
+    sellPrice: 0,
+    typeGen: 'aTrap',
+    id: 1,
+    type: 'TRAP BOX SET',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  TrapBoxSet2: {
+    Name: 'Wooden Trap',
+    sellPrice: 1,
+    typeGen: 'aTrap',
+    id: 2,
+    type: 'TRAP BOX SET',
+    class: 'ALL',
+    lvReqToEquip: 5,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  TrapBoxSet3: {
+    Name: 'Iron Trap',
+    sellPrice: 2,
+    typeGen: 'aTrap',
+    id: 2,
+    type: 'TRAP BOX SET',
+    class: 'ALL',
+    lvReqToEquip: 15,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  TrapBoxSet4: {
+    Name: 'Royal Trap',
+    sellPrice: 3,
+    typeGen: 'aTrap',
+    id: 3,
+    type: 'TRAP BOX SET',
+    class: 'ALL',
+    lvReqToEquip: 25,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  TrapBoxSet5: {
+    Name: 'Eclectic Trap',
+    sellPrice: 4,
+    typeGen: 'aTrap',
+    id: 3,
+    type: 'TRAP BOX SET',
+    class: 'ALL',
+    lvReqToEquip: 35,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  WorshipSkull1: {
+    Name: 'Wax Skull',
+    sellPrice: 100,
+    typeGen: 'aSkull',
+    id: 0,
+    type: 'WORSHIP SKULL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  WorshipSkull2: {
+    Name: 'Wax Skull',
+    sellPrice: 100,
+    typeGen: 'aSkull',
+    id: 0,
+    type: 'WORSHIP SKULL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  WorshipSkull3: {
+    Name: 'Wax Skull',
+    sellPrice: 100,
+    typeGen: 'aSkull',
+    id: 0,
+    type: 'WORSHIP SKULL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  WorshipSkull4: {
+    Name: 'Wax Skull',
+    sellPrice: 100,
+    typeGen: 'aSkull',
+    id: 0,
+    type: 'WORSHIP SKULL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
+  },
+  WorshipSkull5: {
+    Name: 'Wax Skull',
+    sellPrice: 100,
+    typeGen: 'aSkull',
+    id: 0,
+    type: 'WORSHIP SKULL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      speed: 4,
+      weaponPower: 4,
+      agi: 2,
+      upgradeSlotsLeft: 1,
+    },
   },
   FoodHealth1: {
     Name: 'Nomwich',
@@ -4632,7 +5273,7 @@ module.exports = {
     get description() {
       return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
-    sources: ['DropTable1', 'mushG', 'Blunder HillsVendor', 'Scripticus4'],
+    sources: ['Scripticus4', 'DropTable1', 'Blunder HillsVendor', 'mushG'],
   },
   FoodHealth3: {
     Name: 'Hot Dog',
@@ -4650,9 +5291,9 @@ module.exports = {
       return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: [
-      'Encroaching Forest VillasVendor',
       'Blunder HillsVendor',
       'DropTable2',
+      'Encroaching Forest VillasVendor',
     ],
   },
   FoodHealth2: {
@@ -4671,11 +5312,11 @@ module.exports = {
       return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
     sources: [
-      'Encroaching Forest VillasVendor',
       'carrotO',
-      'snakeG',
       'DropTable3',
+      'snakeG',
       'Blunder HillsVendor',
+      'Encroaching Forest VillasVendor',
     ],
   },
   Peanut: {
@@ -4752,7 +5393,7 @@ module.exports = {
     get description() {
       return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
-    sources: ['YumYum GrottoVendor'],
+    sources: ['DropTable6', 'YumYum GrottoVendor'],
   },
   FoodHealth7: {
     Name: 'Meat Pie',
@@ -4769,7 +5410,7 @@ module.exports = {
     get description() {
       return `Auto-Used when your health goes below 50%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
-    sources: ['YumYum GrottoVendor'],
+    sources: ['DropTable7', 'YumYum GrottoVendor'],
   },
   FoodHealth8: {
     Name: 'Crabby Cake Supreme',
@@ -4802,7 +5443,7 @@ module.exports = {
     get description() {
       return `Auto-Used when your health goes below 30%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
-    sources: ['wolfB', 'wolfA', 'wolfC'],
+    sources: ['wolfA', 'wolfC', 'wolfB'],
   },
   FoodEvent8: {
     Name: 'Milk Choco',
@@ -4819,7 +5460,7 @@ module.exports = {
     get description() {
       return `Auto-Used when your health goes below 80%. Restores ${this.stats.amount} HP. Has a ${this.stats.cooldown} second Cooldown.`;
     },
-    sources: ['loveEvent', 'loveEvent2', 'slimeR'],
+    sources: ['slimeR', 'loveEvent', 'loveEvent2'],
   },
   FoodPotOr1: {
     Name: 'Small Strength Potion',
@@ -4837,10 +5478,10 @@ module.exports = {
       return `Increases Base Dmg by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: [
-      'DropTable11',
-      'DropTable12',
       'Blunder HillsVendor',
       'DropTable5',
+      'DropTable11',
+      'DropTable12',
     ],
   },
   FoodPotOr2: {
@@ -4859,9 +5500,9 @@ module.exports = {
       return `Increases Base Dmg by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: [
-      'Encroaching Forest VillasVendor',
       'YumYum GrottoVendor',
       'DropTable2',
+      'Encroaching Forest VillasVendor',
     ],
   },
   FoodPotOr3: {
@@ -4895,7 +5536,7 @@ module.exports = {
     get description() {
       return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['DropTable3c', 'Blunder HillsVendor', 'DropTable3b'],
+    sources: ['Blunder HillsVendor', 'DropTable3b', 'DropTable3c'],
   },
   FoodPotRe2: {
     Name: 'Average Life Potion',
@@ -4912,7 +5553,7 @@ module.exports = {
     get description() {
       return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Picnic_Stowaway4', 'YumYum GrottoVendor', 'frogBIG'],
+    sources: ['frogBIG', 'Picnic_Stowaway4', 'YumYum GrottoVendor'],
   },
   FoodPotRe3: {
     Name: 'Decent Life Potion',
@@ -4929,6 +5570,7 @@ module.exports = {
     get description() {
       return `Increases Base HP by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
+    sources: ['DropTable8'],
   },
   FoodPotGr1: {
     Name: 'Small Speed Potion',
@@ -4945,7 +5587,7 @@ module.exports = {
     get description() {
       return `Increases Move Spd by ${this.stats.amount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['DropTable4', 'DropTable10', 'Blunder HillsVendor', 'DropTable2'],
+    sources: ['Blunder HillsVendor', 'DropTable2', 'DropTable4', 'DropTable10'],
   },
   FoodPotGr2: {
     Name: 'Average Speed Potion',
@@ -4964,9 +5606,10 @@ module.exports = {
     },
     sources: [
       'YumYum GrottoVendor',
+      'Plan-it Express',
+      'DropTable6',
       'Picnic_Stowaway5',
       'Stiltzcho1',
-      'Plan-it Express',
     ],
   },
   FoodPotGr3: {
@@ -5000,7 +5643,7 @@ module.exports = {
     get description() {
       return `Increases Move Spd by ${this.stats.amount}%. ${this.stats.cooldown}% chance to be consumed every 10 meters walked. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['loveEvent', 'loveEvent2', 'slimeR'],
+    sources: ['slimeR', 'loveEvent', 'loveEvent2'],
   },
   FoodPotMana1: {
     Name: 'Small Mana Potion',
@@ -5018,11 +5661,11 @@ module.exports = {
       return `Boosts Mana Regen Rate by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every 100% Mana Regenerated. Must be equipped in a Food Slot to give its bonus.`;
     },
     sources: [
-      'DropTable3c',
-      'DropTable3b',
       'frogG',
+      'DropTable3c',
       'DropTable1',
       'Blunder HillsVendor',
+      'DropTable3b',
     ],
   },
   FoodPotMana2: {
@@ -5073,7 +5716,11 @@ module.exports = {
     get description() {
       return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Encroaching Forest VillasVendor', 'Plan-it Express'],
+    sources: [
+      'Alchemy (Level up Gift) Vendor',
+      'Plan-it Express',
+      'Encroaching Forest VillasVendor',
+    ],
   },
   FoodPotYe2: {
     Name: 'Average EXP Potion',
@@ -5090,7 +5737,11 @@ module.exports = {
     get description() {
       return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Dudes Next Door'],
+    sources: [
+      'Alchemy (Level up Gift) Vendor',
+      'Guilds Giftbox Vendor',
+      'Dudes Next Door',
+    ],
   },
   FoodPotYe3: {
     Name: 'Decent EXP Potion',
@@ -5107,6 +5758,7 @@ module.exports = {
     get description() {
       return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
+    sources: ['Alchemy (Level up Gift) Vendor', 'Guilds Giftbox Vendor'],
   },
   FoodEvent6: {
     Name: 'Lemony Choco',
@@ -5123,7 +5775,7 @@ module.exports = {
     get description() {
       return `Increases Main Exp Gain by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['loveEvent', 'loveEvent2', 'slimeR'],
+    sources: ['slimeR', 'loveEvent', 'loveEvent2'],
   },
   FoodMining1: {
     Name: 'Icing Ironbite',
@@ -5147,7 +5799,7 @@ module.exports = {
     get description() {
       return `Increases Mining Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing', 'Krunk1'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing', 'Krunk1'],
   },
   FoodEvent1: {
     Name: 'Giftybread Man',
@@ -5164,7 +5816,7 @@ module.exports = {
     get description() {
       return `Increases Mining Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your pickaxe. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['xmasEvent', 'ghost', 'xmasEvent2'],
+    sources: ['ghost', 'xmasEvent2', 'xmasEvent'],
   },
   FoodChoppin1: {
     Name: 'Saucy Logfries',
@@ -5188,7 +5840,7 @@ module.exports = {
     get description() {
       return `Increases Choppin' Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   FoodEvent2: {
     Name: 'Chogg Nog',
@@ -5205,7 +5857,7 @@ module.exports = {
     get description() {
       return `Increases Choppin' Speed by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your hatchet. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['xmasEvent', 'ghost', 'xmasEvent2'],
+    sources: ['ghost', 'xmasEvent2', 'xmasEvent'],
   },
   FoodFish1: {
     Name: 'Slurpin Herm',
@@ -5229,7 +5881,7 @@ module.exports = {
     get description() {
       return `Increases Fishing Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   FoodEvent3: {
     Name: 'Candy Canes',
@@ -5246,7 +5898,7 @@ module.exports = {
     get description() {
       return `Increases Fishing Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you reel in a fish. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['xmasEvent', 'ghost', 'xmasEvent2'],
+    sources: ['ghost', 'xmasEvent2', 'xmasEvent'],
   },
   FoodCatch1: {
     Name: 'Buttered Toasted Butter',
@@ -5270,7 +5922,7 @@ module.exports = {
     get description() {
       return `Increases Catching Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   FoodEvent4: {
     Name: 'Mistleberries',
@@ -5287,7 +5939,7 @@ module.exports = {
     get description() {
       return `Increases Catching Spd by ${this.stats.amount}% ${this.stats.cooldown}% chance to be consumed every time you swing your net. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['xmasEvent', 'ghost', 'xmasEvent2'],
+    sources: ['ghost', 'xmasEvent2', 'xmasEvent'],
   },
   Bullet: {
     Name: 'Bullet',
@@ -5297,7 +5949,10 @@ module.exports = {
     type: 'BOOST FOOD',
     recipe: {
       lvReqToCraft: 10,
-      costs: [['FillerMaterial', ' 6']],
+      costs: [
+        ['ForestTree', '10'],
+        ['Bug1', '10'],
+      ],
     },
     effect: 'WeaponPowerBoosts',
     stats: {
@@ -5308,7 +5963,7 @@ module.exports = {
     get description() {
       return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   BulletB: {
     Name: 'FMJ Bullet',
@@ -5332,7 +5987,7 @@ module.exports = {
     get description() {
       return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MidnightCookie: {
     Name: 'Midnight Cookie',
@@ -5349,7 +6004,7 @@ module.exports = {
     get description() {
       return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['babaMummy', 'Boss2C', 'DropTable8', 'Boss2A', 'Boss2B'],
+    sources: ['DropTable8', 'Boss2C', 'Boss2B', 'babaMummy', 'Boss2A'],
   },
   FoodEvent5: {
     Name: 'Cherry Choco',
@@ -5366,7 +6021,7 @@ module.exports = {
     get description() {
       return `Increases Weapon Power by ${this.stats.amount}. ${this.stats.cooldown}% chance to be consumed every time you defeat a monster. Must be equipped in a Food Slot to give its bonus.`;
     },
-    sources: ['loveEvent', 'loveEvent2', 'slimeR'],
+    sources: ['slimeR', 'loveEvent', 'loveEvent2'],
   },
   PeanutG: {
     Name: 'Golden Peanut',
@@ -5377,8 +6032,8 @@ module.exports = {
     recipe: {
       lvReqToCraft: 10,
       costs: [
-        ['FillerMaterial', ' 1'],
-        ['Copper', ' 1'],
+        ['Peanut', '100'],
+        ['GoldBar', '50'],
       ],
     },
     effect: 'MiningEff',
@@ -5390,7 +6045,7 @@ module.exports = {
     get description() {
       return `Increases Mining Efficiency by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from Rocklyte Vendor', 'Smithing'],
   },
   FoodG1: {
     Name: 'Golden Jam',
@@ -5408,16 +6063,16 @@ module.exports = {
       return `Increases your Max Health by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
     sources: [
-      'Picnic_Stowaway4',
-      'Picnic_Stowaway7',
       'Simple Shippin',
-      'Picnic_Stowaway5',
-      'ChestC1',
-      'Tiki_Chief1',
-      'Picnic_Stowaway3',
       'Picnic_Stowaway8',
-      'Picnic_Stowaway6',
+      'Tiki_Chief1',
       'NYI',
+      'Picnic_Stowaway6',
+      'Picnic_Stowaway4',
+      'ChestC1',
+      'Picnic_Stowaway5',
+      'Picnic_Stowaway3',
+      'Picnic_Stowaway7',
     ],
   },
   FoodG2: {
@@ -5436,12 +6091,13 @@ module.exports = {
       return `Increases Damage Dealt to all monsters by ${this.stats.amount}%. Golden foods are never consumed.`;
     },
     sources: [
-      'Picnic_Stowaway7',
-      'ChestB2',
-      'Dudes Next Door',
       'Picnic_Stowaway8',
+      'ChestB3',
       'Picnic_Stowaway6',
+      'Dudes Next Door',
+      'ChestB2',
       'Picnic_Stowaway9',
+      'Picnic_Stowaway7',
     ],
   },
   FoodG3: {
@@ -5460,10 +6116,12 @@ module.exports = {
       return `Increases your Total Defence by ${this.stats.amount}. Golden foods are never consumed`;
     },
     sources: [
-      'Picnic_Stowaway10',
+      'SuperDropTable2',
       'ChestC2',
-      'Picnic_Stowaway11',
       'Picnic_Stowaway9',
+      'ChestC3',
+      'Picnic_Stowaway11',
+      'Picnic_Stowaway10',
     ],
   },
   FoodG4: {
@@ -5481,11 +6139,11 @@ module.exports = {
     get description() {
       return `Increases Base Damage Dealt to all monsters by ${this.stats.amount}. Golden foods are never consumed.`;
     },
-    sources: ['ChestB1', 'Plan-it Express', 'SuperDropTable1'],
+    sources: ['SuperDropTable1', 'Plan-it Express', 'ChestB1'],
   },
   rtt0: {
     Name: 'Bottled Town Teleport',
-    sellPrice: 150,
+    sellPrice: 50,
     typeGen: 'dQuest',
     id: 1,
     type: 'TELEPORT',
@@ -5493,10 +6151,10 @@ module.exports = {
     sources: [
       'YumYum GrottoVendor',
       'DropTable3',
+      'DropTable2',
+      'Blunder HillsVendor',
       'Promotheus1',
       'Scripticus10',
-      'Blunder HillsVendor',
-      'DropTable2',
     ],
   },
   ResetFrag: {
@@ -5508,13 +6166,16 @@ module.exports = {
     description:
       "Hold down on this item to turn 10 Fragments into 1 Talent Point Reset Potion. You'll need 1 open inventory space for this to work.",
     sources: [
-      'Encroaching Forest VillasVendor',
-      'YumYum GrottoVendor',
-      'Faraway PiersVendor',
-      'Promotheus2',
       'SuperDropTable1',
-      'Speccius1',
+      'Tundra CampVendor',
+      'Promotheus2',
+      'Faraway PiersVendor',
+      'SuperDropTable2',
+      'Encroaching Forest VillasVendor',
+      'Guilds Giftbox Vendor',
       'Blunder HillsVendor',
+      'Speccius1',
+      'YumYum GrottoVendor',
     ],
   },
   ResetCompleted: {
@@ -5525,7 +6186,14 @@ module.exports = {
     type: 'RESET POTION',
     description:
       "Hold down on this item to respec all your Talent Points! Well, except for the Star tab points, there's a different potion for that.",
-    sources: ['Hamish2', 'Promotheus3', 'Promotheus2', 'Funguy1', 'Speccius1'],
+    sources: [
+      'Promotheus3',
+      'Promotheus2',
+      'Funguy1',
+      'Hamish2',
+      'Gem Shop',
+      'Speccius1',
+    ],
   },
   ResetCompletedS: {
     Name: 'Star Talent Reset Potion',
@@ -5535,6 +6203,7 @@ module.exports = {
     type: 'RESET POTION',
     description:
       "Hold down on this item to refund all your Star Talent Points! Well, except for the Star tab points, there's a different potion for... no wait, this IS the potion for that!",
+    sources: ['Gem Shop'],
   },
   ClassSwap: {
     Name: 'Sub Class Swap Token',
@@ -5544,6 +6213,7 @@ module.exports = {
     type: 'USABLE',
     description:
       "Hold down on this item to change sub class within your class. It won't let you change classes, you'll need to reach world 3 to do that.",
+    sources: ['Gem Shop'],
   },
   ResetBox: {
     Name: 'Post Office Box Reseto Magnifico',
@@ -5553,6 +6223,7 @@ module.exports = {
     type: 'USABLE',
     description:
       "Hold down to reset all post office upgrades made on this character! You'll get all the Box Points refunded of course, no problemo!",
+    sources: ['Gem Shop'],
   },
   Ht: {
     Name: 'Hat Premiumifier',
@@ -5583,28 +6254,29 @@ module.exports = {
     description:
       "Hold down to gain EXP in the skill that's displayed in the corner of your screen. If you're in a town, you will gain EXP in the town skill. The amount of EXP you get is based on your skill's Lv.",
     sources: [
-      'Picnic_Stowaway7',
       'Simple Shippin',
+      'Plan-it Express',
+      'Dudes Next Door',
+      'Sprout2',
+      'Cowbo_Jones11',
+      'Papua_Piggea3',
+      'Cowbo_Jones7',
+      'Papua_Piggea2',
+      'TP_Pete1',
+      'Builder_Bird1',
+      'Picnic_Stowaway5',
+      'Stiltzcho2',
+      'Scripticus10',
       'Promotheus4',
       'Sprout1',
-      'Builder_Bird1',
-      'Cowbo_Jones7',
-      'Papua_Piggea3',
-      'Bandit_Bob1',
-      'Stiltzcho2',
-      'Cowbo_Jones11',
-      'DropTable13',
-      'Picnic_Stowaway5',
-      'TP_Pete2',
-      'Sprout2',
-      'Loominadi1',
-      'Scripticus10',
-      'Cowbo_Jones4',
       'Carpetiem2',
-      'Dudes Next Door',
-      'TP_Pete1',
-      'Papua_Piggea2',
-      'Plan-it Express',
+      'Cowbo_Jones4',
+      'TP_Pete2',
+      'Loominadi1',
+      'DropTable13',
+      'Bandit_Bob1',
+      'Guilds Giftbox Vendor',
+      'Picnic_Stowaway7',
     ],
   },
   ExpBalloon2: {
@@ -5615,7 +6287,15 @@ module.exports = {
     type: 'EXP BALLOON',
     description:
       "Hold down to gain EXP in the skill that's displayed in the corner of your screen. If you're in a town, you will gain EXP in the town skill. The amount of EXP you get is based on your skill's Lv.",
-    sources: ['Cowbo_Jones12', 'Tiki_Chief3', 'Wellington3', 'Snake_Jar3'],
+    sources: [
+      'Constructor_Crow1',
+      'Snake_Jar3',
+      'Cowbo_Jones12',
+      'Wellington3',
+      'Dazey2',
+      'Guilds Giftbox Vendor',
+      'Tiki_Chief3',
+    ],
   },
   ExpBalloon3: {
     Name: 'Large Experience Balloon',
@@ -5625,6 +6305,7 @@ module.exports = {
     type: 'EXP BALLOON',
     description:
       "Hold down to gain EXP in the skill that's displayed in the corner of your screen. If you're in a town, you will gain EXP in the town skill. The amount of EXP you get is based on your skill's Lv.",
+    sources: ['Guilds Giftbox Vendor'],
   },
   JobApplication: {
     Name: 'Job Application',
@@ -5680,7 +6361,17 @@ module.exports = {
     typeGen: 'dQuest',
     id: 0,
     type: 'QUEST ITEM',
-    description: 'Restores power to the Glacial Portal in the Desert Town.',
+    description:
+      'Restores power to the Glacial Portal in the desert town, allowing travel to World 3!',
+  },
+  Crystal3: {
+    Name: 'Galaxial Amethyst',
+    sellPrice: 1,
+    typeGen: 'dQuest',
+    id: 0,
+    type: 'QUEST ITEM',
+    description:
+      'Restores power to the Galaxy Portal in the glacier town, allowing travel to World 4!',
   },
   Quest2: {
     Name: 'Mining Certificate',
@@ -5840,7 +6531,7 @@ module.exports = {
     type: 'MONSTER DROP',
     description:
       "A piece of rock from the big bad wolf himself. Careful, it's overflowing with green plasma energy! No wait, that's just some moss.",
-    sources: ['wolfB', 'wolfA', 'wolfC'],
+    sources: ['wolfA', 'wolfC', 'wolfB'],
   },
   Quest18: {
     Name: "Loomi's Room Key",
@@ -5860,7 +6551,7 @@ module.exports = {
     type: 'QUEST ITEM',
     description:
       'Avast, land lubber! This coin be property of the YumYum Sea Pirates! Ye best be returning it, lest ye want an underwater funeral, arg!',
-    sources: ['YumYum GrottoVendor'],
+    sources: ['Bandit_Bob', 'YumYum GrottoVendor'],
   },
   Quest20: {
     Name: 'Signed Arrest Warrant',
@@ -5909,8 +6600,14 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description:
-      "Represents a single follower on Cloudsound. This isn't a website, it's literally a giant cloud that emits sound. I've never heard of it, but all the youngsters say it's cool.",
-    sources: ['DropTable1', 'DropTable3', 'DropTable2'],
+      "Represents a single follower on Cloudsound. This isn't a website, it's literally a giant cloud that emits sound that people enjoy following around. Why, what were YOU thinking this was?",
+    sources: [
+      'DropTable3c',
+      'DropTable3',
+      'DropTable1',
+      'DropTable2',
+      'DropTable3b',
+    ],
   },
   Quest25: {
     Name: 'Birthday Card',
@@ -5920,6 +6617,7 @@ module.exports = {
     type: 'QUEST ITEM',
     description:
       "It'll mean more to you when you're older... or may when this game is older and I add a use for this item, can't remember which.",
+    sources: ['Alchemy (Level up Gift) Vendor'],
   },
   Quest26: {
     Name: 'Pre Crime Box',
@@ -5997,11 +6695,11 @@ module.exports = {
     description:
       "Hold down to open! There's a santa hat in one of these, as well as various holiday exclusive goodies, even cards!",
     sources: [
+      'Giftmas_Blobulyte1',
       'xmasEvent',
       'xmasEvent2',
       'ghost',
       'Giftmas_Blobulyte2',
-      'Giftmas_Blobulyte1',
     ],
   },
   Quest31: {
@@ -6031,7 +6729,7 @@ module.exports = {
     type: 'QUEST ITEM',
     description:
       "'I literally just die over and over, I can't even fight back other than just running into them. Honestly I wish I was dead, but even then I just keep respawning, literally the worst experience ever, 1 star!!'",
-    sources: ['DropTable7', 'DropTable6'],
+    sources: ['DropTable6', 'DropTable7'],
   },
   Quest33: {
     Name: 'Player Rating With Letter P',
@@ -6066,7 +6764,7 @@ module.exports = {
     },
     description:
       'I remember when I was a kid, I spent an HOUR making a GLASS container look like it was a little friend using googley eyes just like these! If only there was a CONTAINER in this game, so you could do it to!',
-    sources: ['Smithing'],
+    sources: [' Recipe from Crabcake Vendor', 'Smithing'],
   },
   Quest36: {
     Name: 'Dootjat Eye',
@@ -6084,7 +6782,7 @@ module.exports = {
     },
     description:
       'Blinks repeatedly when close to the Black Market, where you buy the Ankh used in the ice zone to get the Hedjet... wait, wrong game, sorry!',
-    sources: ['Smithing'],
+    sources: ['Smithing', ' Recipe from Sand_Giant Vendor'],
   },
   Quest37: {
     Name: 'Silver Antique',
@@ -6122,7 +6820,54 @@ module.exports = {
     type: 'QUEST ITEM',
     description:
       "Hold down to open this box of meatballs... err chestnuts... err chocolate! There's a Giant Bow Hat in one of these, as well as various holiday exclusive goodies, even cards!",
-    sources: ['loveEvent', 'loveEvent2', 'Loveulyte2', 'Loveulyte1', 'slimeR'],
+    sources: ['Loveulyte2', 'slimeR', 'loveEvent2', 'loveEvent', 'Loveulyte1'],
+  },
+  Quest41: {
+    Name: 'Flowies',
+    sellPrice: 100,
+    typeGen: 'dQuest',
+    id: 0,
+    type: 'QUEST ITEM',
+    description:
+      'Curse you flowey! I trusted you, I accepted your pellets of friendship, and then you had to go and throw it all away! And now here you are, trying to take over yet another video game... well I NOT GONNA LE-- oh wait, these are just normal flowers',
+    sources: ['babayaga'],
+  },
+  Quest42: {
+    Name: 'Egg Capsule',
+    sellPrice: 100,
+    typeGen: 'dQuest',
+    id: 0,
+    type: 'QUEST ITEM',
+    get description() {
+      return `Hold down to open for a random reward! Or, hold down for a LONG time to open them faster... yea, dreams do come true ${this.stats.trigger}`;
+    },
+    sources: [
+      'sheepB',
+      'Egggulyte1',
+      'Egggulyte2',
+      'EasterEvent1',
+      'snakeY',
+      'EasterEvent2',
+    ],
+  },
+  Quest43: {
+    Name: 'Gummy Bunny',
+    sellPrice: 100,
+    typeGen: 'dQuest',
+    id: 0,
+    type: 'QUEST ITEM',
+    description:
+      'Hold down to summon a friendly easter monster. But be careful, unlike real life where all friends are genuine, these monsters are just pretending to be your friend for personal gain!',
+  },
+  Quest44: {
+    Name: 'Goldegg Capsule',
+    sellPrice: 100,
+    typeGen: 'dQuest',
+    id: 0,
+    type: 'QUEST ITEM',
+    description:
+      'Hold down to summon a mini boss or a green mushroom. Mostly the second thing.',
+    sources: ['sheepB', 'snakeY', 'EasterEvent2'],
   },
   Quest9: {
     Name: 'Picnic Token',
@@ -6161,8 +6906,9 @@ module.exports = {
     recipe: {
       lvReqToCraft: 50,
       costs: [
-        ['FillerMaterial', ' 1'],
-        ['FillerMaterial', ' 2'],
+        ['PlatBar', ' 1000'],
+        ['StumpTree', ' 2000'],
+        ['EquipmentHats22', ' 1'],
       ],
     },
     description:
@@ -6178,8 +6924,10 @@ module.exports = {
     recipe: {
       lvReqToCraft: 50,
       costs: [
-        ['FillerMaterial', ' 1'],
-        ['FillerMaterial', ' 1'],
+        ['PeanutG', ' 30'],
+        ['Sewers1b', ' 12'],
+        ['Cutter', ' 1'],
+        ['EquipmentBows4', ' 2'],
       ],
     },
     description:
@@ -6233,7 +6981,7 @@ module.exports = {
     recipe: {
       lvReqToCraft: 45,
       costs: [
-        ['Quest9', ' 69'],
+        ['Quest9', ' 1'],
         ['NPCtoken15', ' 1'],
         ['NPCtoken12', ' 1'],
         ['NPCtoken14', ' 1'],
@@ -6250,6 +6998,7 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description: "Proof that you completed all of Stiltzcho's main quests!",
+    sources: ['Stiltzcho6'],
   },
   NPCtoken5: {
     Name: 'Woodsman Token',
@@ -6258,6 +7007,7 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description: "Proof that you completed all of the Woodsman's quests!",
+    sources: ['Woodsman4'],
   },
   NPCtoken6: {
     Name: 'Glumlee Token',
@@ -6266,6 +7016,7 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description: "Proof that you completed all of Glumlee's quests!",
+    sources: ['Glumlee5'],
   },
   NPCtoken7: {
     Name: 'Papua Piggea Token',
@@ -6326,6 +7077,7 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description: "Proof that you completed all of Dog Bone's quests!",
+    sources: ['Dog_Bone2'],
   },
   NPCtoken14: {
     Name: 'Dazey Token',
@@ -6334,6 +7086,7 @@ module.exports = {
     id: 0,
     type: 'QUEST ITEM',
     description: "Proof that you completed all of Dazey's quests!",
+    sources: ['Dazey2'],
   },
   NPCtoken15: {
     Name: 'TP Pete Token',
@@ -6430,9 +7183,10 @@ module.exports = {
     sources: [
       'Simple Shippin',
       'Bandit_Bob2',
-      'Town_Marble1',
-      'Blunder HillsVendor',
       'DropTable2',
+      'Blunder HillsVendor',
+      'Town_Marble1',
+      'Alchemy (Level up Gift) Vendor',
     ],
   },
   EquipmentStatues2: {
@@ -6445,10 +7199,11 @@ module.exports = {
       "A stone statue that isnt actually fast because its made of stone and stone can't move. Give this to the Statue Man in return for some bonus stats",
     sources: [
       'Papua_Piggea4',
+      'Alchemy (Level up Gift) Vendor',
       'DropTable5b',
-      'Stiltzcho1',
       'Krunk3',
       'Stiltzcho2',
+      'Stiltzcho1',
     ],
   },
   EquipmentStatues3: {
@@ -6459,7 +7214,7 @@ module.exports = {
     type: 'STATUE',
     description:
       'A stone statue that resembles some sort of double edged scythe. Give this to the Statue Man in return for some bonus stats',
-    sources: ['DropTable5'],
+    sources: ['DropTable5', 'Alchemy (Level up Gift) Vendor'],
   },
   EquipmentStatues4: {
     Name: 'Feasty Statue',
@@ -6470,10 +7225,11 @@ module.exports = {
     description:
       "A stone statue that looks good enough to eat to anyone who doesn't notice that it's inedible. Give this to the Statue Man in return for some bonus stats",
     sources: [
-      'DropTable5b',
       'Simple Shippin',
       'Plan-it Express',
+      'DropTable5b',
       'DropTable3b',
+      'Alchemy (Level up Gift) Vendor',
     ],
   },
   EquipmentStatues5: {
@@ -6484,7 +7240,12 @@ module.exports = {
     type: 'STATUE',
     description:
       "A stone statue made by someone for a romantic propsal. I don't think it ended well. Give this to the Statue Man in return for some bonus stats",
-    sources: ['DropTable3c', 'DropTable3', 'DropTable3b'],
+    sources: [
+      'DropTable3b',
+      'DropTable3c',
+      'Alchemy (Level up Gift) Vendor',
+      'DropTable3',
+    ],
   },
   EquipmentStatues6: {
     Name: 'Kachow Statue',
@@ -6494,7 +7255,12 @@ module.exports = {
     type: 'STATUE',
     description:
       'A stone statue named after the catch phrase of a very fast and very not real red car. Give this to the Statue Man in return for some bonus stats',
-    sources: ['Tiki_Chief1', 'Picnic_Stowaway6', 'Plan-it Express'],
+    sources: [
+      'Tiki_Chief1',
+      'Picnic_Stowaway6',
+      'Plan-it Express',
+      'Alchemy (Level up Gift) Vendor',
+    ],
   },
   EquipmentStatues7: {
     Name: 'Lumberbob Statue',
@@ -6504,7 +7270,7 @@ module.exports = {
     type: 'STATUE',
     description:
       "A stone statue named in a world where the name Jack doesn't exist. Give this to the Statue Man in return for some bonus stats",
-    sources: ['DropTable4'],
+    sources: ['Alchemy (Level up Gift) Vendor', 'DropTable4'],
   },
   EquipmentStatues8: {
     Name: 'Thicc Skin Statue',
@@ -6514,7 +7280,7 @@ module.exports = {
     type: 'STATUE',
     description:
       "I don't think the sculptor who named this statue back in 3000 BC would be happy with how his typo would be interpreted.",
-    sources: ['Sprout1', 'DropTable11'],
+    sources: ['Sprout1', 'Alchemy (Level up Gift) Vendor', 'DropTable11'],
   },
   EquipmentStatues9: {
     Name: 'Oceanman Statue',
@@ -6594,15 +7360,14 @@ module.exports = {
     class: 'ALL',
     lvReqToEquip: 999,
     sources: [
-      'Rocklyte1',
-      'DropTable1',
-      'ChestB1',
       'Funguy2',
+      'DropTable3',
+      'DropTable1',
       'goblinG',
-      'plank',
+      'Rocklyte1',
       'Scripticus7',
       'slimeG',
-      'DropTable3',
+      'plank',
     ],
   },
   SmithingRecipes2: {
@@ -6613,7 +7378,7 @@ module.exports = {
     type: 'ANVIL RECIPE',
     class: 'ALL',
     lvReqToEquip: 999,
-    sources: ['crabcake', 'mimicA', 'sandgiant', 'coconut'],
+    sources: ['sandgiant', 'mimicA', 'coconut', 'crabcake'],
   },
   SmithingRecipes3: {
     Name: 'Apprentice Recipe',
@@ -6642,13 +7407,14 @@ module.exports = {
     class: 'ALL',
     lvReqToEquip: 999,
     sources: [
-      'Crystal1',
-      'Glumlee4',
-      'Rocklyte3',
       'Scripticus11',
       'SuperDropTable1',
-      'Crystal0',
+      'Crystal2',
+      'Crystal1',
       'Picnic_Stowaway9',
+      'Rocklyte3',
+      'Glumlee4',
+      'Crystal0',
     ],
   },
   TalentBook2: {
@@ -6770,7 +7536,7 @@ module.exports = {
       speed: -5,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBag4: {
     Name: 'Sizable Mining Pouch',
@@ -6792,7 +7558,7 @@ module.exports = {
       speed: 170,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBag5: {
     Name: 'Big Mining Pouch',
@@ -6801,7 +7567,7 @@ module.exports = {
     id: 50,
     type: 'CARRY BAG',
     class: 'Mining',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -6889,7 +7655,7 @@ module.exports = {
       weaponPower: 1,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagT4: {
     Name: 'Sizable Choppin Pouch',
@@ -6912,7 +7678,7 @@ module.exports = {
       weaponPower: 1,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagT5: {
     Name: 'Big Choppin Pouch',
@@ -6921,7 +7687,7 @@ module.exports = {
     id: 51,
     type: 'CARRY BAG',
     class: 'Chopping',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -6956,8 +7722,8 @@ module.exports = {
       costs: [
         ['FoodHealth1', ' 75'],
         ['FoodHealth3', ' 25'],
-        ['OakTree', ' 75'],
-        ['CopperBar', ' 20'],
+        ['OakTree', ' 60'],
+        ['CopperBar', ' 15'],
       ],
     },
     class: 'Foods',
@@ -7021,7 +7787,8 @@ module.exports = {
       lvReqToCraft: 1,
       costs: [
         ['FoodG3', ' 9'],
-        ['MaxCapBagF3', ' 5'],
+        ['DesertA3b', ' 6'],
+        ['MaxCapBagF3', ' 2'],
       ],
     },
     class: 'Foods',
@@ -7032,7 +7799,7 @@ module.exports = {
       weaponPower: 2,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagF5: {
     Name: 'Big Food Pouch',
@@ -7041,7 +7808,7 @@ module.exports = {
     id: 52,
     type: 'CARRY BAG',
     class: 'Foods',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -7074,9 +7841,9 @@ module.exports = {
     recipe: {
       lvReqToCraft: 1,
       costs: [
-        ['CraftMat5', ' 125'],
-        ['Grasslands2', ' 50'],
-        ['Grasslands3', ' 50'],
+        ['CraftMat5', ' 80'],
+        ['Grasslands2', ' 40'],
+        ['Grasslands3', ' 30'],
       ],
     },
     class: 'bCraft',
@@ -7140,8 +7907,7 @@ module.exports = {
       costs: [
         ['Sewers1b', ' 5'],
         ['TreeInterior1b', ' 5'],
-        ['DesertA3b', ' 5'],
-        ['MaxCapBagM4', ' 5'],
+        ['MaxCapBagM4', ' 2'],
       ],
     },
     class: 'bCraft',
@@ -7152,7 +7918,7 @@ module.exports = {
       weaponPower: 3,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagM6: {
     Name: 'Big Materials Pouch',
@@ -7161,7 +7927,7 @@ module.exports = {
     id: 50,
     type: 'CARRY BAG',
     class: 'bCraft',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -7202,7 +7968,7 @@ module.exports = {
       weaponPower: 4,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagFi2: {
     Name: 'Small Fish Pouch',
@@ -7225,7 +7991,7 @@ module.exports = {
       weaponPower: 4,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagFi3: {
     Name: 'Average Fish Pouch',
@@ -7249,7 +8015,7 @@ module.exports = {
       weaponPower: 4,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagFi4: {
     Name: 'Sizable Fish Pouch',
@@ -7272,7 +8038,7 @@ module.exports = {
       weaponPower: 4,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagFi5: {
     Name: 'Big Fish Pouch',
@@ -7281,7 +8047,7 @@ module.exports = {
     id: 53,
     type: 'CARRY BAG',
     class: 'Fishing',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -7322,7 +8088,7 @@ module.exports = {
       weaponPower: 5,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagB2: {
     Name: 'Small Bug Pouch',
@@ -7345,7 +8111,7 @@ module.exports = {
       weaponPower: 5,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagB3: {
     Name: 'Average Bug Pouch',
@@ -7369,7 +8135,7 @@ module.exports = {
       weaponPower: 5,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagB4: {
     Name: 'Sizable Bug Pouch',
@@ -7392,7 +8158,7 @@ module.exports = {
       weaponPower: 5,
       str: 3,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   MaxCapBagB5: {
     Name: 'Big Bug Pouch',
@@ -7401,7 +8167,7 @@ module.exports = {
     id: 54,
     type: 'CARRY BAG',
     class: 'Bugs',
-    lvReqToEquip: 1e3,
+    lvReqToEquip: 1000,
     stats: {
       reach: 10,
       speed: 240,
@@ -7420,6 +8186,7 @@ module.exports = {
     stats: {
       str: 1,
     },
+    sources: ['DropTable1'],
   },
   ObolBronze1: {
     Name: 'Bronze AGI Obol',
@@ -7432,6 +8199,7 @@ module.exports = {
     stats: {
       agi: 1,
     },
+    sources: ['DropTable2'],
   },
   ObolBronze2: {
     Name: 'Bronze WIS Obol',
@@ -7444,6 +8212,7 @@ module.exports = {
     stats: {
       wis: 1,
     },
+    sources: ['DropTable3'],
   },
   ObolBronze3: {
     Name: 'Bronze LUK Obol',
@@ -7456,6 +8225,7 @@ module.exports = {
     stats: {
       luk: 1,
     },
+    sources: ['DropTable4'],
   },
   ObolSilver0: {
     Name: 'Silver STR Obol',
@@ -7468,7 +8238,7 @@ module.exports = {
     stats: {
       str: 2,
     },
-    sources: ['Carpetiem1'],
+    sources: ['DropTable6', 'Carpetiem1'],
   },
   ObolSilver1: {
     Name: 'Silver AGI Obol',
@@ -7481,6 +8251,7 @@ module.exports = {
     stats: {
       agi: 2,
     },
+    sources: ['DropTable7'],
   },
   ObolSilver2: {
     Name: 'Silver WIS Obol',
@@ -7493,6 +8264,7 @@ module.exports = {
     stats: {
       wis: 2,
     },
+    sources: ['DropTable8'],
   },
   ObolSilver3: {
     Name: 'Silver LUK Obol',
@@ -7505,6 +8277,7 @@ module.exports = {
     stats: {
       luk: 2,
     },
+    sources: ['DropTable9'],
   },
   ObolGold0: {
     Name: 'Gold STR Obol',
@@ -7553,6 +8326,7 @@ module.exports = {
     stats: {
       luk: 4,
     },
+    sources: ['SuperDropTable2'],
   },
   ObolBronzeDamage: {
     Name: 'Bronze Obol of Puny Damage',
@@ -7581,6 +8355,7 @@ module.exports = {
       wis: 1,
       misc1: '20BASE DAMAGE',
     },
+    sources: ['SuperDropTable1'],
   },
   ObolGoldDamage: {
     Name: 'Golden Obol of Big Boy Damage',
@@ -7649,6 +8424,7 @@ module.exports = {
       luk: 4,
       misc1: '8% MONEY',
     },
+    sources: ['SuperDropTable1'],
   },
   ObolGoldMoney: {
     Name: 'Golden Obol of Plentiful Riches',
@@ -7932,6 +8708,7 @@ module.exports = {
       luk: 3,
       misc1: '10% DROP CHANCE',
     },
+    sources: ['SuperDropTable2'],
   },
   ObolPinkLuck: {
     Name: 'Dementia Obol of Never Ending Luck',
@@ -7977,7 +8754,21 @@ module.exports = {
       luk: 2,
       misc1: '5% BOSS DAMAGE',
     },
-    sources: ['Boss2C', 'Boss2B', 'Boss2A'],
+    sources: ['Boss2B', 'Boss2C', 'Boss2A'],
+  },
+  ObolAmarokA: {
+    Name: "Granite Obol of Amarok's Stare",
+    sellPrice: 20,
+    typeGen: 'aObolHexagon',
+    id: 3,
+    type: 'HEXAGON OBOL',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      str: 3,
+      misc1: '4% DEFENCE',
+    },
+    sources: ['wolfA', 'wolfB'],
   },
   ExpSmith1: {
     Name: 'Smithing Exp',
@@ -7990,7 +8781,7 @@ module.exports = {
   },
   StampA1: {
     Name: 'Sword Stamp',
-    sellPrice: 1,
+    sellPrice: 500,
     typeGen: 'aStamp',
     id: 0,
     type: 'STAMP',
@@ -7998,7 +8789,7 @@ module.exports = {
   },
   StampA2: {
     Name: 'Heart Stamp',
-    sellPrice: 1,
+    sellPrice: 500,
     typeGen: 'aStamp',
     id: 1,
     type: 'STAMP',
@@ -8015,7 +8806,7 @@ module.exports = {
   },
   StampA4: {
     Name: 'Tomahawk Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 3,
     type: 'STAMP',
@@ -8043,7 +8834,7 @@ module.exports = {
   },
   StampA7: {
     Name: 'Longsword Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 6,
     type: 'STAMP',
@@ -8052,7 +8843,7 @@ module.exports = {
   },
   StampA8: {
     Name: 'Kapow Stamp',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 7,
     type: 'STAMP',
@@ -8062,7 +8853,7 @@ module.exports = {
   },
   StampA9: {
     Name: 'Fist Stamp',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 8,
     type: 'STAMP',
@@ -8071,7 +8862,7 @@ module.exports = {
   },
   StampA10: {
     Name: 'Battleaxe Stamp',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 9,
     type: 'STAMP',
@@ -8080,7 +8871,7 @@ module.exports = {
   },
   StampA11: {
     Name: 'Agile Stamp',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 10,
     type: 'STAMP',
@@ -8099,7 +8890,7 @@ module.exports = {
   },
   StampA13: {
     Name: 'Book Stamp',
-    sellPrice: 1,
+    sellPrice: 8000,
     typeGen: 'aStamp',
     id: 12,
     type: 'STAMP',
@@ -8108,7 +8899,7 @@ module.exports = {
   },
   StampA14: {
     Name: 'Manamoar Stamp',
-    sellPrice: 1,
+    sellPrice: 8000,
     typeGen: 'aStamp',
     id: 13,
     type: 'STAMP',
@@ -8122,11 +8913,11 @@ module.exports = {
     id: 14,
     type: 'STAMP',
     description: 'BaseLUK,add,1,0,2,EquipmentShirts12,1,2,300,1.38,0,{} LUK,6',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   StampA16: {
     Name: 'Scimitar Stamp',
-    sellPrice: 1,
+    sellPrice: 4000,
     typeGen: 'aStamp',
     id: 15,
     type: 'STAMP',
@@ -8135,7 +8926,7 @@ module.exports = {
   },
   StampA17: {
     Name: 'Bullseye Stamp',
-    sellPrice: 1,
+    sellPrice: 12500,
     typeGen: 'aStamp',
     id: 16,
     type: 'STAMP',
@@ -8144,7 +8935,7 @@ module.exports = {
   },
   StampA18: {
     Name: 'Feather Stamp',
-    sellPrice: 1,
+    sellPrice: 6000,
     typeGen: 'aStamp',
     id: 17,
     type: 'STAMP',
@@ -8153,7 +8944,7 @@ module.exports = {
   },
   StampA19: {
     Name: 'Polearm Stamp',
-    sellPrice: 1,
+    sellPrice: 7500,
     typeGen: 'aStamp',
     id: 18,
     type: 'STAMP',
@@ -8163,7 +8954,7 @@ module.exports = {
   },
   StampA20: {
     Name: 'Violence Stamp',
-    sellPrice: 1,
+    sellPrice: 25000,
     typeGen: 'aStamp',
     id: 19,
     type: 'STAMP',
@@ -8172,7 +8963,7 @@ module.exports = {
   },
   StampA21: {
     Name: 'Buckler Stamp',
-    sellPrice: 1,
+    sellPrice: 12000,
     typeGen: 'aStamp',
     id: 20,
     type: 'STAMP',
@@ -8189,7 +8980,7 @@ module.exports = {
   },
   StampA23: {
     Name: 'Sukka Foo',
-    sellPrice: 1,
+    sellPrice: 10000,
     typeGen: 'aStamp',
     id: 22,
     type: 'STAMP',
@@ -8198,7 +8989,7 @@ module.exports = {
   },
   StampA24: {
     Name: 'Arcane Stamp',
-    sellPrice: 1,
+    sellPrice: 6000,
     typeGen: 'aStamp',
     id: 23,
     type: 'STAMP',
@@ -8215,7 +9006,7 @@ module.exports = {
   },
   StampA26: {
     Name: 'Steve Sword',
-    sellPrice: 1,
+    sellPrice: 50000,
     typeGen: 'aStamp',
     id: 25,
     type: 'STAMP',
@@ -8225,7 +9016,7 @@ module.exports = {
   },
   StampA27: {
     Name: 'Blover Stamp',
-    sellPrice: 1,
+    sellPrice: 12500,
     typeGen: 'aStamp',
     id: 26,
     type: 'STAMP',
@@ -8233,7 +9024,7 @@ module.exports = {
   },
   StampA28: {
     Name: 'Stat Graph Stamp',
-    sellPrice: 1,
+    sellPrice: 10000,
     typeGen: 'aStamp',
     id: 27,
     type: 'STAMP',
@@ -8298,16 +9089,16 @@ module.exports = {
   },
   StampB1: {
     Name: 'Pickaxe Stamp',
-    sellPrice: 1,
+    sellPrice: 500,
     typeGen: 'aStamp',
-    id: 1e3,
+    id: 1000,
     type: 'STAMP',
     description:
       'BaseMinEff,add,1,0,10,OakTree,25,7,50,1.3,1,{} Mining Efficiency,0',
   },
   StampB2: {
     Name: 'Hatchet Stamp',
-    sellPrice: 1,
+    sellPrice: 1200,
     typeGen: 'aStamp',
     id: 1001,
     type: 'STAMP',
@@ -8316,7 +9107,7 @@ module.exports = {
   },
   StampB3: {
     Name: 'Anvil Zoomer Stamp',
-    sellPrice: 1,
+    sellPrice: 800,
     typeGen: 'aStamp',
     id: 1002,
     type: 'STAMP',
@@ -8326,7 +9117,7 @@ module.exports = {
   },
   StampB4: {
     Name: "Lil' Mining Baggy Stamp",
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 1003,
     type: 'STAMP',
@@ -8336,7 +9127,7 @@ module.exports = {
   },
   StampB5: {
     Name: 'Twin Ores Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 1004,
     type: 'STAMP',
@@ -8345,7 +9136,7 @@ module.exports = {
   },
   StampB6: {
     Name: "Choppin' Bag Stamp",
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 1005,
     type: 'STAMP',
@@ -8355,7 +9146,7 @@ module.exports = {
   },
   StampB7: {
     Name: 'Duplogs Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 1006,
     type: 'STAMP',
@@ -8364,17 +9155,17 @@ module.exports = {
   },
   StampB8: {
     Name: 'Matty Bag Stamp',
-    sellPrice: 1,
+    sellPrice: 6700,
     typeGen: 'aStamp',
     id: 1007,
     type: 'STAMP',
     description:
       'MatCap,add,1,0,10,MaxCapBagM2,1,2,50,1.3,2,{} Material Carry Cap,0',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   StampB9: {
     Name: 'Smart Dirt Stamp',
-    sellPrice: 1,
+    sellPrice: 1500,
     typeGen: 'aStamp',
     id: 1008,
     type: 'STAMP',
@@ -8383,7 +9174,7 @@ module.exports = {
   },
   StampB10: {
     Name: 'Cool Diggy Tool Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 1009,
     type: 'STAMP',
@@ -8392,7 +9183,7 @@ module.exports = {
   },
   StampB11: {
     Name: 'High IQ Lumber Stamp',
-    sellPrice: 1,
+    sellPrice: 1800,
     typeGen: 'aStamp',
     id: 1010,
     type: 'STAMP',
@@ -8401,7 +9192,7 @@ module.exports = {
   },
   StampB12: {
     Name: 'Swag Swingy Tool Stamp',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 1011,
     type: 'STAMP',
@@ -8410,7 +9201,7 @@ module.exports = {
   },
   StampB13: {
     Name: 'Alch Go Brrr Stamp',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 1012,
     type: 'STAMP',
@@ -8420,7 +9211,7 @@ module.exports = {
   },
   StampB14: {
     Name: 'Brainstew Stamps',
-    sellPrice: 1,
+    sellPrice: 2500,
     typeGen: 'aStamp',
     id: 1013,
     type: 'STAMP',
@@ -8429,7 +9220,7 @@ module.exports = {
   },
   StampB15: {
     Name: 'Drippy Drop Stamp',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 1014,
     type: 'STAMP',
@@ -8439,7 +9230,7 @@ module.exports = {
   },
   StampB16: {
     Name: 'Droplots Stamp',
-    sellPrice: 1,
+    sellPrice: 5000,
     typeGen: 'aStamp',
     id: 1015,
     type: 'STAMP',
@@ -8448,7 +9239,7 @@ module.exports = {
   },
   StampB17: {
     Name: 'Fishing Rod Stamp',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 1016,
     type: 'STAMP',
@@ -8458,7 +9249,7 @@ module.exports = {
   },
   StampB18: {
     Name: 'Fishhead Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 1017,
     type: 'STAMP',
@@ -8468,7 +9259,7 @@ module.exports = {
   },
   StampB19: {
     Name: 'Catch Net Stamp',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 1018,
     type: 'STAMP',
@@ -8478,7 +9269,7 @@ module.exports = {
   },
   StampB20: {
     Name: 'Fly Intel Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 1019,
     type: 'STAMP',
@@ -8488,7 +9279,7 @@ module.exports = {
   },
   StampB21: {
     Name: 'Bag o Heads Stamp',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 1020,
     type: 'STAMP',
@@ -8497,7 +9288,7 @@ module.exports = {
   },
   StampB22: {
     Name: 'Holy Mackerel Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 1021,
     type: 'STAMP',
@@ -8507,7 +9298,7 @@ module.exports = {
   },
   StampB23: {
     Name: 'Bugsack Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 1022,
     type: 'STAMP',
@@ -8516,7 +9307,7 @@ module.exports = {
   },
   StampB24: {
     Name: 'Buzz Buzz Stamp',
-    sellPrice: 1,
+    sellPrice: 4000,
     typeGen: 'aStamp',
     id: 1023,
     type: 'STAMP',
@@ -8526,9 +9317,9 @@ module.exports = {
   },
   StampC1: {
     Name: 'Questin Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
-    id: 2e3,
+    id: 2000,
     type: 'STAMP',
     description:
       'QuestExp,decay,70,50,10,Jungle1,30,6,500,1.32,0,{}% Quest EXP,3',
@@ -8536,7 +9327,7 @@ module.exports = {
   },
   StampC2: {
     Name: 'Mason Jar Stamp',
-    sellPrice: 1,
+    sellPrice: 10000,
     typeGen: 'aStamp',
     id: 2001,
     type: 'STAMP',
@@ -8546,13 +9337,13 @@ module.exports = {
   },
   StampC3: {
     Name: 'Crystallin',
-    sellPrice: 1,
+    sellPrice: 2000,
     typeGen: 'aStamp',
     id: 2002,
     type: 'STAMP',
     description:
       'CrySpawn,decay,110,50,10,CraftMat6,35,8,800,1.31,0,{}% Spawn Chance,3',
-    sources: ['Crystal1', 'Crystal0'],
+    sources: ['Crystal0', 'Crystal2', 'Crystal1'],
   },
   StampC4: {
     Name: 'Blank',
@@ -8564,7 +9355,7 @@ module.exports = {
   },
   StampC5: {
     Name: 'Apple Stamp',
-    sellPrice: 1,
+    sellPrice: 1000,
     typeGen: 'aStamp',
     id: 2004,
     type: 'STAMP',
@@ -8573,7 +9364,7 @@ module.exports = {
   },
   StampC6: {
     Name: 'Potion Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 2005,
     type: 'STAMP',
@@ -8583,7 +9374,7 @@ module.exports = {
   },
   StampC7: {
     Name: 'Golden Apple Stamp',
-    sellPrice: 1,
+    sellPrice: 10000,
     typeGen: 'aStamp',
     id: 2006,
     type: 'STAMP',
@@ -8601,12 +9392,13 @@ module.exports = {
   },
   StampC9: {
     Name: 'Card Stamp',
-    sellPrice: 1,
+    sellPrice: 3000,
     typeGen: 'aStamp',
     id: 2008,
     type: 'STAMP',
     description:
       'CardDrop,add,1,0,10,DesertB2,25,6,1200,1.31,0,{}% Card Drop Rate,3',
+    sources: ['Alchemy (Level up Gift) Vendor'],
   },
   StampC10: {
     Name: 'Blank',
@@ -8643,7 +9435,7 @@ module.exports = {
   },
   StampC14: {
     Name: 'Talent II Stamp',
-    sellPrice: 1,
+    sellPrice: 12000,
     typeGen: 'aStamp',
     id: 2013,
     type: 'STAMP',
@@ -8683,6 +9475,25 @@ module.exports = {
     type: 'STAMP',
     description: 'TalentS,add,1,0,2,Copper,25,6,50,1.3,0,{} Star Talent Pts,3',
   },
+  StoneWe: {
+    Name: 'Easter Weapon Stone',
+    sellPrice: 125,
+    typeGen: 'dStone',
+    id: 0,
+    type: 'UPGRADE',
+    effect: [
+      ['Weapon Power', 1],
+      ['Defence', 2],
+    ],
+    stats: {
+      amount: 25,
+      trigger: 1,
+    },
+    get description() {
+      return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
+    },
+    sources: ['EasterEvent1', 'sheepB', 'snakeY', 'EasterEvent2'],
+  },
   StoneW1: {
     Name: 'Weapon Upgrade Stone I',
     sellPrice: 125,
@@ -8699,12 +9510,12 @@ module.exports = {
     },
     sources: [
       'Simple Shippin',
-      'Dudes Next Door',
       'DropTable5',
-      'ChestA1',
-      'Plan-it Express',
-      'Blunder HillsVendor',
       'NYI',
+      'Plan-it Express',
+      'Dudes Next Door',
+      'Blunder HillsVendor',
+      'ChestA1',
     ],
   },
   StoneW2: {
@@ -8725,14 +9536,16 @@ module.exports = {
       return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
-      'YumYum GrottoVendor',
       'ChestA2',
-      'DropTable11',
-      'ChestB1',
-      'Dudes Next Door',
       'Cowbo_Jones5',
-      'mushG',
+      'DropTable11',
       'Plan-it Express',
+      'Dudes Next Door',
+      'Guilds Giftbox Vendor',
+      'ChestB1',
+      'ChestA3',
+      'mushG',
+      'YumYum GrottoVendor',
     ],
   },
   StoneW3: {
@@ -8752,7 +9565,7 @@ module.exports = {
     get description() {
       return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
-    sources: ['Dudes Next Door', 'ChestB2'],
+    sources: ['ChestB3', 'Dudes Next Door', 'ChestB2'],
   },
   StoneW6: {
     Name: 'Warped Weapon Upgrade Stone',
@@ -8772,7 +9585,26 @@ module.exports = {
     get description() {
       return `Drag onto any Weapon to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
-    sources: ['Funguy5', 'Goldric4', 'Bandit_Bob1'],
+    sources: ['Funguy5', 'Bandit_Bob1', 'Goldric4'],
+  },
+  StoneAe: {
+    Name: 'Easter Armor Stone',
+    sellPrice: 100,
+    typeGen: 'dStone',
+    id: 1,
+    type: 'UPGRADE',
+    effect: [
+      ['Defence', 1],
+      ['Random Stat', 3],
+    ],
+    stats: {
+      amount: 30,
+      trigger: 1,
+    },
+    get description() {
+      return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
+    },
+    sources: ['EasterEvent1', 'sheepB', 'snakeY', 'EasterEvent2'],
   },
   StoneA1: {
     Name: 'Armor Upgrade Stone I',
@@ -8793,13 +9625,13 @@ module.exports = {
     },
     sources: [
       'Simple Shippin',
+      'DropTable4',
+      'NYI',
+      'Plan-it Express',
       'Dudes Next Door',
       'Scripticus13',
-      'ChestA1',
-      'DropTable4',
-      'Plan-it Express',
       'Blunder HillsVendor',
-      'NYI',
+      'ChestA1',
     ],
   },
   StoneA1b: {
@@ -8808,12 +9640,9 @@ module.exports = {
     typeGen: 'dStone',
     id: 1,
     type: 'UPGRADE',
-    effect: [
-      ['Defence', 1],
-      ['Random Stat', 3],
-    ],
+    effect: [['Random Stat', 4]],
     stats: {
-      amount: 40,
+      amount: 42,
       trigger: 1,
     },
     get description() {
@@ -8839,15 +9668,17 @@ module.exports = {
       return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
-      'Encroaching Forest VillasVendor',
-      'YumYum GrottoVendor',
-      'ChestA2',
-      'ChestB1',
-      'Dudes Next Door',
-      'Cowbo_Jones5',
-      'beanG',
-      'Plan-it Express',
       'DropTable10',
+      'ChestA2',
+      'Cowbo_Jones5',
+      'Plan-it Express',
+      'Dudes Next Door',
+      'Encroaching Forest VillasVendor',
+      'Guilds Giftbox Vendor',
+      'ChestB1',
+      'beanG',
+      'ChestA3',
+      'YumYum GrottoVendor',
     ],
   },
   StoneA2b: {
@@ -8884,7 +9715,7 @@ module.exports = {
     get description() {
       return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
-    sources: ['ChestB2'],
+    sources: ['ChestB3', 'ChestB2'],
   },
   StoneA3b: {
     Name: 'Armor Upgrade Stone C',
@@ -8904,7 +9735,23 @@ module.exports = {
     get description() {
       return `Drag onto any Armor to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
-    sources: ['Meel2', 'babaMummy', 'babaHour'],
+    sources: ['babaHour', 'babaMummy', 'Guilds Giftbox Vendor', 'Meel2'],
+  },
+  StoneTe: {
+    Name: 'Easter Tool Upgrade Stone',
+    sellPrice: 110,
+    typeGen: 'dStone',
+    id: 2,
+    type: 'UPGRADE',
+    effect: [['Random Stat', 3]],
+    stats: {
+      amount: 30,
+      trigger: 1,
+    },
+    get description() {
+      return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
+    },
+    sources: ['EasterEvent1', 'sheepB', 'snakeY', 'EasterEvent2'],
   },
   StoneT1: {
     Name: 'Tool Upgrade Stone I',
@@ -8925,11 +9772,12 @@ module.exports = {
     },
     sources: [
       'Simple Shippin',
-      'DropTable11',
-      'DropTable12',
-      'Faraway PiersVendor',
       'DropTable5',
       'DropTable4',
+      'Tundra CampVendor',
+      'Faraway PiersVendor',
+      'DropTable11',
+      'DropTable12',
       'DropTable10',
       'Blunder HillsVendor',
     ],
@@ -8967,14 +9815,15 @@ module.exports = {
       return `Drag onto any Tool to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
     sources: [
-      'YumYum GrottoVendor',
       'DropTable3',
-      'TP_Pete2',
-      'DropTable12',
-      'Dudes Next Door',
+      'Tundra CampVendor',
       'Faraway PiersVendor',
       'Scubidew2',
       'Plan-it Express',
+      'Dudes Next Door',
+      'DropTable12',
+      'TP_Pete2',
+      'YumYum GrottoVendor',
     ],
   },
   StoneT3: {
@@ -9010,7 +9859,7 @@ module.exports = {
     get description() {
       return `Drag onto any Helmet to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful`;
     },
-    sources: ['goblinG', 'Simple Shippin', 'Plan-it Express'],
+    sources: ['Simple Shippin', 'Plan-it Express', 'goblinG'],
   },
   StoneHelm6: {
     Name: 'Warped Helmet Upgrade Stone',
@@ -9027,7 +9876,7 @@ module.exports = {
     get description() {
       return `Drag onto any Helmet to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} item slots. WARNING:Slots are used up even if the Upgrade fails!`;
     },
-    sources: ['Cowbo_Jones9', 'Snake_Jar1', 'Picnic_Stowaway10'],
+    sources: ['Snake_Jar1', 'Cowbo_Jones9', 'Picnic_Stowaway10'],
   },
   StoneHelm1b: {
     Name: 'Giftmas Helmet Upgrade Stone',
@@ -9059,23 +9908,21 @@ module.exports = {
       return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}% Uses up ${this.stats.trigger} slots only if Successful. WARNING:Mystery Stat has a chance to be Negative, and reduce stats!`;
     },
     sources: [
-      'wolfA',
-      'Bushlyte2',
-      'Rocklyte2',
-      'babaMummy',
-      'Boss2C',
-      'wolfC',
-      'Bushlyte1',
-      'Loominadi2',
-      'Tiki_Chief4',
-      'babaHour',
-      'Bushlyte3',
-      'Loominadi1',
-      'Loominadi3',
       'SuperDropTable1',
-      'Boss2A',
-      'wolfB',
-      'Boss2B',
+      'Rocklyte2',
+      'wolfC',
+      'SuperDropTable2',
+      'Loominadi1',
+      'Bushlyte2',
+      'Boss2C',
+      'Bushlyte3',
+      'Loominadi2',
+      'Bushlyte1',
+      'babaHour',
+      'babaMummy',
+      'Tiki_Chief4',
+      'Loominadi3',
+      'Alchemy (Level up Gift) Vendor',
     ],
   },
   StonePremSTR: {
@@ -9140,7 +9987,7 @@ module.exports = {
     get description() {
       return `Drag onto any Equip to apply. Success Chance; ${this.stats.amount}% Can only be used on Premium Equips!`;
     },
-    sources: ['Gem Shop'],
+    sources: ['Gem Shop', 'Guilds Giftbox Vendor'],
   },
   CraftMat1: {
     Name: 'Thread',
@@ -9221,12 +10068,12 @@ module.exports = {
     sources: ['Smithing'],
   },
   CraftMat10: {
-    Name: 'Filler',
+    Name: 'Lugi Bracket',
     sellPrice: 100,
     typeGen: 'bCraft',
     id: 0,
     type: 'MATERIAL',
-    description: 'Filler text lol',
+    description: 'Hey look Mario! I have-a my own reference in the game!',
     sources: ['Smithing'],
   },
   CraftMat11: {
@@ -9300,7 +10147,7 @@ module.exports = {
     type: 'MATERIAL',
     description:
       "The full filtration process also invovles filtering the diamonds through a vat of diamonds before using those filtered diamonds to filter the water! If only they'd filter their filtration process through diamonds so this item description wouldn't be so long.",
-    sources: ['Carpetiem2', 'Loominadi2'],
+    sources: ['Loominadi2', 'Carpetiem2'],
   },
   Grasslands1: {
     Name: 'Spore Cap',
@@ -9321,17 +10168,17 @@ module.exports = {
     description:
       "Imagine if humans had legs like this. Actually, it would be better if you didn't, unless you want nightmares about humans violently jumping at you from 20 feet away.",
     sources: [
-      'AlienTree',
-      'Starfire',
-      'frogG',
-      'BugNest1',
-      'Godshard',
-      'Lustre',
       'BugNest3',
+      'frogG',
       'BugNest4',
+      'Void',
       'Dreadlo',
       'BugNest2',
-      'Void',
+      'BugNest1',
+      'AlienTree',
+      'Lustre',
+      'Starfire',
+      'Godshard',
     ],
   },
   Grasslands3: {
@@ -9419,7 +10266,7 @@ module.exports = {
     id: 0,
     type: 'MONSTER DROP',
     description: 'I guess what they say about corn is true...',
-    sources: ['poopSmall'],
+    sources: ['poopBig', 'poopSmall'],
   },
   Sewers1b: {
     Name: 'Golden Plop',
@@ -9428,8 +10275,8 @@ module.exports = {
     id: 0,
     type: 'MONSTER DROP',
     description:
-      'Conker would have called this something else.               NOTE: This is a very rare drop from Poops',
-    sources: ['poopSmall'],
+      'Conker would have called this something else.                  NOTE: This is a very rare drop from Poops',
+    sources: ['poopBig', 'poopSmall'],
   },
   Sewers2: {
     Name: 'Rats Tail',
@@ -9467,7 +10314,7 @@ module.exports = {
     type: 'MONSTER DROP',
     description:
       "Made of circle that's been carved into the shape of a wood.            NOTE: This is a very rare drop from Branches",
-    sources: ['branch', 'mushW'],
+    sources: ['mushW', 'branch'],
   },
   TreeInterior2: {
     Name: 'Acorn',
@@ -9582,21 +10429,7 @@ module.exports = {
     typeGen: 'bCraft',
     id: 0,
     type: 'MONSTER DROP',
-    sources: [
-      'flake',
-      'mamoth',
-      'steak',
-      'snakeB',
-      'thermostat',
-      'snowball',
-      'stache',
-      'glass',
-      'eye',
-      'penguin',
-      'bloque',
-      'sheep',
-      'speaker',
-    ],
+    sources: ['steak'],
   },
   DesertC2: {
     Name: 'Wakka Cherry',
@@ -9636,6 +10469,142 @@ module.exports = {
       'The very tippy top of the shell, with some of the underneath part attached as well.',
     sources: ['snailZ'],
   },
+  SnowA1: {
+    Name: 'Floof Ploof',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      'A ball of sheep wool. Well, it used to be a ball of ice cream but then I re-drew it.',
+    sources: ['sheep'],
+  },
+  SnowA2: {
+    Name: 'Melty Cube',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description: 'Eugh whats this WATER doing around my ice???',
+    sources: ['flake'],
+  },
+  SnowA3: {
+    Name: 'Moustache Comb',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description: 'Sad times I hope I remember to change this before relase.',
+    sources: ['stache'],
+  },
+  SnowA4: {
+    Name: 'Ram Wool',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "It's got a horn stuck in it. I guess you could say this wool is kinda",
+    sources: ['ram'],
+  },
+  SnowB1: {
+    Name: 'Sticky Stick',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description: "It's ALLLLL sticky!",
+    sources: ['bloque'],
+  },
+  SnowB2: {
+    Name: 'Mamooth Tusk',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "No see, this is a mamOOth tusk, not a mammoth tusk, thats why you think it looks weird. Trust me, it's an incredibly drawn mamooth tusk, truly a work of art.",
+    sources: ['mamoth'],
+  },
+  SnowB2a: {
+    Name: 'Ice, Age 3',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "The thrilling documentary that captures the first three years of Jonathan Ice's life, from birth to preschool. It also has 50,000 1 star ratings claiming it to be false advertising.",
+  },
+  SnowB5: {
+    Name: 'Snow Ball',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      'If you have two of these together, please be careful what other objects you put near them, I need to keep this game age appropirate!',
+    sources: ['snowball'],
+  },
+  SnowB3: {
+    Name: 'Pen',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "Click the pen on, then hold it down against your desk and let go, and BAM that baby will fly you straight to the principal's office!",
+    sources: ['penguin'],
+  },
+  SnowB4: {
+    Name: 'Cracked Glass',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "Ah Mr. Thermostat, not looking so hot now that I've broken you into tiny little bits... no seriously, I can't tell the temperature now that you're broken.",
+    sources: ['thermostat'],
+  },
+  SnowC1: {
+    Name: 'Sippy Straw',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      'This vacuum operated liquid transfer system is capable of dispencing over 500 mL of dangerous dihydrogen monoxide chemical compounds from one end to the other!',
+    sources: ['glass'],
+  },
+  SnowC2: {
+    Name: 'Cryosnake Skin',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      'Wow this is just a cheap recolouring of the normal snakeskin! I want my money back!',
+    sources: ['snakeB'],
+  },
+  SnowC3: {
+    Name: 'Audio Cord',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "Uhhhh... which one which one...?? The red or the blue??? Cmon think think think.. Blue...? 'BOOOOOM'.       Wait, this is an audio cord description? Whoops, I thought this was the Bomb Defuser description!!",
+    sources: ['speaker'],
+  },
+  SnowC4: {
+    Name: 'Contact Lense',
+    sellPrice: 200,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "It's the only transparent item in IdleOn! If they weren't, they'd just be pirate eyepatches after all...",
+    sources: ['eye'],
+  },
   IceMountains2: {
     Name: 'Ice A La Crem',
     sellPrice: 1,
@@ -9645,6 +10614,35 @@ module.exports = {
     description:
       "It's just a normal ice cream. It's been given a fancy name so people would pay more for it in a store.",
   },
+  Hgg: {
+    Name: 'Minuteglass',
+    sellPrice: 1,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description: "It's a bit small, so it's not quite an hourglass, is it.",
+    sources: ['babaHour'],
+  },
+  EfauntDrop1: {
+    Name: 'Ripped Tunic',
+    sellPrice: 1,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      "A piece of Efaunt's tunic. I guess it must have gotten torn off while you were absolutely obliterating them with big time Damage.",
+    sources: ['Boss2B', 'Boss2A'],
+  },
+  EfauntDrop2: {
+    Name: 'Ribbed Tunic',
+    sellPrice: 1,
+    typeGen: 'bCraft',
+    id: 0,
+    type: 'MONSTER DROP',
+    description:
+      'Chaotic Efaunt is probably glad you removed a few of his ribs, for uhh... various reasons.',
+    sources: ['Boss2B'],
+  },
   Trophy1: {
     Name: 'King of Food',
     sellPrice: 10000,
@@ -9652,9 +10650,9 @@ module.exports = {
     id: 15,
     type: 'TROPHY',
     class: 'ALL',
-    lvReqToEquip: 1,
+    lvReqToEquip: 65,
     stats: {
-      weaponPower: 4,
+      weaponPower: 3,
       str: 10,
       agi: 10,
       wis: 10,
@@ -9676,7 +10674,7 @@ module.exports = {
       luk: 7,
       misc1: '7% DROP CHANCE',
     },
-    sources: ['SuperDropTable1'],
+    sources: ['SuperDropTable2', 'SuperDropTable1'],
   },
   Trophy3: {
     Name: 'Club Member',
@@ -9723,21 +10721,20 @@ module.exports = {
   },
   Trophy6: {
     Name: 'Blunder Hero',
-    sellPrice: 777,
+    sellPrice: 69,
     typeGen: 'aTrophy',
     id: 15,
     type: 'TROPHY',
     class: 'ALL',
-    lvReqToEquip: 60,
+    lvReqToEquip: 50,
     stats: {
-      weaponPower: 1,
+      weaponPower: 2,
       str: 5,
       agi: 5,
       wis: 5,
       luk: 5,
-      defence: 10,
-      misc1: '5% MAX HP',
-      upgradeSlotsLeft: 1,
+      defence: 15,
+      misc1: '3% SKILL AFK GAIN',
     },
     sources: ['Scripticus12'],
   },
@@ -9790,6 +10787,7 @@ module.exports = {
       defence: 3,
       misc1: '3% DROP CHANCE',
     },
+    sources: ['Guilds Giftbox Vendor'],
   },
   Starlight: {
     Name: 'Starlight Ore',
@@ -9825,9 +10823,9 @@ module.exports = {
     stats: {
       reach: 70,
       speed: 5,
-      weaponPower: 400,
+      weaponPower: 690,
       agi: 80,
-      luk: 10,
+      luk: 420,
     },
   },
   Secretstone: {
@@ -9848,14 +10846,18 @@ module.exports = {
     description: 'Hold down to instantly get 1 Hour of AFK Gains.',
     sources: [
       'Djonnut1',
-      'Scripticus13',
-      'Mutton2',
       'Cowbo_Jones3',
-      'Fishpaste971',
       'DropTable13',
-      'Desert_Davey2',
+      'Gem Shop',
       'Centurion2',
+      'Mutton2',
       'Loveulyte1',
+      'Guilds Giftbox Vendor',
+      'Scripticus13',
+      'Desert_Davey2',
+      'Alchemy (Level up Gift) Vendor',
+      'Iceland_Irwin1',
+      'Fishpaste971',
     ],
   },
   Timecandy2: {
@@ -9866,13 +10868,17 @@ module.exports = {
     type: 'TIME CANDY',
     description: 'Hold down to instantly get 2 Hour of AFK Gains.',
     sources: [
-      'Postboy_Pablob1',
       'Centurion3',
-      'DropTable13',
-      'Telescope1',
-      'Giftmas_Blobulyte1',
-      'Speccius1',
+      'Stiltzcho4',
       'Centurion4',
+      'Giftmas_Blobulyte1',
+      'Telescope1',
+      'Postboy_Pablob1',
+      'DropTable13',
+      'Gem Shop',
+      'Guilds Giftbox Vendor',
+      'Alchemy (Level up Gift) Vendor',
+      'Speccius1',
     ],
   },
   Timecandy3: {
@@ -9883,11 +10889,15 @@ module.exports = {
     type: 'TIME CANDY',
     description: 'Hold down to instantly get 4 Hour of AFK Gains.',
     sources: [
-      'DropTable13',
-      'Desert_Davey2',
+      'Centurion4',
       'Telescope1',
       'Papua_Piggea2',
-      'Centurion4',
+      'DropTable13',
+      'Gem Shop',
+      'Stiltzcho5',
+      'Guilds Giftbox Vendor',
+      'Desert_Davey2',
+      'Alchemy (Level up Gift) Vendor',
     ],
   },
   Timecandy4: {
@@ -9898,7 +10908,15 @@ module.exports = {
     type: 'TIME CANDY',
     description:
       "Twelve hours, that's a long time! Hold down to instantly get 12 Hour of AFK Gains.",
-    sources: ['DropTable13', 'Snake_Jar2', 'Centurion5'],
+    sources: [
+      'DropTable13',
+      'Gem Shop',
+      'Snake_Jar2',
+      'Guilds Giftbox Vendor',
+      'Alchemy (Level up Gift) Vendor',
+      'Centurion5',
+      'Iceland_Irwin1',
+    ],
   },
   Timecandy5: {
     Name: '24 HR Time Candy',
@@ -9908,7 +10926,7 @@ module.exports = {
     type: 'TIME CANDY',
     description:
       'An entire day, just like that! Hold down to instantly get 24 Hour of AFK Gains.',
-    sources: ['DropTable13'],
+    sources: ['Alchemy (Level up Gift) Vendor', 'Stiltzcho6', 'DropTable13'],
   },
   Timecandy6: {
     Name: '72 HR Time Candy',
@@ -9919,6 +10937,15 @@ module.exports = {
     description:
       "The LEGENDARY 72 Hour candy. Hold down to instantly get 30 Seconds of AFK Gai... just kidding, you'll get 72 Hours!",
     sources: ['DropTable13'],
+  },
+  Timecandy7: {
+    Name: 'Steamy Time Candy',
+    sellPrice: 1,
+    typeGen: 'dTimeCandy',
+    id: 1,
+    type: 'TIME CANDY',
+    description:
+      'Thanks for playing on Steam! Hold down to instantly get anywhere from 10 minutes to 24 hours of AFK time!',
   },
   InvBag1: {
     Name: 'Inventory Bag A',
@@ -10057,6 +11084,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvBag22: {
     Name: 'Inventory Bag V',
@@ -10070,6 +11098,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvBag23: {
     Name: 'Inventory Bag W',
@@ -10083,6 +11112,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvBag24: {
     Name: 'Inventory Bag X',
@@ -10096,6 +11126,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvBag25: {
     Name: 'Inventory Bag Y',
@@ -10109,6 +11140,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvBag26: {
     Name: 'Inventory Bag Z',
@@ -10125,7 +11157,7 @@ module.exports = {
   },
   InvBag100: {
     Name: 'Snakeskinventory Bag',
-    sellPrice: 2500,
+    sellPrice: 1300,
     typeGen: 'aInventoryBag',
     id: 100,
     type: 'INVENTORY',
@@ -10139,7 +11171,7 @@ module.exports = {
   },
   InvBag101: {
     Name: 'Totally Normal and not fake Bag',
-    sellPrice: 2500,
+    sellPrice: 5000,
     typeGen: 'aInventoryBag',
     id: 101,
     type: 'INVENTORY',
@@ -10171,11 +11203,11 @@ module.exports = {
       reach: 10,
       speed: -20,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   InvBag103: {
     Name: 'Sandy Satchel',
-    sellPrice: 2500,
+    sellPrice: 5000,
     typeGen: 'aInventoryBag',
     id: 103,
     type: 'INVENTORY',
@@ -10192,7 +11224,7 @@ module.exports = {
     stats: {
       reach: 10,
     },
-    sources: ['Smithing'],
+    sources: [' Recipe from task unlocks Vendor', 'Smithing'],
   },
   InvBag104: {
     Name: 'Bummo Bag',
@@ -10259,7 +11291,7 @@ module.exports = {
   },
   InvStorage1: {
     Name: 'Storage Chest 1',
-    sellPrice: 1,
+    sellPrice: 200,
     typeGen: 'aStorageChest',
     id: 0,
     type: 'STORAGE',
@@ -10287,7 +11319,7 @@ module.exports = {
   },
   InvStorage3: {
     Name: 'Storage Chest 3',
-    sellPrice: 1,
+    sellPrice: 800,
     typeGen: 'aStorageChest',
     id: 2,
     type: 'STORAGE',
@@ -10301,7 +11333,7 @@ module.exports = {
   },
   InvStorage4: {
     Name: 'Storage Chest 4',
-    sellPrice: 1,
+    sellPrice: 1500,
     typeGen: 'aStorageChest',
     id: 3,
     type: 'STORAGE',
@@ -10315,7 +11347,7 @@ module.exports = {
   },
   InvStorage5: {
     Name: 'Storage Chest 5',
-    sellPrice: 1,
+    sellPrice: 2200,
     typeGen: 'aStorageChest',
     id: 4,
     type: 'STORAGE',
@@ -10343,7 +11375,7 @@ module.exports = {
   },
   InvStorage7: {
     Name: 'Storage Chest 7',
-    sellPrice: 1,
+    sellPrice: 5500,
     typeGen: 'aStorageChest',
     id: 6,
     type: 'STORAGE',
@@ -10353,10 +11385,11 @@ module.exports = {
       reach: 10,
       speed: 170,
     },
+    sources: ['Blunder HillsVendor'],
   },
   InvStorage8: {
     Name: 'Storage Chest 8',
-    sellPrice: 2500,
+    sellPrice: 5500,
     typeGen: 'aStorageChest',
     id: 7,
     type: 'STORAGE',
@@ -10397,7 +11430,7 @@ module.exports = {
   },
   InvStorage11: {
     Name: 'Storage Chest 11',
-    sellPrice: 1,
+    sellPrice: 50000,
     typeGen: 'aStorageChest',
     id: 10,
     type: 'STORAGE',
@@ -10423,7 +11456,7 @@ module.exports = {
   },
   InvStorage13: {
     Name: 'Storage Chest 13',
-    sellPrice: 1,
+    sellPrice: 60000,
     typeGen: 'aStorageChest',
     id: 12,
     type: 'STORAGE',
@@ -10432,6 +11465,7 @@ module.exports = {
     stats: {
       reach: 10,
     },
+    sources: ['YumYum GrottoVendor'],
   },
   InvStorage14: {
     Name: 'Storage Chest 14',
@@ -10484,6 +11518,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage32: {
     Name: 'Storage Chest 91',
@@ -10497,6 +11532,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage33: {
     Name: 'Storage Chest 92',
@@ -10510,6 +11546,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage34: {
     Name: 'Storage Chest 93',
@@ -10523,6 +11560,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage35: {
     Name: 'Storage Chest 94',
@@ -10536,6 +11574,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage36: {
     Name: 'Storage Chest 95',
@@ -10549,6 +11588,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage37: {
     Name: 'Storage Chest 96',
@@ -10562,6 +11602,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage38: {
     Name: 'Storage Chest 97',
@@ -10575,6 +11616,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage39: {
     Name: 'Storage Chest 98',
@@ -10588,6 +11630,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage40: {
     Name: 'Storage Chest 99',
@@ -10601,6 +11644,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage41: {
     Name: 'Storage Chest 99B',
@@ -10614,6 +11658,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorage42: {
     Name: 'Storage Chest 99C',
@@ -10627,6 +11672,7 @@ module.exports = {
       reach: 10,
       speed: 150,
     },
+    sources: ['Gem Shop'],
   },
   InvStorageF: {
     Name: 'Dank Paypay Chest',
@@ -10651,11 +11697,12 @@ module.exports = {
       'Hold down to add these Forest Boss Keys to your account. Account items are shared between all your Characters!',
     sources: [
       'Simple Shippin',
+      'Plan-it Express',
       'Dog_Bone1',
       'ChestC1',
       'ChestB1',
+      'Dog_Bone2',
       'ChestA1',
-      'Plan-it Express',
     ],
   },
   Key2: {
@@ -10666,15 +11713,26 @@ module.exports = {
     type: 'BOSS KEY',
     description: 'Hold down to add these Desert Boss Keys to your account.',
     sources: [
-      'ChestA2',
       'Simple Shippin',
-      'babaMummy',
-      'ChestB2',
-      'Dudes Next Door',
+      'ChestA2',
+      'ChestB3',
       'Djonnut2',
-      'ChestC2',
       'Plan-it Express',
+      'Dudes Next Door',
+      'ChestB2',
+      'ChestC2',
+      'ChestC3',
+      'babaMummy',
+      'ChestA3',
     ],
+  },
+  Key3: {
+    Name: "Chizoar's Cavern Key",
+    sellPrice: 50,
+    typeGen: 'dCurrency',
+    id: 1,
+    type: 'BOSS KEY',
+    description: 'Hold down to add these Iceland Boss Keys to your account.',
   },
   ObolFrag: {
     Name: 'Obol Fragment',
@@ -10702,7 +11760,7 @@ module.exports = {
     type: 'TICKET',
     description:
       'Hold down to add these Colosseum tickets to your account. Account items are shared between all your Characters!',
-    sources: ['Centurion2', 'Typhoon1', 'Centurion1'],
+    sources: ['Centurion1', 'Typhoon1', 'Centurion2'],
   },
   DeliveryBox: {
     Name: 'Delivery Box',
@@ -10721,7 +11779,7 @@ module.exports = {
     type: 'OFFICE PEN',
     description:
       'Hold down to add a Silver Pen to your Post-Office! You can use it to skip a Delivery!',
-    sources: ['SuperDropTable1'],
+    sources: ['SuperDropTable2', 'SuperDropTable1'],
   },
   PremiumGem: {
     Name: 'Gem',
@@ -10732,53 +11790,66 @@ module.exports = {
     description:
       'Hold down to add these gems to your account. You can then spend them in the Gem Shop!',
     sources: [
-      'Meel1',
       'Simple Shippin',
-      'babaMummy',
-      'Centurion5',
-      'Papua_Piggea1',
-      'Picnic_Stowaway11',
+      'Giftmas_Blobulyte1',
       'Telescope1',
-      'Scubidew1',
-      'ChestA2',
-      'ChestB2',
-      'ChestC1',
-      'Goldric4',
-      'Carpetiem3',
-      'Cowbo_Jones1',
+      ' Recipe from task unlocks Vendor',
+      'Snake_Jar1',
+      'Plan-it Express',
+      'Dudes Next Door',
+      'Cowbo_Jones11',
+      'Meel1',
+      'Picnic_Stowaway11',
+      'Loominadi2',
+      'Papua_Piggea1',
+      'Giftmas_Blobulyte2',
+      'ChestA3',
       'Loominadi3',
-      'Wellington2',
       'Cowbo_Jones7',
+      'Picnic_Stowaway8',
+      'Egggulyte1',
+      'TP_Pete1',
+      'Scubidew1',
+      'Egggulyte2',
+      'Goldric3',
+      'ChestB1',
+      'Alchemy (Level up Gift) Vendor',
+      'EasterEvent2',
+      'Whattso2',
+      'Cowbo_Jones12',
+      'Mutton3',
+      'ChestB3',
+      'Postboy_Pablob1',
+      'Funguy4',
+      'ChestB2',
+      'Cowbo_Jones4',
+      'Dazey1',
+      'babaMummy',
+      'ChestC1',
+      'Carpetiem1',
+      'Goldric4',
+      'Centurion5',
+      'snakeY',
+      'Snake_Jar3',
       'Loveulyte2',
       'Goldric2',
-      'DropTable13',
-      'Cowbo_Jones11',
+      'EasterEvent1',
+      'ChestA2',
       'Bandit_Bob3',
-      'Postboy_Pablob1',
-      'Plan-it Express',
-      'Goldric1',
-      'Mutton3',
-      'Carpetiem1',
-      'ChestB1',
-      'Picnic_Stowaway10',
-      'Loominadi2',
-      'ChestA1',
+      'Carpetiem3',
       'Loominadi1',
-      'Picnic_Stowaway8',
-      'Giftmas_Blobulyte2',
-      'Desert_Davey2',
-      'Snake_Jar3',
-      'Cowbo_Jones4',
-      'Loveulyte1',
-      'Cowbo_Jones12',
-      'Snake_Jar1',
-      'Dudes Next Door',
-      'Whattso2',
-      'Goldric3',
+      'DropTable13',
       'ChestC2',
-      'TP_Pete1',
-      'Giftmas_Blobulyte1',
-      'Funguy4',
+      'ChestC3',
+      'Loveulyte1',
+      'Guilds Giftbox Vendor',
+      'Picnic_Stowaway10',
+      'Desert_Davey2',
+      'Cowbo_Jones1',
+      'Wellington2',
+      'Goldric1',
+      'Iceland_Irwin1',
+      'ChestA1',
     ],
   },
   TalentPoint1: {
@@ -10843,7 +11914,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Line2: {
     Name: 'Silver Twine',
@@ -10880,7 +11951,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Line6: {
     Name: 'Fun Flags',
@@ -10890,6 +11961,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
+    sources: ['Alchemy (Level up Gift) Vendor'],
   },
   Line7: {
     Name: 'Electrical Wiring',
@@ -10926,7 +11998,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       "Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters! Also turns your character into Idleon's busiest music nerd for 0.01 seconds.",
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Line11: {
     Name: 'Spoons Lol',
@@ -10973,7 +12045,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
-    sources: ['Whattso1', 'Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Whattso1', 'Tundra CampVendor'],
   },
   Weight2: {
     Name: 'Iron Hook',
@@ -11012,7 +12084,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Weight6: {
     Name: 'One Pound of Feathers',
@@ -11058,7 +12130,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters!',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Weight11: {
     Name: 'Not Dynamite',
@@ -11068,7 +12140,7 @@ module.exports = {
     type: 'FISHING ACCESSORY',
     description:
       'Hold down to add this accessory to it to your fishing toolkit, where it can be accessed by all characters! Also, the name is technically true.',
-    sources: ['Faraway PiersVendor'],
+    sources: ['Faraway PiersVendor', 'Tundra CampVendor'],
   },
   Weight12: {
     Name: 'Triple Threat',
@@ -11330,8 +12402,8 @@ module.exports = {
     type: 'CARD',
     description: 'poopD',
     cardData: {
-      category: 'Blunder Hills',
-      number: 17,
+      category: 'Bosses',
+      number: 3,
       bonus: '%_Fighting_AFK_gain_rate',
       value: 1,
     },
@@ -11547,6 +12619,20 @@ module.exports = {
     },
     sources: ['Crystal1'],
   },
+  CardsB14: {
+    Name: 'Bandit Bob Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'Bandit Bob Bandit Bob',
+    cardData: {
+      category: 'Yum Yum Desert',
+      number: 14,
+      bonus: '%_Money_from_Monsters',
+      value: 1,
+    },
+  },
   CardsC1: {
     Name: 'Copper Ore Card',
     sellPrice: 1,
@@ -11601,7 +12687,7 @@ module.exports = {
     description: 'OakTree Oak Tree',
     cardData: {
       category: 'Easy Resources',
-      number: 4,
+      number: 5,
       bonus: '_Base_Defence',
       value: 3,
     },
@@ -11616,7 +12702,7 @@ module.exports = {
     description: 'BirchTree Birch Tree',
     cardData: {
       category: 'Easy Resources',
-      number: 5,
+      number: 6,
       bonus: '%_Total_Choppin_Efficiency',
       value: 5,
     },
@@ -11631,7 +12717,7 @@ module.exports = {
     description: 'JungleTree Jungle Tree',
     cardData: {
       category: 'Easy Resources',
-      number: 6,
+      number: 7,
       bonus: '%_Choppin_EXP',
       value: 5,
     },
@@ -11646,7 +12732,7 @@ module.exports = {
     description: 'ForestTree Forest Tree',
     cardData: {
       category: 'Easy Resources',
-      number: 7,
+      number: 8,
       bonus: '%_EXP_Conversion_from_Talent',
       value: 8,
     },
@@ -11661,7 +12747,7 @@ module.exports = {
     description: 'Fish1 Goldfish',
     cardData: {
       category: 'Easy Resources',
-      number: 8,
+      number: 9,
       bonus: '%_Total_MP',
       value: 3,
     },
@@ -11675,7 +12761,7 @@ module.exports = {
     description: 'Fish2 Snail',
     cardData: {
       category: 'Easy Resources',
-      number: 9,
+      number: 10,
       bonus: '%_Total_Fishing_Efficiency',
       value: 5,
     },
@@ -11689,7 +12775,7 @@ module.exports = {
     description: 'Fish3 Jellyfish',
     cardData: {
       category: 'Easy Resources',
-      number: 10,
+      number: 11,
       bonus: '%_Fishing_EXP',
       value: 5,
     },
@@ -11703,7 +12789,7 @@ module.exports = {
     description: 'Bug1 Flies',
     cardData: {
       category: 'Easy Resources',
-      number: 11,
+      number: 12,
       bonus: '%_Monster_EXP_While_Active',
       value: 4,
     },
@@ -11718,7 +12804,7 @@ module.exports = {
     description: 'Bug2 Butterflies',
     cardData: {
       category: 'Easy Resources',
-      number: 12,
+      number: 13,
       bonus: '%_Total_Catching_Efficiency',
       value: 5,
     },
@@ -11747,6 +12833,20 @@ module.exports = {
     id: 0,
     type: 'CARD',
     description: 'GoldBar Gold Bar',
+  },
+  CardsC16: {
+    Name: 'Fire Forge Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'ForgeA Fire Forge',
+    cardData: {
+      category: 'Easy Resources',
+      number: 4,
+      bonus: '%_Smithing_EXP',
+      value: 4,
+    },
   },
   CardsD1: {
     Name: 'Dementia Ore Card',
@@ -11815,7 +12915,7 @@ module.exports = {
     description: 'ToiletTree Birch Tree',
     cardData: {
       category: 'Medium Resources',
-      number: 6,
+      number: 7,
       bonus: '%_Choppin_Speed',
       value: 4,
     },
@@ -11830,7 +12930,7 @@ module.exports = {
     description: 'StumpTree Jungle Tree',
     cardData: {
       category: 'Medium Resources',
-      number: 7,
+      number: 8,
       bonus: '%_Total_Accuracy',
       value: 3,
     },
@@ -11845,7 +12945,7 @@ module.exports = {
     description: 'PalmTree Forest Tree',
     cardData: {
       category: 'Medium Resources',
-      number: 5,
+      number: 6,
       bonus: '%_Choppin_Away_Gains',
       value: 2,
     },
@@ -11858,12 +12958,6 @@ module.exports = {
     id: 0,
     type: 'CARD',
     description: 'SaharanFoal Goldfish',
-    cardData: {
-      category: 'Medium Resources',
-      number: 11,
-      bonus: '%_NOTHING',
-      value: 3,
-    },
     sources: ['SaharanFoal'],
   },
   CardsD9: {
@@ -11875,7 +12969,7 @@ module.exports = {
     description: 'Bug4 Snail',
     cardData: {
       category: 'Medium Resources',
-      number: 10,
+      number: 11,
       bonus: '%_Catching_Away_Gains',
       value: 2,
     },
@@ -11890,7 +12984,7 @@ module.exports = {
     description: 'Bug3 Jellyfish',
     cardData: {
       category: 'Medium Resources',
-      number: 9,
+      number: 10,
       bonus: '%_Catching_EXP',
       value: 5,
     },
@@ -11905,7 +12999,7 @@ module.exports = {
     description: 'Fish4 Flies',
     cardData: {
       category: 'Medium Resources',
-      number: 8,
+      number: 9,
       bonus: '%_Fishing_Away_Gains',
       value: 2,
     },
@@ -11926,6 +13020,260 @@ module.exports = {
     type: 'CARD',
     description: ' Sentient Cereal',
   },
+  CardsD16: {
+    Name: 'Cinder Forge Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'ForgeB Cinder Forge',
+    cardData: {
+      category: 'Medium Resources',
+      number: 5,
+      bonus: '%_Smithing_EXP',
+      value: 7,
+    },
+  },
+  CardsE0: {
+    Name: 'Sheepie Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'sheep',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 1,
+      bonus: '%_Money_from_Monsters',
+      value: 10,
+    },
+    sources: ['sheep'],
+  },
+  CardsE1: {
+    Name: 'Frost Flake Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'flake',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 2,
+      bonus: '%_Total_Damage',
+      value: 5,
+    },
+    sources: ['flake'],
+  },
+  CardsE2: {
+    Name: 'Sir Stache Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'stache',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 3,
+      bonus: '%_Skill_AFK_gain_rate',
+      value: 2.5,
+    },
+    sources: ['stache'],
+  },
+  CardsE3: {
+    Name: 'Bloque Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'bloque',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 4,
+      bonus: '%_Fighting_AFK_gain_rate',
+      value: 2.5,
+    },
+    sources: ['bloque'],
+  },
+  CardsE4: {
+    Name: 'mamooth Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'mamoth',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 5,
+      bonus: '%_Double_AFK_claim_chance',
+      value: 3,
+    },
+    sources: ['mamoth'],
+  },
+  CardsE5: {
+    Name: 'Snowman Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'snowball',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 6,
+      bonus: '%_Total_Drop_Rate',
+      value: 6,
+    },
+    sources: ['snowball'],
+  },
+  CardsE6: {
+    Name: 'Penguin Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'penguin',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 7,
+      bonus: '%_EXP_from_monsters',
+      value: 5,
+    },
+    sources: ['penguin'],
+  },
+  CardsE7: {
+    Name: 'Thermister Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'thermostat',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 8,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['thermostat'],
+  },
+  CardsE8: {
+    Name: 'Quenchie Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'glass',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 9,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['glass'],
+  },
+  CardsE9: {
+    Name: 'Cryosnake Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'snakeB',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 10,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['snakeB'],
+  },
+  CardsE10: {
+    Name: 'Bop Box Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'speaker',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 11,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['speaker'],
+  },
+  CardsE11: {
+    Name: 'Neyeptune Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'eye',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 12,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['eye'],
+  },
+  CardsE12: {
+    Name: 'Xylobone Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'skele',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 14,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['skele'],
+  },
+  CardsE13: {
+    Name: 'Bloodbone Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'skele2',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 15,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['skele2'],
+  },
+  CardsE14: {
+    Name: 'Dedotated Ram Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'ram',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 13,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['ram'],
+  },
+  CardsE15: {
+    Name: 'Glacier Quartz Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'Crystal2',
+    cardData: {
+      category: 'Frostfire Tyundra',
+      number: 16,
+      bonus: '%_Base_HP',
+      value: 3,
+    },
+    sources: ['Crystal2'],
+  },
   CardsY0: {
     Name: 'Ghost Card',
     sellPrice: 1,
@@ -11939,7 +13287,7 @@ module.exports = {
       bonus: '%_Monster_EXP_While_Active',
       value: 3,
     },
-    sources: ['xmasEvent', 'ghost', 'xmasEvent2'],
+    sources: ['ghost', 'xmasEvent2', 'xmasEvent'],
   },
   CardsY1: {
     Name: 'Giftmas Blobulyte Card',
@@ -11982,7 +13330,7 @@ module.exports = {
       bonus: '%_Defence_from_Equipment',
       value: 3,
     },
-    sources: ['loveEvent', 'loveEvent2', 'slimeR'],
+    sources: ['slimeR', 'loveEvent', 'loveEvent2'],
   },
   CardsY4: {
     Name: 'Loveulyte Card',
@@ -12010,6 +13358,64 @@ module.exports = {
       number: 6,
       bonus: '%_Boost_Food_Effect',
       value: 4,
+    },
+  },
+  CardsY6: {
+    Name: 'Floofie Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'sheepB',
+    cardData: {
+      category: 'Event',
+      number: 7,
+      bonus: '%_MP_regen_rate',
+      value: 3,
+    },
+    sources: ['sheepB', 'EasterEvent1', 'EasterEvent2'],
+  },
+  CardsY7: {
+    Name: 'Shell Snake Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'snakeY',
+    cardData: {
+      category: 'Event',
+      number: 8,
+      bonus: '_Base_LUK',
+      value: 3,
+    },
+    sources: ['snakeY'],
+  },
+  CardsY8: {
+    Name: 'Egggulyte Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'EasterEvent1',
+    cardData: {
+      category: 'Event',
+      number: 9,
+      bonus: '%_Card_Drop_Chance',
+      value: 1,
+    },
+  },
+  CardsY9: {
+    Name: 'Egg Capsule Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'EasterEvent2',
+    cardData: {
+      category: 'Event',
+      number: 10,
+      bonus: '%_Critical_Damage',
+      value: 1,
     },
   },
   CardsZ0: {
@@ -12051,11 +13457,11 @@ module.exports = {
     description: 'wolfA',
     cardData: {
       category: 'Bosses',
-      number: 3,
+      number: 4,
       bonus: '%_Skill_AFK_gain_rate',
       value: 2.5,
     },
-    sources: ['wolfC', 'wolfA'],
+    sources: ['wolfA', 'wolfC'],
   },
   CardsZ3: {
     Name: 'Efaunt Card',
@@ -12066,11 +13472,11 @@ module.exports = {
     description: 'Boss2A',
     cardData: {
       category: 'Bosses',
-      number: 7,
+      number: 8,
       bonus: '%_EXP_from_monsters',
       value: 5,
     },
-    sources: ['Boss2C', 'EfauntArm', 'Boss2B', 'Boss2A'],
+    sources: ['EfauntArm', 'Boss2C', 'Boss2A'],
   },
   CardsZ4: {
     Name: 'Chaotic Amarok Card',
@@ -12081,7 +13487,7 @@ module.exports = {
     description: 'wolfB',
     cardData: {
       category: 'Bosses',
-      number: 4,
+      number: 5,
       bonus: '%_Fighting_AFK_gain_rate',
       value: 2.5,
     },
@@ -12096,7 +13502,7 @@ module.exports = {
     description: 'babaHour',
     cardData: {
       category: 'Bosses',
-      number: 5,
+      number: 6,
       bonus: '%_Double_AFK_claim_chance',
       value: 3,
     },
@@ -12111,11 +13517,26 @@ module.exports = {
     description: 'babaMummy',
     cardData: {
       category: 'Bosses',
-      number: 6,
+      number: 7,
       bonus: '%_Total_Drop_Rate',
       value: 6,
     },
     sources: ['babaMummy'],
+  },
+  CardsZ7: {
+    Name: 'Chaotic Efaunt Card',
+    sellPrice: 1,
+    typeGen: 'dCard',
+    id: 0,
+    type: 'CARD',
+    description: 'Boss2B',
+    cardData: {
+      category: 'Bosses',
+      number: 9,
+      bonus: '%_Skill_EXP',
+      value: 3.75,
+    },
+    sources: ['Boss2B'],
   },
   CardPack1: {
     Name: 'Newbie Card Pack',
@@ -12125,6 +13546,7 @@ module.exports = {
     type: 'CARD PACK',
     description:
       'Hold down to open the pack! The cards drop on the ground, make sure to pick them up!!',
+    sources: ['Gem Shop'],
   },
   CardPack2: {
     Name: 'Ancient Card Pack',
@@ -12134,6 +13556,7 @@ module.exports = {
     type: 'CARD PACK',
     description:
       'Hold down to open the pack! The cards drop on the ground, make sure to pick them up!!',
+    sources: ['Gem Shop'],
   },
   EquipmentHats31: {
     Name: "Smitty's Bubble Blowing Hat",
@@ -12235,7 +13658,6 @@ module.exports = {
       luk: 1,
       upgradeSlotsLeft: 5,
     },
-    sources: ['Gem Shop'],
   },
   EquipmentHats40: {
     Name: 'Pardoned Turkey',
@@ -12388,7 +13810,6 @@ module.exports = {
       luk: 1,
       upgradeSlotsLeft: 5,
     },
-    sources: ['Gem Shop'],
   },
   EquipmentHats45: {
     Name: 'Giftmas Tree',
@@ -12406,7 +13827,23 @@ module.exports = {
       misc1: '10% XP FROM MONSTERS',
       upgradeSlotsLeft: 5,
     },
-    sources: ['Gem Shop'],
+  },
+  EquipmentHats57: {
+    Name: 'Big Bunny',
+    sellPrice: 1,
+    typeGen: 'aHelmetMTX',
+    id: 60,
+    type: 'PREMIUM HELMET',
+    class: 'ALL',
+    lvReqToEquip: 1,
+    stats: {
+      str: 1,
+      agi: 1,
+      wis: 1,
+      luk: 1,
+      misc1: '11% XP FROM MONSTERS',
+      upgradeSlotsLeft: 5,
+    },
   },
   GemP1: {
     Name: 'Infinite Forge',
