@@ -1,11 +1,9 @@
-const { CronJob } = require('cron');
 const { MessageAttachment } = require('discord.js');
 const Logger = require('../util/Logger.js');
+const { CronJob } = require('cron');
 const path = require('path');
 
 const logger = new Logger('Notify');
-
-let cronJob;
 
 module.exports = {
   name: 'notify',
@@ -17,48 +15,19 @@ module.exports = {
   args: true,
   // run on client start
   init(client) {
-    const { mongo } = client;
-    cronJob = new CronJob(
-      '0 55 */1 * * *',
-      async () => {
-        try {
-          let subscribers = await mongo.getSubscribers();
-          if (subscribers.length === 0) return;
-
-          logger.log(
-            `Notifying ${subscribers.length} ${
-              subscribers.length > 1 ? 'users' : 'user'
-            }.`
-          );
-
-          subscribers.forEach(async (subscriber) => {
-            const { id } = subscriber;
-
-            notifySubscriber(client, id);
-            subscriber.hours--;
-
-            if (subscriber.hours < 1) {
-              await mongo.removeSubscriber(id);
-            }
-          }, subscribers);
-          subscribers = subscribers.filter(({ hours }) => hours >= 1);
-          if (subscribers.length > 0) {
-            mongo.updateSubscribers(subscribers);
-          }
-        } catch (error) {
-          logger.error(error);
-        }
-      },
+    this.cronJob = new CronJob(
+      '*/10 * * * * *',
+      () => cronFunction(client),
       null,
       true,
       null
     );
     logger.log('Starting CronJob for notify command.');
-    cronJob.start();
+    this.cronJob.start();
   },
   stop() {
     logger.log('Stopping Cron Job');
-    cronJob.stop();
+    this.cronJob.stop();
   },
   async execute(message, args) {
     const { mongo } = message.client;
@@ -99,10 +68,44 @@ module.exports = {
         `You're already subscribed! You have ${user.hours} hours left`
       );
     }
+
     mongo.updateSubscriber(id, hours);
     logger.log(`${message.author.username} just subscribed for ${hours} hours`);
     message.reply(`You've subscribed for ${hours} hours!`);
   },
+};
+
+const cronFunction = async (client) => {
+  const { mongo } = client;
+  try {
+    const subscribers = await mongo.getSubscribers();
+    if (subscribers.length === 0) return;
+
+    logger.log(
+      `Notifying ${subscribers.length} ${
+        subscribers.length > 1 ? 'users' : 'user'
+      }.`
+    );
+
+    const updated = subscribers.map(({ id, hours }) => {
+      notifySubscriber(client, id);
+
+      return { id, hours: --hours };
+    });
+
+    const unsubscribers = updated
+      .filter(({ hours }) => hours < 1)
+      .map(({ id }) => id);
+    if (unsubscribers.length > 0) mongo.removeSubscribers(unsubscribers);
+
+    subsToUpdate = updated.filter(({ hours }) => hours > 0);
+
+    if (subsToUpdate.length > 0) {
+      mongo.updateSubscribers(subsToUpdate);
+    }
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 async function notifySubscriber(client, id) {
