@@ -1,121 +1,76 @@
-const { MongoClient } = require('mongodb');
+const { Setting, Subscriber } = require('./schemas.js');
+const mongoose = require('mongoose');
 const Logger = require('../util/Logger.js');
 require('dotenv').config();
 
 const logger = new Logger('MongoDb');
 class Mongo {
-
   async connectToDatabase() {
     logger.log('Connecting to Mongo Database!');
-    const url = process.env.MONGO_URL;
 
-    const options = {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    };
     try {
-      this.connection = await MongoClient.connect(url, options);
-      this.db = this.connection.db();
+      this.db = await mongoose.connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
       if (typeof this.db !== 'undefined') {
         logger.log('Connected!');
       } else {
-        throw new Error(`[MongoDB] could not connect to the database.`);
+        throw new Error('Could not connect to the database!');
       }
     } catch (err) {
       logger.error(err);
     }
   }
-  disconnect() {
-    logger.log('Running MongoConnection disconnect');
-    return this.connection.close()
-      .then(logger.log('MongoConnection disconnected'))
-      .catch(err => logger.log(err));
+
+  async disconnect() {
+    logger.log('Disconecting Mongo');
+    try {
+      await mongoose.connection.close();
+      logger.log('Disconnected!');
+    } catch (err) {
+      logger.error(err);
+    }
   }
 
-  async init() {
-    await this.connectToDatabase();
-  }
-
-  async updateGuildPrefix(guildID, newPrefix) {
-    const filter = { guildID: String(guildID) };
-    const updateOp = { $set: { prefix: newPrefix } };
-    const options = { upsert: true };
-    await this.db
-      .collection('guilds')
-      .updateOne(filter, updateOp, options);
+  async updateGuildPrefix(id, prefix) {
+    await Setting.findOneAndUpdate(
+      { _id: id },
+      { prefix },
+      { upsert: true, useFindAndModify: false }
+    );
   }
 
   async getGuildPrefixes() {
-    const query = {};
-    const options = { projection: { guildID: 1, prefix: 1 } };
-    try {
-      return await this.db
-        .collection('guilds')
-        .find(query, options)
-        .toArray();
-    } catch (err) {
-      logger.error(err);
-    }
+    const settings = await this.getGuildSettings();
+    return settings.map((settings) => {
+      return { guildId: settings._id, prefix: settings.prefix };
+    });
   }
 
-  async updateGuildCooldown(guildID) {
-    logger.log(guildID);
-  }
-
-  async addSubscriber(id, hours) {
-    try {
-      const myobj = { id: String(id), hours: hours };
-
-      await this.db.collection('subscribers').insertOne(myobj);
-    } catch (err) {
-      logger.error(err);
-    }
-  }
-
-  async getSubscriber(id) {
-    try {
-      const query = { id: id };
-      const options = { projection: { _id: 0, id: 1, hours: 1 } };
-
-      const subscriber = await this.db
-        .collection('subscribers')
-        .findOne(query, options);
-      return subscriber;
-    } catch (err) {
-      logger.error(err);
-    }
+  async getGuildSettings() {
+    return await Setting.find();
   }
 
   async getSubscribers() {
-    let subscribers;
-    try {
-      const options = { projection: { _id: 0, id: 1, hours: 1 } };
+    const results = await Subscriber.find();
 
-      subscribers = await this.db
-        .collection('subscribers')
-        .find({}, options)
-        .toArray();
-    } catch (err) {
-      logger.error(err);
-    }
-    return subscribers;
+    return results.map(({ _id, hours }) => {
+      return { id: _id, hours };
+    });
+  }
+
+  async getSubscriber(id) {
+    return await Subscriber.findOne({ _id: id });
   }
 
   async updateSubscriber(id, hours) {
     try {
-      const filter = { id: id };
-      const options = { upsert: true };
-      const updateDoc = { $set: { hours: hours } };
-      const {
-        matchedCount,
-        modifiedCount,
-        upsertedCount,
-      } = await this.db
-        .collection('subscribers')
-        .updateOne(filter, updateDoc, options);
-      logger.log(
-        `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
+      await Subscriber.findByIdAndUpdate(
+        { _id: id },
+        { hours },
+        { upsert: true, useFindAndModify: false }
       );
     } catch (err) {
       logger.error(err);
@@ -123,64 +78,37 @@ class Mongo {
   }
 
   async updateSubscribers(subscribers) {
-    const operations = [];
-    subscribers.forEach(({ id, hours }) => {
-      const operation = {
+    const operations = subscribers.map(({ id, hours }) => {
+      return {
         updateOne: {
-          filter: { id: String(id) },
-          update: { $set: { hours: hours } },
+          filter: { _id: id },
+          update: { hours },
           upsert: true,
         },
       };
-      operations.push(operation);
     });
+
     try {
-      const {
-        matchedCount,
-        modifiedCount,
-        upsertedCount,
-      } = await this.db
-        .collection('subscribers')
-        .bulkWrite(operations);
-      logger.log(
-        `Matched: ${matchedCount}, Updated: ${modifiedCount}, Upserted: ${upsertedCount}.`
+      const { matchedCount, modifiedCount } = await Subscriber.bulkWrite(
+        operations
       );
+      logger.log(`Matched: ${matchedCount}, Updated: ${modifiedCount}.`);
     } catch (err) {
       logger.error(err);
     }
   }
 
   async removeSubscriber(id) {
-    const query = { id: String(id) };
-    try {
-      const result = await this.db
-        .collection('subscribers')
-        .deleteOne(query);
-      if (result.deletedCount === 1) {
-        logger.log('Successfully deleted 1 document!');
-      } else {
-        logger.log(`No matches found for ${id}`);
-      }
-    } catch (err) {
-      logger.error(err);
-    }
+    const result = await Subscriber.findByIdAndDelete({ _id: id });
+    if (result) logger.log('Removed 1 Subscriber!');
   }
 
-  async removeSubscribers(subscribers) {
-    const operations = [];
-    subscribers.forEach((id) => {
-      const operation = {
-        deleteOne: {
-          filter: { id: String(id) },
-        },
-      };
-      operations.push(operation);
-    });
+  async removeSubscribers(ids) {
     try {
-      const result = await this.db
-        .collection('subscribers')
-        .bulkWrite(operations);
-      logger.log(`Deleted ${result.deletedCount} document(s)`);
+      const { deletedCount } = await Subscriber.deleteMany({
+        _id: { $in: ids },
+      });
+      logger.log(`${deletedCount} removed;`);
     } catch (err) {
       logger.error(err);
     }

@@ -1,11 +1,15 @@
-const { DEFAULT_PREFIX, DEFAULT_COOLDOWN, autoUpdate } = require('./config.json');
-const WebhookListener = require('./auto-update/WebhookListener.js')
+const WebhookListener = require('./auto-update/WebhookListener.js');
 const { Client, Collection } = require('discord.js');
 const Logger = require('./util/Logger.js');
 const mongo = require('./mongo/mongo.js');
 const chalk = require('chalk');
 require('dotenv').config();
 const fs = require('fs');
+const {
+  DEFAULT_PREFIX,
+  DEFAULT_COOLDOWN,
+  autoUpdate,
+} = require('./config.json');
 
 const logger = new Logger('Bot');
 
@@ -32,7 +36,6 @@ const commandFiles = fs
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
-  if (command.init) command.init(client);
 }
 
 const shouldIgnore = (message, prefix) =>
@@ -47,20 +50,24 @@ client.once('ready', async () => {
     if (autoUpdate.enabled) {
       client.githubListener = new WebhookListener(client).start();
     }
-    
-    await mongo.init();
+
+    await mongo.connectToDatabase();
+
+    // run each command's init() method if it exists
+    client.commands.forEach((command) => command.init?.(client));
+
     const prefixes = await mongo.getGuildPrefixes();
     if (prefixes) {
-      prefixes.forEach(({ guildID, prefix: guildPrefix }) => {
-        const guild = client.guildSettings.get(guildID) || {};
-        client.guildSettings.set(guildID, { ...guild, prefix: guildPrefix });
+      prefixes.forEach(({ guildId, prefix }) => {
+        const guild = client.guildSettings.get(guildId) || {};
+        client.guildSettings.set(guildId, { ...guild, prefix });
       });
     }
   } catch (err) {
     logger.error(err);
   }
   client.user.setActivity('Legends of Idleon');
-  logger.log(`${client.user.username} is ready!`);
+  logger.log(`${chalk.yellow(client.user.username)} is ready!`);
 });
 
 client.on('message', (message) => {
@@ -126,7 +133,7 @@ client.on('message', (message) => {
   }
 });
 
-client.getPrefix = function(message) {
+client.getPrefix = function (message) {
   let prefix;
   if (message.channel.type !== 'dm') {
     const settings = client.guildSettings.get(message.guild.id);
@@ -141,7 +148,7 @@ client.stop = function () {
   try {
     logger.log('-----Stopping Scripticus!-----');
     mongo.disconnect();
-    
+
     logger.log('Running command stop() methods');
     this.commands.forEach((command) => command.stop?.());
 
@@ -149,7 +156,7 @@ client.stop = function () {
     process.exit(0);
   } catch (err) {
     logger.error('ERROR:', err);
-  } 
-}
+  }
+};
 
 client.login(process.env.TOKEN);
