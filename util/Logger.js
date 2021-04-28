@@ -44,20 +44,23 @@ class Logger {
     //   format: createFormat(tag),
     //   transports: [new winston.transports.Console()]
     // })
-    this.prefix = `${chalk.green(getDate())}[${chalk.blue(tag)}]`
+    this.tag = tag;
   }
   
   log(message) {
     // this.logger.info(message);
-    console.log(this.prefix, message);
+    console.log(this.getPrefix(), message);
   }
   error(message) {
     // this.logger.error(message);
-    console.error(this.prefix, message);
+    console.error(this.getPrefix(), message);
   }
   warn(message) {
     // this.logger.warn(message);
-    console.warn(this.prefix, message);
+    console.warn(this.getPrefix(), message);
+  }
+  getPrefix() {
+    return `${chalk.green(getDate())}[${chalk.blue(this.tag)}]`
   }
 }
 
