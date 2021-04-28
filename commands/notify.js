@@ -16,7 +16,7 @@ module.exports = {
   // run on client start
   init(client) {
     this.cronJob = new CronJob(
-      '* 55 */1 * * *',
+      '0 55 */1 * * *',
       () => cronFunction(client),
       null,
       true,
