@@ -11,7 +11,7 @@ module.exports = {
   get usage() {
     return `<hours> or <check> or <${this.stopKeywords.join('/')}>`;
   },
-  stopKeywords: ['clear', 'stop', 'done'], // Does this even really need to be a field? Constant seems more appropriate.
+  stopKeywords: ['clear', 'stop', 'done', 'off'], // Does this even really need to be a field? Constant seems more appropriate.
   args: true,
   // run on client start
   init(client) {
