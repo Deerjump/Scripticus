@@ -104,9 +104,11 @@ self.add('pick', ['pickaxe', 'pickolo']);
 self.add('axe', ['chopper', 'hatchet', 'dicer', 'logger']);
 self.add('rod', ['fishing rod', 'fish rod']);
 self.add('net', []);
+self.add('traps', ['box, boxes'])
+self.add('skull', [])
 // Material name aliases
 self.add('copper', ['t1']);
-self.add('iron', ['t2']);
+self.add('iron', ['t2', 'steel', 'silver']);
 self.add('gold', ['t3', 'golden', 'gilded']);
 self.add('plat', ['t4', 'platinum']);
 self.add('dem', ['t5', 'dementia']);
@@ -118,6 +120,7 @@ self.add('helmet', ['helm', 'head', 'hat', 'beanie']);
 self.add('platebody', ['chest', 'chestplate', 'platbody', 'bodyplate', 'ribcage', 'body', 'shirt', 'tee']);
 self.add('platelegs', ['legs', 'pants', 'shins', 'hinds', 'hipilium']);
 self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels', 'broken ankles']);
+self.add('ring', ['band']);
 // weapons
 self.add('t1', ['wooden', 'gnarled', 'boxing']);
 self.add('wand', ['staff']);
@@ -145,9 +148,13 @@ self.add('reinforced net', ['iron net', 't2 net']);
 self.add('platinet', ['plat net', 't4 net']);
 self.add('bleached designer wode patch pants', ['wood pants', 'chop pants', 'chopping pants']);
 self.add('dirty coal miner baggy soot pants', ['ore pants', 'mine pants', 'mining pants']);
-self.add('trunculus', ['efaunt ring']);
+self.add('steel', ['silver']);
+self.add('trunculus', ['ring']);
 
 // Monsters
+self.add('crystal crabal', ['crystal crab']);
+self.add('crystal cattle', ['crystal sheep', 'crystal lamb']);
+
 // World 1
 self.add('green mushroom', ['spore']);
 self.add('frog', []);
@@ -176,6 +183,22 @@ self.add('moonmoon', ['moon']);
 self.add('sand giant', ['sg']);
 self.add('snelbie', ['snail', 'snails']);
 self.add('dig doug', []);
+// World 3
+self.add('sheepie', ['sheep']);
+self.add('frost flake', ['snowflake', 'snow flake', 'flake']);
+self.add('sir stache', ['mustache', 'stache']);
+self.add('bloque', ['popsicle']);
+self.add('mamooth', ['mammoth']);
+self.add('snowman', []);
+self.add('penguin', []);
+self.add('thermister', ['therm', 'thermometer']);
+self.add('quenchie', []);
+self.add('cryosnake', ['ice snake']);
+self.add('bop box', ['speaker', 'stereo', 'bop']);
+self.add('neyeptune', ['neyep', 'eyeball']);
+self.add('dedotated ram', ['ram']);
+self.add('xylobone', ['skeleton', 'skelly']);
+self.add('bloodbone', ['red skeleton', 'red skelly']);
 // Bosses
 self.add('baba yaga', ['house', 'baba', 'house monster']);
 self.add('dr defecaus', ['big poop', 'poop boss']);
