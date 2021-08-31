@@ -11,6 +11,6 @@ module.exports = {
         'https://docs.google.com/spreadsheets/d/1cY3vg1Z-AgOtIcV128D6kSLQRJE_-MUMtyqW0086Zmk/edit?usp=sharing'
       )
       .addFields({ name: 'Credit', value: 'Created by Hateling' });
-    message.channel.send(embed);
+    message.channel.send({ embeds: [embed] });
   },
 };

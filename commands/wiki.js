@@ -26,9 +26,7 @@ module.exports = {
     try {
       const query = querystring.stringify({ search: args.join(' ') });
       const res = await fetch(`https://idleon.info/w/index.php?${query}`);
-      logger.log(res.url);
-      embed.setColor('#FF0000').setTitle(res.url).setURL(res.url);
-      message.channel.send(embed);
+      message.channel.send(res.url);
     } catch (err) {
       logger.error(err);
     }

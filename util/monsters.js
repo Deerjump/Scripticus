@@ -2,13 +2,12 @@
 // so you don't have to update every monster's line
 
 // update this variable on new patch
-const ac = {
+const ma = {
   addNewMonster(name, data) {
     this[name] = data;
   },
 };
-
-ac.addNewMonster('ForgeA', {
+ma.addNewMonster('ForgeA', {
   Name: 'Fire_Forge',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -20,7 +19,7 @@ ac.addNewMonster('ForgeA', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 420,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -28,7 +27,7 @@ ac.addNewMonster('ForgeA', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('ForgeB', {
+ma.addNewMonster('ForgeB', {
   Name: 'Cinder_Forge',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -40,7 +39,7 @@ ac.addNewMonster('ForgeB', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 420,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -48,7 +47,7 @@ ac.addNewMonster('ForgeB', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Bandit_Bob', {
+ma.addNewMonster('Bandit_Bob', {
   Name: 'Bandit_Bob',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -60,7 +59,7 @@ ac.addNewMonster('Bandit_Bob', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 420,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -68,7 +67,307 @@ ac.addNewMonster('Bandit_Bob', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Crystal0', {
+ma.addNewMonster('SoulCard1', {
+  Name: 'Forest_Soul',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SoulCard2', {
+  Name: 'Dune_Soul',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SoulCard3', {
+  Name: 'Rooted_Soul',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SoulCard4', {
+  Name: 'Frigid_Soul',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SoulCard5', {
+  Name: 'Squiddy_Soul',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SoulCard6', {
+  Name: 'Bandit_Bob',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard1', {
+  Name: 'Froge',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard2', {
+  Name: 'Crabbo',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard3', {
+  Name: 'Scorpie',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard4', {
+  Name: 'Mousey',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard5', {
+  Name: 'Owlio',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard6', {
+  Name: 'Pingy',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard7', {
+  Name: 'Bunny',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard8', {
+  Name: 'Dung_Beat',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('CritterCard9', {
+  Name: 'Honker',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 420,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('Crystal0', {
   Name: 'Crystal_Carrot',
   AFKtype: 'FIGHTING',
   MonsterFace: 1,
@@ -80,7 +379,7 @@ ac.addNewMonster('Crystal0', {
   DeathFrame: 15,
   RespawnTime: 35,
   MonsterHPTotal: 1,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 0,
@@ -88,7 +387,7 @@ ac.addNewMonster('Crystal0', {
   MoveSPEED: 4,
   Damages: [0, 1],
 });
-ac.addNewMonster('Crystal1', {
+ma.addNewMonster('Crystal1', {
   Name: 'Crystal_Crabal',
   AFKtype: 'FIGHTING',
   MonsterFace: 11,
@@ -100,7 +399,7 @@ ac.addNewMonster('Crystal1', {
   DeathFrame: 12,
   RespawnTime: 40,
   MonsterHPTotal: 7500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 210,
   ExpType: 0,
@@ -108,7 +407,7 @@ ac.addNewMonster('Crystal1', {
   MoveSPEED: 4,
   Damages: [1, 1],
 });
-ac.addNewMonster('Crystal2', {
+ma.addNewMonster('Crystal2', {
   Name: 'Crystal_Cattle',
   AFKtype: 'FIGHTING',
   MonsterFace: 47,
@@ -120,7 +419,7 @@ ac.addNewMonster('Crystal2', {
   DeathFrame: 17,
   RespawnTime: 252e3,
   MonsterHPTotal: 1e6,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 210,
   ExpType: 0,
@@ -128,7 +427,7 @@ ac.addNewMonster('Crystal2', {
   MoveSPEED: 5,
   Damages: [1, 1],
 });
-ac.addNewMonster('mushG', {
+ma.addNewMonster('mushG', {
   Name: 'Green_Mushroom',
   AFKtype: 'FIGHTING',
   MonsterFace: 1,
@@ -140,7 +439,7 @@ ac.addNewMonster('mushG', {
   DeathFrame: 12,
   RespawnTime: 35,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 0,
@@ -148,7 +447,7 @@ ac.addNewMonster('mushG', {
   MoveSPEED: 4,
   Damages: [1, 1],
 });
-ac.addNewMonster('frogG', {
+ma.addNewMonster('frogG', {
   Name: 'Frog',
   AFKtype: 'FIGHTING',
   MonsterFace: 14,
@@ -160,7 +459,7 @@ ac.addNewMonster('frogG', {
   DeathFrame: 12,
   RespawnTime: 40,
   MonsterHPTotal: 50,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 7,
   ExpType: 0,
@@ -168,7 +467,7 @@ ac.addNewMonster('frogG', {
   MoveSPEED: 4,
   Damages: [5, 1],
 });
-ac.addNewMonster('beanG', {
+ma.addNewMonster('beanG', {
   Name: 'Bored_Bean',
   AFKtype: 'FIGHTING',
   MonsterFace: 7,
@@ -180,15 +479,15 @@ ac.addNewMonster('beanG', {
   DeathFrame: 15,
   RespawnTime: 50,
   MonsterHPTotal: 150,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 15,
   ExpType: 0,
   Defence: 4,
   MoveSPEED: 4,
-  Damages: [14, 1],
+  Damages: [11, 1],
 });
-ac.addNewMonster('slimeG', {
+ma.addNewMonster('slimeG', {
   Name: 'Slime',
   AFKtype: 'FIGHTING',
   MonsterFace: 24,
@@ -200,15 +499,15 @@ ac.addNewMonster('slimeG', {
   DeathFrame: 13,
   RespawnTime: 42,
   MonsterHPTotal: 250,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 23,
   ExpType: 0,
   Defence: 9,
   MoveSPEED: 4,
-  Damages: [17, 1],
+  Damages: [15, 1],
 });
-ac.addNewMonster('snakeG', {
+ma.addNewMonster('snakeG', {
   Name: 'Baby_Boa',
   AFKtype: 'FIGHTING',
   MonsterFace: 25,
@@ -220,15 +519,15 @@ ac.addNewMonster('snakeG', {
   DeathFrame: 13,
   RespawnTime: 45,
   MonsterHPTotal: 450,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 34,
   ExpType: 0,
   Defence: 18,
   MoveSPEED: 8,
-  Damages: [22, 1],
+  Damages: [18, 1],
 });
-ac.addNewMonster('carrotO', {
+ma.addNewMonster('carrotO', {
   Name: 'Carrotman',
   AFKtype: 'FIGHTING',
   MonsterFace: 9,
@@ -240,15 +539,15 @@ ac.addNewMonster('carrotO', {
   DeathFrame: 15,
   RespawnTime: 50,
   MonsterHPTotal: 800,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 45,
   ExpType: 0,
   Defence: 30,
   MoveSPEED: 6,
-  Damages: [26, 1],
+  Damages: [22, 1],
 });
-ac.addNewMonster('goblinG', {
+ma.addNewMonster('goblinG', {
   Name: 'Glublin',
   AFKtype: 'FIGHTING',
   MonsterFace: 15,
@@ -260,15 +559,15 @@ ac.addNewMonster('goblinG', {
   DeathFrame: 15,
   RespawnTime: 52,
   MonsterHPTotal: 1250,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 60,
   ExpType: 0,
   Defence: 52,
   MoveSPEED: 4,
-  Damages: [35, 1],
+  Damages: [30, 1],
 });
-ac.addNewMonster('plank', {
+ma.addNewMonster('plank', {
   Name: 'Wode_Board',
   AFKtype: 'FIGHTING',
   MonsterFace: 3,
@@ -280,15 +579,15 @@ ac.addNewMonster('plank', {
   DeathFrame: 19,
   RespawnTime: 45,
   MonsterHPTotal: 1800,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 75,
   ExpType: 0,
   Defence: 70,
   MoveSPEED: 3,
-  Damages: [40, 1],
+  Damages: [35, 1],
 });
-ac.addNewMonster('frogBIG', {
+ma.addNewMonster('frogBIG', {
   Name: 'Gigafrog',
   AFKtype: 'FIGHTING',
   MonsterFace: 13,
@@ -300,15 +599,15 @@ ac.addNewMonster('frogBIG', {
   DeathFrame: 16,
   RespawnTime: 55,
   MonsterHPTotal: 2500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 95,
   ExpType: 0,
-  Defence: 120,
+  Defence: 110,
   MoveSPEED: 3,
-  Damages: [60, 1],
+  Damages: [45, 1],
 });
-ac.addNewMonster('branch', {
+ma.addNewMonster('branch', {
   Name: 'Walking_Stick',
   AFKtype: 'FIGHTING',
   MonsterFace: 8,
@@ -320,7 +619,7 @@ ac.addNewMonster('branch', {
   DeathFrame: 15,
   RespawnTime: 60,
   MonsterHPTotal: 1500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 120,
   ExpType: 0,
@@ -328,7 +627,7 @@ ac.addNewMonster('branch', {
   MoveSPEED: 4,
   Damages: [20, 1],
 });
-ac.addNewMonster('acorn', {
+ma.addNewMonster('acorn', {
   Name: 'Nutto',
   AFKtype: 'FIGHTING',
   MonsterFace: 5,
@@ -340,7 +639,7 @@ ac.addNewMonster('acorn', {
   DeathFrame: 13,
   RespawnTime: 60,
   MonsterHPTotal: 4e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 190,
   ExpType: 0,
@@ -348,7 +647,7 @@ ac.addNewMonster('acorn', {
   MoveSPEED: 5,
   Damages: [40, 1],
 });
-ac.addNewMonster('mushW', {
+ma.addNewMonster('mushW', {
   Name: 'Wood_Mushroom',
   AFKtype: 'FIGHTING',
   MonsterFace: 34,
@@ -360,7 +659,7 @@ ac.addNewMonster('mushW', {
   DeathFrame: 14,
   RespawnTime: 50,
   MonsterHPTotal: 1e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 300,
   ExpType: 0,
@@ -368,7 +667,7 @@ ac.addNewMonster('mushW', {
   MoveSPEED: 4,
   Damages: [75, 1],
 });
-ac.addNewMonster('poopSmall', {
+ma.addNewMonster('poopSmall', {
   Name: 'Poop',
   AFKtype: 'FIGHTING',
   MonsterFace: 20,
@@ -380,7 +679,7 @@ ac.addNewMonster('poopSmall', {
   DeathFrame: 12,
   RespawnTime: 60,
   MonsterHPTotal: 9e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 220,
   ExpType: 0,
@@ -388,7 +687,7 @@ ac.addNewMonster('poopSmall', {
   MoveSPEED: 4,
   Damages: [150, 1],
 });
-ac.addNewMonster('ratB', {
+ma.addNewMonster('ratB', {
   Name: 'Rat',
   AFKtype: 'FIGHTING',
   MonsterFace: 22,
@@ -400,7 +699,7 @@ ac.addNewMonster('ratB', {
   DeathFrame: 18,
   RespawnTime: 60,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 330,
   ExpType: 0,
@@ -408,7 +707,7 @@ ac.addNewMonster('ratB', {
   MoveSPEED: 8,
   Damages: [220, 1],
 });
-ac.addNewMonster('poopD', {
+ma.addNewMonster('poopD', {
   Name: 'Boop',
   AFKtype: 'FIGHTING',
   MonsterFace: 33,
@@ -418,9 +717,9 @@ ac.addNewMonster('poopD', {
   MonsterMoving: 1,
   MovingFrame: 4,
   DeathFrame: 12,
-  RespawnTime: 74500,
+  RespawnTime: 745e3,
   MonsterHPTotal: 2e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1e3,
   ExpType: 0,
@@ -428,7 +727,7 @@ ac.addNewMonster('poopD', {
   MoveSPEED: 3,
   Damages: [250, 1],
 });
-ac.addNewMonster('rockG', {
+ma.addNewMonster('rockG', {
   Name: 'Healing_Rune',
   AFKtype: 'FIGHTING',
   MonsterFace: 13,
@@ -440,7 +739,7 @@ ac.addNewMonster('rockG', {
   DeathFrame: 1,
   RespawnTime: 55,
   MonsterHPTotal: 3e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 150,
   ExpType: 0,
@@ -448,7 +747,7 @@ ac.addNewMonster('rockG', {
   MoveSPEED: 0,
   Damages: [50, 1],
 });
-ac.addNewMonster('rockB', {
+ma.addNewMonster('rockB', {
   Name: 'Shielding_Rune',
   AFKtype: 'FIGHTING',
   MonsterFace: 13,
@@ -460,7 +759,7 @@ ac.addNewMonster('rockB', {
   DeathFrame: 1,
   RespawnTime: 55,
   MonsterHPTotal: 3e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 150,
   ExpType: 0,
@@ -468,7 +767,7 @@ ac.addNewMonster('rockB', {
   MoveSPEED: 0,
   Damages: [50, 1],
 });
-ac.addNewMonster('rockS', {
+ma.addNewMonster('rockS', {
   Name: 'Skeleton_Rune',
   AFKtype: 'FIGHTING',
   MonsterFace: 13,
@@ -480,7 +779,7 @@ ac.addNewMonster('rockS', {
   DeathFrame: 1,
   RespawnTime: 55,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 10,
   ExpType: 0,
@@ -488,7 +787,7 @@ ac.addNewMonster('rockS', {
   MoveSPEED: 0,
   Damages: [50, 1],
 });
-ac.addNewMonster('jarSand', {
+ma.addNewMonster('jarSand', {
   Name: 'Sandy_Pot',
   AFKtype: 'FIGHTING',
   MonsterFace: 16,
@@ -500,15 +799,15 @@ ac.addNewMonster('jarSand', {
   DeathFrame: 15,
   RespawnTime: 50,
   MonsterHPTotal: 4e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 150,
   ExpType: 0,
-  Defence: 125,
+  Defence: 115,
   MoveSPEED: 5,
-  Damages: [70, 1],
+  Damages: [55, 1],
 });
-ac.addNewMonster('mimicA', {
+ma.addNewMonster('mimicA', {
   Name: 'Mimic',
   AFKtype: 'FIGHTING',
   MonsterFace: 17,
@@ -520,15 +819,15 @@ ac.addNewMonster('mimicA', {
   DeathFrame: 19,
   RespawnTime: 50,
   MonsterHPTotal: 5500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 180,
   ExpType: 0,
-  Defence: 145,
+  Defence: 132,
   MoveSPEED: 4,
-  Damages: [85, 1],
+  Damages: [62, 1],
 });
-ac.addNewMonster('crabcake', {
+ma.addNewMonster('crabcake', {
   Name: 'Crabcake',
   AFKtype: 'FIGHTING',
   MonsterFace: 11,
@@ -540,15 +839,15 @@ ac.addNewMonster('crabcake', {
   DeathFrame: 12,
   RespawnTime: 40,
   MonsterHPTotal: 7500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 210,
   ExpType: 0,
-  Defence: 180,
+  Defence: 150,
   MoveSPEED: 4,
-  Damages: [92, 1],
+  Damages: [70, 1],
 });
-ac.addNewMonster('coconut', {
+ma.addNewMonster('coconut', {
   Name: 'Mafioso',
   AFKtype: 'FIGHTING',
   MonsterFace: 10,
@@ -560,15 +859,15 @@ ac.addNewMonster('coconut', {
   DeathFrame: 26,
   RespawnTime: 40,
   MonsterHPTotal: 11e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 240,
   ExpType: 0,
-  Defence: 240,
+  Defence: 180,
   MoveSPEED: 4,
-  Damages: [115, 1],
+  Damages: [90, 1],
 });
-ac.addNewMonster('sandcastle', {
+ma.addNewMonster('sandcastle', {
   Name: 'Sand_Castle',
   AFKtype: 'FIGHTING',
   MonsterFace: 28,
@@ -580,15 +879,15 @@ ac.addNewMonster('sandcastle', {
   DeathFrame: 19,
   RespawnTime: 40,
   MonsterHPTotal: 13e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 265,
   ExpType: 0,
-  Defence: 270,
+  Defence: 205,
   MoveSPEED: 3,
-  Damages: [125, 1],
+  Damages: [99, 1],
 });
-ac.addNewMonster('pincermin', {
+ma.addNewMonster('pincermin', {
   Name: 'Pincermin',
   AFKtype: 'FIGHTING',
   MonsterFace: 2,
@@ -600,15 +899,15 @@ ac.addNewMonster('pincermin', {
   DeathFrame: 13,
   RespawnTime: 50,
   MonsterHPTotal: 15500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 290,
   ExpType: 0,
-  Defence: 300,
+  Defence: 240,
   MoveSPEED: 5,
-  Damages: [140, 1],
+  Damages: [112, 1],
 });
-ac.addNewMonster('potato', {
+ma.addNewMonster('potato', {
   Name: 'Mashed_Potato',
   AFKtype: 'FIGHTING',
   MonsterFace: 21,
@@ -620,15 +919,15 @@ ac.addNewMonster('potato', {
   DeathFrame: 17,
   RespawnTime: 40,
   MonsterHPTotal: 18500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 310,
   ExpType: 0,
-  Defence: 330,
+  Defence: 260,
   MoveSPEED: 6,
-  Damages: [160, 1],
+  Damages: [125, 1],
 });
-ac.addNewMonster('steak', {
+ma.addNewMonster('steak', {
   Name: 'Tyson',
   AFKtype: 'FIGHTING',
   MonsterFace: 31,
@@ -640,15 +939,15 @@ ac.addNewMonster('steak', {
   DeathFrame: 14,
   RespawnTime: 40,
   MonsterHPTotal: 23e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 350,
   ExpType: 0,
-  Defence: 450,
+  Defence: 300,
   MoveSPEED: 5,
-  Damages: [220, 1],
+  Damages: [150, 1],
 });
-ac.addNewMonster('moonman', {
+ma.addNewMonster('moonman', {
   Name: 'Moonmoon',
   AFKtype: 'FIGHTING',
   MonsterFace: 30,
@@ -660,15 +959,15 @@ ac.addNewMonster('moonman', {
   DeathFrame: 16,
   RespawnTime: 40,
   MonsterHPTotal: 26500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 380,
   ExpType: 0,
-  Defence: 500,
-  MoveSPEED: 5,
-  Damages: [240, 1],
+  Defence: 330,
+  MoveSPEED: 4,
+  Damages: [170, 1],
 });
-ac.addNewMonster('sandgiant', {
+ma.addNewMonster('sandgiant', {
   Name: 'Sand_Giant',
   AFKtype: 'FIGHTING',
   MonsterFace: 29,
@@ -680,15 +979,15 @@ ac.addNewMonster('sandgiant', {
   DeathFrame: 20,
   RespawnTime: 40,
   MonsterHPTotal: 3e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 410,
   ExpType: 0,
-  Defence: 550,
+  Defence: 365,
   MoveSPEED: 3,
-  Damages: [260, 1],
+  Damages: [195, 1],
 });
-ac.addNewMonster('snailZ', {
+ma.addNewMonster('snailZ', {
   Name: 'Snelbie',
   AFKtype: 'FIGHTING',
   MonsterFace: 27,
@@ -700,15 +999,15 @@ ac.addNewMonster('snailZ', {
   DeathFrame: 18,
   RespawnTime: 40,
   MonsterHPTotal: 35e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 460,
   ExpType: 0,
-  Defence: 650,
+  Defence: 400,
   MoveSPEED: 4,
-  Damages: [300, 1],
+  Damages: [225, 1],
 });
-ac.addNewMonster('sheep', {
+ma.addNewMonster('sheep', {
   Name: 'Sheepie',
   AFKtype: 'FIGHTING',
   MonsterFace: 35,
@@ -720,15 +1019,15 @@ ac.addNewMonster('sheep', {
   DeathFrame: 17,
   RespawnTime: 40,
   MonsterHPTotal: 55e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 620,
   ExpType: 0,
-  Defence: 1,
+  Defence: 550,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [300, 1],
 });
-ac.addNewMonster('flake', {
+ma.addNewMonster('flake', {
   Name: 'Frost_Flake',
   AFKtype: 'FIGHTING',
   MonsterFace: 36,
@@ -740,15 +1039,15 @@ ac.addNewMonster('flake', {
   DeathFrame: 10,
   RespawnTime: 40,
   MonsterHPTotal: 67e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 700,
   ExpType: 0,
-  Defence: 1,
+  Defence: 700,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [360, 1],
 });
-ac.addNewMonster('stache', {
+ma.addNewMonster('stache', {
   Name: 'Sir_Stache',
   AFKtype: 'FIGHTING',
   MonsterFace: 37,
@@ -760,15 +1059,15 @@ ac.addNewMonster('stache', {
   DeathFrame: 10,
   RespawnTime: 40,
   MonsterHPTotal: 81e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 800,
   ExpType: 0,
-  Defence: 1,
+  Defence: 900,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [420, 1],
 });
-ac.addNewMonster('ram', {
+ma.addNewMonster('ram', {
   Name: 'Dedotated_Ram',
   AFKtype: 'FIGHTING',
   MonsterFace: 46,
@@ -778,17 +1077,17 @@ ac.addNewMonster('ram', {
   MonsterMoving: 1,
   MovingFrame: 6,
   DeathFrame: 13,
-  RespawnTime: 40,
-  MonsterHPTotal: 25e4,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 35,
+  MonsterHPTotal: 125e4,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
-  ExpGiven: 1900,
+  ExpGiven: 3500,
   ExpType: 0,
-  Defence: 1,
+  Defence: 1500,
   MoveSPEED: 6,
-  Damages: [100, 1],
+  Damages: [3e3, 1],
 });
-ac.addNewMonster('bloque', {
+ma.addNewMonster('bloque', {
   Name: 'Bloque',
   AFKtype: 'FIGHTING',
   MonsterFace: 32,
@@ -800,16 +1099,16 @@ ac.addNewMonster('bloque', {
   DeathFrame: 16,
   RespawnTime: 40,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 940,
   ExpType: 0,
-  Defence: 1,
+  Defence: 1150,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [500, 1],
 });
-ac.addNewMonster('mamoth', {
-  Name: 'mamooth',
+ma.addNewMonster('mamoth', {
+  Name: 'Mamooth',
   AFKtype: 'FIGHTING',
   MonsterFace: 38,
   MonsterOffsetX: 38,
@@ -820,15 +1119,15 @@ ac.addNewMonster('mamoth', {
   DeathFrame: 16,
   RespawnTime: 40,
   MonsterHPTotal: 115e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1030,
   ExpType: 0,
-  Defence: 1,
+  Defence: 1400,
   MoveSPEED: 3,
-  Damages: [0, 1],
+  Damages: [580, 1],
 });
-ac.addNewMonster('snowball', {
+ma.addNewMonster('snowball', {
   Name: 'Snowman',
   AFKtype: 'FIGHTING',
   MonsterFace: 39,
@@ -839,16 +1138,16 @@ ac.addNewMonster('snowball', {
   MovingFrame: 6,
   DeathFrame: 15,
   RespawnTime: 40,
-  MonsterHPTotal: 13e4,
-  Type: ac.MONSTER_TYPE,
+  MonsterHPTotal: 135e3,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1130,
   ExpType: 0,
-  Defence: 1,
+  Defence: 1700,
   MoveSPEED: 6,
-  Damages: [0, 1],
+  Damages: [690, 1],
 });
-ac.addNewMonster('penguin', {
+ma.addNewMonster('penguin', {
   Name: 'Penguin',
   AFKtype: 'FIGHTING',
   MonsterFace: 40,
@@ -859,16 +1158,16 @@ ac.addNewMonster('penguin', {
   MovingFrame: 14,
   DeathFrame: 25,
   RespawnTime: 40,
-  MonsterHPTotal: 15e4,
-  Type: ac.MONSTER_TYPE,
+  MonsterHPTotal: 16e4,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1250,
   ExpType: 0,
-  Defence: 1,
+  Defence: 2e3,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [800, 1],
 });
-ac.addNewMonster('thermostat', {
+ma.addNewMonster('thermostat', {
   Name: 'Thermister',
   AFKtype: 'FIGHTING',
   MonsterFace: 41,
@@ -879,16 +1178,16 @@ ac.addNewMonster('thermostat', {
   MovingFrame: 6,
   DeathFrame: 20,
   RespawnTime: 40,
-  MonsterHPTotal: 175e3,
-  Type: ac.MONSTER_TYPE,
+  MonsterHPTotal: 185e3,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1370,
   ExpType: 0,
-  Defence: 1,
+  Defence: 2250,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [950, 1],
 });
-ac.addNewMonster('glass', {
+ma.addNewMonster('glass', {
   Name: 'Quenchie',
   AFKtype: 'FIGHTING',
   MonsterFace: 42,
@@ -898,17 +1197,17 @@ ac.addNewMonster('glass', {
   MonsterMoving: 1,
   MovingFrame: 10,
   DeathFrame: 23,
-  RespawnTime: 40,
-  MonsterHPTotal: 215e3,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 45,
+  MonsterHPTotal: 225e3,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1570,
   ExpType: 0,
-  Defence: 1,
+  Defence: 2600,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [1150, 1],
 });
-ac.addNewMonster('snakeB', {
+ma.addNewMonster('snakeB', {
   Name: 'Cryosnake',
   AFKtype: 'FIGHTING',
   MonsterFace: 43,
@@ -918,17 +1217,17 @@ ac.addNewMonster('snakeB', {
   MonsterMoving: 1,
   MovingFrame: 6,
   DeathFrame: 13,
-  RespawnTime: 40,
-  MonsterHPTotal: 24e4,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 45,
+  MonsterHPTotal: 26e4,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1690,
   ExpType: 0,
-  Defence: 1,
+  Defence: 2900,
   MoveSPEED: 6,
-  Damages: [0, 1],
+  Damages: [1425, 1],
 });
-ac.addNewMonster('speaker', {
+ma.addNewMonster('speaker', {
   Name: 'Bop_Box',
   AFKtype: 'FIGHTING',
   MonsterFace: 44,
@@ -938,37 +1237,37 @@ ac.addNewMonster('speaker', {
   MonsterMoving: 1,
   MovingFrame: 12,
   DeathFrame: 23,
-  RespawnTime: 40,
-  MonsterHPTotal: 27e4,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 45,
+  MonsterHPTotal: 31e4,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1780,
   ExpType: 0,
-  Defence: 1,
+  Defence: 3200,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [1700, 1],
 });
-ac.addNewMonster('eye', {
+ma.addNewMonster('eye', {
   Name: 'Neyeptune',
   AFKtype: 'FIGHTING',
   MonsterFace: 45,
   MonsterOffsetX: 38,
   MonsterOffsetY: 32,
-  HeightOfMonster: 44,
+  HeightOfMonster: 63,
   MonsterMoving: 1,
   MovingFrame: 0,
   DeathFrame: 12,
-  RespawnTime: 40,
-  MonsterHPTotal: 3e5,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 45,
+  MonsterHPTotal: 35e4,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1900,
   ExpType: 0,
-  Defence: 1,
+  Defence: 3400,
   MoveSPEED: 4,
-  Damages: [0, 1],
+  Damages: [2e3, 1],
 });
-ac.addNewMonster('mushR', {
+ma.addNewMonster('mushR', {
   Name: 'Red_Mushroom',
   AFKtype: 'FIGHTING',
   MonsterFace: 19,
@@ -980,7 +1279,7 @@ ac.addNewMonster('mushR', {
   DeathFrame: 12,
   RespawnTime: 45,
   MonsterHPTotal: 1e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 47,
   ExpType: 0,
@@ -988,7 +1287,7 @@ ac.addNewMonster('mushR', {
   MoveSPEED: 4,
   Damages: [30, 1],
 });
-ac.addNewMonster('shovelR', {
+ma.addNewMonster('shovelR', {
   Name: 'Dig_Doug',
   AFKtype: 'FIGHTING',
   MonsterFace: 23,
@@ -1000,7 +1299,7 @@ ac.addNewMonster('shovelR', {
   DeathFrame: 16,
   RespawnTime: 40,
   MonsterHPTotal: 14e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 420,
   ExpType: 0,
@@ -1008,7 +1307,7 @@ ac.addNewMonster('shovelR', {
   MoveSPEED: 4,
   Damages: [2, 1],
 });
-ac.addNewMonster('skele', {
+ma.addNewMonster('skele', {
   Name: 'Xylobone',
   AFKtype: 'FIGHTING',
   MonsterFace: 23,
@@ -1019,36 +1318,36 @@ ac.addNewMonster('skele', {
   MovingFrame: 8,
   DeathFrame: 20,
   RespawnTime: 40,
-  MonsterHPTotal: 14e3,
-  Type: ac.MONSTER_TYPE,
+  MonsterHPTotal: 2e5,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
-  ExpGiven: 420,
+  ExpGiven: 2e3,
   ExpType: 0,
-  Defence: 228,
+  Defence: 100,
   MoveSPEED: 4,
-  Damages: [2, 1],
+  Damages: [200, 1],
 });
-ac.addNewMonster('skele2', {
+ma.addNewMonster('skele2', {
   Name: 'Bloodbone',
   AFKtype: 'FIGHTING',
-  MonsterFace: 23,
+  MonsterFace: 48,
   MonsterOffsetX: 38,
   MonsterOffsetY: 47,
   HeightOfMonster: 56,
   MonsterMoving: 1,
   MovingFrame: 8,
   DeathFrame: 20,
-  RespawnTime: 40,
-  MonsterHPTotal: 14e3,
-  Type: ac.MONSTER_TYPE,
+  RespawnTime: 60,
+  MonsterHPTotal: 1e7,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
-  ExpGiven: 420,
+  ExpGiven: 6e3,
   ExpType: 0,
-  Defence: 228,
+  Defence: 100,
   MoveSPEED: 4,
-  Damages: [2, 1],
+  Damages: [3e3, 1],
 });
-ac.addNewMonster('wolfA', {
+ma.addNewMonster('wolfA', {
   Name: 'Amarok',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1060,7 +1359,7 @@ ac.addNewMonster('wolfA', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 25e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1068,7 +1367,7 @@ ac.addNewMonster('wolfA', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('wolfB', {
+ma.addNewMonster('wolfB', {
   Name: 'Chaotic_Amarok',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1080,7 +1379,7 @@ ac.addNewMonster('wolfB', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 15e6,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1088,7 +1387,7 @@ ac.addNewMonster('wolfB', {
   MoveSPEED: 3,
   Damages: [1200, 1],
 });
-ac.addNewMonster('wolfC', {
+ma.addNewMonster('wolfC', {
   Name: 'Nightmare_Amarok',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1100,7 +1399,7 @@ ac.addNewMonster('wolfC', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1108,7 +1407,7 @@ ac.addNewMonster('wolfC', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Boss2A', {
+ma.addNewMonster('Boss2A', {
   Name: 'Efaunt',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1120,7 +1419,7 @@ ac.addNewMonster('Boss2A', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 1e6,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1128,7 +1427,7 @@ ac.addNewMonster('Boss2A', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Boss2B', {
+ma.addNewMonster('Boss2B', {
   Name: 'Chaotic_Efaunt',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1140,7 +1439,7 @@ ac.addNewMonster('Boss2B', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 1e8,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1148,7 +1447,7 @@ ac.addNewMonster('Boss2B', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Boss2C', {
+ma.addNewMonster('Boss2C', {
   Name: 'Nightmare_Amarok',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1160,7 +1459,7 @@ ac.addNewMonster('Boss2C', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1168,7 +1467,67 @@ ac.addNewMonster('Boss2C', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('poopBig', {
+ma.addNewMonster('Boss3A', {
+  Name: 'Chizoar',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 2e7,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 775,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('Boss3B', {
+  Name: 'Chaotic_Chizoar',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 75e7,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 4e3,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('Boss3C', {
+  Name: 'Nightmare_Chizoar',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 75e4,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('poopBig', {
   Name: 'Dr_Defecaus',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1178,9 +1537,9 @@ ac.addNewMonster('poopBig', {
   MonsterMoving: 1,
   MovingFrame: 4,
   DeathFrame: 13,
-  RespawnTime: 74500,
+  RespawnTime: 745e3,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1188,7 +1547,7 @@ ac.addNewMonster('poopBig', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('babayaga', {
+ma.addNewMonster('babayaga', {
   Name: 'Baba_Yaga',
   AFKtype: 'FIGHTING',
   MonsterFace: 6,
@@ -1200,7 +1559,7 @@ ac.addNewMonster('babayaga', {
   DeathFrame: 15,
   RespawnTime: 86400,
   MonsterHPTotal: 15e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 1750,
   ExpType: 0,
@@ -1208,7 +1567,7 @@ ac.addNewMonster('babayaga', {
   MoveSPEED: 4,
   Damages: [400, 20],
 });
-ac.addNewMonster('babaHour', {
+ma.addNewMonster('babaHour', {
   Name: 'Biggie_Hours',
   AFKtype: 'FIGHTING',
   MonsterFace: 6,
@@ -1220,7 +1579,7 @@ ac.addNewMonster('babaHour', {
   DeathFrame: 20,
   RespawnTime: 86400,
   MonsterHPTotal: 8e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12500,
   ExpType: 0,
@@ -1228,7 +1587,7 @@ ac.addNewMonster('babaHour', {
   MoveSPEED: 5,
   Damages: [500, 20],
 });
-ac.addNewMonster('babaMummy', {
+ma.addNewMonster('babaMummy', {
   Name: 'King_Doot',
   AFKtype: 'FIGHTING',
   MonsterFace: 6,
@@ -1240,7 +1599,7 @@ ac.addNewMonster('babaMummy', {
   DeathFrame: 17,
   RespawnTime: 86400,
   MonsterHPTotal: 3e6,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 5e4,
   ExpType: 0,
@@ -1248,7 +1607,7 @@ ac.addNewMonster('babaMummy', {
   MoveSPEED: 4,
   Damages: [800, 450],
 });
-ac.addNewMonster('xmasEvent', {
+ma.addNewMonster('xmasEvent', {
   Name: 'Giftmas_Blobulyte',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1260,7 +1619,7 @@ ac.addNewMonster('xmasEvent', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1268,7 +1627,7 @@ ac.addNewMonster('xmasEvent', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('xmasEvent2', {
+ma.addNewMonster('xmasEvent2', {
   Name: 'Meaning_of_Giftmas',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1280,7 +1639,7 @@ ac.addNewMonster('xmasEvent2', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1288,7 +1647,7 @@ ac.addNewMonster('xmasEvent2', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('loveEvent', {
+ma.addNewMonster('loveEvent', {
   Name: 'Loveulyte',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1300,7 +1659,7 @@ ac.addNewMonster('loveEvent', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1308,7 +1667,7 @@ ac.addNewMonster('loveEvent', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('loveEvent2', {
+ma.addNewMonster('loveEvent2', {
   Name: 'Chocco_Box',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1320,7 +1679,7 @@ ac.addNewMonster('loveEvent2', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1328,7 +1687,7 @@ ac.addNewMonster('loveEvent2', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('EasterEvent1', {
+ma.addNewMonster('EasterEvent1', {
   Name: 'Egggulyte',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1340,7 +1699,7 @@ ac.addNewMonster('EasterEvent1', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1348,7 +1707,7 @@ ac.addNewMonster('EasterEvent1', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('EasterEvent2', {
+ma.addNewMonster('EasterEvent2', {
   Name: 'Egg_Capsule',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1360,7 +1719,7 @@ ac.addNewMonster('EasterEvent2', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1368,7 +1727,47 @@ ac.addNewMonster('EasterEvent2', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Blank0ramaFiller', {
+ma.addNewMonster('SummerEvent1', {
+  Name: 'Coastiolyte',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 75e4,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('SummerEvent2', {
+  Name: 'Summer_Spirit',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 4,
+  MonsterOffsetX: 42,
+  MonsterOffsetY: 28,
+  HeightOfMonster: 85,
+  MonsterMoving: 1,
+  MovingFrame: 4,
+  DeathFrame: 13,
+  RespawnTime: 86400,
+  MonsterHPTotal: 75e4,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: 'a',
+  ExpGiven: 12e3,
+  ExpType: 0,
+  Defence: 600,
+  MoveSPEED: 3,
+  Damages: [1e3, 1],
+});
+ma.addNewMonster('Blank0ramaFiller', {
   Name: 'Nightmare_Amarok',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1380,7 +1779,7 @@ ac.addNewMonster('Blank0ramaFiller', {
   DeathFrame: 13,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1388,7 +1787,7 @@ ac.addNewMonster('Blank0ramaFiller', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('ghost', {
+ma.addNewMonster('ghost', {
   Name: 'Ghost',
   AFKtype: 'FIGHTING',
   MonsterFace: 6,
@@ -1400,7 +1799,7 @@ ac.addNewMonster('ghost', {
   DeathFrame: 16,
   RespawnTime: 100,
   MonsterHPTotal: 1e3,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 1,
   ExpType: 0,
@@ -1408,7 +1807,7 @@ ac.addNewMonster('ghost', {
   MoveSPEED: 5,
   Damages: [5, 5],
 });
-ac.addNewMonster('slimeR', {
+ma.addNewMonster('slimeR', {
   Name: 'Valentslime',
   AFKtype: 'FIGHTING',
   MonsterFace: 24,
@@ -1420,7 +1819,7 @@ ac.addNewMonster('slimeR', {
   DeathFrame: 16,
   RespawnTime: 42,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 20,
   ExpType: 0,
@@ -1428,7 +1827,7 @@ ac.addNewMonster('slimeR', {
   MoveSPEED: 4,
   Damages: [1, 1],
 });
-ac.addNewMonster('sheepB', {
+ma.addNewMonster('sheepB', {
   Name: 'Floofie',
   AFKtype: 'FIGHTING',
   MonsterFace: 35,
@@ -1440,7 +1839,7 @@ ac.addNewMonster('sheepB', {
   DeathFrame: 17,
   RespawnTime: 40,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 1,
   ExpType: 0,
@@ -1448,7 +1847,7 @@ ac.addNewMonster('sheepB', {
   MoveSPEED: 5,
   Damages: [0, 1],
 });
-ac.addNewMonster('snakeY', {
+ma.addNewMonster('snakeY', {
   Name: 'Shell_Snake',
   AFKtype: 'FIGHTING',
   MonsterFace: 25,
@@ -1460,7 +1859,7 @@ ac.addNewMonster('snakeY', {
   DeathFrame: 13,
   RespawnTime: 45,
   MonsterHPTotal: 450,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 34,
   ExpType: 0,
@@ -1468,7 +1867,47 @@ ac.addNewMonster('snakeY', {
   MoveSPEED: 8,
   Damages: [22, 1],
 });
-ac.addNewMonster('Copper', {
+ma.addNewMonster('crabcakeB', {
+  Name: 'Mr_Blueberry',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 11,
+  MonsterOffsetX: 38,
+  MonsterOffsetY: 40,
+  HeightOfMonster: 64,
+  MonsterMoving: 1,
+  MovingFrame: 6,
+  DeathFrame: 12,
+  RespawnTime: 40,
+  MonsterHPTotal: 500,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: '_',
+  ExpGiven: 20,
+  ExpType: 0,
+  Defence: 1,
+  MoveSPEED: 4,
+  Damages: [22, 1],
+});
+ma.addNewMonster('shovelY', {
+  Name: 'Plasti_Doug',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 23,
+  MonsterOffsetX: 38,
+  MonsterOffsetY: 47,
+  HeightOfMonster: 56,
+  MonsterMoving: 1,
+  MovingFrame: 5,
+  DeathFrame: 16,
+  RespawnTime: 40,
+  MonsterHPTotal: 14e3,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: '_',
+  ExpGiven: 420,
+  ExpType: 0,
+  Defence: 1,
+  MoveSPEED: 4,
+  Damages: [2, 1],
+});
+ma.addNewMonster('Copper', {
   Name: 'Copper',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1480,7 +1919,7 @@ ac.addNewMonster('Copper', {
   DeathFrame: 1,
   RespawnTime: 120,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 1,
@@ -1488,7 +1927,7 @@ ac.addNewMonster('Copper', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Iron', {
+ma.addNewMonster('Iron', {
   Name: 'Iron',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1500,15 +1939,15 @@ ac.addNewMonster('Iron', {
   DeathFrame: 1,
   RespawnTime: 120,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 5,
   ExpType: 1,
-  Defence: 200,
+  Defence: 180,
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Gold', {
+ma.addNewMonster('Gold', {
   Name: 'Gold',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1520,15 +1959,15 @@ ac.addNewMonster('Gold', {
   DeathFrame: 1,
   RespawnTime: 120,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 10,
   ExpType: 1,
-  Defence: 1500,
+  Defence: 1250,
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Plat', {
+ma.addNewMonster('Plat', {
   Name: 'Plat',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1540,15 +1979,15 @@ ac.addNewMonster('Plat', {
   DeathFrame: 1,
   RespawnTime: 180,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 30,
   ExpType: 1,
-  Defence: 2e4,
+  Defence: 16e3,
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Dementia', {
+ma.addNewMonster('Dementia', {
   Name: 'Dementia',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1560,15 +1999,15 @@ ac.addNewMonster('Dementia', {
   DeathFrame: 1,
   RespawnTime: 180,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 55,
   ExpType: 1,
-  Defence: 175e3,
+  Defence: 15e4,
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Void', {
+ma.addNewMonster('Void', {
   Name: 'Void',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1580,7 +2019,7 @@ ac.addNewMonster('Void', {
   DeathFrame: 1,
   RespawnTime: 240,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 185,
   ExpType: 1,
@@ -1588,7 +2027,7 @@ ac.addNewMonster('Void', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Lustre', {
+ma.addNewMonster('Lustre', {
   Name: 'Lustre',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1600,7 +2039,7 @@ ac.addNewMonster('Lustre', {
   DeathFrame: 1,
   RespawnTime: 240,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 250,
   ExpType: 1,
@@ -1608,7 +2047,7 @@ ac.addNewMonster('Lustre', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Starfire', {
+ma.addNewMonster('Starfire', {
   Name: 'Starfire',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1620,7 +2059,7 @@ ac.addNewMonster('Starfire', {
   DeathFrame: 1,
   RespawnTime: 240,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 500,
   ExpType: 1,
@@ -1628,7 +2067,7 @@ ac.addNewMonster('Starfire', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Dreadlo', {
+ma.addNewMonster('Dreadlo', {
   Name: 'Dreadlo',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1640,7 +2079,7 @@ ac.addNewMonster('Dreadlo', {
   DeathFrame: 1,
   RespawnTime: 300,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 850,
   ExpType: 1,
@@ -1648,7 +2087,7 @@ ac.addNewMonster('Dreadlo', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Godshard', {
+ma.addNewMonster('Godshard', {
   Name: 'Godshard',
   AFKtype: 'MINING',
   MonsterFace: 0,
@@ -1660,7 +2099,7 @@ ac.addNewMonster('Godshard', {
   DeathFrame: 1,
   RespawnTime: 600,
   MonsterHPTotal: 5,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 1250,
   ExpType: 1,
@@ -1668,7 +2107,7 @@ ac.addNewMonster('Godshard', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('OakTree', {
+ma.addNewMonster('OakTree', {
   Name: 'Oak_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1680,7 +2119,7 @@ ac.addNewMonster('OakTree', {
   DeathFrame: 2,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 3,
@@ -1688,7 +2127,7 @@ ac.addNewMonster('OakTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('BirchTree', {
+ma.addNewMonster('BirchTree', {
   Name: 'Birch_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1700,7 +2139,7 @@ ac.addNewMonster('BirchTree', {
   DeathFrame: 5,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 6,
   ExpType: 3,
@@ -1708,7 +2147,7 @@ ac.addNewMonster('BirchTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('JungleTree', {
+ma.addNewMonster('JungleTree', {
   Name: 'Jungle_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1720,7 +2159,7 @@ ac.addNewMonster('JungleTree', {
   DeathFrame: 7,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 12,
   ExpType: 3,
@@ -1728,7 +2167,7 @@ ac.addNewMonster('JungleTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ForestTree', {
+ma.addNewMonster('ForestTree', {
   Name: 'Forest_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1740,7 +2179,7 @@ ac.addNewMonster('ForestTree', {
   DeathFrame: 8,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 20,
   ExpType: 3,
@@ -1748,27 +2187,7 @@ ac.addNewMonster('ForestTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ToiletTree', {
-  Name: 'Toilet_Tree',
-  AFKtype: 'CHOPPIN',
-  MonsterFace: 0,
-  MonsterOffsetX: 32,
-  MonsterOffsetY: 0,
-  HeightOfMonster: 100,
-  MonsterMoving: 0,
-  MovingFrame: 1,
-  DeathFrame: 3,
-  RespawnTime: 0,
-  MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
-  SpecialType: '_',
-  ExpGiven: 50,
-  ExpType: 3,
-  Defence: 3500,
-  MoveSPEED: 0,
-  Damages: [0, 1],
-});
-ac.addNewMonster('PalmTree', {
+ma.addNewMonster('PalmTree', {
   Name: 'Palm_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1780,7 +2199,7 @@ ac.addNewMonster('PalmTree', {
   DeathFrame: 1,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 32,
   ExpType: 3,
@@ -1788,7 +2207,27 @@ ac.addNewMonster('PalmTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('StumpTree', {
+ma.addNewMonster('ToiletTree', {
+  Name: 'Toilet_Tree',
+  AFKtype: 'CHOPPIN',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 0,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 1,
+  DeathFrame: 3,
+  RespawnTime: 0,
+  MonsterHPTotal: 5,
+  Type: ma.TREE_TYPE,
+  SpecialType: '_',
+  ExpGiven: 50,
+  ExpType: 3,
+  Defence: 3500,
+  MoveSPEED: 0,
+  Damages: [0, 1],
+});
+ma.addNewMonster('StumpTree', {
   Name: 'Stump_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1800,7 +2239,7 @@ ac.addNewMonster('StumpTree', {
   DeathFrame: 4,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 90,
   ExpType: 3,
@@ -1808,7 +2247,7 @@ ac.addNewMonster('StumpTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('SaharanFoal', {
+ma.addNewMonster('SaharanFoal', {
   Name: 'Saharan_Foal',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1820,15 +2259,35 @@ ac.addNewMonster('SaharanFoal', {
   DeathFrame: 0,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
-  ExpGiven: 2,
+  ExpGiven: 150,
   ExpType: 3,
-  Defence: 20,
+  Defence: 2e4,
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('AlienTree', {
+ma.addNewMonster('Tree7', {
+  Name: 'Wispy_Tree',
+  AFKtype: 'CHOPPIN',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 0,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 3,
+  DeathFrame: 9,
+  RespawnTime: 0,
+  MonsterHPTotal: 5,
+  Type: ma.TREE_TYPE,
+  SpecialType: '_',
+  ExpGiven: 275,
+  ExpType: 3,
+  Defence: 5e4,
+  MoveSPEED: 0,
+  Damages: [0, 1],
+});
+ma.addNewMonster('AlienTree', {
   Name: 'Alien_Tree',
   AFKtype: 'CHOPPIN',
   MonsterFace: 0,
@@ -1840,7 +2299,7 @@ ac.addNewMonster('AlienTree', {
   DeathFrame: 6,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 6,
   ExpType: 3,
@@ -1848,7 +2307,7 @@ ac.addNewMonster('AlienTree', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('FishSmall', {
+ma.addNewMonster('FishSmall', {
   Name: 'Small_Fish',
   AFKtype: 'FISHING',
   MonsterFace: 0,
@@ -1860,7 +2319,7 @@ ac.addNewMonster('FishSmall', {
   DeathFrame: 2,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.FISH_TYPE,
+  Type: ma.FISH_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 4,
@@ -1868,7 +2327,7 @@ ac.addNewMonster('FishSmall', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('Fish1', {
+ma.addNewMonster('Fish1', {
   Name: 'Goldfish',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1880,7 +2339,7 @@ ac.addNewMonster('Fish1', {
   DeathFrame: 0,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.FISH_TYPE,
+  Type: ma.FISH_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1888,7 +2347,7 @@ ac.addNewMonster('Fish1', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Fish2', {
+ma.addNewMonster('Fish2', {
   Name: 'Hermit_Can',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1900,7 +2359,7 @@ ac.addNewMonster('Fish2', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.FISH_TYPE,
+  Type: ma.FISH_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1908,7 +2367,7 @@ ac.addNewMonster('Fish2', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Fish3', {
+ma.addNewMonster('Fish3', {
   Name: 'Jellyfish',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1920,7 +2379,7 @@ ac.addNewMonster('Fish3', {
   DeathFrame: 2,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.FISH_TYPE,
+  Type: ma.FISH_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1928,7 +2387,7 @@ ac.addNewMonster('Fish3', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('Fish4', {
+ma.addNewMonster('Fish4', {
   Name: 'Bloach',
   AFKtype: 'FIGHTING',
   MonsterFace: 4,
@@ -1940,7 +2399,7 @@ ac.addNewMonster('Fish4', {
   DeathFrame: 3,
   RespawnTime: 86400,
   MonsterHPTotal: 75e4,
-  Type: ac.FISH_TYPE,
+  Type: ma.FISH_TYPE,
   SpecialType: 'a',
   ExpGiven: 12e3,
   ExpType: 0,
@@ -1948,7 +2407,7 @@ ac.addNewMonster('Fish4', {
   MoveSPEED: 3,
   Damages: [1e3, 1],
 });
-ac.addNewMonster('BugNest1', {
+ma.addNewMonster('BugNest1', {
   Name: 'Fly_Nest',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -1960,7 +2419,7 @@ ac.addNewMonster('BugNest1', {
   DeathFrame: 0,
   RespawnTime: 86400,
   MonsterHPTotal: 999999999,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 6,
@@ -1968,7 +2427,7 @@ ac.addNewMonster('BugNest1', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('BugNest2', {
+ma.addNewMonster('BugNest2', {
   Name: 'Butterfly_Bar',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -1980,7 +2439,7 @@ ac.addNewMonster('BugNest2', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 999999999,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 6,
@@ -1988,7 +2447,7 @@ ac.addNewMonster('BugNest2', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('BugNest3', {
+ma.addNewMonster('BugNest3', {
   Name: 'Sentient_Bowl',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -2000,7 +2459,7 @@ ac.addNewMonster('BugNest3', {
   DeathFrame: 2,
   RespawnTime: 86400,
   MonsterHPTotal: 999999999,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 6,
@@ -2008,7 +2467,7 @@ ac.addNewMonster('BugNest3', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('BugNest4', {
+ma.addNewMonster('BugNest4', {
   Name: 'Grocery_Bag',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -2020,7 +2479,7 @@ ac.addNewMonster('BugNest4', {
   DeathFrame: 3,
   RespawnTime: 86400,
   MonsterHPTotal: 999999999,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 6,
@@ -2028,7 +2487,47 @@ ac.addNewMonster('BugNest4', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('Bug1', {
+ma.addNewMonster('BugNest5', {
+  Name: 'Snowden',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 30,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 63,
+  DeathFrame: 4,
+  RespawnTime: 86400,
+  MonsterHPTotal: 999999999,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: '_',
+  ExpGiven: 2,
+  ExpType: 6,
+  Defence: 1,
+  MoveSPEED: 0,
+  Damages: [6, 1],
+});
+ma.addNewMonster('BugNest6', {
+  Name: 'Icicle_Nest',
+  AFKtype: 'FIGHTING',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 30,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 63,
+  DeathFrame: 5,
+  RespawnTime: 86400,
+  MonsterHPTotal: 999999999,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: '_',
+  ExpGiven: 2,
+  ExpType: 6,
+  Defence: 1,
+  MoveSPEED: 0,
+  Damages: [6, 1],
+});
+ma.addNewMonster('Bug1', {
   Name: 'Flies',
   AFKtype: 'CATCHING',
   MonsterFace: 0,
@@ -2040,7 +2539,7 @@ ac.addNewMonster('Bug1', {
   DeathFrame: 0,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.BUG_TYPE,
+  Type: ma.BUG_TYPE,
   SpecialType: '_',
   ExpGiven: 2,
   ExpType: 6,
@@ -2048,7 +2547,7 @@ ac.addNewMonster('Bug1', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('Bug2', {
+ma.addNewMonster('Bug2', {
   Name: 'Butterflies',
   AFKtype: 'CATCHING',
   MonsterFace: 0,
@@ -2060,7 +2559,7 @@ ac.addNewMonster('Bug2', {
   DeathFrame: 1,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.BUG_TYPE,
+  Type: ma.BUG_TYPE,
   SpecialType: '_',
   ExpGiven: 6,
   ExpType: 6,
@@ -2068,7 +2567,7 @@ ac.addNewMonster('Bug2', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('Bug3', {
+ma.addNewMonster('Bug3', {
   Name: 'Sentient_Cereal',
   AFKtype: 'CATCHING',
   MonsterFace: 0,
@@ -2080,7 +2579,7 @@ ac.addNewMonster('Bug3', {
   DeathFrame: 2,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.BUG_TYPE,
+  Type: ma.BUG_TYPE,
   SpecialType: '_',
   ExpGiven: 10,
   ExpType: 6,
@@ -2088,7 +2587,7 @@ ac.addNewMonster('Bug3', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('Bug4', {
+ma.addNewMonster('Bug4', {
   Name: 'Fruitflies',
   AFKtype: 'CATCHING',
   MonsterFace: 0,
@@ -2100,7 +2599,7 @@ ac.addNewMonster('Bug4', {
   DeathFrame: 3,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.BUG_TYPE,
+  Type: ma.BUG_TYPE,
   SpecialType: '_',
   ExpGiven: 20,
   ExpType: 6,
@@ -2108,7 +2607,47 @@ ac.addNewMonster('Bug4', {
   MoveSPEED: 0,
   Damages: [6, 1],
 });
-ac.addNewMonster('BossPart', {
+ma.addNewMonster('Bug5', {
+  Name: 'Mosquisnow',
+  AFKtype: 'CATCHING',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 50,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 1,
+  DeathFrame: 4,
+  RespawnTime: 0,
+  MonsterHPTotal: 5,
+  Type: ma.BUG_TYPE,
+  SpecialType: '_',
+  ExpGiven: 40,
+  ExpType: 6,
+  Defence: 18e3,
+  MoveSPEED: 0,
+  Damages: [6, 1],
+});
+ma.addNewMonster('Bug6', {
+  Name: 'Flycicle',
+  AFKtype: 'CATCHING',
+  MonsterFace: 0,
+  MonsterOffsetX: 32,
+  MonsterOffsetY: 50,
+  HeightOfMonster: 100,
+  MonsterMoving: 0,
+  MovingFrame: 1,
+  DeathFrame: 5,
+  RespawnTime: 0,
+  MonsterHPTotal: 5,
+  Type: ma.BUG_TYPE,
+  SpecialType: '_',
+  ExpGiven: 75,
+  ExpType: 6,
+  Defence: 4e4,
+  MoveSPEED: 0,
+  Damages: [6, 1],
+});
+ma.addNewMonster('BossPart', {
   Name: 'Error',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -2120,7 +2659,7 @@ ac.addNewMonster('BossPart', {
   DeathFrame: -1,
   RespawnTime: 22,
   MonsterHPTotal: 69420,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 0,
   ExpType: 0,
@@ -2128,7 +2667,7 @@ ac.addNewMonster('BossPart', {
   MoveSPEED: 4,
   Damages: [20, 1],
 });
-ac.addNewMonster('EfauntArm', {
+ma.addNewMonster('EfauntArm', {
   Name: 'Error',
   AFKtype: 'FIGHTING',
   MonsterFace: 0,
@@ -2140,7 +2679,7 @@ ac.addNewMonster('EfauntArm', {
   DeathFrame: 0,
   RespawnTime: 22,
   MonsterHPTotal: 69420,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: 'a',
   ExpGiven: 0,
   ExpType: 0,
@@ -2148,7 +2687,7 @@ ac.addNewMonster('EfauntArm', {
   MoveSPEED: 4,
   Damages: [20, 1],
 });
-ac.addNewMonster('ChestA1', {
+ma.addNewMonster('ChestA1', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2160,7 +2699,7 @@ ac.addNewMonster('ChestA1', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2168,7 +2707,7 @@ ac.addNewMonster('ChestA1', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB1', {
+ma.addNewMonster('ChestB1', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2180,7 +2719,7 @@ ac.addNewMonster('ChestB1', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2188,7 +2727,7 @@ ac.addNewMonster('ChestB1', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC1', {
+ma.addNewMonster('ChestC1', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2200,7 +2739,7 @@ ac.addNewMonster('ChestC1', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2208,7 +2747,7 @@ ac.addNewMonster('ChestC1', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD1', {
+ma.addNewMonster('ChestD1', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2220,7 +2759,7 @@ ac.addNewMonster('ChestD1', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2228,7 +2767,7 @@ ac.addNewMonster('ChestD1', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA2', {
+ma.addNewMonster('ChestA2', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2240,7 +2779,7 @@ ac.addNewMonster('ChestA2', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2248,7 +2787,7 @@ ac.addNewMonster('ChestA2', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB2', {
+ma.addNewMonster('ChestB2', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2260,7 +2799,7 @@ ac.addNewMonster('ChestB2', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2268,7 +2807,7 @@ ac.addNewMonster('ChestB2', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC2', {
+ma.addNewMonster('ChestC2', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2280,7 +2819,7 @@ ac.addNewMonster('ChestC2', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2288,7 +2827,7 @@ ac.addNewMonster('ChestC2', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD2', {
+ma.addNewMonster('ChestD2', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2300,7 +2839,7 @@ ac.addNewMonster('ChestD2', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2308,7 +2847,7 @@ ac.addNewMonster('ChestD2', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA3', {
+ma.addNewMonster('ChestA3', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2320,7 +2859,7 @@ ac.addNewMonster('ChestA3', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2328,7 +2867,7 @@ ac.addNewMonster('ChestA3', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB3', {
+ma.addNewMonster('ChestB3', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2340,7 +2879,7 @@ ac.addNewMonster('ChestB3', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2348,7 +2887,7 @@ ac.addNewMonster('ChestB3', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC3', {
+ma.addNewMonster('ChestC3', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2360,7 +2899,7 @@ ac.addNewMonster('ChestC3', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2368,7 +2907,7 @@ ac.addNewMonster('ChestC3', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD3', {
+ma.addNewMonster('ChestD3', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2380,7 +2919,7 @@ ac.addNewMonster('ChestD3', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2388,7 +2927,7 @@ ac.addNewMonster('ChestD3', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA4', {
+ma.addNewMonster('ChestA4', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2400,7 +2939,7 @@ ac.addNewMonster('ChestA4', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2408,7 +2947,7 @@ ac.addNewMonster('ChestA4', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB4', {
+ma.addNewMonster('ChestB4', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2420,7 +2959,7 @@ ac.addNewMonster('ChestB4', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2428,7 +2967,7 @@ ac.addNewMonster('ChestB4', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC4', {
+ma.addNewMonster('ChestC4', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2440,7 +2979,7 @@ ac.addNewMonster('ChestC4', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2448,7 +2987,7 @@ ac.addNewMonster('ChestC4', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD4', {
+ma.addNewMonster('ChestD4', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2460,7 +2999,7 @@ ac.addNewMonster('ChestD4', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2468,7 +3007,7 @@ ac.addNewMonster('ChestD4', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA5', {
+ma.addNewMonster('ChestA5', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2480,7 +3019,7 @@ ac.addNewMonster('ChestA5', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2488,7 +3027,7 @@ ac.addNewMonster('ChestA5', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB5', {
+ma.addNewMonster('ChestB5', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2500,7 +3039,7 @@ ac.addNewMonster('ChestB5', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2508,7 +3047,7 @@ ac.addNewMonster('ChestB5', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC5', {
+ma.addNewMonster('ChestC5', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2520,7 +3059,7 @@ ac.addNewMonster('ChestC5', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2528,7 +3067,7 @@ ac.addNewMonster('ChestC5', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD5', {
+ma.addNewMonster('ChestD5', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2540,7 +3079,7 @@ ac.addNewMonster('ChestD5', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2548,7 +3087,7 @@ ac.addNewMonster('ChestD5', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA6', {
+ma.addNewMonster('ChestA6', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2560,7 +3099,7 @@ ac.addNewMonster('ChestA6', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2568,7 +3107,7 @@ ac.addNewMonster('ChestA6', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB6', {
+ma.addNewMonster('ChestB6', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2580,7 +3119,7 @@ ac.addNewMonster('ChestB6', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2588,7 +3127,7 @@ ac.addNewMonster('ChestB6', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC6', {
+ma.addNewMonster('ChestC6', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2600,7 +3139,7 @@ ac.addNewMonster('ChestC6', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2608,7 +3147,7 @@ ac.addNewMonster('ChestC6', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD6', {
+ma.addNewMonster('ChestD6', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2620,7 +3159,7 @@ ac.addNewMonster('ChestD6', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2628,7 +3167,7 @@ ac.addNewMonster('ChestD6', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA7', {
+ma.addNewMonster('ChestA7', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2640,7 +3179,7 @@ ac.addNewMonster('ChestA7', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2648,7 +3187,7 @@ ac.addNewMonster('ChestA7', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB7', {
+ma.addNewMonster('ChestB7', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2660,7 +3199,7 @@ ac.addNewMonster('ChestB7', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2668,7 +3207,7 @@ ac.addNewMonster('ChestB7', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC7', {
+ma.addNewMonster('ChestC7', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2680,7 +3219,7 @@ ac.addNewMonster('ChestC7', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2688,7 +3227,7 @@ ac.addNewMonster('ChestC7', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD7', {
+ma.addNewMonster('ChestD7', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2700,7 +3239,7 @@ ac.addNewMonster('ChestD7', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2708,7 +3247,7 @@ ac.addNewMonster('ChestD7', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestA8', {
+ma.addNewMonster('ChestA8', {
   Name: 'Bronze_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2720,7 +3259,7 @@ ac.addNewMonster('ChestA8', {
   DeathFrame: 1,
   RespawnTime: 18e3,
   MonsterHPTotal: 10,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2728,7 +3267,7 @@ ac.addNewMonster('ChestA8', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestB8', {
+ma.addNewMonster('ChestB8', {
   Name: 'Silver_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2740,7 +3279,7 @@ ac.addNewMonster('ChestB8', {
   DeathFrame: 1,
   RespawnTime: 36e3,
   MonsterHPTotal: 500,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2748,7 +3287,7 @@ ac.addNewMonster('ChestB8', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestC8', {
+ma.addNewMonster('ChestC8', {
   Name: 'Golden_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2760,7 +3299,7 @@ ac.addNewMonster('ChestC8', {
   DeathFrame: 1,
   RespawnTime: 86400,
   MonsterHPTotal: 2e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2768,7 +3307,7 @@ ac.addNewMonster('ChestC8', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('ChestD8', {
+ma.addNewMonster('ChestD8', {
   Name: 'Legendary_Chest',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2780,7 +3319,7 @@ ac.addNewMonster('ChestD8', {
   DeathFrame: 1,
   RespawnTime: 345600,
   MonsterHPTotal: 1e5,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 0,
   ExpType: 0,
@@ -2788,7 +3327,7 @@ ac.addNewMonster('ChestD8', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('mushPtutorial', {
+ma.addNewMonster('mushPtutorial', {
   Name: 'Error',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2800,7 +3339,7 @@ ac.addNewMonster('mushPtutorial', {
   DeathFrame: 15,
   RespawnTime: 22,
   MonsterHPTotal: 200,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 200,
   ExpType: 0,
@@ -2808,7 +3347,7 @@ ac.addNewMonster('mushPtutorial', {
   MoveSPEED: 4,
   Damages: [5, 1],
 });
-ac.addNewMonster('demonPtutorial', {
+ma.addNewMonster('demonPtutorial', {
   Name: 'Error',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2820,7 +3359,7 @@ ac.addNewMonster('demonPtutorial', {
   DeathFrame: 24,
   RespawnTime: 600,
   MonsterHPTotal: 1e4,
-  Type: ac.MONSTER_TYPE,
+  Type: ma.MONSTER_TYPE,
   SpecialType: '_',
   ExpGiven: 5e3,
   ExpType: 0,
@@ -2828,7 +3367,7 @@ ac.addNewMonster('demonPtutorial', {
   MoveSPEED: 3,
   Damages: [150, 1],
 });
-ac.addNewMonster('AlienTreetutorial', {
+ma.addNewMonster('AlienTreetutorial', {
   Name: 'Error',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2840,7 +3379,7 @@ ac.addNewMonster('AlienTreetutorial', {
   DeathFrame: 6,
   RespawnTime: 0,
   MonsterHPTotal: 5,
-  Type: ac.TREE_TYPE,
+  Type: ma.TREE_TYPE,
   SpecialType: '_',
   ExpGiven: 1,
   ExpType: 3,
@@ -2848,7 +3387,7 @@ ac.addNewMonster('AlienTreetutorial', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
-ac.addNewMonster('Starlight', {
+ma.addNewMonster('Starlight', {
   Name: 'Error',
   AFKtype: 'error',
   MonsterFace: 0,
@@ -2860,7 +3399,7 @@ ac.addNewMonster('Starlight', {
   DeathFrame: 1,
   RespawnTime: 12,
   MonsterHPTotal: 5e4,
-  Type: ac.ORE_TYPE,
+  Type: ma.ORE_TYPE,
   SpecialType: '_',
   ExpGiven: 1,
   ExpType: 1,
@@ -2868,6 +3407,26 @@ ac.addNewMonster('Starlight', {
   MoveSPEED: 0,
   Damages: [0, 1],
 });
+ma.addNewMonster('behemoth', {
+  Name: 'Error',
+  AFKtype: 'error',
+  MonsterFace: 0,
+  MonsterOffsetX: 22,
+  MonsterOffsetY: 32,
+  HeightOfMonster: 180,
+  MonsterMoving: 0,
+  MovingFrame: 0,
+  DeathFrame: 1,
+  RespawnTime: 1,
+  MonsterHPTotal: 5e7,
+  Type: ma.MONSTER_TYPE,
+  SpecialType: '_',
+  ExpGiven: 69,
+  ExpType: 0,
+  Defence: 20,
+  MoveSPEED: 0,
+  Damages: [0, 1],
+});
 
 // update this variable on new patch
-module.exports = ac;
+module.exports = ma;

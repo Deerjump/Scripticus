@@ -1,7 +1,10 @@
 const items = require('../util/items.js');
 const alias = require('../util/alias');
 const { MessageEmbed } = require('discord.js');
+const Logger = require('../util/Logger');
 
+
+const logger = new Logger('Craft');
 function convertCodeToDisplay(itemCode) {
   // Returns item's display name from its code name
   return items[itemCode].Name.replace(/[_|]+/g, ' ');
@@ -54,7 +57,7 @@ function generateRecipe(itemCode, totalRecipe = {}) {
     const itemObj = {
       isRaw: isRawMaterial(realItemCode),
       qty: itemQty,
-      name: convertCodeToDisplay(realItemCode)
+      name: convertCodeToDisplay(realItemCode),
     };
     totalRecipe[realItemCode] = itemObj;
     if (!itemObj.isRaw) {
@@ -129,7 +132,7 @@ function createEmbed(title, description, footer) {
 
 function editEmbed(embedInstance, title, description, footer) {
   const newEmbed = createEmbed(title, '```' + description + '```', footer);
-  embedInstance.edit(newEmbed);
+  embedInstance.edit({ embeds: [newEmbed] });
 }
 
 module.exports = {
@@ -138,12 +141,6 @@ module.exports = {
   usage: '<item name> <item quantity>',
   args: true,
   execute(message, args) {
-    if (!args.length) {
-      return message.channel.send(
-        'You must provide an item: !craft <item name> <item quantity>'
-      );
-    }
-
     const lastArg = args[args.length - 1];
     const userInput = isPosInteger(lastArg)
       ? args.slice(0, -1).join(' ')
@@ -172,13 +169,14 @@ module.exports = {
         recipeFooter
       );
 
-      message.channel.send(initialEmbed).then((sentEmbed) => {
-        sentEmbed.react('🔄');
+      message.channel.send({ embeds: [initialEmbed] }).then(async (sentEmbed) => {
+        await sentEmbed.react('🔄');
 
         const filter = (reaction, user) =>
           reaction.emoji.name === '🔄' && user.id === message.author.id;
         const collectorLifespan = 30000;
-        const collector = sentEmbed.createReactionCollector(filter, {
+        const collector = sentEmbed.createReactionCollector({
+          filter,
           time: collectorLifespan,
           dispose: true
         });
@@ -205,14 +203,15 @@ module.exports = {
             sentEmbed.embeds[0].description,
             '❌Message has expired! '
           );
-          sentEmbed.edit(expiredEmbed);
+          sentEmbed.edit({ embeds: [expiredEmbed] });
         });
       });
     } catch (err) {
+      // Swallowing errors because generateRecipe() relies on an error for logic. Consider editing later 
       const embed = new MessageEmbed().setDescription(
         'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
       );
-      message.channel.send(embed);
+      message.channel.send({ embeds: [embed] });
     }
-  }
+  },
 };

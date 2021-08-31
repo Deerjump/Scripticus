@@ -109,13 +109,10 @@ const cronFunction = async (client) => {
 };
 
 async function notifySubscriber(client, id) {
-  const attachment = new MessageAttachment().setFile(
-    path.join(__dirname + '/../src/spike-baba-alert.gif')
-  );
   try {
     const user = await client.users.fetch(id);
     if (user) {
-      return user.send(attachment);
+      return user.send({ files: [path.join(__dirname + '/../src/spike-baba-alert.gif')] });
     }
   } catch (error) {
     logger.error(error);

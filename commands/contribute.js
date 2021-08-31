@@ -20,6 +20,6 @@ module.exports = {
             'Even if you don\'t know how to code you can still help!\nYou can suggest features through GitHub [here](https://github.com/Deerjump/Scripticus/projects/1 "Suggestions!") as well!',
         }
       );
-    channel.send(embed);
+    channel.send({ embeds: [embed] });
   },
 };
