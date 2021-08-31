@@ -16,12 +16,12 @@ module.exports = {
     const lowerCaseArgs = args.join(' ').toLowerCase();
     const item = getItem(lowerCaseArgs);
     if (item) {
-      return message.reply(getItemDetailsEmbed(item));
+      return message.reply({ embeds: [getItemDetailsEmbed(item)] });
     }
 
     const monster = getMonster(lowerCaseArgs);
     if (monster) {
-      return message.reply(getMonsterDetailsEmbed(monster));
+      return message.reply({ embeds: [getMonsterDetailsEmbed(monster)] });
     }
 
     if (!item && !monster) {
@@ -123,13 +123,13 @@ function getMonsterDetailsEmbed(monster) {
 
 function getItem(name) {
   for (const value of Object.values(itemList)) {
-    if (value.Name && value.Name.toLowerCase() === name) {
-      return value;
-    }
     const found = alias.find(name, value);
     if (found) {
       return value;
     }
+    // if (value.Name && value.Name.toLowerCase() === name) {
+    //   return value;
+    // }
   }
 
   return undefined;
@@ -146,7 +146,7 @@ function getItemDetailsEmbed(item) {
     fields.push({ name: 'Class', value: item.class });
     fields.push({ name: 'Stats', value: '--------------------------------' });
     Object.keys(item.stats).forEach((key) => {
-      fields.push({ name: [key], value: item.stats[key], inline: true });
+      fields.push({ name: key, value: item.stats[key], inline: true });
     });
   }
 
@@ -165,5 +165,10 @@ function getItemDetailsEmbed(item) {
     fields.push({ name: 'Sources', value: item.sources.join(', ') });
   }
 
-  return embed.addFields(fields);
+  const stringifiedFields = fields.map(obj => {
+    obj.value = obj.value.toString();
+    return obj;
+  });
+
+  return embed.addFields(stringifiedFields);
 }

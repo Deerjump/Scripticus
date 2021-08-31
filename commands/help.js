@@ -1,6 +1,6 @@
 const { DEFAULT_COOLDOWN } = require('../config.json');
 const Logger = require('../util/Logger.js');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, User } = require('discord.js');
 
 const logger = new Logger('Help');
 
@@ -19,11 +19,11 @@ module.exports = {
       embed.setTitle('Help Command');
       embed.addField(
         'Commands:',
-        commands.map((command) => `**${command.name}**: ${command.description}`)
+        commands.map((command) => `**${command.name}**: ${command.description}`).join('\n')
       );
-      return message.author.send(embed)
+      return message.author.send({ embeds: [embed] })
         .then(() => {
-          if (message.channel.type === 'dm') return;
+          if (message.channel.type === 'DM') return;
           message.reply("I've sent you a DM with all my commands!");
         })
         .catch((error) => {
@@ -59,6 +59,6 @@ module.exports = {
       `${command.cooldown || DEFAULT_COOLDOWN} seconds(s)`
     );
 
-    message.channel.send(embed);
+    message.channel.send({ embeds: [embed] });
   },
 };

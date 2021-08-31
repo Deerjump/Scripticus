@@ -1,5 +1,4 @@
 const Logger = require('../util/Logger.js');
-
 const logger = new Logger('Prefix');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
         return message.channel.send('Prefix must be at least 1 character!');
       }
 
-      if (message.channel.type === 'dm') {
+      if (message.channel.type === 'DM') {
         return message.reply(
           "You can't use this command in a private message!"
         );

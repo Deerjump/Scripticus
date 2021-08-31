@@ -1,8 +1,9 @@
 const WebhookListener = require('./auto-update/WebhookListener.js');
-const { Client, Collection } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 const Logger = require('./util/Logger.js');
 const mongo = require('./mongo/mongo.js');
 const chalk = require('chalk');
+const { GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS } = Intents.FLAGS;
 require('dotenv').config();
 const fs = require('fs');
 const {
@@ -25,7 +26,11 @@ const display =
   '*******************************************************';
 console.info(chalk.yellow(display));
 
-const client = new Client();
+const client = new Client({
+  intents: [GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS],
+  // This lets dms work properly
+  partials: ['CHANNEL']
+});
 client.commands = new Collection();
 client.guildSettings = new Collection();
 client.mongo = mongo;
@@ -66,18 +71,17 @@ client.once('ready', async () => {
   } catch (err) {
     logger.error(err);
   }
-  client.user.setActivity('Legends of Idleon');
+  client.user.setActivity('Testing new stuff!');
   logger.log(`${chalk.yellow(client.user.username)} is ready!`);
 });
 
-client.on('message', (message) => {
+client.on('messageCreate', (message) => {
   // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
   const prefix = client.getPrefix(message);
 
   if (shouldIgnore(message, prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
-
   const commandName = args.shift().toLowerCase();
 
   const command =
@@ -133,15 +137,11 @@ client.on('message', (message) => {
   }
 });
 
-client.getPrefix = function (message) {
-  let prefix;
-  if (message.channel.type !== 'dm') {
-    const settings = client.guildSettings.get(message.guild.id);
-    prefix = settings ? settings.prefix : DEFAULT_PREFIX;
-  } else {
-    prefix = '';
-  }
-  return prefix;
+client.getPrefix = function (message) {  
+  if (message.channel.type === 'DM') return '';
+
+  const settings = client.guildSettings.get(message.guild.id);
+  return settings ? settings.prefix : DEFAULT_PREFIX;
 };
 
 client.stop = function () {
@@ -152,6 +152,8 @@ client.stop = function () {
     logger.log('Running command stop() methods');
     this.commands.forEach((command) => command.stop?.());
 
+    logger.log('-----Destroying client-----');
+    client.destroy();
     logger.log('-----Exiting process-----');
     process.exit(0);
   } catch (err) {

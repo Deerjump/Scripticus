@@ -8,12 +8,10 @@ module.exports = {
   description: 'Roll a dice! 🎲',
   usage: '<sides>',
   async execute(message, args) {
-    let isNum;
     let num = -1;
 
     if (args.length > 0) {
-      isNum = !isNaN(args[0]);
-      if (!isNum) {
+      if (isNaN(args[0])) {
         let response;
         switch (args[0]) {
           case 'rick':

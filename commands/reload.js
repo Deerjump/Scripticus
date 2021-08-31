@@ -8,15 +8,11 @@ module.exports = {
   args: true,
   execute(message, args) {
     if (message.author.id != '191085842469486592') return;
-    if (!args.length) {
-      return message.channel.send(
-        `Don't forget the command, ${message.author}!`
-      );
-    }
+    const { client } = message;
     const commandName = args[0].toLowerCase();
     const command =
-      message.client.commands.get(commandName) ||
-      message.client.commands.find(
+      client.commands.get(commandName) ||
+      client.commands.find(
         (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
       );
     if (!command) {
@@ -25,11 +21,14 @@ module.exports = {
       );
     }
 
+    command.stop?.();
     delete require.cache[require.resolve(`./${command.name}.js`)];
 
     try {
       const newCommand = require(`./${commandName}.js`);
-      message.client.commands.set(newCommand.name, newCommand);
+      client.commands.set(newCommand.name, newCommand);
+      
+      newCommand.init?.(client);
       message.channel.send(`Command \`${command.name}\` was reloaded!`);
     } catch (error) {
       logger.error(error);
