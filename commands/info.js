@@ -127,12 +127,7 @@ function getItem(name) {
     if (found) {
       return value;
     }
-    // if (value.Name && value.Name.toLowerCase() === name) {
-    //   return value;
-    // }
   }
-
-  return undefined;
 }
 
 function getItemDetailsEmbed(item) {

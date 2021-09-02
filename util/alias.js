@@ -32,7 +32,7 @@ const self = {
    * @param targetName the displayed name of the target object, included because monster names have underscores
    * @returns a boolean
    */
-  find(name, target, targetName = target.Name.toLowerCase()) {
+  find(name, target, targetName = target.displayName.toLowerCase()) {
     name = name.toLowerCase();
     // first try finding the whole name to catch special cases
     if (this.aliases[name]) {
