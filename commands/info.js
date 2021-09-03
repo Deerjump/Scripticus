@@ -151,6 +151,8 @@ function getItemDetailsEmbed(item) {
   if (item.Class) {
     fields.push({ name: 'Class', value: item.Class });
     fields.push({ name: 'Stats', value: '--------------------------------' });
+    if (item.Weapon_Power)
+      fields.push({ name: '⚔️ WP', value: item.Weapon_Power, inline: true })
     if (item.STR)
       fields.push({ name: '✊ STR', value: item.STR, inline: true })
     if (item.AGI)
