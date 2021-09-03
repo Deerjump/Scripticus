@@ -4,10 +4,13 @@ const itemPath = '../src/items.json';
 const itemJson = require(itemPath);
 const alias = require('./alias.js');
 
+function processJson() {
+  return itemJson;
+}
 
 class ItemRepository {
   constructor() {
-    this.items = itemJson;
+    this.items = processJson();
   }
 
   getItemById(id) {
@@ -15,19 +18,18 @@ class ItemRepository {
   }
 
   getItemByName(name) {
-    for (const item of this.items) {
-      if (item.displayName === name)
-        return item;
-    }
-  }
-
-  getItem(name) {
-    for (const key of this.items) {
+    for (const key in this.items) {
       const found = alias.find(name, this.items[key]);
       if (found) {
-        return value;
+        return this.items[key];
       }
     }
+  }
+  
+  getItem(name) {
+    const item = this.getItemById(name)
+    if (item) return item;
+    return this.getItemByName(name);
   }
 
   reload() {

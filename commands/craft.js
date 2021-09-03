@@ -1,40 +1,9 @@
-const items = require('../util/items.js');
-const alias = require('../util/alias');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const items = require('../util/itemRepository');
 const Logger = require('../util/Logger');
 
-
 const logger = new Logger('Craft');
-function convertCodeToDisplay(itemCode) {
-  // Returns item's display name from its code name
-  return items[itemCode].Name.replace(/[_|]+/g, ' ');
-}
-
-function convertInputToCode(inputName) {
-  // Converts user input into Title Case then returns the item's code name
-  inputName = convertToTitleCase(inputName);
-  for (const itemCode of Object.keys(items)) {
-    if (items[itemCode].Name === inputName) return itemCode;
-    const found = alias.find(inputName, items[itemCode]);
-    if (found) {
-      return itemCode;
-    }
-  }
-}
-
-function convertToTitleCase(str) {
-  // Converts a given string to title case and returns it
-  return str
-    .toLowerCase()
-    .split(' ')
-    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-    .join(' ');
-}
-
-function isRawMaterial(itemCode) {
-  // Checks if item/material is a raw material (aka not crafted - ex: logs, ores, bars, etc.), returns boolean
-  return !Object.keys(items[itemCode]).includes('recipe');
-}
+const codeBlock = '```';
 
 function isPosInteger(str) {
   // Checks if a string can be converted into a positive integer, returns boolean
@@ -47,21 +16,23 @@ function isPosInteger(str) {
   );
 }
 
-function generateRecipe(itemCode, totalRecipe = {}) {
-  const recipe = items[itemCode].recipe.costs;
+function generateRecipe(item, totalRecipe = {}) {
+  const recipe = item.recipeData.recipe;
 
   for (let i = 0; i < recipe.length; i++) {
-    // For some reason item quantities in each cost array has a leading space in it
-    const realItemCode = recipe[i][0],
-      itemQty = recipe[i][1].replace(' ', '');
+    const [itemCode, itemQty] = recipe[i];
+    const subItem = items.getItem(itemCode);
+
     const itemObj = {
-      isRaw: isRawMaterial(realItemCode),
+      isRaw: !items.getItem(itemCode).recipeData,
       qty: itemQty,
-      name: convertCodeToDisplay(realItemCode),
+      name: subItem.displayName,
     };
-    totalRecipe[realItemCode] = itemObj;
+
+    totalRecipe[itemCode] = itemObj;
+
     if (!itemObj.isRaw) {
-      itemObj.recipe = generateRecipe(realItemCode);
+      itemObj.recipe = generateRecipe(subItem);
     }
   }
   return totalRecipe;
@@ -96,6 +67,20 @@ function generateRecipeText(
   return recipeTextArr.join('\n');
 }
 
+function generateRecipeEmbed({ itemName, recipe, amount }) {
+  const title = `Crafting recipe for ${itemName} (x${amount})`;
+  const text = generateRecipeText(recipe, 0, amount);
+
+  const row = new MessageActionRow().addComponents(
+    new MessageButton()
+      .setCustomId('materials')
+      .setLabel('Show Total Materials')
+      .setStyle('PRIMARY')
+  );
+
+  return createMessage(title, `${codeBlock}${text}${codeBlock}`, row);
+}
+
 function generateTotalMaterials(
   recipeObj,
   multiplier = 1,
@@ -116,23 +101,39 @@ function generateTotalMaterials(
   return totalMaterials;
 }
 
-function generateTotalMaterialsText(materialsObj) {
+function generateMaterialsText(materialsObj) {
   return Object.entries(materialsObj)
-    .map(([itemCode, qty]) => `- ${convertCodeToDisplay(itemCode)} (x${qty})`)
+    .map(([itemCode, qty]) => `- ${items.getItem(itemCode).displayName} (x${qty})`)
     .join('\n');
 }
 
-/* ----------------------------------------------------- */
-function createEmbed(title, description, footer) {
-  return new MessageEmbed()
-    .setTitle(title)
-    .setDescription(description)
-    .setFooter(footer);
+function generateMaterialsEmbed({ itemName, recipe, amount }) {
+  const materials = generateTotalMaterials(recipe, amount);
+  const title = `Total materials for ${itemName} (x${amount})`;
+  const text = generateMaterialsText(materials);
+
+  const row = new MessageActionRow().addComponents(
+    new MessageButton()
+      .setCustomId('recipe')
+      .setLabel('Show Tiered Recipe')
+      .setStyle('PRIMARY')
+  );
+
+  return createMessage(title, `${codeBlock}${text}${codeBlock}`, row);
 }
 
-function editEmbed(embedInstance, title, description, footer) {
-  const newEmbed = createEmbed(title, '```' + description + '```', footer);
-  embedInstance.edit({ embeds: [newEmbed] });
+function timeoutMessage(message) {
+  const timeoutMsg = '❌ Message has expired!';
+  const embed = message.embeds[0];
+
+  embed.setFooter(timeoutMsg);
+  message.edit({ embeds: [embed], components: [] });
+}
+
+function createMessage(title, description, row) {
+  const embed = new MessageEmbed().setTitle(title).setDescription(description);
+
+  return { embeds: [embed], components: [row], fetchReply: true };
 }
 
 module.exports = {
@@ -140,78 +141,62 @@ module.exports = {
   description: 'Returns all resources/sub-items needed to craft an item!',
   usage: '<item name> <item quantity>',
   args: true,
-  execute(message, args) {
+  async execute(message, args) {
     const lastArg = args[args.length - 1];
     const userInput = isPosInteger(lastArg)
       ? args.slice(0, -1).join(' ')
       : args.join(' ');
-    const itemQty = isPosInteger(lastArg) ? args[args.length - 1] : 1;
+    const amount = isPosInteger(lastArg) ? args[args.length - 1] : 1;
 
-    try {
-      const codeName = convertInputToCode(userInput);
-      const recipeObj = generateRecipe(codeName);
-      const recipeTitle = `Crafting recipe for ${convertToTitleCase(
-        items[codeName].Name
-      )} (x${itemQty})`;
-      const recipeText = generateRecipeText(recipeObj, 0, itemQty);
-      const recipeFooter = 'To see total material costs, click 🔄';
+    const item = items.getItem(userInput);
 
-      const materialsObj = generateTotalMaterials(recipeObj, itemQty);
-      const materialsTitle = `Total material costs for ${convertToTitleCase(
-        items[codeName].Name
-      )} (x${itemQty})`;
-      const materialsText = generateTotalMaterialsText(materialsObj);
-      const materialsFooter = 'To see full recipe, click 🔄';
-
-      const initialEmbed = createEmbed(
-        recipeTitle,
-        '```' + recipeText + '```',
-        recipeFooter
-      );
-
-      message.channel.send({ embeds: [initialEmbed] }).then(async (sentEmbed) => {
-        await sentEmbed.react('🔄');
-
-        const filter = (reaction, user) =>
-          reaction.emoji.name === '🔄' && user.id === message.author.id;
-        const collectorLifespan = 30000;
-        const collector = sentEmbed.createReactionCollector({
-          filter,
-          time: collectorLifespan,
-          dispose: true
-        });
-        collector.on('collect', (reaction) => {
-          if (reaction.emoji.name === '🔄') {
-            editEmbed(
-              sentEmbed,
-              materialsTitle,
-              materialsText,
-              materialsFooter
-            );
-          }
-        });
-
-        collector.on('remove', (reaction) => {
-          if (reaction.emoji.name === '🔄') {
-            editEmbed(sentEmbed, recipeTitle, recipeText, recipeFooter);
-          }
-        });
-
-        collector.on('end', () => {
-          const expiredEmbed = createEmbed(
-            sentEmbed.embeds[0].title,
-            sentEmbed.embeds[0].description,
-            '❌Message has expired! '
-          );
-          sentEmbed.edit({ embeds: [expiredEmbed] });
-        });
-      });
-    } catch (err) {
-      // Swallowing errors because generateRecipe() relies on an error for logic. Consider editing later 
+    if (!item) {
       const embed = new MessageEmbed().setDescription(
         'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
       );
-      message.channel.send({ embeds: [embed] });
+      return message.channel.send({ embeds: [embed], components: [] });
     }
+
+    if (!item.recipeData) {
+      const embed = new MessageEmbed().setDescription(
+        "This item doesn't have a crafting recipe!"
+      );
+      return message.channel.send({ embeds: [embed], components: [] });
+    }
+
+    const details = {
+      itemName: item.displayName,
+      recipe: generateRecipe(item),
+      amount,
+    };
+
+    const recipeEmbed = generateRecipeEmbed(details);
+
+    const sentEmbed = await message.channel.send(recipeEmbed);
+
+    const filter = (i) => i.customId === 'recipe' || i.customId === 'materials';
+
+    const collector = sentEmbed.createMessageComponentCollector({
+      filter,
+      time: 30000,
+    });
+
+    collector.on('collect', async (interaction) => {
+      if (interaction.user.id !== message.author.id) {
+        const message = "❌ You cannot interact with someone else's command!";
+
+        return interaction.reply({ content: message, ephemeral: true });
+      }
+
+      if (interaction.customId === 'recipe')
+        await interaction.update(generateRecipeEmbed(details));
+      if (interaction.customId === 'materials')
+        await interaction.update(generateMaterialsEmbed(details));
+    });
+
+    collector.on('end', (collected) => {
+      if (collected.size === 0) return timeoutMessage(sentEmbed);
+      timeoutMessage(collected.first().message);
+    });
   },
 };
