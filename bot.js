@@ -114,11 +114,13 @@ client.on('messageCreate', (message) => {
       );
     }
   } else {
-    timestamps.set(message.author.id, now);
-    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    if(!message.channel.type === 'DM') {
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    }
   }
 
-  // Handles command uses with no arguments (when necessary)
+  // Handles command uses with missing arguments
   if (command.args && !args.length) {
     let reply = `You didn't provide any arguments, ${message.author}`;
 
