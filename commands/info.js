@@ -139,10 +139,11 @@ function getMonsterDetailsEmbed(monster) {
 function getItemDetailsEmbed(item) {
   const embed = new MessageEmbed();
   embed.setTitle(item.displayName);
+  embed.setURL(`https://idleon.info/wiki/${item.displayName.replaceAll(' ', '_')}`);
   const fields = [];
   
   if (item.description) 
-    fields.push({ name: '\u200B', value: item.description.join(' ') });
+    embed.setDescription(item.description.join(' '));
   
   if (item.typeGen === 'aWeapon')
     fields.push({ name: 'Type', value: item.Type });
@@ -185,7 +186,7 @@ function getItemDetailsEmbed(item) {
     })
   }
   else 
-    fields.push({ name: '💰 Sell Price', value: parseSellPrice(item.sellPrice) });
+    fields.push({ name: '💰 - Sell Price', value: parseSellPrice(item.sellPrice) });
 
   if (item.sources) {
     fields.push({ name: 'Sources', value: item.sources.join(', ') });
