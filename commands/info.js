@@ -1,6 +1,6 @@
-const { MessageEmbed } = require('discord.js');
-const itemList = require('../util/items.js');
+const items = require('../util/itemRepository.js');
 const monsterList = require('../util/monsters.js');
+const { MessageEmbed } = require('discord.js');
 const Logger = require('../util/Logger.js');
 const alias = require('../util/alias.js');
 
@@ -13,13 +13,12 @@ module.exports = {
   args: true,
   cooldown: 1,
   execute(message, args) {
-    const lowerCaseArgs = args.join(' ').toLowerCase();
-    const item = getItem(lowerCaseArgs);
+    const item = items.getItem(args.join(' '));
     if (item) {
       return message.reply({ embeds: [getItemDetailsEmbed(item)] });
     }
 
-    const monster = getMonster(lowerCaseArgs);
+    const monster = getMonster(args.join(' '));
     if (monster) {
       return message.reply({ embeds: [getMonsterDetailsEmbed(monster)] });
     }
@@ -49,6 +48,22 @@ function parseRespawnTime(respawnTime) {
   const s = Math.floor(respawnTime % 3600 % 60);
   const timeString = `${h}h ${m}m ${s}s`;
   return timeString;
+}
+
+function parseSellPrice(amount) {
+  const currencies = [];
+  const imgs = ['🟤','⚪','🟡','🔵', '🟣'];
+  for (let i = 0; i < imgs.length; i++) {
+    const currency = amount % 100;
+    currencies.push(currency);
+    amount -= currency;
+    amount /= 100;
+  }
+
+  return currencies.reduceRight((prev, curr, i ) => {
+    const str = curr ? `${imgs[i]} ${curr} ` : '';
+    return prev + str;
+  }, '');
 }
 
 function getMonster(name) {
@@ -121,49 +136,60 @@ function getMonsterDetailsEmbed(monster) {
   return embed.addFields(fields);
 }
 
-function getItem(name) {
-  for (const value of Object.values(itemList)) {
-    const found = alias.find(name, value);
-    if (found) {
-      return value;
-    }
-  }
-}
-
 function getItemDetailsEmbed(item) {
   const embed = new MessageEmbed();
-  embed.setTitle(item.Name);
+  embed.setTitle(item.displayName);
   const fields = [];
+  
+  if (item.description) 
+    fields.push({ name: '\u200B', value: item.description.join(' ') });
+  
+  if (item.typeGen === 'aWeapon')
+    fields.push({ name: 'Type', value: item.Type });
 
-  fields.push({ name: 'Sell Price', value: item.sellPrice });
-  fields.push({ name: 'Type', value: item.type });
-  if (item.stats && !item.description) {
-    fields.push({ name: 'Class', value: item.class });
+  if (item.Class) {
+    fields.push({ name: 'Class', value: item.Class });
     fields.push({ name: 'Stats', value: '--------------------------------' });
-    Object.keys(item.stats).forEach((key) => {
-      fields.push({ name: key, value: item.stats[key], inline: true });
-    });
+    if (item.STR)
+      fields.push({ name: '✊ STR', value: item.STR, inline: true })
+    if (item.AGI)
+      fields.push({ name: '🦶 AGI', value: item.AGI, inline: true })
+    if (item.WIS)
+      fields.push({ name: '📘 WIS', value: item.WIS, inline: true })
+    if (item.LUK)
+      fields.push({ name: '🍀 LUK', value: item.LUK, inline: true })
+    if (item.Defence)
+      fields.push({ name: '🛡️ Defence', value: item.Defence, inline: true })
+    if (item.Upgrade_Slots_Left)
+      fields.push({ name: '⏫ Upgrade Slots', value: item.Upgrade_Slots_Left, inline: true })
+    if (item.miscUp1)
+      fields.push({ name: 'Misc', value: item.miscUp1, inline: true })
+    if (item.miscUp2)
+      fields.push({ name: '\u200B', value: item.miscUp2, inline: true })
   }
 
-  // To exclude card item from providing it's description
-  if (item.description && !item.cardData) {
-    fields.push({ name: 'Description', value: item.description });
-  }
-
-  if (item.cardData) {
+  if (item.typeGen === 'dCard') {
     fields.push({
-      name: 'Card Bonus',
-      value: `${item.cardData.value}${item.cardData.bonus.replaceAll('_', ' ')}`
+      name: '🎴 Card Bonus',
+      value: `${item.cardData[2]}`,
+      inline: true
     });
+    fields.push({
+      name: 'Bonus/Tier',
+      value: `${item.cardData[3]}`,
+      inline: true
+    });
+    fields.push({
+      name: 'Cards Req For Upgrade',
+      value: `${item.cardData[1]}`,
+    })
   }
+  else 
+    fields.push({ name: '💰 Sell Price', value: parseSellPrice(item.sellPrice) });
+
   if (item.sources) {
     fields.push({ name: 'Sources', value: item.sources.join(', ') });
   }
 
-  const stringifiedFields = fields.map(obj => {
-    obj.value = obj.value.toString();
-    return obj;
-  });
-
-  return embed.addFields(stringifiedFields);
+  return embed.addFields(fields);
 }
