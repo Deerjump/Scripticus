@@ -1,5 +1,5 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const items = require('../util/itemRepository');
+const items = require('../data/itemRepository');
 const Logger = require('../util/Logger');
 
 const logger = new Logger('Craft');

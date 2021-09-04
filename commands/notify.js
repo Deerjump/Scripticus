@@ -112,7 +112,7 @@ async function notifySubscriber(client, id) {
   try {
     const user = await client.users.fetch(id);
     if (user) {
-      return user.send({ files: [path.join(__dirname + '/../src/spike-baba-alert.gif')] });
+      return user.send({ files: [path.join(__dirname + '/../resoures/spike-baba-alert.gif')] });
     }
   } catch (error) {
     logger.error(error);
