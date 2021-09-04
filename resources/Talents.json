@@ -1,0 +1,2554 @@
+{
+    "Beginner": {
+        "Health Booster": {
+            "Description": "Increases Max HP by {",
+            "X1": "1",
+            "X2": ".15",
+            "FuncX": "add",
+            "Level Up Text": "+{ HP"
+        },
+        "Mana Booster": {
+            "Description": "Increases Max MP by {",
+            "X1": "1",
+            "X2": ".1",
+            "FuncX": "add",
+            "Level Up Text": "+{ MP"
+        },
+        "Star Player": {
+            "Description": "Gives { Star Talent Points. Star Talents are found throughout the game!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Star Talent Point"
+        },
+        "Bucklered Up": {
+            "Description": "Increases Total Defense by +{%",
+            "X1": "40",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Total DEF"
+        },
+        "Sharpened Axe": {
+            "Description": "Increases Base Weapon Power by {. This contributes to your total damage.",
+            "X1": "0.25",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Base Weapon Power"
+        },
+        "Fist Of Rage": {
+            "Description": "Increases your Base STR by { (STR boosts Max HP and Crit Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ STR"
+        },
+        "Quickness Boots": {
+            "Description": "Increases your Base AGI by { (AGI boosts Movement Speed and Crit Chance)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ AGI"
+        },
+        "Book Of The Wise": {
+            "Description": "Increases your Base WIS by { (WIS boosts Mana and Boss Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ WIS"
+        },
+        "Lucky Clover": {
+            "Description": "Increases your Base LUK by { (LUK boosts drop rate, EXP Gain, and other RNG)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK"
+        },
+        "Gilded Sword": {
+            "Description": "Boosts Damage dealt to all monsters by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Damage"
+        },
+        "Happy Dude": {
+            "Description": "Increases Exp Gain for all Skills by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Exp Gain"
+        },
+        "Knucklebuster": {
+            "Description": "Increases Critical Hit Damage by {%",
+            "X1": "30",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Critical Damage"
+        },
+        "Feather Flight": {
+            "Description": "Increases Movement Speed by {%",
+            "X1": "20",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Move Speed"
+        },
+        "Extra Bags": {
+            "Description": "Carry Capacity for materials is increased by {%",
+            "X1": "200",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Mat Carry Cap"
+        },
+        "Sleepin' On The Job": {
+            "Description": "AFK Gains Rate for Fighting is increased by {%",
+            "X1": "21",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        }
+    },
+    "Journeyman": {
+        "Indiana Attack": {
+            "Description": "Whip forward, dealing {% dmg and pulling in up to } monsters.",
+            "X1": "50",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Y1": "3",
+            "Y2": "30",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Dmg & +} Mobs",
+            "Active Data": {
+                "K": "1.15",
+                "D": "1.35",
+                "s": "1.3",
+                "cooldown": "12",
+                "castTime": "1.4",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "90",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Breakin' The Bank": {
+            "Description": "Multiplies value of all coins on ground by {x.",
+            "X1": "0.6",
+            "X2": "100",
+            "FuncX": "decayMulti",
+            "Level Up Text": "+{x Multi",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "2000",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Supernova Player": {
+            "Description": "Gives { Star Talent Points.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Star Talent Point"
+        },
+        "Two Punch Man": {
+            "Description": "Regular punches do +{% more damage and also hit a 2nd time for }% damage",
+            "X1": "0.6",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "25",
+            "Y2": "3",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Dmg & +}% 2nd Dmg"
+        },
+        "Gimme Gimme": {
+            "Description": "Monsters have a {% chance to drop 2x loot for } Minutes",
+            "X1": "80",
+            "X2": "60",
+            "FuncX": "decay",
+            "Y1": "3",
+            "Y2": "20",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Chance & +} Minutes",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "120",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Lucky Hit": {
+            "Description": "LUK's effect on Damage is increased by {%",
+            "X1": "0.4",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Effect"
+        },
+        "F'Luk'Ey Fabrics": {
+            "Description": "All Equipment gives {% more LUK than what's listed",
+            "X1": "100",
+            "X2": "250",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more LUK from equips"
+        },
+        "Chaching!": {
+            "Description": "Straight up cash, yo. +{% more to be exact.",
+            "X1": "50",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Mo Money"
+        },
+        "Lucky Horseshoe": {
+            "Description": "+{ base LUK",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK"
+        },
+        "Curse Of Mr Looty Booty": {
+            "Description": "+{% Drop rate, and -}% Total Damage. Cmon, do it! Or are u too scared?",
+            "X1": "70",
+            "X2": "100",
+            "FuncX": "decay",
+            "Y1": "120",
+            "Y2": "100",
+            "FuncY": "decay",
+            "Level Up Text": "+{% Drop & -}% Dmg"
+        },
+        "Its Your Birthday!": {
+            "Description": "Drops some random reward. Has a {% chance to have no cooldown!",
+            "X1": "35",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% chance",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "86000",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Cmon Out Crystals": {
+            "Description": "+{% Crystal Mob spawn chance",
+            "X1": "300",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Spawn Chance"
+        },
+        "Reroll Pls": {
+            "Description": "{% Chance to get a reroll on AFK rewards. Can trigger multiple times!",
+            "X1": "36",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Chance"
+        },
+        "Cards Galore": {
+            "Description": "+{% Card Drop Chance. As with all card drop bonuses, this affects AFK too.",
+            "X1": "50",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Card Drop Chance"
+        },
+        "Rares Everywhere!": {
+            "Description": "Items in all Rare Drop Tables are {% more likely to drop!",
+            "X1": "30",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Rare Drop Table Items"
+        }
+    },
+    "Maestro": {
+        "Coin Toss": {
+            "Description": "Throws a coin which deals {% Dmg. Damage also increases the more money you have",
+            "X1": "100",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Dmg",
+            "Active Data": {
+                "K": "1.2",
+                "D": "1.3",
+                "s": "1.3",
+                "cooldown": "20",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "1",
+                "AFKrange": "125",
+                "AFKtype": "projectile",
+                "AFKactivity": "0"
+            }
+        },
+        "Skillage Damage": {
+            "Description": "+{% DMG for every 5 levels of your lowest LV Skill",
+            "X1": "50",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% DMG"
+        },
+        "Printer Go Brrr": {
+            "Description": "Print { Hours of printer samples instantly. }% chance to have no cooldown!",
+            "X1": "1",
+            "X2": "40",
+            "FuncX": "intervalAdd",
+            "Y1": "95",
+            "Y2": "60",
+            "FuncY": "decay",
+            "Level Up Text": "{ Hours & +}% No CD chance",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "82000",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Triple Jab": {
+            "Description": "Punches now hit a 3rd time for {% dmg. The other hits do +}% more Dmg",
+            "X1": "20",
+            "X2": "4",
+            "FuncX": "intervalAdd",
+            "Y1": "0.5",
+            "Y2": "0",
+            "FuncY": "add",
+            "Level Up Text": "+{% 3rd Dmg & +} other Dmg"
+        },
+        "One Step Ahead": {
+            "Description": "Check-Mate!",
+            "X1": "1",
+            "X2": "1",
+            "FuncX": "add",
+            "Level Up Text": "Pawn to B{"
+        },
+        "Lucky Charms": {
+            "Description": "LUK's effect on Class EXP Gain is increased by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Effect"
+        },
+        "Clever Clover Obols": {
+            "Description": "Obols give +{% more LUK than what's listed",
+            "X1": "60",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more LUK from Obols"
+        },
+        "Skilliest Statue": {
+            "Description": "'EhExPee', 'Kapow', and 'Feasty' statues give {% higher bonuses",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Bliss N Chips": {
+            "Description": "+{ Max LV to 'Happy Dude', and +} Max LV to Lucky Horseshoe",
+            "X1": "2",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "1",
+            "Y2": "0",
+            "FuncY": "add",
+            "Level Up Text": "+{ Max LV & +} Max LV"
+        },
+        "Colloquial Containers": {
+            "Description": "Each Lv of 'Lotto Skills' Bubble raises max Lv of 'Sleepin On The Job' Talent, up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV for Sleep On Job"
+        },
+        "Maestro Transfusion": {
+            "Description": "+{% Skill EXP Gain, and -}% Skill Efficiency. Affects all Skills.",
+            "X1": "2.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "140",
+            "Y2": "100",
+            "FuncY": "decay",
+            "Level Up Text": "+{% EXP gain & -}% Efficiency",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "120",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Crystal Countdown": {
+            "Description": "Killing a Crystal or Giant lowers REQ Exp of a random skill by 2%. Stacks up to {%.",
+            "X1": "100",
+            "X2": "100",
+            "FuncX": "decay",
+            "Y1": "10",
+            "Y2": "1",
+            "FuncY": "add",
+            "Level Up Text": "+{% max exp reduction"
+        },
+        "Left Hand Of Learning": {
+            "Description": "+{% Skill EXP Gain for your other characters, if their Skill LV is lower than Maestro's.",
+            "X1": "200",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Skill EXP to family"
+        },
+        "Right Hand Of Action": {
+            "Description": "+{% Skill Efficiency for your other characters, if their Skill LV is lower than Maestro's.",
+            "X1": "150",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Skill Eff to family"
+        },
+        "Jman Was Better": {
+            "Description": "+{ Talent Points for the 'Journeyman' tab. Maestro not worth the wait, eh?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Journeyman Point"
+        }
+    },
+    "Virtuoso": {
+        "Quad Jab": {}
+    },
+    "Infinilyte": {},
+    "Rage Basics": {
+        "Health Booster": {
+            "Description": "Increases Max HP by {",
+            "X1": "1",
+            "X2": ".15",
+            "FuncX": "add",
+            "Level Up Text": "+{ HP"
+        },
+        "Mana Booster": {
+            "Description": "Increases Max MP by {",
+            "X1": "1",
+            "X2": ".1",
+            "FuncX": "add",
+            "Level Up Text": "+{ MP"
+        },
+        "Star Player": {
+            "Description": "Gives { Star Talent Points. Star Talents are found throughout the game!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Star Talent Point"
+        },
+        "Bucklered Up": {
+            "Description": "Increases Total Defense by +{%",
+            "X1": "40",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Total DEF"
+        },
+        "Sharpened Axe": {
+            "Description": "Increases Base Weapon Power by {. This contributes to your total damage.",
+            "X1": "0.25",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Base Weapon Power"
+        },
+        "Fist Of Rage": {
+            "Description": "Increases your Base STR by { (STR boosts Max HP and Crit Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ STR"
+        },
+        "Quickness Boots": {
+            "Description": "Increases your Base AGI by { (AGI boosts Movement Speed and Crit Chance)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ AGI"
+        },
+        "Book Of The Wise": {
+            "Description": "Increases your Base WIS by { (WIS boosts Mana and Boss Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ WIS"
+        },
+        "Lucky Clover": {
+            "Description": "Increases your Base LUK by { (LUK boosts drop rate, EXP Gain, and other RNG)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK"
+        },
+        "Gilded Sword": {
+            "Description": "Boosts Damage dealt to all monsters by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Damage"
+        },
+        "Brute Efficiency": {
+            "Description": "Increases the total efficiency of all specialized skills by {%",
+            "X1": "1",
+            "X2": ".02",
+            "FuncX": "add",
+            "Level Up Text": "+{% Efficiency"
+        },
+        "Meat Shank": {
+            "Description": "Damage dealt is increased by {% for every power of 10 Max HP you have",
+            "X1": "100",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Damage"
+        },
+        "Critikill": {
+            "Description": "Increases Critical Hit Damage by {%",
+            "X1": "52",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Critical Damage"
+        },
+        "Idle Brawling": {
+            "Description": "AFK Gains Rate for Fighting is increased by {%",
+            "X1": "20",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        },
+        "Idle Skilling": {
+            "Description": "AFK Gains Rate for all Specialized Skills is increased by {%",
+            "X1": "20",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        }
+    },
+    "Warrior": {
+        "Power Strike": {
+            "Description": "Slash forward dealing {% damage to up to 3 monsters",
+            "X1": "130",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Damage",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.17",
+                "s": "1.1",
+                "cooldown": "4",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "80",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Whirl": {
+            "Description": "Swing your weapon around you dealing {% damage to up to } monsters",
+            "X1": "60",
+            "X2": "1.5",
+            "FuncX": "bigBase",
+            "Y1": "4",
+            "Y2": "24",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Damage & +} Mobs Hit",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.18",
+                "s": "1.2",
+                "cooldown": "6",
+                "castTime": "0.45",
+                "manaCost": "9",
+                "inputReq": "0",
+                "AFKrange": "45",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Health Overdrive": {
+            "Description": "Increase max HP by {%",
+            "X1": ".5",
+            "X2": ".02",
+            "FuncX": "add",
+            "Level Up Text": "+{% HP"
+        },
+        "Double Strike": {
+            "Description": "Basic Attacks with Warrior Weapons have a {% chance to hit twice",
+            "X1": "110",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "{% Double Hit Chance"
+        },
+        "Firmly Grasp It": {
+            "Description": "Temporarily boosts base STR by { for } minutes",
+            "X1": "15",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Y1": "2",
+            "Y2": "4",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{ STR & +} Mins",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "1.5",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-1"
+            }
+        },
+        "Strength In Numbers": {
+            "Description": "STR's effect on both Damage and HP is increased by {%",
+            "X1": "0.75",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Effect"
+        },
+        "'Str'Ess Tested Garb": {
+            "Description": "All Equipment gives {% more STR than what's listed",
+            "X1": "200",
+            "X2": "250",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more STR from equips"
+        },
+        "Carry A Big Stick": {
+            "Description": "The effect Weapon Power has on Damage Dealt is increased by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Weapon Power Effect"
+        },
+        "Absolute Unit": {
+            "Description": "+{ base STR",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ STR"
+        },
+        "Haungry For Gold": {
+            "Description": "Golden Food bonuses are increased by {%",
+            "X1": "55",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Bonus"
+        },
+        "Big Pick": {
+            "Description": "Swings forward and mines the rock with +{% bonus Mining Efficiency",
+            "X1": "150",
+            "X2": "15",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Efficiency",
+            "Active Data": {
+                "K": "1.05",
+                "D": "1.4",
+                "s": "1",
+                "cooldown": "12",
+                "castTime": "1.5",
+                "manaCost": "10",
+                "inputReq": "0",
+                "AFKrange": "0",
+                "AFKtype": "buff",
+                "AFKactivity": "1"
+            }
+        },
+        "Copper Collector": {
+            "Description": "Mining Efficiency is increased by +{% for every power of 10 Copper Ore in Storage Chest.",
+            "X1": "20",
+            "X2": "70",
+            "FuncX": "decay",
+            "Level Up Text": "+{% efficiency"
+        },
+        "Motherlode Miner": {
+            "Description": "+{% base multi-ore drop chance. This can trigger up to 4 times in a row per swing.",
+            "X1": "20",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Multi-Ore Base Chance"
+        },
+        "Tool Proficiency": {
+            "Description": "Pickaxes give +{% more Mining Power than whats listed for every 10 Mining Lv you have",
+            "X1": "16",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% POW per 10 Mining Lv"
+        },
+        "Tempestuous Emotions": {
+            "Description": "Increases Exp Gain for all Specialized Skills by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Exp Gain"
+        }
+    },
+    "Barbarian": {
+        "Bear Swipe": {
+            "Description": "A big ol' bear claw swipes up to { monsters in front of you, dealing }% damage",
+            "X1": "3",
+            "X2": "30",
+            "FuncX": "intervalAdd",
+            "Y1": "108",
+            "Y2": "2",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ mobs & +}% dmg",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.25",
+                "s": "1.2",
+                "cooldown": "12",
+                "castTime": "0.8",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "125",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Axe Hurl": {
+            "Description": "Throws axe in a downward arc, which deals {% dmg to up to } monsters.",
+            "X1": "200",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Y1": "2",
+            "Y2": "50",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% dmg & +} mobs",
+            "Active Data": {
+                "K": "1",
+                "D": "1.25",
+                "s": "1.1",
+                "cooldown": "17",
+                "castTime": "0.8",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "200",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Mocking Shout": {
+            "Description": "Every 0.5 sec, monsters move toward you and heal for {% HP. Lasts for } seconds",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "20",
+            "Y2": "0.2",
+            "FuncY": "bigBase",
+            "Level Up Text": "+1% heal, +} sec",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.1",
+                "cooldown": "600",
+                "castTime": "1.5",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "No Pain No Gain": {
+            "Description": "Reduces max HP by {%, increases damage by }%. Also, you take double damage.",
+            "X1": "100",
+            "X2": "30",
+            "FuncX": "decay",
+            "Y1": "100",
+            "Y2": "50",
+            "FuncY": "decay",
+            "Level Up Text": "-{% HP & +}% damage",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "1.5",
+                "manaCost": "20",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Monster Decimator": {
+            "Description": "There is a {% chance for a monster kill to be counted for double for opening new portals.",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% double count chance"
+        },
+        "Apocalypse Zow": {
+            "Description": "+{% Dmg for every monster you kill over 100,000 times. Counts } monster types",
+            "X1": "2",
+            "X2": "33",
+            "FuncX": "intervalAdd",
+            "Y1": "1",
+            "Y2": "0",
+            "FuncY": "add",
+            "Level Up Text": "+{% Dmg & +1 mob type"
+        },
+        "Fistful Of Obol": {
+            "Description": "Obols give +{% more STR than what's listed",
+            "X1": "60",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more STR from Obols"
+        },
+        "Strongest Statues": {
+            "Description": "'Power', 'Mining', and 'Oceanman' statues give {% higher bonuses",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Str Summore": {
+            "Description": "+{ Max Talent Level for 'Fist of Rage'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Beefy Bottles": {
+            "Description": "Each Lv of 'Warriors Only' Bubble raises max Lv of 'CritiKill' Talent, up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV for Critikill Talent"
+        },
+        "Worming Undercover": {
+            "Description": "{% chance",
+            "X1": "to",
+            "X2": "wake the sleeper agent worm within the fish, letting you instantly catch",
+            "FuncX": "9.3",
+            "Y1": ".7",
+            "Y2": "bigBase",
+            "Active Data": {
+                "K": "1",
+                "D": "1.4",
+                "s": "1",
+                "cooldown": "15",
+                "castTime": "1.5",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "4"
+            }
+        },
+        "Bobbin' Bobbers": {
+            "Description": "+{% Minigame reward, and +1 Fishing Power per pt of your Highscore, up to +}",
+            "X1": "12",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Y1": "5",
+            "Y2": "3",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% reward & +} Cap"
+        },
+        "All Fish Diet": {
+            "Description": "+{% Fishing EXP, since like, fish is brain food and so it makes sense that... eh forget it.",
+            "X1": "1.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1.5% Fishing EXP"
+        },
+        "Catching Some Zzz'S": {
+            "Description": "+{% Away Gains for Fishing only. Just fishing. It totally doesn't boost anything else!",
+            "X1": "20",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Fishing Away Gains"
+        },
+        "Back To Basics": {
+            "Description": "+{ Talent Points for the 'Warrior' talent tab, and +10 dmg to these Talents' feelings!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Squire": {
+        "Shockwave Slash": {
+            "Description": "Slash forward, causing a shockwave which deals {% dmg to up to } enemies",
+            "X1": "175",
+            "X2": "2",
+            "FuncX": "bigBase",
+            "Y1": "3",
+            "Y2": "30",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% DMG & +} Mobs hit",
+            "Active Data": {
+                "K": "1",
+                "D": "1.4",
+                "s": "1",
+                "cooldown": "14",
+                "castTime": "1.8",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Daggerang": {
+            "Description": "Throw a dagger which comes right back to you, dealing {% Dmg to up to } mobs",
+            "X1": "200",
+            "X2": "1.5",
+            "FuncX": "bigBase",
+            "Y1": "4",
+            "Y2": "30",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% DMG & +} Mobs hit",
+            "Active Data": {
+                "K": "1",
+                "D": "1.4",
+                "s": "1",
+                "cooldown": "16",
+                "castTime": "0.8",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Bricky Skin": {
+            "Description": "Block {% of all damage. Also, passively gives +} base DEF at all times, even when not in use!",
+            "X1": "20",
+            "X2": "0.4",
+            "FuncX": "bigBase",
+            "Y1": "1",
+            "Y2": "3",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Block, +} Base DEF",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "1",
+                "manaCost": "20",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Mastery Up": {
+            "Description": "+{% Mastery. This affects how big your minimum damage is compared to max damage!",
+            "X1": "18",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Mastery"
+        },
+        "Balanced Spirit": {
+            "Description": "Boosts Accuracy and DEF by +{%, but lowers damage by -}%",
+            "X1": "25",
+            "X2": "50",
+            "FuncX": "decay",
+            "Y1": "39",
+            "Y2": "40",
+            "FuncY": "decay",
+            "Level Up Text": "+{% Acc/DEF, -}% Dmg",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "1",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Precision Power": {
+            "Description": "+{% Dmg per Refinery Rank if accuracy is 1.5x higher than needed for 100% hit chance",
+            "X1": "11",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Dmg if ACC big"
+        },
+        "Fistful Of Obol": {
+            "Description": "Obols give +{% more STR than what's listed",
+            "X1": "60",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more STR from Obols"
+        },
+        "Shieldiest Statues": {
+            "Description": "'Power', 'Mining', and 'Defence' statues give {% higher bonuses",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Str Summore": {
+            "Description": "+{ Max Talent Level for 'Fist of Rage'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Blocky Bottles": {
+            "Description": "Each Lv of 'Warriors Only' Bubble raises max Lv of 'Meat Shank' Talent, up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV for Meat Shank"
+        },
+        "Refinery Throttle": {
+            "Description": "Automatically trigger { Refinery Cycles. Still costs materials, though.",
+            "X1": "3",
+            "X2": "8",
+            "FuncX": "intervalAdd",
+            "Level Up Text": "+1 Cycle Every 8 Lvs",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "72000",
+                "castTime": "0.95",
+                "manaCost": "10",
+                "inputReq": "0",
+                "AFKrange": "50",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Redox Rates": {
+            "Description": "+{% Build Speed per power of 10 Redox Salts in your Storage Chest",
+            "X1": "40",
+            "X2": "70",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Build Spd"
+        },
+        "Sharper Saws": {
+            "Description": "+{% Construction EXP gain. More like Cogstruction am I right fellas?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Construction EXP"
+        },
+        "Super Samples": {
+            "Description": "+{% Sample Size when taking Samples for the 3d printer.",
+            "X1": "9",
+            "X2": "75",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Sample Size"
+        },
+        "Back To Basics": {
+            "Description": "+{ Talent Points for the 'Warrior' talent tab, and +10 dmg to these Talents' feelings!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Blood Berserker": {},
+    "Death Bringer": {},
+    "Divine Knight": {},
+    "Royal Guardian": {},
+    "Filler": {},
+    "Calm Basics": {
+        "Health Booster": {
+            "Description": "Increases Max HP by {",
+            "X1": "1",
+            "X2": ".15",
+            "FuncX": "add",
+            "Level Up Text": "+{ HP"
+        },
+        "Mana Booster": {
+            "Description": "Increases Max MP by {",
+            "X1": "1",
+            "X2": ".1",
+            "FuncX": "add",
+            "Level Up Text": "+{ MP"
+        },
+        "Star Player": {
+            "Description": "Gives { Star Talent Points. Star Talents are found throughout the game!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Star Talent Point"
+        },
+        "Bucklered Up": {
+            "Description": "Increases Total Defense by +{%",
+            "X1": "40",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Total DEF"
+        },
+        "Sharpened Axe": {
+            "Description": "Increases Base Weapon Power by {. This contributes to your total damage.",
+            "X1": "0.25",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Base Weapon Power"
+        },
+        "Fist Of Rage": {
+            "Description": "Increases your Base STR by { (STR boosts Max HP and Crit Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ STR"
+        },
+        "Quickness Boots": {
+            "Description": "Increases your Base AGI by { (AGI boosts Movement Speed and Crit Chance)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ AGI"
+        },
+        "Book Of The Wise": {
+            "Description": "Increases your Base WIS by { (WIS boosts Mana and Boss Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ WIS"
+        },
+        "Lucky Clover": {
+            "Description": "Increases your Base LUK by { (LUK boosts drop rate, EXP Gain, and other RNG)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK"
+        },
+        "Gilded Sword": {
+            "Description": "Boosts Damage dealt to all monsters by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Damage"
+        },
+        "Elusive Efficiency": {
+            "Description": "Increases the total efficiency of all specialized skills by {%",
+            "X1": "1",
+            "X2": ".02",
+            "FuncX": "add",
+            "Level Up Text": "+{% Efficiency"
+        },
+        "Featherweight": {
+            "Description": "Increases Movement Speed by {% so you can outrun those slowpoke Warriors and Mages",
+            "X1": "25",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Move Speed"
+        },
+        "I See You": {
+            "Description": "Increases Critical Hit Chance by {%",
+            "X1": "27",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Crit Chance"
+        },
+        "Idle Shooting": {
+            "Description": "AFK Gains Rate for Fighting is increased by {%",
+            "X1": "20",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        },
+        "Broken Time": {
+            "Description": "Production Speed in all Town Skills is increased by {%",
+            "X1": "100",
+            "X2": "75",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Production Speed"
+        }
+    },
+    "Archer": {
+        "Piercing Arrow": {
+            "Description": "Shoots an arrow that deals {% damage to up to } monsters",
+            "X1": "110",
+            "X2": "2",
+            "FuncX": "bigBase",
+            "Y1": "2",
+            "Y2": "40",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Damage & +} Mobs Hit",
+            "Active Data": {
+                "K": "1.15",
+                "D": "1.19",
+                "s": "1.15",
+                "cooldown": "15",
+                "castTime": "0.45",
+                "manaCost": "8",
+                "inputReq": "0",
+                "AFKrange": "300",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Kung Fu Kick": {
+            "Description": "Pushes back nearby monsters by { pixels while dealing }% damage",
+            "X1": "25",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Y1": "60",
+            "Y2": "2",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ pixels & +}% DMG",
+            "Active Data": {
+                "K": "1",
+                "D": "1.15",
+                "s": "1",
+                "cooldown": "7",
+                "castTime": "0.45",
+                "manaCost": "4",
+                "inputReq": "0",
+                "AFKrange": "80",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Hema Overdrive": {
+            "Description": "Increase max HP and max MP by {%",
+            "X1": ".4",
+            "X2": ".01",
+            "FuncX": "add",
+            "Level Up Text": "+{% HP and MP"
+        },
+        "Strafe": {
+            "Description": "Temporarily boosts Movement Speed by {% for } minutes",
+            "X1": "5",
+            "X2": ".3",
+            "FuncX": "bigBase",
+            "Y1": "2",
+            "Y2": "15",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Speed % +} Mins",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.2",
+                "cooldown": "30",
+                "castTime": "0.45",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-1"
+            }
+        },
+        "Have Another!": {
+            "Description": "Basic Attacks have a {% chance to fire 1 additional arrow",
+            "X1": "120",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Chance"
+        },
+        "Veins Of The Infernal": {
+            "Description": "Increases Damage Dealt by {% every 10 Smithing Levels",
+            "X1": "50",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Damage"
+        },
+        "Garb Of Un'Agi'Ng Quality": {
+            "Description": "All Equipment gives {% more AGI than what's listed",
+            "X1": "1.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% more AGI from equips"
+        },
+        "High Polymer Limbs": {
+            "Description": "The effect Weapon Power has on Damage Dealt is increased by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Weapon Power Effect"
+        },
+        "Sanic Speed": {
+            "Description": "+{ base AGI",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ AGI"
+        },
+        "Robbinghood": {
+            "Description": "Monster drop rarity increased by {%",
+            "X1": "40",
+            "X2": "65",
+            "FuncX": "decay",
+            "Level Up Text": "+{% rarity"
+        },
+        "Smeltin' Erryday": {
+            "Description": "Every kill has a {% chance to give } seconds of instant forge progress",
+            "X1": "50",
+            "X2": "80",
+            "FuncX": "decay",
+            "Y1": "1",
+            "Y2": "60",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% for } forge secs"
+        },
+        "Acme Anvil": {
+            "Description": "Get 1 Anvil Production Point, and also gain +{ extra pts every 10 Smithing Lvs",
+            "X1": "1",
+            "X2": "15",
+            "FuncX": "intervalAdd",
+            "Level Up Text": "+{ extra pts"
+        },
+        "Yea I Already Know": {
+            "Description": "Start with {% exp per 250 AGI when you lv up any Specialized Skill. Caps at }%.",
+            "X1": "5",
+            "X2": "90",
+            "FuncX": "decay",
+            "Y1": "5",
+            "Y2": "10",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Exp, and +}% Cap"
+        },
+        "Godly Creation": {
+            "Description": "{% chance to apply a special bonus to any equip crafted at the anvil. ",
+            "X1": "50",
+            "X2": "75",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Chance"
+        },
+        "Focused Soul": {
+            "Description": "EXP Gain for all Specialized Skills is increased by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% EXP gain in Spec Skills"
+        }
+    },
+    "Bowman": {
+        "Homing Arrows": {
+            "Description": "Fires { arrows into the air, which seek out nearby monsters and deal }% damage",
+            "X1": "2",
+            "X2": "15",
+            "FuncX": "intervalAdd",
+            "Y1": "27",
+            "Y2": "3",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ arrow & +}% damage",
+            "Active Data": {
+                "K": "1",
+                "D": "1.25",
+                "s": "1.1",
+                "cooldown": "20",
+                "castTime": "0.45",
+                "manaCost": "28",
+                "inputReq": "0",
+                "AFKrange": "300",
+                "AFKtype": "circle",
+                "AFKactivity": "0"
+            }
+        },
+        "Magic Shortbow": {
+            "Description": "Magic shortbows fire at your target, and up to { nearby monsters, for }% damage",
+            "X1": "2",
+            "X2": "20",
+            "FuncX": "intervalAdd",
+            "Y1": "47",
+            "Y2": "3",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ monsters & +}% dmg",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.2",
+                "s": "1.05",
+                "cooldown": "7",
+                "castTime": "0.45",
+                "manaCost": "15",
+                "inputReq": "0",
+                "AFKrange": "100",
+                "AFKtype": "target",
+                "AFKactivity": "0"
+            }
+        },
+        "Flax Instastring": {
+            "Description": "Basic attacks have a {% chance to spawn a Magic Shortbow.",
+            "X1": "40",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% trigger chance"
+        },
+        "Extendo Rangeo": {
+            "Description": "Attack range is increased by +{ Pixels, and +}% accuracy, for a few minutes",
+            "X1": "19.5",
+            "X2": ".5",
+            "FuncX": "bigBase",
+            "Y1": "40",
+            "Y2": "60",
+            "FuncY": "decay",
+            "Level Up Text": "+{px Range & +} mins",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "0.45",
+                "manaCost": "10",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Woah, That Was Fast!": {
+            "Description": "All attack talent cooldowns are {% lower. No, not regular attacks lol",
+            "X1": "30",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% lower cooldowns"
+        },
+        "Speedna": {
+            "Description": "+{% Damage for every 15% movement spd you have above 100%",
+            "X1": "60",
+            "X2": "77",
+            "FuncX": "decay",
+            "Level Up Text": "+{% damage"
+        },
+        "Shoeful Of Obol": {
+            "Description": "Obols give +{% more AGI than what is listed",
+            "X1": "135",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more AGI"
+        },
+        "Shwifty Statues": {
+            "Description": "'Speed', 'Anvil', and 'Ol Reliable' statues give +{% more bonus",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Agi Again": {
+            "Description": "+{ Max Talent Level for 'Quickness Boots'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Velocity Vessels": {
+            "Description": "Each Lv of 'Archer or Bust' Bubble raises max Lv of 'Featherweight', up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV cap"
+        },
+        "Teleki'Net'Ic Logs": {
+            "Description": "+{% Catching Efficiency for every power of 10 Oak Logs in the storage chest",
+            "X1": "20",
+            "X2": "70",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Efficiency"
+        },
+        "Briar Patch Runner": {
+            "Description": "AGI has a +{% larger effect on Catching Efficiency than normal",
+            "X1": "0.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% effect"
+        },
+        "Bug Enthusiast": {
+            "Description": "+{% Catching EXP. You're one step closer to figuring out how butter can fly!",
+            "X1": "1.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Catching EXP"
+        },
+        "Sunset On The Hives": {
+            "Description": "+{% Away Gain for Catching Hint:Useful for when you idle on catching!",
+            "X1": "20",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Away Gains"
+        },
+        "Previous Points": {
+            "Description": "+{ Talent Points for the 'Archer' talent tab. But,what's wrong with these talents?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Hunter": {
+        "360 Noscope": {
+            "Description": "Deal {% DMG split between all hit monsters. The more mobs hit, the less dmg done",
+            "X1": "225",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% damage",
+            "Active Data": {
+                "K": "1.2",
+                "D": "1.3",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "1.1",
+                "manaCost": "25",
+                "inputReq": "2",
+                "AFKrange": "200",
+                "AFKtype": "auto",
+                "AFKactivity": "0"
+            }
+        },
+        "Bear Trap": {
+            "Description": "Lay down { bear traps that deal }% dmg when a monster triggers it",
+            "X1": "2",
+            "X2": "30",
+            "FuncX": "intervalAdd",
+            "Y1": "150",
+            "Y2": "2",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ Traps & +}% Dmg",
+            "Active Data": {
+                "K": "1.2",
+                "D": "1.15",
+                "s": "1",
+                "cooldown": "9",
+                "castTime": "1.5",
+                "manaCost": "30",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Uwu Rawrrr": {
+            "Description": "When mobs die, their respawn time is { seconds faster!",
+            "X1": "55",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{ seconds faster",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.1",
+                "cooldown": "120",
+                "castTime": "1.5",
+                "manaCost": "35",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Stop Right There": {
+            "Description": "Immobilizes monsters within a { pixel radius of you for } seconds.",
+            "X1": "150",
+            "X2": "1.5",
+            "FuncX": "bigBase",
+            "Y1": "4",
+            "Y2": "20",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{ pixels & +} sec",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.1",
+                "cooldown": "60",
+                "castTime": "1.5",
+                "manaCost": "50",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Have Another... Again!": {
+            "Description": "Basic Attacks have a {% chance to fire 1 more arrow. Stacks with 'Have Another!'",
+            "X1": "120",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Chance"
+        },
+        "Looty Mc Shooty": {
+            "Description": "+{% Damage for every 50 items you've ever found on any of your players.",
+            "X1": "36",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% damage"
+        },
+        "Shoeful Of Obol": {
+            "Description": "Obols give +{% more AGI than what is listed",
+            "X1": "135",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more AGI"
+        },
+        "Straightshot Statues": {
+            "Description": "'Speed', 'Anvil', and 'Bullseye' statues give +{% more bonus",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Agi Again": {
+            "Description": "+{ Max Talent Level for 'Quickness Boots'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Visibility Vessels": {
+            "Description": "Each Lv of 'Archer or Bust' Bubble raises max Lv of 'I See You', up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV for ICU"
+        },
+        "Eagle Eye": {
+            "Description": "Collect & set all traps, but only get {% critters. }% Exp is given to each player.",
+            "X1": "140",
+            "X2": "100",
+            "FuncX": "decay",
+            "Y1": "130",
+            "Y2": "100",
+            "FuncY": "decay",
+            "Level Up Text": "+{% Critters & +}% XP",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "6",
+                "castTime": "0.95",
+                "manaCost": "2",
+                "inputReq": "0",
+                "AFKrange": "50",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Invasive Species": {
+            "Description": "+{% Trapping Efficiency per power of 10 Froge Critters in Storage",
+            "X1": "30",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Trap Efficiency"
+        },
+        "Shroom Bait": {
+            "Description": "+{% Trapping Exp Gain. Doesn't affect EXP given to other players when in Eagle Eye.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Trapping EXP"
+        },
+        "Reflective Eyesight": {
+            "Description": "{x Shiny Critter chance. Triggers again every 10 Trapping LVs",
+            "X1": "2",
+            "X2": "100",
+            "FuncX": "decayMulti",
+            "Level Up Text": "+{x Shiny Chance"
+        },
+        "Previous Points": {
+            "Description": "+{ Talent Points for the 'Archer' talent tab. But,what's wrong with these talents?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Siege Breaker": {
+        "Ballista": {
+            "Description": "Ballista bitch",
+            "X1": "400",
+            "X2": "25",
+            "FuncX": "bigBase",
+            "Active Data": {
+                "K": "1",
+                "D": "1.4",
+                "s": "1",
+                "cooldown": "45",
+                "castTime": "0.45",
+                "manaCost": "500",
+                "inputReq": "1",
+                "AFKrange": "1",
+                "AFKtype": "target",
+                "AFKactivity": "0"
+            }
+        }
+    },
+    "Mayheim": {},
+    "Wind Walker": {},
+    "Beast Master": {},
+    "Savvy Basics": {
+        "Health Booster": {
+            "Description": "Increases Max HP by {",
+            "X1": "1",
+            "X2": ".15",
+            "FuncX": "add",
+            "Level Up Text": "+{ HP"
+        },
+        "Mana Booster": {
+            "Description": "Increases Max MP by {",
+            "X1": "1",
+            "X2": ".1",
+            "FuncX": "add",
+            "Level Up Text": "+{ MP"
+        },
+        "Star Player": {
+            "Description": "Gives { Star Talent Points. Star Talents are found throughout the game!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Star Talent Point"
+        },
+        "Bucklered Up": {
+            "Description": "Increases Total Defense by +{%",
+            "X1": "40",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Total DEF"
+        },
+        "Sharpened Axe": {
+            "Description": "Increases Base Weapon Power by {. This contributes to your total damage.",
+            "X1": "0.25",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Base Weapon Power"
+        },
+        "Fist Of Rage": {
+            "Description": "Increases your Base STR by { (STR boosts Max HP and Crit Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ STR"
+        },
+        "Quickness Boots": {
+            "Description": "Increases your Base AGI by { (AGI boosts Movement Speed and Crit Chance)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ AGI"
+        },
+        "Book Of The Wise": {
+            "Description": "Increases your Base WIS by { (WIS boosts Mana and Boss Damage)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ WIS"
+        },
+        "Lucky Clover": {
+            "Description": "Increases your Base LUK by { (LUK boosts drop rate, EXP Gain, and other RNG)",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK"
+        },
+        "Gilded Sword": {
+            "Description": "Boosts Damage dealt to all monsters by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Damage"
+        },
+        "Smart Efficiency": {
+            "Description": "Increases the total efficiency of all specialized skills by {%",
+            "X1": "1",
+            "X2": ".02",
+            "FuncX": "add",
+            "Level Up Text": "+{% Efficiency"
+        },
+        "Overclocked Energy": {
+            "Description": "Damage dealt is increased by {% for every power of 10 Max MP you have",
+            "X1": "150",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Damage"
+        },
+        "Farsight": {
+            "Description": "Increases Crit Chance by {% and Crit Dmg by }%",
+            "X1": "17",
+            "X2": "45",
+            "FuncX": "decay",
+            "Y1": "33",
+            "Y2": "45",
+            "FuncY": "decay",
+            "Level Up Text": "+{% Chance, +}% DMG"
+        },
+        "Idle Casting": {
+            "Description": "AFK Gains Rate for Fighting is increased by {%",
+            "X1": "20",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        },
+        "Active Afk'Er": {
+            "Description": "AFK Gains Rate for all Specialized Skills is increased by {%",
+            "X1": "20",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% AFK Gains Rate"
+        }
+    },
+    "Mage": {
+        "Energy Bolt": {
+            "Description": "Your next basic attack strikes the Targeted Enemy for {% Damage",
+            "X1": "160",
+            "X2": "2",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Damage",
+            "Active Data": {
+                "K": "1",
+                "D": "1.21",
+                "s": "1",
+                "cooldown": "8",
+                "castTime": "1.1",
+                "manaCost": "9",
+                "inputReq": "2",
+                "AFKrange": "1",
+                "AFKtype": "auto",
+                "AFKactivity": "0"
+            }
+        },
+        "Mini Fireball": {
+            "Description": "Shoots a fireball that explodes on impact, dealing {% damage",
+            "X1": "120",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Damage",
+            "Active Data": {
+                "K": "1.05",
+                "D": "1.2",
+                "s": "1.1",
+                "cooldown": "10",
+                "castTime": "0.85",
+                "manaCost": "12",
+                "inputReq": "0",
+                "AFKrange": "270",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Mana Overdrive": {
+            "Description": "Increase max MP by {%",
+            "X1": ".5",
+            "X2": ".02",
+            "FuncX": "add",
+            "Level Up Text": "+{% MP"
+        },
+        "Teleport": {
+            "Description": "Move forward instantly by a distance of { Pixels",
+            "X1": "25",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Level Up Text": "+1 Pixel Moved",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.2",
+                "cooldown": "1",
+                "castTime": "0.5",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "auto",
+                "AFKactivity": "-1"
+            }
+        },
+        "You'Re Next": {
+            "Description": "Basic attacks have a {% chance to Mark enemies, who then take }% more damage",
+            "X1": "110",
+            "X2": "70",
+            "FuncX": "decay",
+            "Y1": "25",
+            "Y2": ".5",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{% chance & +}% dmg"
+        },
+        "Knowledge Is Power": {
+            "Description": "The effect your WIS stat has on Damage is increased by {%",
+            "X1": "1.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Effect"
+        },
+        "Unt'Wis'Ted Robes": {
+            "Description": "All Equipment gives {% more WIS than what's listed",
+            "X1": "1.5",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% more WIS from equips"
+        },
+        "Power Overwhelming": {
+            "Description": "The effect Weapon Power has on Damage Dealt is increased by {%",
+            "X1": "1.2",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Weapon Power Effect"
+        },
+        "Free Meal": {
+            "Description": "{% Chance for food to not be consumed when it otherwise would be",
+            "X1": "53",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Non-Consume Chance"
+        },
+        "Individual Insight": {
+            "Description": "+{ base WIS",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ WIS"
+        },
+        "Log On Logs": {
+            "Description": "For { Minutes, trees drop }% more Logs than normal",
+            "X1": "2",
+            "X2": "10",
+            "FuncX": "intervalAdd",
+            "Y1": "14",
+            "Y2": "1.86",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ Mins & +}% more Logs",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "30",
+                "castTime": "0.95",
+                "manaCost": "5",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "3"
+            }
+        },
+        "Leaf Thief": {
+            "Description": "{% Choppin Efficiency per power of 10 Grass Leaves in your Storage Chest.",
+            "X1": "25",
+            "X2": "70",
+            "FuncX": "decay",
+            "Level Up Text": "+{% efficiency"
+        },
+        "Deforesting All Doubt": {
+            "Description": "The effect your WIS stat has on Choppin Efficiency is increased by {%",
+            "X1": "0.75",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Effect"
+        },
+        "Inner Peace": {
+            "Description": "Increases Exp Gain for all Specialized Skills by {%",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Exp Gain"
+        },
+        "Choppin It Up Ez": {
+            "Description": "+{% Minigame Rewards, and +}% Dmg per 25 Pts of your Minigame Highscore",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "5.7",
+            "Y2": "50",
+            "FuncY": "decay",
+            "Level Up Text": "+{% Rewards & +}% Dmg"
+        }
+    },
+    "Wizard": {
+        "Ice Shards": {
+            "Description": "Your next basic attack deals {% dmg 3 times, and freezes all nearby mobs",
+            "X1": "70",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Damage",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.3",
+                "s": "1",
+                "cooldown": "10",
+                "castTime": "1.2",
+                "manaCost": "30",
+                "inputReq": "2",
+                "AFKrange": "200",
+                "AFKtype": "auto",
+                "AFKactivity": "0"
+            }
+        },
+        "Floor Is Lava": {
+            "Description": "Summon {x2 volcanos which erupt around you, dealing }% dmg",
+            "X1": "1",
+            "X2": "40",
+            "FuncX": "intervalAdd",
+            "Y1": "120",
+            "Y2": "1",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{ Volcano & +}% Dmg",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.3",
+                "s": "1.02",
+                "cooldown": "13",
+                "castTime": "0.95",
+                "manaCost": "30",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Tornado": {
+            "Description": "Summon a tornado, which deals {% dmg and disappears after } seconds",
+            "X1": "20",
+            "X2": "0.30",
+            "FuncX": "bigBase",
+            "Y1": "4",
+            "Y2": "20",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Dmg & +} sec",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.3",
+                "s": "1.02",
+                "cooldown": "25",
+                "castTime": "0.95",
+                "manaCost": "30",
+                "inputReq": "0",
+                "AFKrange": "150",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Speedy Book": {
+            "Description": "Getting 4@kills in 4@sec activates 'Speedy Book' boosting attack rate by {% for } sec",
+            "X1": "10",
+            "X2": "0.2",
+            "FuncX": "bigBase",
+            "Y1": "3",
+            "Y2": "15",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% rate & } sec",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1.02",
+                "cooldown": "2",
+                "castTime": "0.95",
+                "manaCost": "30",
+                "inputReq": "0",
+                "AFKrange": "0",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Mana Is Life": {
+            "Description": "{% of taken dmg is dealt to MP. Also passively boosts MP regen by +}%",
+            "X1": "25",
+            "X2": "0.35",
+            "FuncX": "bigBase",
+            "Y1": "15",
+            "Y2": "0.35",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{% dmg & }% MP regen",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.3",
+                "s": "1.02",
+                "cooldown": "60",
+                "castTime": "0.95",
+                "manaCost": "30",
+                "inputReq": "0",
+                "AFKrange": "50",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Paperwork, Great...": {
+            "Description": "+{% Damage for every 10 Stamps in your collection. Oink Oink!",
+            "X1": "70",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% damage"
+        },
+        "Occult Obols": {
+            "Description": "Obols give +{% more WIS than what is listed",
+            "X1": "135",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more WIS"
+        },
+        "Staring Statues": {
+            "Description": "'Exp', 'Lumberbob', and 'Beholder' statues give +{% more bonus",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Wis Wumbo": {
+            "Description": "+{ Max Talent Level for 'Book of the Wise'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Fuscia Flasks": {
+            "Description": "Each Lv of 'Mage is Best' Bubble raises max Lv of 'Overclocked Energy', up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV cap"
+        },
+        "Charge Syphon": {
+            "Description": "Steal charge from all your players, giving you {% of it. +}% Max Charge for 1 Min",
+            "X1": "35",
+            "X2": ".3",
+            "FuncX": "bigBase",
+            "Y1": "100",
+            "Y2": "10",
+            "FuncY": "bigBase",
+            "Level Up Text": "+{% Steal, +}% Temp Max",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "3600",
+                "castTime": "0.95",
+                "manaCost": "10",
+                "inputReq": "0",
+                "AFKrange": "50",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Sooouls": {
+            "Description": "+{% Worship Efficiency per power of 10 Forest Souls in your Storage Chest",
+            "X1": "25",
+            "X2": "70",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Worship Eff."
+        },
+        "Bless Up": {
+            "Description": "+{% Worship EXP gain. Access the other totems faster!",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Worship EXP"
+        },
+        "Nearby Outlet": {
+            "Description": "{x Charge rate. You know, for Worship... No, not for your phone.",
+            "X1": "1",
+            "X2": "100",
+            "FuncX": "decayMulti",
+            "Level Up Text": "+{x Charge Rate"
+        },
+        "Earlier Education": {
+            "Description": "+{ Talent Points for the 'Mage' talent tab. What, these talent's aint good 'nuff for ya?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Shaman": {
+        "Crazy Concoctions": {
+            "Description": "Throws 1 of 4 potions, with a potency of {%",
+            "X1": "17",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% Potency",
+            "Active Data": {
+                "K": "1.1",
+                "D": "1.3",
+                "s": "1.02",
+                "cooldown": "23",
+                "castTime": "0.95",
+                "manaCost": "30",
+                "inputReq": "1",
+                "AFKrange": "50",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Auspicious Aura": {
+            "Description": "Casts } aura which heals you and damages monsters. The strength of the aura is {%",
+            "X1": "10",
+            "X2": "3",
+            "FuncX": "bigBase",
+            "Y1": "1",
+            "Y2": "35",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% Strength & +} Auras",
+            "Active Data": {
+                "K": "1.05",
+                "D": "1.21",
+                "s": "1.1",
+                "cooldown": "40",
+                "castTime": "0.95",
+                "manaCost": "60",
+                "inputReq": "0",
+                "AFKrange": "80",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Sizzling Skull": {
+            "Description": "Fire a skull which bounces around dealing {% dmg to up to } monsters",
+            "X1": "125",
+            "X2": "1",
+            "FuncX": "bigBase",
+            "Y1": "3",
+            "Y2": "20",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% dmg & +} more mobs",
+            "Active Data": {
+                "K": "1.05",
+                "D": "1.21",
+                "s": "1.1",
+                "cooldown": "18",
+                "castTime": "0.95",
+                "manaCost": "60",
+                "inputReq": "0",
+                "AFKrange": "130",
+                "AFKtype": "line",
+                "AFKactivity": "0"
+            }
+        },
+        "Tenteyecle": {
+            "Description": "Killing a monster has a {% chance to reduce attack cooldowns by } seconds",
+            "X1": "100",
+            "X2": "100",
+            "FuncX": "decay",
+            "Y1": "2",
+            "Y2": "200",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{% chance"
+        },
+        "Instant Invincibility": {
+            "Description": "When damaged, you will stay invincible for an additional +{ more seconds",
+            "X1": "5",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{ More Seconds"
+        },
+        "Virile Vials": {
+            "Description": "+{% damage dealt for every alchemy vial upgraded to at least Green LV",
+            "X1": "12",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Damage"
+        },
+        "Occult Obols": {
+            "Description": "Obols give +{% more WIS than what is listed",
+            "X1": "135",
+            "X2": "80",
+            "FuncX": "decay",
+            "Level Up Text": "+{% more WIS"
+        },
+        "Stupendous Statues": {
+            "Description": "'Exp', 'Lumberbob', and 'Cauldron' statues give +{% more bonus",
+            "X1": "100",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% higher bonuses"
+        },
+        "Wis Wumbo": {
+            "Description": "+{ Max Talent Level for 'Book of the Wise'",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max Lv"
+        },
+        "Fantasia Flasks": {
+            "Description": "Each Lv of 'Mage is Best' Bubble raises max Lv of 'Farsight', up to +{",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Max LV cap"
+        },
+        "Cranium Cooking": {
+            "Description": "Killing a monster gives { seconds of instant alchemy progress. Lasts for } seconds",
+            "X1": "40",
+            "X2": "100",
+            "FuncX": "decay",
+            "Y1": "10",
+            "Y2": "2",
+            "FuncY": "intervalAdd",
+            "Level Up Text": "+{ progress & +} time",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "80000",
+                "castTime": "0.95",
+                "manaCost": "100",
+                "inputReq": "0",
+                "AFKrange": "50",
+                "AFKtype": "buff",
+                "AFKactivity": "0"
+            }
+        },
+        "Busy Brewin'": {
+            "Description": "Boosts brew speed by +{% for this character.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% brew effect"
+        },
+        "Bubble Breakthrough": {
+            "Description": "+{% Alchemy EXP. Also, +}% odds of New Bubble when brewing on this player",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Y1": "1",
+            "Y2": ".02",
+            "FuncY": "add",
+            "Level Up Text": "+{% EXP & +}% chance"
+        },
+        "Sharing Some Smarts": {
+            "Description": "All characters in the same cauldron as this one gain +{% more Alch EXP.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{% Alch Exp"
+        },
+        "Earlier Education": {
+            "Description": "+{ Talent Points for the 'Mage' talent tab. What, these talent's aint good 'nuff for ya?",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+1 Talent Pt"
+        }
+    },
+    "Elemental Sorcerer": {},
+    "Spiritual Monk": {},
+    "Bubonic Conjuror": {},
+    "Arcane Cultist": {},
+    "Special Talent 1": {
+        "Bored To Death": {
+            "Description": "Reduces the Respawn Timer to { sec. This will boost AFK Survival Percent!",
+            "X1": "600",
+            "X2": "2",
+            "FuncX": "reduce",
+            "Level Up Text": "{ sec Respawn"
+        },
+        "Beginner Best Class": {
+            "Description": "+1 Base Weapon Power every 10 Lvs of your best Beginner. Caps at +{.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ Weapon Pow Cap"
+        },
+        "Studious Quester": {
+            "Description": "Quests give +{% more exp than normal",
+            "X1": "120",
+            "X2": "40",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Quest Exp"
+        },
+        "Quest Chungus": {
+            "Description": "Each Completed Quest gives +1 LUK. Total bonus caps at +{ LUK",
+            "X1": "4",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ LUK Cap"
+        },
+        "Crystals 4 Dayys": {
+            "Description": "Crystal Monsters have a +{% chance to spawn",
+            "X1": "174",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Spawn Rate"
+        },
+        "Will Of The Eldest": {
+            "Description": "+1 All Stats for every 10 Levels of your highest leveled character. Caps at +{.",
+            "X1": "1",
+            "X2": "0",
+            "FuncX": "add",
+            "Level Up Text": "+{ All Stat Cap"
+        },
+        "Tick Tock": {
+            "Description": "+{% Away Gains Rate for both Fighting and Skills",
+            "X1": "8",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Away Gain Rate"
+        },
+        "Stonks!": {
+            "Description": "Gives { Special Talent Points.",
+            "X1": "130",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "Even Stonkier!"
+        },
+        "Roll Da Dice": {
+            "Description": "Rolls a { sided dice. If it lands on a 1, you win a special Trophy!",
+            "X1": "10000",
+            "X2": "25",
+            "FuncX": "reduce",
+            "Level Up Text": "Dice only has { sides",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "200",
+                "castTime": "0.5",
+                "manaCost": "1",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-1"
+            }
+        },
+        "Attacks On Simmer": {
+            "Description": "Attack moves boost your AFK gains +{% more than they normally do",
+            "X1": "40",
+            "X2": "100",
+            "FuncX": "decay",
+            "Level Up Text": "+{% attack AFK effect"
+        },
+        "Toilet Paper Postage": {
+            "Description": "Stamps giving Skill Efficiency will give {x higher bonuses.",
+            "X1": ".7",
+            "X2": "100",
+            "FuncX": "decayMulti",
+            "Level Up Text": "+{x higher bonus"
+        },
+        "Exp Converter": {
+            "Description": "{% of EXP earned in chosen Skill is turned to Class EXP. Assign to Attack to choose.",
+            "X1": "150",
+            "X2": "200",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Exp Converted",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "3",
+                "castTime": "0.1",
+                "manaCost": "1",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Goblet Of Hemoglobin": {
+            "Description": "Killing a monster heals you by {%. This also counts for AFK, helping Survivability!",
+            "X1": "6",
+            "X2": "66",
+            "FuncX": "decay",
+            "Level Up Text": "+{% HP regen per kill"
+        }
+    },
+    "Special Talent 2": {
+        "Just Exp": {
+            "Description": "+{% Class EXP",
+            "X1": "10",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Class Exp"
+        },
+        "Frothy Malk": {
+            "Description": "Boost foods, like potions, give +{% higher bonuses than normal.",
+            "X1": "50",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Boost Food Effect"
+        },
+        "Convert Better, Darnit!": {
+            "Description": "EXP Converter Talent gives {x more Class EXP every 5 LV of chosen skill",
+            "X1": "1.7",
+            "X2": "100",
+            "FuncX": "decayMulti",
+            "Level Up Text": "+{x more Class Exp"
+        },
+        "Pulsation": {
+            "Description": "The rate at which you gain mana used to cast Attacks is boosted by +{%",
+            "X1": "75",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Mana Regen rate"
+        },
+        "Cardiovascular!": {
+            "Description": "+{% additional card drop chance. It's multiplicative, so it always helps!",
+            "X1": "60",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% card drop chance"
+        },
+        "Telekinetic Storage": {
+            "Description": "Deposits your items to storage, and destroys items on ground. PASSIVE: +{% Carry Cap",
+            "X1": "30",
+            "X2": "60",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Carry Cap",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "1800",
+                "castTime": "0.1",
+                "manaCost": "1",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Printer Sampling": {
+            "Description": "Cast to sample {% of your current AFK gains, which is used by the 3d Printer.",
+            "X1": "10",
+            "X2": ".075",
+            "FuncX": "bigBase",
+            "Level Up Text": "+{% AFK gains sampled",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "6",
+                "castTime": "0.1",
+                "manaCost": "1",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        },
+        "Shrine Architect": {
+            "Description": "Cast this talent to place shrines. You also charge them +{% faster",
+            "X1": "50",
+            "X2": "50",
+            "FuncX": "decay",
+            "Level Up Text": "+{% Charge Rate",
+            "Active Data": {
+                "K": "1",
+                "D": "1",
+                "s": "1",
+                "cooldown": "6",
+                "castTime": "0.1",
+                "manaCost": "1",
+                "inputReq": "0",
+                "AFKrange": "1",
+                "AFKtype": "buff",
+                "AFKactivity": "-2"
+            }
+        }
+    },
+    "Special Talent 3": {
+        "Special27": {}
+    },
+    "Special Talent 4": {
+        "Special40": {}
+    },
+    "Special Talent 5": {
+        "Special53": {}
+    }
+}
