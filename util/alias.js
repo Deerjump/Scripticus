@@ -85,13 +85,19 @@ function* cartesian(head, ...tail) {
 }
 
 // Item aliases
-self.add('pouch', ['bag']);
+self.add('pouch', ['bag', 'sack']);
+self.add('desert topaz', ['w1 gem', 'amarok gem', 'desert gem']);
+self.add('glacier quartz', ['w2 gem', 'efaunt gem', 'ice gem']);
+self.add('galaxial amethyst', ['w3 gem', 'chizoar gem', 'space gem']);
+self.add('gem', ['topaz', 'quartz', 'amethyst'])
+
 // Size aliases
 self.add('cramped', ['t1']);
 self.add('small', ['t2']);
 self.add('average', ['t3', 'gold']);
 self.add('sizable', ['t4', 'plat', 'platinum']);
 self.add('big', ['t5', 'dem']);
+
 // Bag type/skill name aliases
 self.add('mining', ['mine', 'ore', 'cavern']);
 self.add('choppin', ['wood', 'chop', 'logger']);
@@ -99,28 +105,32 @@ self.add('food', []);
 self.add('mat', ['material', 'materials']);
 self.add('fish', ['fishing', 'angler']);
 self.add('bug', ['catching', 'bandito']);
+
 // Tool name aliases
-self.add('pick', ['pickaxe', 'pickolo']);
+self.add('pick', ['pickaxe', 'pickolo', 'pik']);
 self.add('axe', ['chopper', 'hatchet', 'dicer', 'logger']);
 self.add('rod', ['fishing rod', 'fish rod']);
 self.add('net', []);
 self.add('traps', ['box, boxes'])
 self.add('skull', [])
+
 // Material name aliases
 self.add('copper', ['t1']);
 self.add('iron', ['t2', 'steel', 'silver']);
 self.add('gold', ['t3', 'golden', 'gilded']);
 self.add('plat', ['t4', 'platinum']);
 self.add('dem', ['t5', 'dementia']);
-self.add('lustre', ['t6']);
+self.add('void', ['t6', 'void imperium']);
 self.add('dreadlo', ['t7']);
 self.add('efaunts', ['efaunt']);
+
 // Equip name aliases
 self.add('helmet', ['helm', 'head', 'hat', 'beanie']);
 self.add('platebody', ['chest', 'chestplate', 'platbody', 'bodyplate', 'ribcage', 'body', 'shirt', 'tee']);
 self.add('platelegs', ['legs', 'pants', 'shins', 'hinds', 'hipilium']);
-self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels', 'broken ankles']);
+self.add('boots', ['shoes', 'paws', 'feet', 'trekkers', 'heels', 'broken ankles', 'kicks']);
 self.add('ring', ['band']);
+
 // weapons
 self.add('t1', ['wooden', 'gnarled', 'boxing']);
 self.add('wand', ['staff']);
@@ -142,6 +152,17 @@ self.add('starlight', ['t3 staff', 't3 wand']);
 self.add('enforced slasher', ['t4 spear']);
 self.add('pharoah bow', ['t4 bow', 'pharaoh bow']);
 self.add('crows nest', ['t4 staff', 't4 wand']);
+
+self.add('uninflated glove', ['t5 gloves', 'ice gloves']);
+self.add('the ice Breaker', ['t5 spear', 't5 axe'])
+self.add('blizzard bow', ['t5 bow'])
+self.add('spriggly storm', ['t5 staff', 't5 wand'])
+
+self.add('eclectic ordeal', ['t6 gloves', 'electric gloves', 'lightning gloves'])
+self.add('deuscythe', ['t6 spear', 't6 axe', 'scythe', 'void axe', 'void spear'])
+self.add('blackhole bow', ['t6 bow', 'void bow'])
+self.add('grey gatsby', ['t6 staff', 't6 wand', 'void staff', 'void wand'])
+
 // Special cases
 self.add('copper netted net', ['copper net', 't1 net']);
 self.add('reinforced net', ['iron net', 't2 net']);
@@ -170,6 +191,7 @@ self.add('rat', []);
 self.add('walking stick', ['sticks']);
 self.add('nutto', ['nuts']);
 self.add('wood mushroom', ['wood shrooom', 'wroom', 'tree mushroom', 'tree shroom']);
+
 // World 2
 self.add('sandy pot', ['sand pots', 'pots']);
 self.add('mimic', []);
@@ -183,6 +205,7 @@ self.add('moonmoon', ['moon']);
 self.add('sand giant', ['sg']);
 self.add('snelbie', ['snail', 'snails']);
 self.add('dig doug', []);
+
 // World 3
 self.add('sheepie', ['sheep']);
 self.add('frost flake', ['snowflake', 'snow flake', 'flake']);
@@ -199,14 +222,20 @@ self.add('neyeptune', ['neyep', 'eyeball']);
 self.add('dedotated ram', ['ram']);
 self.add('xylobone', ['skeleton', 'skelly']);
 self.add('bloodbone', ['red skeleton', 'red skelly']);
+
 // Bosses
 self.add('baba yaga', ['house', 'baba', 'house monster']);
-self.add('dr defecaus', ['big poop', 'poop boss']);
+self.add('dr defecaus', ['big poop', 'poop boss', 'dr d']);
 self.add('amarok', ['w1 boss']);
 self.add('chaotic amarok', ['camarok']);
+self.add('nightmare amarok', ['namarok']);
 self.add('biggie hours', ['hourglass']);
-self.add('king doot', ['doot']);
+self.add('king doot', ['doot', 'mummy boss']);
 self.add('efaunt', ['w2 boss']);
 self.add('chaotic efaunt', ['cefaunt']);
+self.add('nightmare efaunt', ['nefaunt']);
+self.add('chizoar', ['w3 boss']);
+self.add('chaotic chizoar', ['cchizoar']);
+self.add('nightmare chizoar', ['nchizoar']);
 
 module.exports = self;
