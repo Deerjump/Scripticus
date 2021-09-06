@@ -1,8 +1,5 @@
-const { MessageEmbed } = require('discord.js');
-const Logger = require('../util/Logger.js');
+const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 const alias = require('../util/alias');
-
-const logger = new Logger('Alias');
 
 module.exports = {
   name: 'alias',
@@ -12,64 +9,65 @@ module.exports = {
   cooldown: 1,
   async execute(message, args) {
     const lowerCaseArgs = args.join(' ').toLowerCase();
-    const s = 10;
+    const pageSize = 10;
 
-    const { author } = message;
-    const aliases = alias.getAliases(lowerCaseArgs).filter(alias => alias.toLowerCase() !== lowerCaseArgs);
+    const aliases = alias
+      .getAliases(lowerCaseArgs)
+      .filter((alias) => alias.toLowerCase() !== lowerCaseArgs);
 
     if (aliases.length === 0) {
-      return message.reply(`No aliases found for ${lowerCaseArgs}`);
+      return message.reply({
+        content: `No aliases found for ${lowerCaseArgs}`,
+        allowedMentions: { users: [] },
+      });
     }
 
     const title = `Aliases for ${lowerCaseArgs}`;
-    message.reply(getAliasEmbed(title, aliases)).then(async (msg) => {
-      if (aliases.length < s) return;
-      await msg.react('➡️');
+    const sentMsg = await message.reply(getAliasEmbed(title, aliases));
 
-      // only collect left and right arrow reactions from the message author
-      const filter = (reaction, user) =>
-        ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === author.id;
+    const collector = sentMsg.createMessageComponentCollector({
+      filter: (i) => i.customId === 'prevPage' || i.customId === 'nextPage',
+      componentType: 'BUTTON',
+      time: 60000,
+    });
 
-      const collector = msg.createReactionCollector({ filter, time: 60000 });
-
-      let currentIndex = 0;
-      collector.on('collect', (reaction) => {
-        // remove the existing reactions
-        msg.reactions
-          .removeAll()
-          .then(async () => {
-            // increase/decrease index
-            reaction.emoji.name === '⬅️'
-              ? (currentIndex -= s)
-              : (currentIndex += s);
-            // edit message with new embed
-            msg.edit(getAliasEmbed(title, aliases, currentIndex));
-            // react with left arrow if it isn't the start (await is used so that the right arrow always goes after the left)
-            if (currentIndex !== 0) await msg.react('⬅️');
-            // react with right arrow if it isn't the end
-            if (currentIndex + s < aliases.length) await msg.react('➡️');
-          })
-          .catch((err) => {
-            logger.log(err);
-          });
-      });
-      collector.on('end', () => {
-        const expiredEmbed = new MessageEmbed()
-          .setTitle(msg.embeds[0].title)
-          .addFields(msg.embeds[0].fields)
-          .setFooter('❌Message has expired! ');
-        msg.edit({ embeds: [expiredEmbed] });
-        msg.reactions.removeAll().catch((err) => {
-          logger.log(err);
+    let currentIndex = 0;
+    collector.on('collect', (interaction) => {
+      if (interaction.user.id !== message.author.id) {
+        return interaction.reply({
+          content: "❌ You cannot interact with someone else's command!",
+          ephemeral: true,
         });
-      });
+      }
+
+      switch (interaction.customId) {
+        case 'prevPage': {
+          currentIndex -= pageSize;
+          break;
+        }
+        case 'nextPage': {
+          currentIndex += pageSize;
+          break;
+        }
+      }
+
+      interaction.update(getAliasEmbed(title, aliases, currentIndex));
+    });
+
+    collector.on('end', () => {
+      const expiredEmbed = new MessageEmbed()
+        .setTitle(sentMsg.embeds[0].title)
+        .addFields(sentMsg.embeds[0].fields)
+        .setFooter('❌Timed out');
+      sentMsg.edit({ embeds: [expiredEmbed], components: [] });
     });
   },
 };
 
 function getAliasEmbed(title, aliases, start = 0, size = 10) {
-  const embed = new MessageEmbed();
   const pageMax = start + size;
+  const embed = new MessageEmbed();
+
   embed.setTitle(title);
   embed.addFields([
     {
@@ -80,5 +78,23 @@ function getAliasEmbed(title, aliases, start = 0, size = 10) {
     },
   ]);
 
-  return { embeds: [embed] };
+  const row = new MessageActionRow();
+  const backBtn = new MessageButton()
+    .setCustomId('prevPage')
+    .setLabel('◄')
+    .setStyle('PRIMARY')
+    .setDisabled(start === 0);
+  const nextBtn = new MessageButton()
+    .setCustomId('nextPage')
+    .setLabel('►')
+    .setStyle('PRIMARY')
+    .setDisabled(aliases.length <= pageMax);
+  row.addComponents(backBtn, nextBtn);
+
+  return {
+    embeds: [embed],
+    components: [row],
+    allowedMentions: { users: [] },
+    fetchReply: true,
+  };
 }
