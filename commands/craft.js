@@ -123,7 +123,7 @@ function generateMaterialsEmbed({ itemName, recipe, amount }) {
 }
 
 function timeoutMessage(message) {
-  const timeoutMsg = '❌ Message has expired!';
+  const timeoutMsg = '❌ Timed out';
   const embed = message.embeds[0];
 
   embed.setFooter(timeoutMsg);
@@ -178,7 +178,7 @@ module.exports = {
 
     const collector = sentEmbed.createMessageComponentCollector({
       filter,
-      time: 30000,
+      time: 60000,
     });
 
     collector.on('collect', async (interaction) => {
