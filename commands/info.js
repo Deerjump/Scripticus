@@ -157,60 +157,62 @@ function getItemDetailsEmbed(item) {
   );
   const fields = [];
 
-  if (item.description) embed.setDescription(item.description.join(' '));
+  if ('description' in item) embed.setDescription(item.description.join(' '));
 
   if (item.typeGen === 'aWeapon')
     fields.push({ name: 'Type', value: item.Type });
 
-  if (item.Class) {
+  if ('Class' in item) {
     fields.push({ name: 'Class', value: item.Class });
     fields.push({ name: 'Stats', value: '--------------------------------' });
-    if (item.Weapon_Power)
+    if ('Weapon_Power' in item)
       fields.push({ name: '⚔️ WP', value: item.Weapon_Power, inline: true });
-    if (item.STR)
+    if ('STR' in item)
       fields.push({ name: '✊ STR', value: item.STR, inline: true });
-    if (item.AGI)
+    if ('AGI' in item)
       fields.push({ name: '🦶 AGI', value: item.AGI, inline: true });
-    if (item.WIS)
+    if ('WIS' in item)
       fields.push({ name: '📘 WIS', value: item.WIS, inline: true });
-    if (item.LUK)
+    if ('LUK' in item)
       fields.push({ name: '🍀 LUK', value: item.LUK, inline: true });
-    if (item.Defence)
+    if ('Defence' in item)
       fields.push({ name: '🛡️ Defence', value: item.Defence, inline: true });
-    if (item.Upgrade_Slots_Left)
+    if ('Upgrade_Slots_Left' in item)
       fields.push({
         name: '⏫ Upgrade Slots',
         value: item.Upgrade_Slots_Left,
         inline: true,
       });
-    if (item.miscUp1)
+    if ('miscUp1' in item)
       fields.push({ name: 'Misc', value: item.miscUp1, inline: true });
-    if (item.miscUp2)
+    if ('miscUp2' in item)
       fields.push({ name: '\u200B', value: item.miscUp2, inline: true });
   }
 
   if (item.typeGen === 'dCard') {
-    fields.push({
-      name: '🎴 Card Bonus',
-      value: `${item.cardData[2]}`,
-      inline: true,
-    });
-    fields.push({
-      name: 'Bonus/Tier',
-      value: `${item.cardData[3]}`,
-      inline: true,
-    });
-    fields.push({
-      name: 'Cards Req For Upgrade',
-      value: `${item.cardData[1]}`,
-    });
+    fields.push(
+      {
+        name: '🎴 Card Bonus',
+        value: `${item.cardData[2]}`,
+        inline: true,
+      },
+      {
+        name: 'Bonus/Tier',
+        value: `${item.cardData[3]}`,
+        inline: true,
+      },
+      {
+        name: 'Cards Req For Upgrade',
+        value: `${item.cardData[1]}`,
+      }
+    );
   } else
     fields.push({
       name: '💰 - Sell Price',
       value: parseCurrency(item.sellPrice),
     });
 
-  if (item.sources) {
+  if ('sources' in item) {
     fields.push({ name: 'Sources', value: item.sources.join(', ') });
   }
 

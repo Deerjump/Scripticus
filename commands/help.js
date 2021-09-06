@@ -10,7 +10,7 @@ module.exports = {
   aliases: ['commands'],
   usage: '<commandName>',
   cooldown: 5,
-  execute(message, args) {
+  async execute(message, args) {
     const { commands } = message.client;
     const prefix = message.client.getPrefix(message);
     const embed = new MessageEmbed().setColor('#00FF00');
@@ -19,22 +19,24 @@ module.exports = {
       embed.setTitle('Help Command');
       embed.addField(
         'Commands:',
-        commands.map((command) => `**${command.name}**: ${command.description}`).join('\n')
+        commands
+          .map((command) => `**${command.name}**: ${command.description}`)
+          .join('\n')
       );
-      return message.author.send({ embeds: [embed] })
-        .then(() => {
-          if (message.channel.type === 'DM') return;
-          message.reply("I've sent you a DM with all my commands!");
-        })
-        .catch((error) => {
-          logger.error(
-            `Could not send help DM to ${message.author.tag}.\n`,
-            error
-          );
-          message.reply(
-            "it seems like I can't DM you! Do you have DM's disabled?"
-          );
-        });
+      try {
+        await message.author.send({ embeds: [embed] });
+        if (message.channel.type === 'DM') return;
+        message.reply("I've sent you a DM with all my commands!");
+      } catch (error) {
+        logger.error(
+          `Could not send help DM to ${message.author.tag}.\n`,
+          error
+        );
+        message.reply(
+          "it seems like I can't DM you! Do you have DM's disabled?"
+        );
+      }
+      return;
     }
     const name = args[0].toLowerCase();
     const command =
@@ -46,14 +48,14 @@ module.exports = {
     }
 
     embed.setTitle(`**Command**: *${command.name}*`);
-    if (command.aliases) embed.addField('Aliases:', command.aliases.join(', '));
-    if (command.description) {
+    if ('aliases' in command) embed.addField('Aliases:', command.aliases.join(', '));
+    if ('description' in command) {
       embed.addField('Description:', command.description);
     }
-    if (command.usage) {
+    if ('usage' in command) {
       embed.addField('Usage:', `${prefix}${command.name} ${command.usage}`);
     }
-    if (command.options) embed.addField('Options:', command.options);
+    if ('options' in command) embed.addField('Options:', command.options);
     embed.addField(
       'Cooldown:',
       `${command.cooldown || DEFAULT_COOLDOWN} seconds(s)`
