@@ -1,6 +1,6 @@
 const Logger = require('../util/Logger.js');
 const logger = new Logger('ItemRepository');
-const itemPath = '../resources/items.json';
+const itemPath = '../resources/Items.json';
 const itemJson = require(itemPath);
 const alias = require('../util/alias.js');
 
