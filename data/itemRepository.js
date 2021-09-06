@@ -1,8 +1,8 @@
-const Logger = require('./Logger.js');
+const Logger = require('../util/Logger.js');
 const logger = new Logger('ItemRepository');
-const itemPath = '../src/items.json';
+const itemPath = '../resources/items.json';
 const itemJson = require(itemPath);
-const alias = require('./alias.js');
+const alias = require('../util/alias.js');
 
 function processJson() {
   return itemJson;

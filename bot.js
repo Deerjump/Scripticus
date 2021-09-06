@@ -106,7 +106,8 @@ client.on('messageCreate', (message) => {
 
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000;
-      message.react('❌').then(() => message.react('⏲️'));
+      message.react('❌');
+      message.react('⏲️');
       return message.author.send(
         `please wait ${timeLeft.toFixed(1)} more second(s) before using the \`${
           command.name
@@ -114,7 +115,7 @@ client.on('messageCreate', (message) => {
       );
     }
   } else {
-    if(!message.channel.type === 'DM') {
+    if (message.channel.type !== 'DM') {
       timestamps.set(message.author.id, now);
       setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
