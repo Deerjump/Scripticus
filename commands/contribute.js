@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: 'contribute',
   description: 'Learn how to contribute!',
-  execute({ channel }) {
+  execute(messsage) {
     const embed = new MessageEmbed()
       .setColor('#0000FF')
       .setTitle('Click here to contribute to Scripticus!')
@@ -20,6 +20,6 @@ module.exports = {
             'Even if you don\'t know how to code you can still help!\nYou can suggest features through GitHub [here](https://github.com/Deerjump/Scripticus/projects/1 "Suggestions!") as well!',
         }
       );
-    channel.send({ embeds: [embed] });
+    message.reply.send({ embeds: [embed], allowedMentions: { users: [] } });
   },
 };

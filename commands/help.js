@@ -1,6 +1,6 @@
 const { DEFAULT_COOLDOWN } = require('../config.json');
 const Logger = require('../util/Logger.js');
-const { MessageEmbed, User } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 const logger = new Logger('Help');
 
@@ -24,17 +24,24 @@ module.exports = {
           .join('\n')
       );
       try {
-        await message.author.send({ embeds: [embed] });
+        await message.reply({
+          embeds: [embed],
+          allowedMentions: { users: [] },
+        });
         if (message.channel.type === 'DM') return;
-        message.reply("I've sent you a DM with all my commands!");
+        message.reply({
+          content: "I've sent you a DM with all my commands!",
+          allowedMentions: { users: [] },
+        });
       } catch (error) {
         logger.error(
           `Could not send help DM to ${message.author.tag}.\n`,
           error
         );
-        message.reply(
-          "it seems like I can't DM you! Do you have DM's disabled?"
-        );
+        message.reply({
+          content: "it seems like I can't DM you! Do you have DM's disabled?",
+          allowedMentions: { users: [] },
+        });
       }
       return;
     }
@@ -44,11 +51,15 @@ module.exports = {
       commands.find((c) => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return message.reply("that's not a valid command");
+      return message.reply({
+        content: "That's not a valid command",
+        allowedMentions: { users: [] },
+      });
     }
 
     embed.setTitle(`**Command**: *${command.name}*`);
-    if ('aliases' in command) embed.addField('Aliases:', command.aliases.join(', '));
+    if ('aliases' in command)
+      embed.addField('Aliases:', command.aliases.join(', '));
     if ('description' in command) {
       embed.addField('Description:', command.description);
     }
@@ -61,6 +72,6 @@ module.exports = {
       `${command.cooldown || DEFAULT_COOLDOWN} seconds(s)`
     );
 
-    message.channel.send({ embeds: [embed] });
+    message.reply({ embeds: [embed], allowedMentions: { users: [] } });
   },
 };
