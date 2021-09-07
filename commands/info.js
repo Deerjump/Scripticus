@@ -14,16 +14,25 @@ module.exports = {
   execute(message, args) {
     const item = items.getItem(args.join(' '));
     if (item) {
-      return message.reply({ embeds: [getItemDetailsEmbed(item)] });
+      return message.reply({
+        embeds: [getItemDetailsEmbed(item)],
+        allowedMentions: { users: [] },
+      });
     }
 
     const monster = monsters.getMonster(args.join(' '));
     if (monster) {
-      return message.reply({ embeds: [getMonsterDetailsEmbed(monster)] });
+      return message.reply({
+        embeds: [getMonsterDetailsEmbed(monster)],
+        allowedMentions: { users: [] },
+      });
     }
 
     if (!item && !monster) {
-      return message.reply("That item/monster doesn't exist!");
+      return message.reply({
+        content: "That item/monster doesn't exist!",
+        allowedMentions: { users: [] },
+      });
     }
   },
 };

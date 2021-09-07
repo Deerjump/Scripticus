@@ -15,7 +15,8 @@ module.exports = {
         let response;
         switch (args[0]) {
           case 'rick':
-            response = 'https://tenor.com/view/dance-moves-dancing-singer-groovy-gif-17029825';
+            response =
+              'https://tenor.com/view/dance-moves-dancing-singer-groovy-gif-17029825';
             break;
           case 'barrel':
             response = 'https://giphy.com/gifs/pool-EXXmpsOzC0m0E';
@@ -23,17 +24,25 @@ module.exports = {
           default:
             response = `You must provide a number! Provided: ${args[0]}`;
         }
-        return message.channel.send(response);
+        return message.reply({
+          content: response,
+          allowedMentions: { users: [] },
+        });
       }
       num = parseInt(args[0]);
-      if (num < 0) return message.reply('You must provide a number great than 1!');
+      if (num < 0)
+        return message.reply({
+          content: 'You must provide a number great than 1!',
+          allowedMentions: { users: [] },
+        });
     }
 
     const sides = args.length === 0 ? 6 : num;
     const roll = diceRoll(sides);
 
-    return message.reply(
-      `You rolled a ${sides}-sided die! 🎲 You rolled ${roll}!`
-    );
+    return message.reply({
+      content: `You rolled a ${sides}-sided die! 🎲 You rolled ${roll}!`,
+      allowedMentions: { users: [] },
+    });
   },
 };

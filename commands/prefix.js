@@ -10,13 +10,17 @@ module.exports = {
   async execute(message, args) {
     if (this.whitelist.includes(message.author.id)) {
       if (args[0] && args[0].length === 0) {
-        return message.channel.send('Prefix must be at least 1 character!');
+        return message.reply({
+          content: 'Prefix must be at least 1 character!',
+          allowedMentions: { users: [] },
+        });
       }
 
       if (message.channel.type === 'DM') {
-        return message.reply(
-          "You can't use this command in a private message!"
-        );
+        return message.reply({
+          content: "You can't use this command in a private message!",
+          allowedMentions: { users: [] },
+        });
       }
 
       try {
@@ -28,12 +32,19 @@ module.exports = {
           ...guildSettings,
           prefix: newPrefix,
         });
-        message.channel.send(`Prefix is now sent to ${newPrefix}`);
+        message.reply({
+          content: `Prefix is now sent to ${newPrefix}`,
+          allowedMentions: { users: [] },
+        });
       } catch (err) {
         logger.log(err);
       }
     } else {
-      message.channel.send('You cannot use this command!');
+      message.reply({
+        content: 'You cannot use this command!',
+        ephemeral: true,
+        allowedMentions: { users: [] },
+      });
     }
   },
 };

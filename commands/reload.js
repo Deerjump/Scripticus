@@ -16,9 +16,10 @@ module.exports = {
         (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
       );
     if (!command) {
-      return message.channel.send(
-        `There is no command with name or alias \`${commandName}\`, ${message.author}!`
-      );
+      return message.reply({
+        content: `There is no command with name or alias \`${commandName}\`, ${message.author}!`,
+        allowedMentions: { users: [] },
+      });
     }
 
     command.stop?.();
@@ -27,14 +28,15 @@ module.exports = {
     try {
       const newCommand = require(`./${commandName}.js`);
       client.commands.set(newCommand.name, newCommand);
-      
+
       newCommand.init?.(client);
       message.channel.send(`Command \`${command.name}\` was reloaded!`);
     } catch (error) {
       logger.error(error);
-      message.channel.send(
-        `There was an error while reloading a command \`${command.name}\`:\n\`${error.message}\``
-      );
+      message.reply({
+        content: `There was an error while reloading a command \`${command.name}\`:\n\`${error.message}\``,
+        allowedMentions: { users: [] },
+      });
     }
-  }
+  },
 };

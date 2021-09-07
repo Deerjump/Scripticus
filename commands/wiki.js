@@ -20,13 +20,13 @@ module.exports = {
         .setURL(wikiUrl)
         .addField('You could also:', 'Supply a search term!\n!wiki Mafioso');
 
-      message.channel.send(embed);
+      message.reply({ embeds: [embed], allowedMentions: { users: [] } });
       return;
     }
     try {
-      const query = querystring.stringify({ search: args.join(' ') });
-      const res = await fetch(`https://idleon.info/w/index.php?${query}`);
-      message.channel.send(res.url);
+      const query = new URLSearchParams({ search: args.join(' ') });
+      const res = await fetch(`https://idleon.info/w/index.php?${query.toString()}`);
+      message.reply({ content: res.url, allowedMentions: { users: [] } });
     } catch (err) {
       logger.error(err);
     }

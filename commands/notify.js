@@ -42,7 +42,7 @@ module.exports = {
         user != null
           ? `You have ${user.hours} hours left!`
           : "You aren't subscribed to notifications!";
-      return message.reply(reply);
+      return message.reply({ content: reply, allowedMentions: { users: [] } });
     }
 
     const hours = parseInt(param);
@@ -56,22 +56,29 @@ module.exports = {
       } else {
         reply = 'Something went wrong!';
       }
-      return message.reply(reply);
+      return message.reply({ content: reply, allowedMentions: { users: [] } });
     }
 
     if (isNaN(param) || hours < 1) {
-      return message.reply('You must provide a number of 1 or higher');
+      return message.reply({
+        content: 'You must provide a number of 1 or higher',
+        allowedMentions: { users: [] },
+      });
     }
 
     if (user && user.hours >= hours) {
-      return message.reply(
-        `You're already subscribed! You have ${user.hours} hours left`
-      );
+      return message.reply({
+        content: `You're already subscribed! You have ${user.hours} hours left`,
+        allowedMentions: { users: [] },
+      });
     }
 
     mongo.updateSubscriber(id, hours);
     logger.log(`${message.author.username} just subscribed for ${hours} hours`);
-    message.reply(`You've subscribed for ${hours} hours!`);
+    message.reply({
+      content: `You've subscribed for ${hours} hours!`,
+      allowedMentions: { users: [] },
+    });
   },
 };
 
@@ -112,7 +119,9 @@ async function notifySubscriber(client, id) {
   try {
     const user = await client.users.fetch(id);
     if (user) {
-      return user.send({ files: [path.join(__dirname + '/../resoures/spike-baba-alert.gif')] });
+      return user.send({
+        files: [path.join(__dirname + '/../resoures/spike-baba-alert.gif')],
+      });
     }
   } catch (error) {
     logger.error(error);

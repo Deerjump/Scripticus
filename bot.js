@@ -3,7 +3,8 @@ const { Client, Collection, Intents } = require('discord.js');
 const Logger = require('./util/Logger.js');
 const mongo = require('./mongo/mongo.js');
 const chalk = require('chalk');
-const { GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS } = Intents.FLAGS;
+const { GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS } =
+  Intents.FLAGS;
 require('dotenv').config();
 const fs = require('fs');
 const {
@@ -29,7 +30,7 @@ console.info(chalk.yellow(display));
 const client = new Client({
   intents: [GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS],
   // This lets dms work properly
-  partials: ['CHANNEL']
+  partials: ['CHANNEL'],
 });
 client.commands = new Collection();
 client.guildSettings = new Collection();
@@ -129,18 +130,21 @@ client.on('messageCreate', (message) => {
       reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
     }
 
-    return message.channel.send(reply);
+    return message.reply({ content: reply, allowedMentions: { users: [] } });
   }
 
   try {
     command.execute(message, args);
   } catch (error) {
     logger.error(error);
-    message.reply('there was an error trying to execute that command!');
+    message.reply({
+      content: 'there was an error trying to execute that command!',
+      allowedMentions: { users: [] },
+    });
   }
 });
 
-client.getPrefix = function (message) {  
+client.getPrefix = function (message) {
   if (message.channel.type === 'DM') return '';
 
   const settings = client.guildSettings.get(message.guild.id);

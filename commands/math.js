@@ -1,4 +1,4 @@
-const formulas = require('../util/formulas.js');
+const formulas = require('../resources/formulas.js');
 
 module.exports = {
   name: 'math',
@@ -9,26 +9,36 @@ module.exports = {
   usage: '<option> <x> <y> <z>',
   args: true,
   execute(message, args) {
-    const { channel } = message 
     if (!args.length) {
-      return channel.send(
-        `You must provide a formula and 1-3 numbers to use!\n**Options**: ${this.options}`
-      );
+      return message.reply({
+        content: `You must provide a formula and 1-3 numbers to use!\n**Options**: ${this.options}`,
+        allowedMentions: { users: [] },
+      });
     }
-    let answer = 0;
+
     const option = args[0].toLowerCase();
     const [, ...nums] = args.map((arg) => parseFloat(arg));
     const formula = formulas[option];
     const formulaArgs = formula.length;
-    if (nums.length < formulaArgs )
-      return channel.send(`That formula needs ${formulaArgs} ${formulaArgs === 1 ? 'number' : 'numbers' }!`);
+    
+    if (nums.length < formulaArgs)
+      return message.reply({
+        content: `That formula needs ${formulaArgs} ${
+          formulaArgs === 1 ? 'number' : 'numbers'
+        }!`,
+        allowedMentions: { users: [] },
+      });
     try {
-      answer = formula(nums[0], nums[1], nums[2]);
-      channel.send(`The answer is ${answer.toFixed(2)}`);
+      const answer = formula(nums[0], nums[1], nums[2]);
+      message.reply({
+        content: `The answer is ${answer.toFixed(2)}`,
+        allowedMentions: { users: [] },
+      });
     } catch (error) {
-      channel.send(
-        `\`${args[0]}\` is not a valid option\n**Options**: ${this.options}`
-      );
+      message.reply({
+        content: `\`${args[0]}\` is not a valid option\n**Options**: ${this.options}`,
+        allowedMentions: { users: [] },
+      });
     }
   },
 };
