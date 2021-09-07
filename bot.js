@@ -72,7 +72,7 @@ client.once('ready', async () => {
   } catch (err) {
     logger.error(err);
   }
-  client.user.setActivity('Testing new stuff!');
+  client.user.setActivity('Legends of Idleon');
   logger.log(`${chalk.yellow(client.user.username)} is ready!`);
 });
 
