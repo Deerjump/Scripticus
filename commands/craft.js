@@ -16,11 +16,11 @@ function isPosInteger(str) {
   );
 }
 
-function generateRecipe(item, totalRecipe = {}) {
-  const recipe = item.recipeData.recipe;
+function generateRecipe(item) {
+  const { recipe } = item.recipeData;
+  const totalRecipe = {};
 
-  for (let i = 0; i < recipe.length; i++) {
-    const [itemCode, itemQty] = recipe[i];
+  for (const [itemCode, itemQty] of recipe) {
     const subItem = items.getItem(itemCode);
 
     const itemObj = {
@@ -32,9 +32,10 @@ function generateRecipe(item, totalRecipe = {}) {
     totalRecipe[itemCode] = itemObj;
 
     if (!itemObj.isRaw) {
-      itemObj.recipe = generateRecipe(subItem);
+      itemObj['recipe'] = generateRecipe(subItem);
     }
   }
+
   return totalRecipe;
 }
 
@@ -44,7 +45,6 @@ function generateRecipeText(
   multiplier = 1,
   recipeTextArr = []
 ) {
-
   const sorted = Object.values(recipe).sort(
     ({ isRaw: a }, { isRaw: b }) => b - a
   );
@@ -81,24 +81,12 @@ function generateRecipeEmbed({ itemName, recipe, amount }) {
   return createMessage(title, `${codeBlock}${text}${codeBlock}`, row);
 }
 
-function generateTotalMaterials(
-  recipeObj,
-  multiplier = 1,
-  totalMaterials = {}
-) {
-  for (const itemCode in recipeObj) {
-    if (recipeObj[itemCode].isRaw) {
-      if (totalMaterials[itemCode] == undefined) totalMaterials[itemCode] = 0;
-      totalMaterials[itemCode] += recipeObj[itemCode].qty * multiplier;
-    } else {
-      generateTotalMaterials(
-        recipeObj[itemCode].recipe,
-        multiplier * recipeObj[itemCode].qty,
-        totalMaterials
-      );
-    }
-  }
-  return totalMaterials;
+function getTotalMaterials(item, craftAmount) {
+  // format the total materials to what we use
+  return item.detRecipeTotals.reduce(
+    (obj, [itemCode, qty]) => ({ ...obj, [itemCode]: qty * craftAmount }),
+    {}
+  );
 }
 
 function generateMaterialsText(materialsObj) {
@@ -109,9 +97,9 @@ function generateMaterialsText(materialsObj) {
     .join('\n');
 }
 
-function generateMaterialsEmbed({ itemName, recipe, amount }) {
-  const materials = generateTotalMaterials(recipe, amount);
-  const title = `Total materials for ${itemName} (x${amount})`;
+function generateMaterialsEmbed(item, amount) {
+  const materials = getTotalMaterials(item, amount);
+  const title = `Total materials for ${item.displayName} (x${amount})`;
   const text = generateMaterialsText(materials);
 
   const row = new MessageActionRow().addComponents(
@@ -133,10 +121,8 @@ function timeoutMessage(message) {
 }
 
 function createMessage(title, description, row) {
-  const embed = new MessageEmbed().setTitle(title).setDescription(description);
-
   return {
-    embeds: [embed],
+    embeds: [new MessageEmbed().setTitle(title).setDescription(description)],
     components: [row],
     fetchReply: true,
     allowedMentions: { users: [] },
@@ -153,16 +139,16 @@ module.exports = {
     const userInput = isPosInteger(lastArg)
       ? args.slice(0, -1).join(' ')
       : args.join(' ');
-    const amount = isPosInteger(lastArg) ? args[args.length - 1] : 1;
-
+    const amount = isPosInteger(lastArg) ? lastArg : 1;
     const item = items.getItem(userInput);
 
     if (!item) {
-      const embed = new MessageEmbed().setDescription(
-        'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
-      );
       return message.reply({
-        embeds: [embed],
+        embeds: [
+          new MessageEmbed().setDescription(
+            'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
+          ),
+        ],
         allowedMentions: { users: [] },
       });
     }
@@ -202,7 +188,7 @@ module.exports = {
       if (interaction.customId === 'recipe')
         await interaction.update(generateRecipeEmbed(details));
       if (interaction.customId === 'materials')
-        await interaction.update(generateMaterialsEmbed(details));
+        await interaction.update(generateMaterialsEmbed(item, amount));
     });
 
     collector.on('end', (collected) => {
