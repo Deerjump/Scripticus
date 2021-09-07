@@ -44,12 +44,12 @@ function generateRecipeText(
   multiplier = 1,
   recipeTextArr = []
 ) {
-  // Sort recipe object so raw materials appear first
-  const sorted = Object.entries(recipe).sort(
-    ([, { isRaw: a }], [, { isRaw: b }]) => b - a
+
+  const sorted = Object.values(recipe).sort(
+    ({ isRaw: a }, { isRaw: b }) => b - a
   );
-  for (let i = 0; i < sorted.length; i++) {
-    const item = sorted[i][1];
+
+  for (const item of sorted) {
     const line = `${' '.repeat(depth * 3)}- ${item.name} (x${
       item.qty * multiplier
     })`;
@@ -103,7 +103,9 @@ function generateTotalMaterials(
 
 function generateMaterialsText(materialsObj) {
   return Object.entries(materialsObj)
-    .map(([itemCode, qty]) => `- ${items.getItem(itemCode).displayName} (x${qty})`)
+    .map(
+      ([itemCode, qty]) => `- ${items.getItem(itemCode).displayName} (x${qty})`
+    )
     .join('\n');
 }
 
@@ -133,7 +135,12 @@ function timeoutMessage(message) {
 function createMessage(title, description, row) {
   const embed = new MessageEmbed().setTitle(title).setDescription(description);
 
-  return { embeds: [embed], components: [row], fetchReply: true };
+  return {
+    embeds: [embed],
+    components: [row],
+    fetchReply: true,
+    allowedMentions: { users: [] },
+  };
 }
 
 module.exports = {
@@ -154,14 +161,17 @@ module.exports = {
       const embed = new MessageEmbed().setDescription(
         'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
       );
-      return message.channel.send({ embeds: [embed], components: [] });
+      return message.reply({
+        embeds: [embed],
+        allowedMentions: { users: [] },
+      });
     }
 
     if (!item.recipeData) {
-      const embed = new MessageEmbed().setDescription(
-        "This item doesn't have a crafting recipe!"
-      );
-      return message.channel.send({ embeds: [embed], components: [] });
+      return message.reply({
+        content: `${item.displayName} doesn't have a crafting recipe!`,
+        allowedMentions: { users: [] },
+      });
     }
 
     const details = {
@@ -172,7 +182,7 @@ module.exports = {
 
     const recipeEmbed = generateRecipeEmbed(details);
 
-    const sentEmbed = await message.channel.send(recipeEmbed);
+    const sentEmbed = await message.reply(recipeEmbed);
 
     const filter = (i) => i.customId === 'recipe' || i.customId === 'materials';
 
@@ -183,9 +193,10 @@ module.exports = {
 
     collector.on('collect', async (interaction) => {
       if (interaction.user.id !== message.author.id) {
-        const message = "❌ You cannot interact with someone else's command!";
-
-        return interaction.reply({ content: message, ephemeral: true });
+        return interaction.reply({
+          content: "❌ You cannot interact with someone else's command!",
+          ephemeral: true,
+        });
       }
 
       if (interaction.customId === 'recipe')
