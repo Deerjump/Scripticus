@@ -2,7 +2,7 @@ const formulas = require('../resources/formulas.js');
 
 module.exports = {
   name: 'math',
-  description: 'A few helpful math calculations!',
+  description: 'A few helpful math calculations that LavaFlame2 uses!',
   get options() {
     return Object.keys(formulas).join(', ');
   },
