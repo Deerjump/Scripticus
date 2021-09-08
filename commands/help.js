@@ -24,12 +24,12 @@ module.exports = {
           .join('\n')
       );
       try {
-        await message.reply({
+        await message.author.send({
           embeds: [embed],
           allowedMentions: { users: [] },
         });
         if (message.channel.type === 'DM') return;
-        message.reply({
+        return message.reply({
           content: "I've sent you a DM with all my commands!",
           allowedMentions: { users: [] },
         });
