@@ -1,6 +1,6 @@
 const items = require('../data/itemRepository');
 const monsters = require('../data/monsterRepository');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const Logger = require('../util/Logger.js');
 
 const logger = new Logger('Info');
@@ -13,6 +13,12 @@ module.exports = {
   cooldown: 1,
   execute(message, args) {
     const item = items.getItem(args.join(' '));
+    const monster = monsters.getMonster(args.join(' '));
+
+    if (item && monster) {
+      return chooseOption(message, item, monster);
+    }
+
     if (item) {
       return message.reply({
         embeds: [getItemDetailsEmbed(item)],
@@ -20,7 +26,6 @@ module.exports = {
       });
     }
 
-    const monster = monsters.getMonster(args.join(' '));
     if (monster) {
       return message.reply({
         embeds: [getMonsterDetailsEmbed(monster)],
@@ -123,7 +128,7 @@ function getMonsterDetailsEmbed(monster) {
       fields.push(
         { name: '🎯 5%', value: `${monster.Defence / 4}`, inline: true },
         {
-          name: '🎯: 100%',
+          name: '🎯 100%',
           value: `${getProwessReq(monster.Defence, 1)}`,
           inline: true,
         }
@@ -226,4 +231,62 @@ function getItemDetailsEmbed(item) {
   }
 
   return embed.addFields(fields);
+}
+
+async function chooseOption(message, item, monster) {
+  const dynamicLabel = monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';
+  const monsterBtn = new MessageButton()
+    .setCustomId('monsterBtn')
+    .setLabel(dynamicLabel)
+    .setStyle('PRIMARY');
+  const itemBtn = new MessageButton()
+    .setCustomId('itemBtn')
+    .setLabel('Item')
+    .setStyle('PRIMARY');
+  const row = new MessageActionRow().addComponents(monsterBtn, itemBtn);
+
+  const sentMsg = await message.reply({
+    content: 'Which do you want?',
+    allowedMentions: { users: [] },
+    components: [row],
+  });
+
+  const collector = sentMsg.createMessageComponentCollector({
+    filter: (i) => i.customId === 'monsterBtn' || i.customId === 'itemBtn',
+    componentType: 'BUTTON',
+    time: 10000,
+  });
+
+  collector.on('collect', async (interaction) => {
+    if (interaction.user.id !== message.author.id) {
+      collector.dispose(interaction);
+      return interaction.reply({
+        content: "❌ You cannot interact with someone else's command!",
+        ephemeral: true,
+      });
+    }
+
+    if (interaction.customId === 'monsterBtn') {
+      await interaction.update({
+        content: null,
+        embeds: [getMonsterDetailsEmbed(monster)],
+        components: [],
+      });
+      collector.stop('finished');
+    }
+
+    if (interaction.customId === 'itemBtn') {
+      await interaction.update({
+        content: null,
+        embeds: [getItemDetailsEmbed(item)],
+        components: [],
+      });
+      collector.stop('finished');
+    }
+  });
+
+  collector.on('end', async (collected) => {
+    if (collected.size !== 0) return;
+    await sentMsg.edit({ content: '❌ Message Timeout', components: [] });
+  });
 }
