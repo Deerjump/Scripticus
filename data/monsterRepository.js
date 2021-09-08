@@ -1,12 +1,20 @@
 const jsonPath = '../resources/Enemies.json';
+const ignoredEnemies = require('../resources/IgnoredEnemies.json');
 const enemies = require(jsonPath);
 const alias = require('../util/alias');
+
 
 function parseMonsterData() {
   return (
     Object.entries(enemies)
-      // Filter out the world bosses
-      .filter(([, value]) => !value.Attacks)
+      // Filter out the world bosses, placeholder enemies, and special non enemy things
+      .filter(
+        ([monsterId, monster]) =>
+          !monster.Attacks &&
+          monster.Type !== 'FISH_TYPE' &&
+          !(monster.MoveSPEED == 0 && monster.AFKtype === 'FIGHTING') &&
+          !ignoredEnemies.includes(monsterId)
+      )
       // create a new object from the resulting array
       .reduce((acc, [key, monster]) => {
         return { ...acc, [key]: monster };

@@ -174,6 +174,7 @@ module.exports = {
 
     const collector = sentEmbed.createMessageComponentCollector({
       filter,
+      componentType: 'BUTTON',
       time: 60000,
     });
 
