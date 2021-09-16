@@ -1,4 +1,4 @@
-const formulas = require('../resources/formulas.js');
+import { formulas } from '../../resources/formulas';
 
 module.exports = {
   name: 'math',

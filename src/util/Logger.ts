@@ -1,5 +1,5 @@
-// const winston = require('winston');
-const chalk = require('chalk');
+// import winston from "winston";
+import chalk from "chalk";
 
 // const createFormat = function(tag) {
 //   return winston.format.printf((info) => {
@@ -27,7 +27,7 @@ const chalk = require('chalk');
 //   })
 // }
 
-function getDate() {
+function getDate(): string {
   const date = new Date();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -37,7 +37,8 @@ function getDate() {
 
 
 class Logger {
-  constructor(tag) {
+  tag: string;
+  constructor(tag: string) {
     // TODO: fix the custom logger
 
     // this.logger = winston.createLogger({
@@ -47,21 +48,21 @@ class Logger {
     this.tag = tag;
   }
   
-  log(message) {
+  log(message: any): void {
     // this.logger.info(message);
     console.log(this.getPrefix(), message);
   }
-  error(message) {
+  error(message: any): void {
     // this.logger.error(message);
     console.error(this.getPrefix(), message);
   }
-  warn(message) {
+  warn(message: any): void {
     // this.logger.warn(message);
     console.warn(this.getPrefix(), message);
   }
-  getPrefix() {
+  getPrefix(): string {
     return `${chalk.green(getDate())}[${chalk.blue(this.tag)}]`
   }
 }
 
-module.exports = Logger;
+export { Logger };

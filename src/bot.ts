@@ -1,4 +1,4 @@
-const WebhookListener = require('./auto-update/WebhookListener.js');
+import WebhookListener from './auto-update/WebhookListener';
 const { Client, Collection, Intents } = require('discord.js');
 const Logger = require('./util/Logger.js');
 const mongo = require('./mongo/mongo.js');
