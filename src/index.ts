@@ -73,4 +73,5 @@ function testItems() {
   ].map(item => item?.displayName));
 }
 
-testItems();
+// testItems();
+main();

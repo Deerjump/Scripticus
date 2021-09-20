@@ -19,6 +19,7 @@
       "@customTypes/*": ["types/*"]
     },
     "lib": ["DOM"]
-  }
+  },
+  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*"]
   
 }
