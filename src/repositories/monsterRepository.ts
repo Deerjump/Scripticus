@@ -1,6 +1,6 @@
 const jsonPath = '../resources/Enemies.json';
 const ignoredEnemies = require('../resources/IgnoredEnemies.json');
-const enemies = require(jsonPath);
+import monsterData from '../resources/Enemies.json';
 const alias = require('../util/alias');
 
 
@@ -57,26 +57,19 @@ function searchObjFor(object, name) {
 }
 
 class MonsterRepository {
+  monsters: {};
+  bosses: {};
   constructor() {
     this.monsters = parseMonsterData();
     this.bosses = parseBossData();
   }
 
-  getMonster(name) {
+  getMonster(name: string) {
     const boss = searchObjFor(this.bosses, name);
     if (boss) return boss;
 
     return searchObjFor(this.monsters, name);
   }
-
-  reload() {
-    delete require.cache[require.resolve(jsonPath)];
-    try {
-      this.items = require(jsonPath);
-    } catch (error) {
-      logger.error(`Error reloading monsters: ${error}`);
-    }
-  }
 }
 
-module.exports = new MonsterRepository();
+export = new MonsterRepository();

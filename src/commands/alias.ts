@@ -1,17 +1,18 @@
-const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
-const alias = require('../util/alias');
+import { Command } from "@customTypes/types";
+import { MessageActionRow, MessageButton, MessageEmbed } from "discord.js";
+import aliasRepository from "../repositories/aliasRepository";
 
-module.exports = {
-  name: 'alias',
-  description: 'Find all the accepted aliases for a monster or item!',
-  usage: '<item or monster name>',
+const command: Command = {
+  name: "alias",
+  description: "Find all the accepted aliases for a monster or item!",
+  usage: "<item or monster name>",
   args: true,
   cooldown: 1,
   async execute(message, args) {
-    const lowerCaseArgs = args.join(' ').toLowerCase();
+    const lowerCaseArgs = args.join(" ").toLowerCase();
     const pageSize = 10;
 
-    const aliases = alias
+    const aliases = aliasRepository
       .getAliases(lowerCaseArgs)
       .filter((alias) => alias.toLowerCase() !== lowerCaseArgs);
 
@@ -26,13 +27,13 @@ module.exports = {
     const sentMsg = await message.reply(getAliasEmbed(title, aliases));
 
     const collector = sentMsg.createMessageComponentCollector({
-      filter: (i) => i.customId === 'prevPage' || i.customId === 'nextPage',
-      componentType: 'BUTTON',
+      filter: (i) => i.customId === "prevPage" || i.customId === "nextPage",
+      componentType: "BUTTON",
       time: 60000,
     });
 
     let currentIndex = 0;
-    collector.on('collect', (interaction) => {
+    collector.on("collect", (interaction) => {
       if (interaction.user.id !== message.author.id) {
         return interaction.reply({
           content: "❌ You cannot interact with someone else's command!",
@@ -41,11 +42,11 @@ module.exports = {
       }
 
       switch (interaction.customId) {
-        case 'prevPage': {
+        case "prevPage": {
           currentIndex -= pageSize;
           break;
         }
-        case 'nextPage': {
+        case "nextPage": {
           currentIndex += pageSize;
           break;
         }
@@ -54,17 +55,17 @@ module.exports = {
       interaction.update(getAliasEmbed(title, aliases, currentIndex));
     });
 
-    collector.on('end', () => {
+    collector.on("end", () => {
       const expiredEmbed = new MessageEmbed()
-        .setTitle(sentMsg.embeds[0].title)
+        .setTitle(sentMsg.embeds[0].title!)
         .addFields(sentMsg.embeds[0].fields)
-        .setFooter('❌Timed out');
+        .setFooter("❌Timed out");
       sentMsg.edit({ embeds: [expiredEmbed], components: [] });
     });
   },
 };
 
-function getAliasEmbed(title, aliases, start = 0, size = 10) {
+function getAliasEmbed(title: string, aliases: string[], start = 0, size = 10) {
   const pageMax = start + size;
   const embed = new MessageEmbed();
 
@@ -74,21 +75,24 @@ function getAliasEmbed(title, aliases, start = 0, size = 10) {
       name: `${start} to ${
         aliases.length < pageMax ? aliases.length : pageMax
       } of ${aliases.length}`,
-      value: aliases.slice(start, start + size).join(', '),
+      value: aliases.slice(start, start + size).join(", "),
     },
   ]);
 
   const row = new MessageActionRow();
+  const isStart = start === 0;
   const backBtn = new MessageButton()
-    .setCustomId('prevPage')
-    .setLabel('◄')
-    .setStyle('PRIMARY')
-    .setDisabled(start === 0);
+    .setCustomId("prevPage")
+    .setLabel("◄")
+    .setStyle(isStart ? "SECONDARY" :"PRIMARY")
+    .setDisabled(isStart);
+  
+  const isEnd = aliases.length <= pageMax;
   const nextBtn = new MessageButton()
-    .setCustomId('nextPage')
-    .setLabel('►')
-    .setStyle('PRIMARY')
-    .setDisabled(aliases.length <= pageMax);
+    .setCustomId("nextPage")
+    .setLabel("►")
+    .setStyle(isEnd ? "SECONDARY" :"PRIMARY")
+    .setDisabled(isEnd);
   row.addComponents(backBtn, nextBtn);
 
   return {
@@ -98,3 +102,5 @@ function getAliasEmbed(title, aliases, start = 0, size = 10) {
     fetchReply: true,
   };
 }
+
+export = command;

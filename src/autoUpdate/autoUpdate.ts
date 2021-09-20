@@ -1,0 +1,111 @@
+import { AutoUpdateOptions } from "@customTypes/types";
+import { ScripticusBot } from "scripticus";
+import { Logger } from "../utils/logger";
+import { exec } from "child_process";
+import express from "express";
+import crypto from "crypto";
+
+const logger = new Logger("AutoUpdate");
+
+class WebhookListener {
+  private readonly sigHeaderName = "X-Hub-Signature-256";
+  private readonly sigHashAlg = "sha256";
+  private readonly app: express.Express;
+  private readonly branch: string;
+  private client: ScripticusBot;
+  private readonly PORT: number;
+
+  constructor(client: ScripticusBot, { branch, port }: AutoUpdateOptions) {
+    this.PORT = port;
+    this.client = client;
+    this.branch = branch;
+    this.app = express();
+    this.init();
+  }
+
+  // TODO: Arguments might benefit from stricter typings
+  private verifyPostData(req: any, res: any, next: any) {
+    if (!req.rawBody) {
+      return next("Request body empty");
+    }
+
+    const sig = Buffer.from(req.get(this.sigHeaderName) ?? "", "utf8");
+    const hmac = crypto.createHmac(this.sigHashAlg, process.env.SECRET!);
+    const digest = Buffer.from(
+      `${this.sigHashAlg}=${hmac.update(req.rawBody).digest("hex")}`,
+      "utf8"
+    );
+    if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
+      return next(
+        `Request body digest (${digest}) did not match ${this.sigHeaderName} (${sig})`
+      );
+    }
+
+    return next();
+  }
+
+  private runCommand(command: string): Promise<void> {
+    logger.log(command);
+    return new Promise<void>((resolve, reject) => {
+      exec(command, (err, stdout, stderr) => {
+        if (err) reject(err);
+        if (stderr) logger.log(stderr);
+        if (stdout) logger.log(stdout);
+        resolve();
+      });
+    });
+  }
+
+  private init() {
+    logger.log("Configuring WebHookListener");
+    this.app.use(
+      express.json({
+        verify: (req: any, res: any, buf: Buffer, encoding: BufferEncoding) => {
+          if (buf?.length) {
+            req.rawBody = buf.toString(encoding ?? "utf-8");
+          }
+        },
+      })
+    );
+
+    this.app.post("/hook", this.verifyPostData, async (req: any, res: any) => {
+      res.status(200).send("Request body was signed!");
+
+      const body = JSON.parse(req.rawBody);
+      if (body.ref !== `refs/heads/${this.branch}`) {
+        return logger.log(`Ignoring merge on branch: ${body.ref}`);
+      }
+
+      logger.log("Github webhook received.");
+      try {
+        await this.runCommand("git remote update");
+        await this.runCommand(`git reset --hard origin/${this.branch}`);
+        await this.runCommand("npm install");
+        await this.runCommand("npm audit fix");
+        logger.log("Updated to new commit from Github!");
+      } catch (err) {
+        return logger.error(err);
+      }
+
+      this.client.stop();
+    });
+
+    this.app.use((err: any, req: any, res: any, next: any) => {
+      if (err) logger.error(err);
+      res
+        .status(403)
+        .send("Request body was not signed or verification failed!");
+    });
+
+    this.app.all("*", (req, res) => res.status(404).end());
+  }
+
+  start() {
+    logger.log('Starting WebHookListener');
+    this.app.listen(this.PORT, async () => {
+      logger.log(`Listening on ${this.PORT}`);
+    });
+  }
+}
+
+export { WebhookListener };

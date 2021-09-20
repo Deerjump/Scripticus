@@ -1,171 +1,101 @@
-import WebhookListener from './auto-update/WebhookListener';
-const { Client, Collection, Intents } = require('discord.js');
-const Logger = require('./util/Logger.js');
-const mongo = require('./mongo/mongo.js');
-const chalk = require('chalk');
-const { GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS } =
-  Intents.FLAGS;
-require('dotenv').config();
-const fs = require('fs');
-const {
-  DEFAULT_PREFIX,
-  DEFAULT_COOLDOWN,
-  autoUpdate,
-} = require('./config.json');
+// import { Client, Collection, Intents } from "discord.js";
+// import { Command, GuildSettings } from "@customTypes/type";
+// import { clientOptions } from './clientOptions';
+// import { mongoDriver } from "../src/database/mongo";
+// import { Logger } from "./utils/logger";
+// import * as fs from "fs";
+// import "dotenv/config";
+// import { GuildSettings } from "@customTypes/database";
 
-const logger = new Logger('Bot');
+// const logger = new Logger("Bot");
 
-const display =
-  '*******************************************************\n' +
-  '*  ______             _            _                  *\n' +
-  '* / _____)           (_)       _  (_)                 *\n' +
-  '*( (____   ____  ____ _ ____ _| |_ _  ____ _   _  ___ *\n' +
-  '* \\____ \\ / ___)/ ___) |  _ (_   _) |/ ___) | | |/___)*\n' +
-  '* _____) | (___| |   | | |_| || |_| ( (___| |_| |___ |*\n' +
-  '*(______/ \\____)_|   |_|  __/  \\__)_|\\____)____/(___/ *\n' +
-  '*                      |_|                            *\n' +
-  '*******************************************************';
-console.info(chalk.yellow(display));
 
-const client = new Client({
-  intents: [GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS],
-  // This lets dms work properly
-  partials: ['CHANNEL'],
-});
-client.commands = new Collection();
-client.guildSettings = new Collection();
-client.mongo = mongo;
-const commandFiles = fs
-  .readdirSync('./commands')
-  .filter((file) => file.endsWith('.js'));
+// const { GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS } =
+//   Intents.FLAGS;
+// const commands = new Collection<string, Command>();
+// const guildSettings = new Collection<string, any>();
 
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
-}
+// const client = new Client({
+//   intents: [GUILDS, GUILD_MESSAGES, DIRECT_MESSAGES, GUILD_MESSAGE_REACTIONS],
+//   // This lets dms work properly
+//   partials: ["CHANNEL"],
+// });
 
-const shouldIgnore = (message, prefix) =>
-  (message.channel.type !== 'dm' && !message.content.startsWith(prefix)) ||
-  message.author.bot;
-const cooldowns = new Collection();
+// client.once("ready", async () => {
+//   console.log('Starting bot');
+//   await mongoDriver.connectToDatabase();
+//   await loadCommands();
+//   await loadGuildSettings();
 
-client.once('ready', async () => {
-  try {
-    logger.log('-----Starting up Scripticus!-----');
+//   logger.log(`${client.user!.username} is ready!`);
+// });
 
-    if (autoUpdate.enabled) {
-      client.githubListener = new WebhookListener(client).start();
-    }
+// client.on("messageCreate", (message) => {
+//   if (message.author.bot) return;
 
-    await mongo.connectToDatabase();
+//   const prefix: string =
+//     guildSettings.get(message.guildId!)?.prefix ?? clientOptions.defaultPrefix;
+//   if (message.channel.type !== "DM" && !message.content.startsWith(prefix))
+//     return;
 
-    // run each command's init() method if it exists
-    client.commands.forEach((command) => command.init?.(client));
+//   const args = message.content.slice(prefix.length).trim().split(/ +/);
+//   const commandName = args.shift()!.toLowerCase();
 
-    const prefixes = await mongo.getGuildPrefixes();
-    if (prefixes) {
-      prefixes.forEach(({ guildId, prefix }) => {
-        const guild = client.guildSettings.get(guildId) || {};
-        client.guildSettings.set(guildId, { ...guild, prefix });
-      });
-    }
-  } catch (err) {
-    logger.error(err);
-  }
-  client.user.setActivity('Legends of Idleon');
-  logger.log(`${chalk.yellow(client.user.username)} is ready!`);
-});
+//   const command =
+//     commands.get(commandName) ||
+//     commands.find(
+//       (cmd) => cmd.aliases != null && cmd.aliases.includes(commandName)
+//     );
 
-client.on('messageCreate', (message) => {
-  // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
-  const prefix = client.getPrefix(message);
+//   if (!command) return;
 
-  if (shouldIgnore(message, prefix)) return;
+//   if (command.args && !args.length) {
+//     let reply = `You didn't provide any arguments, ${message.author}`;
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const commandName = args.shift().toLowerCase();
+//     if (command.usage) {
+//       reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+//     }
 
-  const command =
-    client.commands.get(commandName) ||
-    client.commands.find(
-      (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
-    );
+//     message.reply({ content: reply, allowedMentions: { users: [] } });
+//     return;
+//   }
 
-  if (!command) return;
+//   try {
+//     command.execute(message, args);
+//   } catch (error) {
+//     logger.error(error);
+//     message.reply({
+//       content: "there was an error trying to execute that command!",
+//       allowedMentions: { users: [] },
+//     });
+//   }
+// });
 
-  if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Collection());
-  }
+// async function loadCommands() {
+//   logger.log("Loading commands...");
 
-  // Cooldown implementation
-  const now = Date.now();
-  const timestamps = cooldowns.get(command.name);
-  const cooldownAmount = (command.cooldown || DEFAULT_COOLDOWN) * 1000;
+//   const commandFiles = fs
+//     .readdirSync(`${__dirname}/commands`)
+//     .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
 
-  if (timestamps.has(message.author.id)) {
-    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+//   for (const file of commandFiles) {
+//     const command = (await import(`./commands/${file}`)) as Command;
+    
+//     // TODO: handle this better later
+//     command.init?.();
+//     commands.set(command.name, command);
+//   }
 
-    if (now < expirationTime) {
-      const timeLeft = (expirationTime - now) / 1000;
-      message.react('❌');
-      message.react('⏲️');
-      return message.author.send(
-        `please wait ${timeLeft.toFixed(1)} more second(s) before using the \`${
-          command.name
-        }\` command again!`
-      );
-    }
-  } else {
-    if (message.channel.type !== 'DM') {
-      timestamps.set(message.author.id, now);
-      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    }
-  }
+//   logger.log("Commands loaded!");
+// }
 
-  // Handles command uses with missing arguments
-  if (command.args && !args.length) {
-    let reply = `You didn't provide any arguments, ${message.author}`;
+// async function loadGuildSettings() {
+//   logger.log("Loading guild specific settings...");
 
-    if (command.usage) {
-      reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
-    }
+//   const settings = await mongoDriver.getAllGuildSettings();
+//   settings.forEach(({ guildId, ...rest }: GuildSettings) => guildSettings.set(guildId, rest));
 
-    return message.reply({ content: reply, allowedMentions: { users: [] } });
-  }
+//   logger.log("Settings loaded!");
+// }
 
-  try {
-    command.execute(message, args);
-  } catch (error) {
-    logger.error(error);
-    message.reply({
-      content: 'there was an error trying to execute that command!',
-      allowedMentions: { users: [] },
-    });
-  }
-});
-
-client.getPrefix = function (message) {
-  if (message.channel.type === 'DM') return '';
-
-  const settings = client.guildSettings.get(message.guild.id);
-  return settings ? settings.prefix : DEFAULT_PREFIX;
-};
-
-client.stop = function () {
-  try {
-    logger.log('-----Stopping Scripticus!-----');
-    mongo.disconnect();
-
-    logger.log('Running command stop() methods');
-    this.commands.forEach((command) => command.stop?.());
-
-    logger.log('-----Destroying client-----');
-    client.destroy();
-    logger.log('-----Exiting process-----');
-    process.exit(0);
-  } catch (err) {
-    logger.error('ERROR:', err);
-  }
-};
-
-client.login(process.env.TOKEN);
+// client.login(process.env.TOKEN!);

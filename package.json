@@ -1,36 +1,25 @@
 {
-  "name": "scripticus",
-  "version": "1.1.0",
-  "description": "Discord bot",
-  "main": "bot.js",
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/src/index.js",
   "scripts": {
-    "start": "pm2 start ecosystem.config.js",
-    "poststart": "pm2 monit",
-    "restart": "pm2 restart ecosystem.config.js",
-    "postrestart": "pm2 monit",
-    "stop": "pm2 stop ecosystem.config.js",
-    "logs": "pm2 logs Scripticus",
-    "updatepm2": "pm2 update"
+    "prestart": "npm run build",
+    "start": "node .",
+    "build": "tsc  --project tsconfig.json"
   },
-  "author": "Deerjump",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.13",
     "chalk": "^4.1.2",
-    "cron": "^1.8.2",
     "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^4.1.1",
-    "mongoose": "^6.0.2",
-    "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.12",
-    "pm2": "^5.1.1",
-    "winston": "^3.3.3"
+    "mongoose": "^6.0.6",
+    "node-fetch": "^2.6.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "prettier": "^2.3.2"
+    "@types/node-fetch": "^2.5.12"
   }
 }

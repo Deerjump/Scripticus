@@ -1,4 +1,3 @@
-// import winston from "winston";
 import chalk from "chalk";
 
 // const createFormat = function(tag) {
@@ -27,16 +26,7 @@ import chalk from "chalk";
 //   })
 // }
 
-function getDate(): string {
-  const date = new Date();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const time = date.toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit' });
-  return `${month}/${day}|${time}`
-}
-
-
-class Logger {
+export class Logger {
   tag: string;
   constructor(tag: string) {
     // TODO: fix the custom logger
@@ -61,8 +51,12 @@ class Logger {
     console.warn(this.getPrefix(), message);
   }
   getPrefix(): string {
-    return `${chalk.green(getDate())}[${chalk.blue(this.tag)}]`
+    const date = new Date();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const time = date.toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit' });
+    const dateString = `${month}/${day}|${time}`;
+
+    return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`
   }
 }
-
-export { Logger };

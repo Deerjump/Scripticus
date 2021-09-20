@@ -1,50 +1,44 @@
-const Logger = require('../util/Logger.js');
+import { Command } from "@customTypes/types";
+import { ScripticusBot } from "scripticus";
+import { Logger } from "../utils/logger";
 const logger = new Logger('Prefix');
 
-module.exports = {
+const command: Command = {
   name: 'prefix',
   description: 'Changes prefix for current server',
   args: true,
   usage: '<new prefix>',
-  whitelist: ['90598254688874496', '191085842469486592'],
   async execute(message, args) {
-    if (this.whitelist.includes(message.author.id)) {
-      if (args[0] && args[0].length === 0) {
-        return message.reply({
-          content: 'Prefix must be at least 1 character!',
-          allowedMentions: { users: [] },
-        });
-      }
-
-      if (message.channel.type === 'DM') {
-        return message.reply({
-          content: "You can't use this command in a private message!",
-          allowedMentions: { users: [] },
-        });
-      }
-
-      try {
-        const newPrefix = args[0];
-        const guildID = message.guild.id;
-        const guildSettings = message.client.guildSettings.get(guildID) || {};
-        message.client.mongo.updateGuildPrefix(guildID, newPrefix);
-        message.client.guildSettings.set(guildID, {
-          ...guildSettings,
-          prefix: newPrefix,
-        });
-        message.reply({
-          content: `Prefix is now sent to ${newPrefix}`,
-          allowedMentions: { users: [] },
-        });
-      } catch (err) {
-        logger.log(err);
-      }
-    } else {
+    const whitelist = ['90598254688874496', '191085842469486592']
+    if (!whitelist.includes(message.author.id)) {
       message.reply({
         content: 'You cannot use this command!',
-        ephemeral: true,
+        allowedMentions: { users: [] }
+      });
+    }
+
+    if (message.channel.type === 'DM') {
+      return message.reply({
+        content: "You can't use this command in a private message!",
         allowedMentions: { users: [] },
       });
     }
+
+    const newPrefix = args[0];
+    const guildID = message.guildId!;
+    const client = message.client as ScripticusBot;
+
+    try {
+      await client.updateGuildPrefix(guildID, newPrefix);
+
+      message.reply({
+        content: `Prefix is now sent to ${newPrefix}`,
+        allowedMentions: { users: [] },
+      });
+    } catch (err) {
+      logger.log(err);
+    }
   },
 };
+
+export = command;
