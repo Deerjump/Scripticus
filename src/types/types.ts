@@ -84,6 +84,10 @@ export interface RecipeData {
   no: number | string;
 };
 
+interface test2{
+  string: string
+}
+
 export interface ItemData {
   displayName: string;
   sellPrice: string;
