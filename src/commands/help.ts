@@ -1,5 +1,5 @@
 import { Logger } from "../utils/logger";
-import { Command } from "@customTypes/types";
+import { Command, Scripticus } from "@customTypes/types";
 import { Collection, MessageEmbed } from "discord.js";
 import { ScripticusBot } from "scripticus";
 
@@ -12,7 +12,7 @@ const command: Command = {
   description: "List all of my commands or info about a specific command",
   aliases: ["commands"],
   usage: "<commandName>",
-  init(client) {
+  init(client: Scripticus) {
     commands = client?.commands ?? new Collection<string, Command>();
   },
   async execute(message, args) {

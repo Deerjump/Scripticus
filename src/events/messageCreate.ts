@@ -10,7 +10,7 @@ const event: Event = {
   execute: function ([message]: [Message]) {
     // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
     const client = message.client as ScripticusBot;
-    const prefix = client.getPrefix(message.guildId!);
+    const prefix = client.getPrefix(message);
     const shouldIgnore =
       (message.channel.type !== "DM" && !message.content.startsWith(prefix)) ||
       message.author.bot;

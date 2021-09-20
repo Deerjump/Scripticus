@@ -42,7 +42,7 @@ export interface Command {
   readonly cooldown?: number
   readonly args?: boolean
 
-  init?: (client?: Scripticus) => void
+  init?: (client: Scripticus) => void
   execute: (message: Message, args: string[]) => void
   stop?: () => void
 }

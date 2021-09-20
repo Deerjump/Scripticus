@@ -1,4 +1,4 @@
-import { mongoDriver } from "./database/mongo";
+import { mongoDriver } from './database/mongo';
 import {
   GuildSettings,
   DatabaseDriver,
@@ -6,10 +6,10 @@ import {
   Command,
   Event,
   ScripticusOptions,
-} from "@customTypes/types";
-import { Client, Collection } from "discord.js";
-import { Logger } from "./utils/logger";
-import * as fs from "fs";
+} from '@customTypes/types';
+import { Client, Collection, Message } from 'discord.js';
+import { Logger } from './utils/logger';
+import * as fs from 'fs';
 
 export class ScripticusBot extends Client implements Scripticus {
   defaultPrefix: string;
@@ -35,15 +35,15 @@ export class ScripticusBot extends Client implements Scripticus {
     this.db = mongoDriver;
     this.commands = new Collection<string, Command>();
     this.guildSettings = new Collection<string, GuildSettings>();
-    this.logger = new Logger("Scripticus");
+    this.logger = new Logger('Scripticus');
   }
 
   private async loadEvents() {
-    this.logger.log("Loading events...");
+    this.logger.log('Loading events...');
 
     const eventFiles = fs
       .readdirSync(`${__dirname}/events`)
-      .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
+      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
 
     let count = 0;
     for (const file of eventFiles) {
@@ -60,28 +60,28 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   private async loadGuildSettings() {
-    this.logger.log("Loading guild specific settings...");
+    this.logger.log('Loading guild specific settings...');
 
     const results = await mongoDriver.getAllGuildSettings();
     results.forEach((result) =>
       this.guildSettings.set(result.guildId, result.settings)
     );
 
-    this.logger.log("Settings loaded!");
+    this.logger.log('Settings loaded!');
   }
 
   private async loadCommands() {
-    this.logger.log("Loading commands...");
+    this.logger.log('Loading commands...');
 
     const commandFiles = fs
       .readdirSync(`${__dirname}/commands`)
-      .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
+      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
 
     for (const file of commandFiles) {
       const command = (await import(`./commands/${file}`)) as Command;
 
       // TODO: handle this better later
-      command.init?.();
+      command.init?.(this);
       this.commands.set(command.name, command);
     }
 
@@ -96,8 +96,11 @@ export class ScripticusBot extends Client implements Scripticus {
     await this.db.updateGuildSettings(guildId, settings);
   }
 
-  getPrefix(guildId: string): string {
-    return this.guildSettings.get(guildId!)?.prefix ?? this.defaultPrefix;
+  getPrefix(message: Message): string {
+    if (message.channel.type === 'DM') return '';
+    return (
+      this.guildSettings.get(message.guildId!)?.prefix ?? this.defaultPrefix
+    );
   }
 
   async login(token: string) {
@@ -111,18 +114,18 @@ export class ScripticusBot extends Client implements Scripticus {
 
   async stop() {
     try {
-      this.logger.log("-----Stopping Scripticus!-----");
+      this.logger.log('-----Stopping Scripticus!-----');
       await this.db.disconnect();
 
-      this.logger.log("Running command stop() methods");
+      this.logger.log('Running command stop() methods');
       this.commands.forEach((command) => command.stop?.());
 
-      this.logger.log("-----Destroying client-----");
+      this.logger.log('-----Destroying client-----');
       this.destroy();
-      this.logger.log("-----Exiting process-----");
+      this.logger.log('-----Exiting process-----');
       process.exit(0);
     } catch (err) {
-      this.logger.error("ERROR:");
+      this.logger.error('ERROR:');
       this.logger.error(err);
     }
   }

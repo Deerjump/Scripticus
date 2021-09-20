@@ -1,10 +1,15 @@
-import { DatabaseDriver, GuildSettings, GuildSettingsDto, Subscriber } from "@customTypes/types";
-import { GuildSettingsModel, SubscriberModel } from "./schemas";
-import { connect, connection } from "mongoose";
-import { Logger } from "../utils/logger";
-import "dotenv/config";
+import {
+  DatabaseDriver,
+  GuildSettings,
+  GuildSettingsDto,
+  Subscriber,
+} from '@customTypes/types';
+import { GuildSettingsModel, SubscriberModel } from './schemas';
+import { connect, connection } from 'mongoose';
+import { Logger } from '../utils/logger';
+import 'dotenv/config';
 
-const logger = new Logger("MongoDb");
+const logger = new Logger('MongoDb');
 
 class Database implements DatabaseDriver {
   private mongoUrl: string;
@@ -14,21 +19,21 @@ class Database implements DatabaseDriver {
   }
 
   async connectToDatabase() {
-    logger.log("Connecting to Mongo Database!");
+    logger.log('Connecting to Mongo Database!');
 
     try {
       await connect(this.mongoUrl);
-      logger.log("Connected!");
+      logger.log('Connected!');
     } catch (err) {
       logger.error(err);
     }
   }
 
   async disconnect() {
-    logger.log("Disconecting Mongo");
+    logger.log('Disconecting Mongo');
     try {
       await connection.close();
-      logger.log("Disconnected!");
+      logger.log('Disconnected!');
     } catch (err) {
       logger.error(err);
     }
@@ -51,7 +56,11 @@ class Database implements DatabaseDriver {
   }
 
   async updateGuildSettings(guildId: string, settings: GuildSettings) {
-    await GuildSettingsModel.findOneAndUpdate({ guildId }, { settings });
+    await GuildSettingsModel.findOneAndUpdate(
+      { guildId },
+      { settings },
+      { upsert: true }
+    );
   }
 
   async updateSubscriber({ userId, hours }: Subscriber) {
@@ -89,7 +98,7 @@ class Database implements DatabaseDriver {
 
   async removeSubscriber(userId: string) {
     const result = await SubscriberModel.findOneAndDelete({ userId });
-    if (result) logger.log("Removed 1 Subscriber!");
+    if (result) logger.log('Removed 1 Subscriber!');
   }
 
   // TODO: should the argument be Subscriber[]?
