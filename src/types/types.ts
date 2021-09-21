@@ -26,7 +26,7 @@ export interface Scripticus extends Client {
   readonly defaultCooldown: number;
   readonly commands: Collection<string, Command>;
   readonly guildSettings: Collection<string, GuildSettings>;
-  readonly db: DatabaseDriver;
+  readonly db: Database;
   readonly logger: Logger;
   getPrefix: (message: Message) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => void;
@@ -52,7 +52,7 @@ export type CommandImport = {
   command: Command;
 }
 
-export interface DatabaseDriver {
+export interface Database {
   connectToDatabase: () => Promise<void>;
   disconnect: () => Promise<void>;
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;

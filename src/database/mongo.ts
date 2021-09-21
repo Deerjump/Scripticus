@@ -1,5 +1,5 @@
 import {
-  DatabaseDriver,
+  Database,
   GuildSettings,
   GuildSettingsDto,
   Subscriber,
@@ -8,7 +8,7 @@ import { GuildSettingsModel, SubscriberModel } from './schemas';
 import { connect, connection } from 'mongoose';
 import { Logger } from '../utils/logger';
 
-export class Database implements DatabaseDriver {
+export class DatabaseDriver implements Database {
   private mongoUrl: string;
   private logger: Logger;
 

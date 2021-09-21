@@ -4,12 +4,12 @@ import chalk from 'chalk';
 import * as fs from 'fs';
 import {
   GuildSettings,
-  DatabaseDriver,
   Scripticus,
   Command,
   Event,
   ScripticusOptions,
   CommandImport,
+  Database,
 } from '@customTypes/types';
 
 export class ScripticusBot extends Client implements Scripticus {
@@ -17,10 +17,10 @@ export class ScripticusBot extends Client implements Scripticus {
   defaultCooldown: number;
   commands: Collection<string, Command>;
   guildSettings: Collection<string, GuildSettings>;
-  db: DatabaseDriver;
+  db: Database;
   logger: any;
 
-  constructor(db: DatabaseDriver, options: ScripticusOptions) {
+  constructor(db: Database, options: ScripticusOptions) {
     super({
       intents: options.intents,
       partials: options.partials,
