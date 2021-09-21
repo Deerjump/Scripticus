@@ -1,6 +1,6 @@
 import aliasRepository from "./aliasRepository";
-import items from "../resources/data/items";
 import { Items } from "@customTypes/types";
+import items from "../resources/data/items";
 
 function processJson(): Items {
   return items;
@@ -18,9 +18,9 @@ class ItemRepository {
   }
 
   getItemByName(name: string) {
-    Object.values(this.items).forEach((item) => {
+    for (const item of Object.values(this.items)) {
       if (aliasRepository.find(name, item)) return item;
-    });
+    }
   }
 
   getItem(name: string) {

@@ -7,55 +7,54 @@ import {
 import { GuildSettingsModel, SubscriberModel } from './schemas';
 import { connect, connection } from 'mongoose';
 import { Logger } from '../utils/logger';
-import 'dotenv/config';
 
-const logger = new Logger('MongoDb');
-
-class Database implements DatabaseDriver {
+export class Database implements DatabaseDriver {
   private mongoUrl: string;
+  private logger: Logger;
 
   constructor(mongoUrl: string) {
     this.mongoUrl = mongoUrl;
+    this.logger = new Logger('MongoDb');
   }
 
-  async connectToDatabase() {
-    logger.log('Connecting to Mongo Database!');
+  public async connectToDatabase() {
+    this.logger.log('Connecting to database...');
 
     try {
       await connect(this.mongoUrl);
-      logger.log('Connected!');
+      this.logger.log('Connected!');
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 
-  async disconnect() {
-    logger.log('Disconecting Mongo');
+  public async disconnect() {
+    this.logger.log('Disconecting Mongo');
     try {
       await connection.close();
-      logger.log('Disconnected!');
+      this.logger.log('Disconnected!');
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 
-  async getAllGuildSettings(): Promise<GuildSettingsDto[]> {
+  public async getAllGuildSettings(): Promise<GuildSettingsDto[]> {
     return await GuildSettingsModel.find().lean();
   }
 
-  async getGuildSettings(guildId: string): Promise<GuildSettingsDto> {
+  public async getGuildSettings(guildId: string): Promise<GuildSettingsDto> {
     return await GuildSettingsModel.findOne({ guildId }).lean();
   }
 
-  async getSubscribers(): Promise<Subscriber[]> {
+  public async getSubscribers(): Promise<Subscriber[]> {
     return await SubscriberModel.find().lean();
   }
 
-  async getSubscriber(userId: string) {
+  public async getSubscriber(userId: string) {
     return await SubscriberModel.findOne({ userId }).lean();
   }
 
-  async updateGuildSettings(guildId: string, settings: GuildSettings) {
+  public async updateGuildSettings(guildId: string, settings: GuildSettings) {
     await GuildSettingsModel.findOneAndUpdate(
       { guildId },
       { settings },
@@ -63,7 +62,7 @@ class Database implements DatabaseDriver {
     );
   }
 
-  async updateSubscriber({ userId, hours }: Subscriber) {
+  public async updateSubscriber({ userId, hours }: Subscriber) {
     try {
       await SubscriberModel.findOneAndUpdate(
         { userId },
@@ -71,11 +70,11 @@ class Database implements DatabaseDriver {
         { upsert: true }
       );
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 
-  async updateSubscribers(subscribers: Subscriber[]) {
+  public async updateSubscribers(subscribers: Subscriber[]) {
     const operations = subscribers.map(({ userId, hours }) => {
       return {
         updateOne: {
@@ -90,28 +89,26 @@ class Database implements DatabaseDriver {
       const { matchedCount, modifiedCount } = await SubscriberModel.bulkWrite(
         operations
       );
-      logger.log(`Matched: ${matchedCount}, Updated: ${modifiedCount}.`);
+      this.logger.log(`Matched: ${matchedCount}, Updated: ${modifiedCount}.`);
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 
-  async removeSubscriber(userId: string) {
+  public async removeSubscriber(userId: string) {
     const result = await SubscriberModel.findOneAndDelete({ userId });
-    if (result) logger.log('Removed 1 Subscriber!');
+    if (result) this.logger.log('Removed 1 Subscriber!');
   }
 
   // TODO: should the argument be Subscriber[]?
-  async removeSubscribers(userIds: string[]) {
+  public async removeSubscribers(userIds: string[]) {
     try {
       const { deletedCount } = await SubscriberModel.deleteMany({
         userId: { $in: userIds },
       });
-      logger.log(`${deletedCount} removed;`);
+      this.logger.log(`${deletedCount} removed;`);
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 }
-
-export const mongoDriver = new Database(process.env.MONGO_URL!);

@@ -1,30 +1,24 @@
 import { Command } from '@customTypes/types';
+import { Message } from 'discord.js';
 
-function isNumber(val: string | number): boolean {
-  return !isNaN(Number(val))
-}
+class RollCommand implements Command {
+  public readonly name = 'roll';
+  public readonly description = 'Roll a dice! 🎲';
+  public readonly usage = '<sides>';
+  public readonly args = true;
 
-function diceRoll(num: number): number {
-  return Math.ceil(Math.random() * num);
-}
-
-const command: Command = {
-  name: 'roll',
-  description: 'Roll a dice! 🎲',
-  usage: '<sides>',
-  args: true,
-  execute(message, args) {
+  public execute(message: Message, args: string[]) {
     let num = -1;
-  
-    if (isNumber(args[0])) {
+
+    if (this.isNumber(args[0])) {
       num = parseInt(args[0]);
       if (num <= 0)
         return message.reply({
           content: 'You must provide a number greater than 1!',
           allowedMentions: { users: [] },
         });
-      const roll = diceRoll(num);
-  
+      const roll = this.diceRoll(num);
+
       return message.reply({
         content: `You rolled a ${num}-sided die! 🎲 You rolled ${roll}!`,
         allowedMentions: { users: [] },
@@ -47,7 +41,16 @@ const command: Command = {
       content: response,
       allowedMentions: { users: [] },
     });
-  },
-};
+  }
+  
+  private diceRoll(num: number): number {
+    return Math.ceil(Math.random() * num);
+  }
 
-export = command;
+  private isNumber(val: string | number): boolean {
+    return !isNaN(Number(val));
+  } 
+
+}
+
+export const command = new RollCommand();

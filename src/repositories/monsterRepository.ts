@@ -1,132 +1,61 @@
-import monsterJson from '../resources/data/monsters.json';
+import { Monsters } from '@customTypes/types';
 import aliasRepository from './aliasRepository';
-
-const ignoredEnemies = [
-    "ForgeA",
-    "ForgeB",
-    "Bandit_Bob",
-    "SoulCard1",
-    "SoulCard2",
-    "SoulCard3",
-    "SoulCard4",
-    "SoulCard5",
-    "SoulCard6",
-    "CritterCard1",
-    "CritterCard2",
-    "CritterCard3",
-    "CritterCard4",
-    "CritterCard5",
-    "CritterCard6",
-    "CritterCard7",
-    "CritterCard8",
-    "CritterCard9",
-    "Blank0ramaFiller",
-    "xmasEvent",
-    "xmasEvent2",
-    "loveEvent",
-    "loveEvent2",
-    "ghost",
-    "BossPart",
-    "EfauntArm",
-    "mushPtutorial",
-    "demonPtutorial",
-    "behemoth",
-    "Nothing",
-    "BugNest6",
-    "BugNest5",
-    "BugNest4",
-    "BugNest3",
-    "BugNest2",
-    "BugNest1",
-    "SummerEvent1",
-    "SummerEvent2"
-]
-
-type MonsterDrop = [string, string, string, string]
-type BossAttacks = {
-  [name: string]: string | number;
-}
-interface MonsterData {
-  Name: string;
-  AFKtype: string;
-  Type: string;
-  RespawnTime: number | string;
-  MonsterHPTotal: number | string;
-  ExpGiven: number | string;
-  Defence: number | string;
-  Damages: number | string;
-  Drops: MonsterDrop[];
-  hasCard: string;
-  World: string;
-  Area: string; 
-  Attacks?: BossAttacks
-  [key: string]: any;
-}
-
-function parseMonsterData() {
-  return (
-    Object.entries(monsterJson)
-      // Filter out the world bosses, placeholder enemies, and special non enemy things
-      .filter(
-        ([monsterId, monster]) =>
-          !monster.Attacks &&
-          monster.Type !== 'FISH_TYPE' &&
-          !(monster.MoveSPEED == 0 && monster.AFKtype === 'FIGHTING') &&
-          !ignoredEnemies.includes(monsterId)
-      )
-      // create a new object from the resulting array
-      .reduce((acc, [key, monster]) => {
-        return { ...acc, [key]: monster };
-      }, {})
-  );
-}
-
-function parseBossData() {
-  // filter for world bosses
-  return (
-    Object.entries(enemies)
-      // Filter for the world bosses
-      .filter(([, value]) => value.Attacks)
-      .reduce((obj, [key, boss]) => {
-        return {
-          ...obj,
-          [key]: {
-            Name: boss.Name,
-            AFKtype: boss.AFKtype,
-            Attacks: boss.Attacks,
-            MonsterHPTotal: boss.health,
-            Defence: boss.defence,
-            ExpGiven: boss.exp,
-            hasCard: boss.hasCard,
-          },
-        };
-      }, {})
-  );
-}
-
-function searchObjFor(object: any, name: string) {
-  for (const key in object) {
-    const monster = object[key];
-    const displayName = monster.Name.toLowerCase();
-    
-    if (displayName === name) return monster;
-    if (aliasRepository.find(name, monster, displayName)) return monster;
-  }
-}
+import monsters from '../resources/data/monsters';
+import ignoredEnemies from '../resources/data/ignoreEnemies.json';
 
 class MonsterRepository {
-  monsters: {};
-  bosses: {};
+  monsters: Monsters;
+  bosses: Monsters;
+
   constructor() {
-    this.monsters = parseMonsterData();
-    this.bosses = parseBossData();
+    this.monsters = this.parseMonsterData();
+    this.bosses = this.parseBossData();
+  }
+
+  private parseMonsterData(): Monsters {
+    return (
+      Object.entries(monsters)
+        // Filter out the world bosses, placeholder enemies, and special non enemy things
+        .filter(
+          ([monsterId, monster]) =>
+            monster.Attacks != null &&
+            monster.Type !== 'FISH_TYPE' &&
+            !(monster.MoveSPEED == 0 && monster.AFKtype === 'FIGHTING') &&
+            !ignoredEnemies.includes(monsterId)
+        )
+        // create a new object from the resulting array
+        .reduce((acc, [key, monster]) => {
+          return { ...acc, [key]: monster };
+        }, {})
+    );
+  }
+
+  private parseBossData() {
+    // filter for world bosses
+    return (
+      Object.entries(monsters)
+        // Filter for the world bosses
+        .filter(([, value]) => value.Attacks == null)
+        .reduce((acc, [key, boss]) => {
+          return { ...acc, [key]: boss };
+        }, {})
+    );
+  }
+
+  private searchObjFor(object: Monsters, name: string) {
+    for (const monster of Object.values(object)) {
+      const displayName = monster.Name.toLowerCase();
+  
+      if (displayName === name) return monster;
+      if (aliasRepository.find(name, monster, displayName)) return monster;
+    }
   }
 
   getMonster(name: string) {
-    const boss = searchObjFor(this.bosses, name);
+    const boss = this.searchObjFor(this.bosses, name);
     if (boss != null) return boss;
 
-    return searchObjFor(this.monsters, name);
+    return this.searchObjFor(this.monsters, name);
   }
 }
 

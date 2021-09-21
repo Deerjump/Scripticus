@@ -1,4 +1,7 @@
-import { mongoDriver } from './database/mongo';
+import { Client, Collection, Message } from 'discord.js';
+import { Logger } from './utils/logger';
+import chalk from 'chalk';
+import * as fs from 'fs';
 import {
   GuildSettings,
   DatabaseDriver,
@@ -6,10 +9,8 @@ import {
   Command,
   Event,
   ScripticusOptions,
+  CommandImport,
 } from '@customTypes/types';
-import { Client, Collection, Message } from 'discord.js';
-import { Logger } from './utils/logger';
-import * as fs from 'fs';
 
 export class ScripticusBot extends Client implements Scripticus {
   defaultPrefix: string;
@@ -19,23 +20,21 @@ export class ScripticusBot extends Client implements Scripticus {
   db: DatabaseDriver;
   logger: any;
 
-  constructor({
-    intents,
-    partials,
-    defaultPrefix,
-    defaultCooldown,
-  }: ScripticusOptions) {
+  constructor(db: DatabaseDriver, options: ScripticusOptions) {
     super({
-      intents: intents,
-      partials: partials,
+      intents: options.intents,
+      partials: options.partials,
     });
 
+    const { defaultPrefix, defaultCooldown, startupDisplay } = options;
+    this.db = db;
     this.defaultPrefix = defaultPrefix;
     this.defaultCooldown = defaultCooldown;
-    this.db = mongoDriver;
     this.commands = new Collection<string, Command>();
     this.guildSettings = new Collection<string, GuildSettings>();
     this.logger = new Logger('Scripticus');
+
+    console.log(chalk.yellow(startupDisplay));
   }
 
   private async loadEvents() {
@@ -49,25 +48,14 @@ export class ScripticusBot extends Client implements Scripticus {
     for (const file of eventFiles) {
       const event = (await import(`./events/${file}`)) as Event;
       if (event.once) {
-        this.once(event.name, (...args) => event.execute(args));
+        this.once(event.name, (...args) => event.execute(...args));
       } else {
-        this.on(event.name, (...args) => event.execute(args));
+        this.on(event.name, (...args) => event.execute(...args));
       }
       count++;
     }
 
-    this.logger.log(`${count} events loaded!`);
-  }
-
-  private async loadGuildSettings() {
-    this.logger.log('Loading guild specific settings...');
-
-    const results = await mongoDriver.getAllGuildSettings();
-    results.forEach((result) =>
-      this.guildSettings.set(result.guildId, result.settings)
-    );
-
-    this.logger.log('Settings loaded!');
+    this.logger.log(`${count} events loaded`);
   }
 
   private async loadCommands() {
@@ -78,14 +66,24 @@ export class ScripticusBot extends Client implements Scripticus {
       .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
 
     for (const file of commandFiles) {
-      const command = (await import(`./commands/${file}`)) as Command;
+      const { command }: CommandImport = await import(`./commands/${file}`);
 
-      // TODO: handle this better later
       command.init?.(this);
       this.commands.set(command.name, command);
     }
 
-    this.logger.log(`${this.commands.size} commands loaded!`);
+    this.logger.log(`${this.commands.size} commands loaded`);
+  }
+
+  private async loadGuildSettings() {
+    this.logger.log('Loading guild specific settings...');
+
+    const results = await this.db.getAllGuildSettings();
+    results.forEach((result) =>
+      this.guildSettings.set(result.guildId, result.settings)
+    );
+
+    this.logger.log(`Settings loaded for ${results.length} servers`);
   }
 
   async updateGuildPrefix(guildId: string, prefix: string) {
@@ -114,7 +112,7 @@ export class ScripticusBot extends Client implements Scripticus {
 
   async stop() {
     try {
-      this.logger.log('-----Stopping Scripticus!-----');
+      this.logger.log('-----Stopping Scripticus-----');
       await this.db.disconnect();
 
       this.logger.log('Running command stop() methods');

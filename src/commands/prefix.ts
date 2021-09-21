@@ -1,19 +1,20 @@
-import { Command } from "@customTypes/types";
-import { ScripticusBot } from "scripticus";
-import { Logger } from "../utils/logger";
+import { Command, Scripticus } from '@customTypes/types';
+import { Message } from 'discord.js';
+import { Logger } from '../utils/logger';
 const logger = new Logger('Prefix');
 
-const command: Command = {
-  name: 'prefix',
-  description: 'Changes prefix for current server',
-  args: true,
-  usage: '<new prefix>',
-  async execute(message, args) {
-    const whitelist = ['90598254688874496', '191085842469486592']
+class PrefixCommand implements Command {
+  public readonly name = 'prefix';
+  public readonly description = 'Changes prefix for current server';
+  public readonly args = true;
+  public readonly usage = '<new prefix>';
+
+  public async execute(message: Message, args: string[]) {
+    const whitelist = ['90598254688874496', '191085842469486592'];
     if (!whitelist.includes(message.author.id)) {
       message.reply({
         content: 'You cannot use this command!',
-        allowedMentions: { users: [] }
+        allowedMentions: { users: [] },
       });
     }
 
@@ -26,7 +27,7 @@ const command: Command = {
 
     const newPrefix = args[0];
     const guildID = message.guildId!;
-    const client = message.client as ScripticusBot;
+    const client = message.client as Scripticus;
 
     try {
       await client.updateGuildPrefix(guildID, newPrefix);
@@ -38,7 +39,7 @@ const command: Command = {
     } catch (err) {
       logger.log(err);
     }
-  },
-};
+  }
+}
 
-export = command;
+export const command = new PrefixCommand();

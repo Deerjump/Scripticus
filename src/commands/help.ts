@@ -1,37 +1,39 @@
-import { Logger } from "../utils/logger";
-import { Command, Scripticus } from "@customTypes/types";
-import { Collection, MessageEmbed } from "discord.js";
-import { ScripticusBot } from "scripticus";
+import { Logger } from '../utils/logger';
+import { Command, Scripticus } from '@customTypes/types';
+import { Collection, Message, MessageEmbed } from 'discord.js';
 
-const logger = new Logger("Help");
+const logger = new Logger('Help');
 
 let commands: Collection<string, Command>;
 
-const command: Command = {
-  name: "help",
-  description: "List all of my commands or info about a specific command",
-  aliases: ["commands"],
-  usage: "<commandName>",
-  init(client: Scripticus) {
+class HelpCommand implements Command {
+  public readonly name = 'help';
+  public readonly description =
+    'List all of my commands or info about a specific command';
+  public readonly aliases = ['commands'];
+  public readonly usage = '<commandName>';
+
+  public init(client: Scripticus) {
     commands = client?.commands ?? new Collection<string, Command>();
-  },
-  async execute(message, args) {
-    const embed = new MessageEmbed().setColor("#00FF00");
+  }
+
+  public async execute(message: Message, args: string[]) {
+    const embed = new MessageEmbed().setColor('#00FF00');
 
     if (!args.length) {
-      embed.setTitle("Help Command");
+      embed.setTitle('Help Command');
       embed.addField(
-        "Commands:",
+        'Commands:',
         commands
           .map((command) => `**${command.name}**: ${command.description}`)
-          .join("\n")
+          .join('\n')
       );
       try {
         await message.author.send({
           embeds: [embed],
           allowedMentions: { users: [] },
         });
-        if (message.channel.type === "DM") return;
+        if (message.channel.type === 'DM') return;
         return message.reply({
           content: "I've sent you a DM with all my commands!",
           allowedMentions: { users: [] },
@@ -58,22 +60,21 @@ const command: Command = {
     }
 
     embed.setTitle(`**Command**: *${command.name}*`);
-    embed.addField("Description:", command.description);
+    embed.addField('Description:', command.description);
     if (command.aliases != null)
-      embed.addField("Aliases:", command.aliases.join(", "));
+      embed.addField('Aliases:', command.aliases.join(', '));
     if (command.usage != null)
-      embed.addField("Usage:", `<prefix>${command.name} ${command.usage}`);
-    if (command.options != null) 
-      embed.addField("Options:", command.options);
-    
-    const client = message.client as ScripticusBot;
+      embed.addField('Usage:', `<prefix>${command.name} ${command.usage}`);
+    if (command.options != null) embed.addField('Options:', command.options);
+
+    const client = message.client as Scripticus;
     embed.addField(
-      "Cooldown:",
+      'Cooldown:',
       `${command.cooldown ?? client.defaultCooldown} seconds(s)`
     );
 
     message.reply({ embeds: [embed], allowedMentions: { users: [] } });
-  },
-};
+  }
+}
 
-export = command;
+export const command = new HelpCommand();

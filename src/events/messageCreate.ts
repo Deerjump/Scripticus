@@ -1,15 +1,14 @@
-import { Event } from "@customTypes/types";
+import { Event, Scripticus } from "@customTypes/types";
 import { Message } from "discord.js";
-import { ScripticusBot } from "scripticus";
 import { Logger } from '../utils/logger';
 
 const logger = new Logger('MessageCreate');
 
 const event: Event = {
   name: "messageCreate",
-  execute: function ([message]: [Message]) {
+  execute: function (message: Message) {
     // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
-    const client = message.client as ScripticusBot;
+    const client = message.client as Scripticus;
     const prefix = client.getPrefix(message);
     const shouldIgnore =
       (message.channel.type !== "DM" && !message.content.startsWith(prefix)) ||
