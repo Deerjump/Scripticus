@@ -46,12 +46,10 @@ export class ScripticusBot extends Client implements Scripticus {
 
     let count = 0;
     for (const file of eventFiles) {
-      const event = (await import(`./events/${file}`)) as Event;
-      if (event.once) {
-        this.once(event.name, (...args) => event.execute(...args));
-      } else {
-        this.on(event.name, (...args) => event.execute(...args));
-      }
+      const { once, name, execute } = (await import(
+        `./events/${file}`
+      )) as Event;
+      once ? this.once(name, execute) : this.on(name, execute);
       count++;
     }
 
