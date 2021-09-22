@@ -1,21 +1,69 @@
-import { Event, Scripticus } from "@customTypes";
-import { Message } from "discord.js";
-import { noMentions } from "../utils/utils";
+import { Command, Event, Scripticus } from '@customTypes';
+import { Collection, Message } from 'discord.js';
+import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
 
 const logger = new Logger('MessageCreate');
 
+function isOnCooldown(
+  userId: string,
+  cooldowns: Collection<string, number> | undefined
+) {
+  if (cooldowns == null || cooldowns.size === 0) return false;
+  const expiration = cooldowns.get(userId);
+
+  return expiration != null && Date.now() < expiration;
+}
+
+function putOnCooldown(
+  userId: string,
+  command: Command | undefined,
+  { defaultCooldown, cooldowns }: Scripticus
+) {
+  if (command == null) return;
+  const cmdCooldowns = cooldowns.get(command.name)!;
+  const cooldown = (command.cooldown ?? defaultCooldown) * 1000;
+
+  cmdCooldowns.set(userId, Date.now() + cooldown);
+  setTimeout(() => cmdCooldowns.delete(userId), cooldown);
+}
+
+/**
+ * @param message
+ * @param commandName
+ * @returns whether the messsageCreate handler should exit
+ */
+function handleCooldowns(message: Message, commandName: string): boolean {
+  if (message.channel.type === 'DM') return false;
+
+  const client = message.client as Scripticus;
+  const authorId = message.author.id;
+  const cmdCooldowns = client.cooldowns.get(commandName)!;
+
+  if (!isOnCooldown(authorId, cmdCooldowns)) {
+    putOnCooldown(authorId, client.commands.get(commandName), client);
+    return false;
+  }
+
+  const timeLeft = (cmdCooldowns.get(authorId)! - Date.now()) / 1000;
+  message.react('❌');
+  message.react('⏲️');
+  message.author.send(
+    `Please wait ${timeLeft.toFixed(1)} more ${
+      timeLeft == 1 ? 'second' : 'seconds'
+    } to use \`${commandName}\` again`
+  );
+
+  return true;
+}
+
 const event: Event = {
-  name: "messageCreate",
-  execute: function (message: Message) {
-    // Ensures each server uses its own settings (if defined), doesn't use prefix in dms
+  name: 'messageCreate',
+  execute: (message: Message) => {
     const client = message.client as Scripticus;
     const prefix = client.getPrefix(message);
-    const shouldIgnore =
-      (message.channel.type !== "DM" && !message.content.startsWith(prefix)) ||
-      message.author.bot;
 
-    if (shouldIgnore) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift()!.toLowerCase();
@@ -31,20 +79,21 @@ const event: Event = {
     // Handles command uses with missing arguments
     if (command.args && args.length === 0) {
       let reply = `You didn't provide any arguments, ${message.author}`;
-
-      if (command.usage) {
+      if (command.usage != null) {
         reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
       }
 
       return message.reply({ content: reply, ...noMentions });
     }
 
+    if (handleCooldowns(message, command.name)) return;
+
     try {
       command.execute(message, args);
     } catch (error) {
       logger.error(error);
       message.reply({
-        content: "there was an error trying to execute that command!",
+        content: 'there was an error trying to execute that command!',
         ...noMentions,
       });
     }
