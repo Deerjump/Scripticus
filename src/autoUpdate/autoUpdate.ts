@@ -12,8 +12,11 @@ class WebhookListener {
   private readonly client: Scripticus;
   private readonly PORT: number;
   private readonly logger: Logger;
+  private readonly secret: string;
 
-  constructor(client: Scripticus, { branch, port }: AutoUpdateOptions) {
+  constructor(client: Scripticus, secret: string, { branch, port }: AutoUpdateOptions) {
+    if (secret == null) throw TypeError('secret cannot be null!')
+    this.secret = secret;
     this.PORT = port;
     this.client = client;
     this.branch = branch;
@@ -29,7 +32,7 @@ class WebhookListener {
     }
 
     const sig = Buffer.from(req.get(this.sigHeaderName) ?? '', 'utf8');
-    const hmac = crypto.createHmac(this.sigHashAlg, process.env.SECRET!);
+    const hmac = crypto.createHmac(this.sigHashAlg, this.secret);
     const digest = Buffer.from(
       `${this.sigHashAlg}=${hmac.update(req.rawBody).digest('hex')}`,
       'utf8'

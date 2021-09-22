@@ -4,13 +4,16 @@ import { Logger } from '../utils/logger';
 import fetch from 'node-fetch';
 import { noMentions } from '../utils/utils';
 
-const logger = new Logger('Wiki');
-const wikiUrl = 'https://idleon.info/';
-
 class WikiCommand implements Command {
   public readonly name = 'wiki';
   public readonly description = 'Seach the Legends of Idleon Wiki!';
   public readonly usage = '<search word>';
+  private readonly wikiUrl = 'https://idleon.info/';
+  private readonly logger: Logger;
+
+  constructor() {
+    this.logger = new Logger('Wiki');
+  }
 
   public async execute(message: Message, args: string[]) {
     if (!args.length) {
@@ -18,8 +21,8 @@ class WikiCommand implements Command {
         embeds: [
           new MessageEmbed()
             .setColor('#FF0000')
-            .setTitle(wikiUrl)
-            .setURL(wikiUrl)
+            .setTitle(this.wikiUrl)
+            .setURL(this.wikiUrl)
             .addField(
               'You could also:',
               'Supply a search term!\n!wiki Mafioso'
@@ -36,7 +39,7 @@ class WikiCommand implements Command {
       );
       await message.reply({ content: res.url, ...noMentions });
     } catch (err) {
-      logger.error(err);
+      this.logger.error(err);
     }
   }
 }

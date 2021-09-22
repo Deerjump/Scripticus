@@ -1,8 +1,6 @@
 import { ScripticusOptions } from "@customTypes";
 import { Intents } from "discord.js";
 
-
-
 export const clientOptions: ScripticusOptions = {
   intents: new Intents([
     "GUILDS",

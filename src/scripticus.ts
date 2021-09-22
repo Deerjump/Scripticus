@@ -13,12 +13,13 @@ import {
 } from '@customTypes';
 
 export class ScripticusBot extends Client implements Scripticus {
-  defaultPrefix: string;
-  defaultCooldown: number;
-  commands: Collection<string, Command>;
-  guildSettings: Collection<string, GuildSettings>;
-  db: Database;
-  logger: any;
+  private readonly logger: Logger;
+  readonly defaultPrefix: string;
+  readonly defaultCooldown: number;
+  readonly commands: Collection<string, Command>;
+  readonly guildSettings: Collection<string, GuildSettings>;
+  readonly db: Database;
+  readonly cooldowns: Collection<string, Collection<string, number>>;
 
   constructor(db: Database, options: ScripticusOptions) {
     super({
@@ -27,13 +28,13 @@ export class ScripticusBot extends Client implements Scripticus {
     });
 
     const { defaultPrefix, defaultCooldown, startupDisplay } = options;
-    this.db = db;
-    this.defaultPrefix = defaultPrefix;
-    this.defaultCooldown = defaultCooldown;
-    this.commands = new Collection<string, Command>();
     this.guildSettings = new Collection<string, GuildSettings>();
+    this.cooldowns = new Collection<string, Collection<string, number>>();
+    this.commands = new Collection<string, Command>();
+    this.defaultCooldown = defaultCooldown;
     this.logger = new Logger('Scripticus');
-
+    this.defaultPrefix = defaultPrefix;
+    this.db = db;
     console.log(chalk.yellow(startupDisplay));
   }
 
@@ -68,6 +69,7 @@ export class ScripticusBot extends Client implements Scripticus {
 
       command.init?.(this);
       this.commands.set(command.name, command);
+      this.cooldowns.set(command.name, new Collection<string, number>());
     }
 
     this.logger.log(`Loaded ${this.commands.size} commands`);

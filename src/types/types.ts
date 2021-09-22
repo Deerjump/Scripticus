@@ -27,7 +27,7 @@ export interface Scripticus extends Client {
   readonly commands: Collection<string, Command>;
   readonly guildSettings: Collection<string, GuildSettings>;
   readonly db: Database;
-  readonly logger: Logger;
+  readonly cooldowns: Collection<string, Collection<string, number>>;
   getPrefix: (message: Message) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => void;
   stop: () => void;
@@ -50,7 +50,7 @@ export interface Command {
 
 export type CommandImport = {
   command: Command;
-}
+};
 
 export interface Database {
   connectToDatabase: () => Promise<void>;
@@ -83,7 +83,7 @@ export interface AutoUpdateOptions {
   enabled: boolean;
 }
 
-export type Ingredient = [string, string]
+export type Ingredient = [string, string];
 
 export interface RecipeData {
   recipe: Ingredient[];
@@ -147,11 +147,10 @@ export interface Monsters {
   [monsterCode: string]: MonsterData;
 }
 
-
 export type TotalRecipe = {
   [itemCode: string]: {
     name: string;
     amount: number;
     recipe?: TotalRecipe;
   };
-}
+};
