@@ -1,7 +1,9 @@
 module.exports = {
-  apps : [{
-    "name": "Scripticus",
-    script: "bot.js",
-    args: ["--color"]
-  }],
+  apps: [
+    {
+      name: 'Scripticus',
+      script: 'dist/src/index.js',
+      args: ['--color'],
+    },
+  ],
 };

@@ -1,14 +1,22 @@
 {
-  "name": "testing",
-  "version": "1.0.0",
-  "description": "",
+  "name": "scripticus",
+  "version": "2.0.0",
+  "description": "Legends of Idleon Discord bot",
   "main": "dist/src/index.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "node .",
+    "start": "pm2 start ecosystem.config.js",
+    "poststart": "pm2 monit",
+    "restart": "pm2 restart ecosystem.config.js",
+    "postrestart": "pm2 monit",
+    "stop": "pm2 stop ecosystem.config.js",
+    "delete": "pm2 delete ecosystem.config.js",
+    "logs": "pm2 logs Scripticus",
+    "dev": "npm run build && node .",
+    "updatepm2": "pm2 update",
     "build": "tsc  --project tsconfig.json"
   },
-  "author": "",
+  "author": "Deerjump",
   "license": "ISC",
   "dependencies": {
     "@types/cron": "^1.7.3",
@@ -16,10 +24,11 @@
     "chalk": "^4.1.2",
     "cron": "^1.8.2",
     "discord.js": "^13.1.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.6",
-    "node-fetch": "^2.6.2"
+    "node-fetch": "^2.6.2",
+    "pm2": "^5.1.1"
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.12"
