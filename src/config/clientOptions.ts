@@ -1,4 +1,4 @@
-import { ScripticusOptions } from "@customTypes/types";
+import { ScripticusOptions } from "@customTypes";
 import { Intents } from "discord.js";
 
 

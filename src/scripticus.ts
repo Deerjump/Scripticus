@@ -10,7 +10,7 @@ import {
   ScripticusOptions,
   CommandImport,
   Database,
-} from '@customTypes/types';
+} from '@customTypes';
 
 export class ScripticusBot extends Client implements Scripticus {
   defaultPrefix: string;
@@ -53,7 +53,7 @@ export class ScripticusBot extends Client implements Scripticus {
       count++;
     }
 
-    this.logger.log(`${count} events loaded`);
+    this.logger.log(`Loaded ${count} events`);
   }
 
   private async loadCommands() {
@@ -70,7 +70,7 @@ export class ScripticusBot extends Client implements Scripticus {
       this.commands.set(command.name, command);
     }
 
-    this.logger.log(`${this.commands.size} commands loaded`);
+    this.logger.log(`Loaded ${this.commands.size} commands`);
   }
 
   private async loadGuildSettings() {
@@ -81,7 +81,7 @@ export class ScripticusBot extends Client implements Scripticus {
       this.guildSettings.set(result.guildId, result.settings)
     );
 
-    this.logger.log(`Settings loaded for ${results.length} servers`);
+    this.logger.log(`Loaded settings for ${results.length} servers`);
   }
 
   async updateGuildPrefix(guildId: string, prefix: string) {

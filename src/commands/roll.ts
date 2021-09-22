@@ -1,4 +1,5 @@
-import { Command } from '@customTypes/types';
+import { Command } from '@customTypes';
+import { isNumber, noMentions } from '../utils/utils';
 import { Message } from 'discord.js';
 
 class RollCommand implements Command {
@@ -10,18 +11,18 @@ class RollCommand implements Command {
   public execute(message: Message, args: string[]) {
     let num = -1;
 
-    if (this.isNumber(args[0])) {
+    if (isNumber(args[0])) {
       num = parseInt(args[0]);
       if (num <= 0)
         return message.reply({
           content: 'You must provide a number greater than 1!',
-          allowedMentions: { users: [] },
+          ...noMentions,
         });
       const roll = this.diceRoll(num);
 
       return message.reply({
         content: `You rolled a ${num}-sided die! 🎲 You rolled ${roll}!`,
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
@@ -39,18 +40,13 @@ class RollCommand implements Command {
     }
     return message.reply({
       content: response,
-      allowedMentions: { users: [] },
+      ...noMentions,
     });
   }
   
   private diceRoll(num: number): number {
     return Math.ceil(Math.random() * num);
   }
-
-  private isNumber(val: string | number): boolean {
-    return !isNaN(Number(val));
-  } 
-
 }
 
 export const command = new RollCommand();

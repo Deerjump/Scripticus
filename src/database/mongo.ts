@@ -3,7 +3,7 @@ import {
   GuildSettings,
   GuildSettingsDto,
   Subscriber,
-} from '@customTypes/types';
+} from '@customTypes';
 import { GuildSettingsModel, SubscriberModel } from './schemas';
 import { connect, connection } from 'mongoose';
 import { Logger } from '../utils/logger';
@@ -62,11 +62,13 @@ export class DatabaseDriver implements Database {
     );
   }
 
-  public async updateSubscriber({ userId, hours }: Subscriber) {
+  public async updateSubscriber(sub: Subscriber) {
+    if (sub == null) return;
+
     try {
       await SubscriberModel.findOneAndUpdate(
-        { userId },
-        { hours },
+        { userId: sub.userId },
+        { hours: sub.hours },
         { upsert: true }
       );
     } catch (err) {
@@ -75,6 +77,8 @@ export class DatabaseDriver implements Database {
   }
 
   public async updateSubscribers(subscribers: Subscriber[]) {
+    if (subscribers.length === 0) return;
+
     const operations = subscribers.map(({ userId, hours }) => {
       return {
         updateOne: {
@@ -95,16 +99,19 @@ export class DatabaseDriver implements Database {
     }
   }
 
-  public async removeSubscriber(userId: string) {
+  public async removeSubscriber({ userId }: Subscriber) {
+    if (userId == null) return;
+
     const result = await SubscriberModel.findOneAndDelete({ userId });
-    if (result) this.logger.log('Removed 1 Subscriber!');
+    if (result?.$isDeleted) this.logger.log('Removed 1 Subscriber!');
   }
 
-  // TODO: should the argument be Subscriber[]?
-  public async removeSubscribers(userIds: string[]) {
+  public async removeSubscribers(unsubs: Subscriber[]) {
+    if (unsubs.length === 0) return;
+
     try {
       const { deletedCount } = await SubscriberModel.deleteMany({
-        userId: { $in: userIds },
+        userId: { $in: unsubs.map(({ userId }) => userId) },
       });
       this.logger.log(`${deletedCount} removed;`);
     } catch (err) {

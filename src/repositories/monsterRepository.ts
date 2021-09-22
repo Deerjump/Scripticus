@@ -1,4 +1,4 @@
-import { Monsters } from '@customTypes/types';
+import { Monsters } from '@customTypes';
 import aliasRepository from './aliasRepository';
 import monsters from '../resources/data/monsters';
 import ignoredEnemies from '../resources/data/ignoreEnemies.json';

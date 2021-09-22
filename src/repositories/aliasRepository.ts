@@ -26,7 +26,6 @@ class AliasRepository {
   private add(name: string, list: string[]) {
     const newEntries = [name, ...list];
 
-    // TODO: Potentially reduce the code here
     for (const alias of newEntries) {
       this.aliases[alias] = Array.from(
         new Set([...newEntries, ...(this.aliases[alias] ?? [])])

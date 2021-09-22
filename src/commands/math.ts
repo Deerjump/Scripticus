@@ -1,16 +1,19 @@
-import { Command } from '@customTypes/types';
+import { Command } from '@customTypes';
 import { Message } from 'discord.js';
+import { noMentions } from '../utils/utils';
 import { formulas, LavaFormulas } from '../resources/formulas';
 
 class MathCommand implements Command {
   public readonly name = 'math';
   public readonly description =
     'A few helpful math calculations that LavaFlame2 uses!';
-  public get options() {
-    return Object.keys(formulas).join(', ');
-  }
+  public readonly options: string;
   public readonly usage = '<option> <x> <y> <z>';
   public readonly args = true;
+
+  constructor() {
+    this.options = Object.keys(formulas).join(', ');
+  }
 
   public execute(message: Message, args: string[]) {
     const option = args.shift()!.toLowerCase();
@@ -21,7 +24,7 @@ class MathCommand implements Command {
     if (formula == null) {
       return message.reply({
         content: `\`${option}\` is not a valid option\n**Options**: ${this.options}`,
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
@@ -32,14 +35,14 @@ class MathCommand implements Command {
         content: `That formula needs ${argsNeeded} ${
           argsNeeded === 1 ? 'number' : 'numbers'
         }!`,
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
     const answer = formula(...nums);
     message.reply({
       content: `The answer is ${answer.toFixed(2)}`,
-      allowedMentions: { users: [] },
+      ...noMentions,
     });
   }
 }

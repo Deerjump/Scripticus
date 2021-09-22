@@ -1,10 +1,7 @@
+import { Message, MessageEmbed } from 'discord.js';
+import { Command, Scripticus } from '@customTypes';
+import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
-import { Command, Scripticus } from '@customTypes/types';
-import { Collection, Message, MessageEmbed } from 'discord.js';
-
-const logger = new Logger('Help');
-
-let commands: Collection<string, Command>;
 
 class HelpCommand implements Command {
   public readonly name = 'help';
@@ -12,13 +9,16 @@ class HelpCommand implements Command {
     'List all of my commands or info about a specific command';
   public readonly aliases = ['commands'];
   public readonly usage = '<commandName>';
+  private readonly logger: Logger;
 
-  public init(client: Scripticus) {
-    commands = client?.commands ?? new Collection<string, Command>();
+  constructor() {
+    this.logger = new Logger('Help');
   }
 
   public async execute(message: Message, args: string[]) {
     const embed = new MessageEmbed().setColor('#00FF00');
+    const client = message.client as Scripticus;
+    const { commands } = client;
 
     if (!args.length) {
       embed.setTitle('Help Command');
@@ -31,18 +31,18 @@ class HelpCommand implements Command {
       try {
         await message.author.send({
           embeds: [embed],
-          allowedMentions: { users: [] },
+          ...noMentions,
         });
         if (message.channel.type === 'DM') return;
         return message.reply({
           content: "I've sent you a DM with all my commands!",
-          allowedMentions: { users: [] },
+          ...noMentions,
         });
       } catch (error) {
-        logger.error(error);
+        this.logger.error(error);
         message.reply({
           content: "it seems like I can't DM you! Do you have DM's disabled?",
-          allowedMentions: { users: [] },
+          ...noMentions,
         });
       }
       return;
@@ -55,7 +55,7 @@ class HelpCommand implements Command {
     if (command == null) {
       return message.reply({
         content: "That's not a valid command",
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
@@ -67,13 +67,12 @@ class HelpCommand implements Command {
       embed.addField('Usage:', `<prefix>${command.name} ${command.usage}`);
     if (command.options != null) embed.addField('Options:', command.options);
 
-    const client = message.client as Scripticus;
     embed.addField(
       'Cooldown:',
       `${command.cooldown ?? client.defaultCooldown} seconds(s)`
     );
 
-    message.reply({ embeds: [embed], allowedMentions: { users: [] } });
+    message.reply({ embeds: [embed], ...noMentions });
   }
 }
 

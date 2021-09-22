@@ -1,9 +1,11 @@
-import { Command } from '@customTypes/types';
+import { Command } from '@customTypes';
 import { Message, MessageEmbed } from 'discord.js';
+import { noMentions } from '../utils/utils';
 
 class ContributeCommand implements Command {
   public readonly name = 'contribute';
   public readonly description = 'Learn how to contribute!';
+
 
   public execute(message: Message) {
     const embed = new MessageEmbed()
@@ -22,7 +24,7 @@ class ContributeCommand implements Command {
             'Even if you don\'t know how to code you can still help!\nYou can suggest features through GitHub [here](https://github.com/Deerjump/Scripticus/projects/1 "Suggestions!") as well!',
         }
       );
-    message.reply({ embeds: [embed], allowedMentions: { users: [] } });
+    message.reply({ embeds: [embed], ...noMentions });
   }
 }
 

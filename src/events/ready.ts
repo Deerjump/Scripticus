@@ -1,4 +1,4 @@
-import { Event, Scripticus } from "@customTypes/types";
+import { Event, Scripticus } from "@customTypes";
 import { Logger } from "../utils/logger";
 
 const logger = new Logger('Ready');

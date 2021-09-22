@@ -1,4 +1,6 @@
-import { Command, ItemData, RecipeData, TotalRecipe } from '@customTypes/types';
+import { Command, ItemData, RecipeData, TotalRecipe } from '@customTypes';
+import itemRepository from '../repositories/itemRepository';
+import { noMentions } from '../utils/utils';
 import {
   MessageEmbed,
   MessageActionRow,
@@ -6,7 +8,6 @@ import {
   Message,
   ButtonInteraction,
 } from 'discord.js';
-import itemRepository from '../repositories/itemRepository';
 
 class CraftCommand implements Command {
   public readonly name = 'craft';
@@ -29,14 +30,14 @@ class CraftCommand implements Command {
             'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
           ),
         ],
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
     if (item.recipeData == null) {
       return message.reply({
         content: `${item.displayName} doesn't have a crafting recipe!`,
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
@@ -76,7 +77,7 @@ class CraftCommand implements Command {
       embeds: [new MessageEmbed().setTitle(title).setDescription(description)],
       components: [row],
       fetchReply: true,
-      allowedMentions: { users: [] },
+      ...noMentions,
     };
   }
 

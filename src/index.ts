@@ -1,8 +1,8 @@
 import { autoUpdateOptions } from './config/autoUpdateOptions';
 import { WebhookListener } from './autoUpdate/autoUpdate';
 import { clientOptions } from './config/clientOptions';
-import { ScripticusBot } from './scripticus';
 import { DatabaseDriver } from './database/mongo';
+import { ScripticusBot } from './scripticus';
 import 'dotenv/config';
 
 async function main() {

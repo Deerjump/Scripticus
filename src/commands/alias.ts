@@ -1,10 +1,11 @@
-import { Command } from '@customTypes/types';
+import { Command } from '@customTypes';
 import {
   Message,
   MessageActionRow,
   MessageButton,
   MessageEmbed,
 } from 'discord.js';
+import { noMentions } from '../utils/utils';
 import aliasRepository from '../repositories/aliasRepository';
 
 class AliasCommand implements Command {
@@ -25,7 +26,7 @@ class AliasCommand implements Command {
     if (aliases.length === 0) {
       return message.reply({
         content: `No aliases found for ${lowerCaseArgs}`,
-        allowedMentions: { users: [] },
+        ...noMentions
       });
     }
 
@@ -108,7 +109,7 @@ class AliasCommand implements Command {
     return {
       embeds: [embed],
       components: [row],
-      allowedMentions: { users: [] },
+      ...noMentions,
       fetchReply: true,
     };
   }

@@ -1,5 +1,6 @@
-import { Event, Scripticus } from "@customTypes/types";
+import { Event, Scripticus } from "@customTypes";
 import { Message } from "discord.js";
+import { noMentions } from "../utils/utils";
 import { Logger } from '../utils/logger';
 
 const logger = new Logger('MessageCreate');
@@ -35,7 +36,7 @@ const event: Event = {
         reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
       }
 
-      return message.reply({ content: reply, allowedMentions: { users: [] } });
+      return message.reply({ content: reply, ...noMentions });
     }
 
     try {
@@ -44,7 +45,7 @@ const event: Event = {
       logger.error(error);
       message.reply({
         content: "there was an error trying to execute that command!",
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
   },

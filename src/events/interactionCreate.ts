@@ -1,4 +1,4 @@
-import { Event } from "@customTypes/types";
+import { Event } from "@customTypes";
 import { Interaction } from "discord.js";
 
 const event: Event = {

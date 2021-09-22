@@ -1,4 +1,4 @@
-import { Monsters } from "@customTypes/types";
+import { Monsters } from "@customTypes";
 
 const monsters: Monsters = {
   "ForgeA": {

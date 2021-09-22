@@ -65,8 +65,8 @@ export interface Database {
   ) => Promise<void>;
   updateSubscriber: (subscriber: Subscriber) => Promise<void>;
   updateSubscribers: (subscribers: Subscriber[]) => Promise<void>;
-  removeSubscriber: (userId: string) => Promise<void>;
-  removeSubscribers: (userIds: string[]) => Promise<void>;
+  removeSubscriber: (unsub: Subscriber) => Promise<void>;
+  removeSubscribers: (unsubs: Subscriber[]) => Promise<void>;
 }
 
 export interface ScripticusOptions {
@@ -129,12 +129,12 @@ type BossAttacks = {
 export interface MonsterData {
   Name: string;
   AFKtype: string;
-  MonsterHPTotal: number | string;
-  ExpGiven: number | string;
-  Defence: number | string;
+  MonsterHPTotal: string;
+  ExpGiven: string;
+  Defence: string;
   Type?: string;
-  RespawnTime?: number | string;
-  Damages?: number | string;
+  RespawnTime?: string;
+  Damages?: string;
   Drops?: MonsterDrop[];
   hasCard?: string;
   World?: string;

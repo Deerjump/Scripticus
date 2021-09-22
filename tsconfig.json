@@ -14,12 +14,11 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "baseUrl": "src",
-    /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or typical JS modules*/
+    /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or JS modules */
     "paths": {
-      "@customTypes/*": ["types/*"]
+      "@customTypes": ["types/types.ts"]
     },
-    "lib": ["DOM"]
+    "lib": ["DOM", "ES2021"]
   },
-  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*"]
-  
+  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch.js"]
 }

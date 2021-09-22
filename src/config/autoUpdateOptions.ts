@@ -1,4 +1,4 @@
-import { AutoUpdateOptions } from "@customTypes/types";
+import { AutoUpdateOptions } from "@customTypes";
 
 export const autoUpdateOptions: AutoUpdateOptions = {
   port: 3000,

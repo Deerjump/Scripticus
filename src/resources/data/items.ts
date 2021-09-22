@@ -1,4 +1,4 @@
-import { Items } from '@customTypes/types';
+import { Items } from '@customTypes';
 
 const items: Items = {
   "Copper": {

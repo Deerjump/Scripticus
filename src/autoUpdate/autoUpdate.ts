@@ -1,4 +1,4 @@
-import { AutoUpdateOptions, Scripticus } from '@customTypes/types';
+import { AutoUpdateOptions, Scripticus } from '@customTypes';
 import { Logger } from '../utils/logger';
 import { exec } from 'child_process';
 import express from 'express';

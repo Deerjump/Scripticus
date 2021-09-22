@@ -1,5 +1,5 @@
 import aliasRepository from "./aliasRepository";
-import { Items } from "@customTypes/types";
+import { Items } from "@customTypes";
 import items from "../resources/data/items";
 
 function processJson(): Items {

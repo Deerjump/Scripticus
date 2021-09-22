@@ -1,7 +1,8 @@
-import { Command } from '@customTypes/types';
+import { Command } from '@customTypes';
 import { Message, MessageEmbed } from 'discord.js';
 import { Logger } from '../utils/logger';
 import fetch from 'node-fetch';
+import { noMentions } from '../utils/utils';
 
 const logger = new Logger('Wiki');
 const wikiUrl = 'https://idleon.info/';
@@ -24,7 +25,7 @@ class WikiCommand implements Command {
               'Supply a search term!\n!wiki Mafioso'
             ),
         ],
-        allowedMentions: { users: [] },
+        ...noMentions,
       });
     }
 
@@ -33,7 +34,7 @@ class WikiCommand implements Command {
       const res = await fetch(
         `https://idleon.info/w/index.php?${query.toString()}`
       );
-      await message.reply({ content: res.url, allowedMentions: { users: [] } });
+      await message.reply({ content: res.url, ...noMentions });
     } catch (err) {
       logger.error(err);
     }

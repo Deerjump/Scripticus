@@ -2,7 +2,7 @@ import {
   GuildSettings,
   GuildSettingsDto,
   Subscriber,
-} from "@customTypes/types";
+} from "@customTypes";
 import { Schema, model } from "mongoose";
 
 export const SubscriberModel = model<Subscriber>(
