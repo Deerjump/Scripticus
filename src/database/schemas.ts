@@ -1,17 +1,8 @@
 import {
   GuildSettings,
   GuildSettingsDto,
-  Subscriber,
 } from "@customTypes";
 import { Schema, model } from "mongoose";
-
-export const SubscriberModel = model<Subscriber>(
-  "subscriber",
-  new Schema<Subscriber>({
-    userId: { type: String, required: true },
-    hours: { type: Number, required: true },
-  })
-);
 
 const GuildSettingsSchema = new Schema<GuildSettings>({
   prefix: { type: String, required: false },

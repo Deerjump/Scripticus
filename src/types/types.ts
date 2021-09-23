@@ -9,16 +9,6 @@ export interface GuildSettingsDto {
   settings: GuildSettings;
 }
 
-export interface Subscriber {
-  userId: string;
-  hours: number;
-}
-
-export interface ProcessedSubscribers {
-  toUpdate: Subscriber[];
-  toRemove: Subscriber[];
-}
-
 export interface Event {
   name: string;
   once?: boolean;
@@ -61,16 +51,10 @@ export interface Database {
   disconnect: () => Promise<void>;
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
-  getSubscribers: () => Promise<Subscriber[]>;
-  getSubscriber: (userId: string) => Promise<Subscriber>;
   updateGuildSettings: (
     guildId: string,
     settings: GuildSettings
   ) => Promise<void>;
-  updateSubscriber: (subscriber: Subscriber) => Promise<void>;
-  updateSubscribers: (subscribers: Subscriber[]) => Promise<void>;
-  removeSubscriber: (unsub: Subscriber) => Promise<void>;
-  removeSubscribers: (unsubs: Subscriber[]) => Promise<void>;
 }
 
 export interface ScripticusOptions {
