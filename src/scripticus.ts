@@ -67,7 +67,6 @@ export class ScripticusBot extends Client implements Scripticus {
     for (const file of commandFiles) {
       const { command }: CommandImport = await import(`./commands/${file}`);
 
-      command.init?.(this);
       this.commands.set(command.name, command);
       this.cooldowns.set(command.name, new Collection<string, number>());
     }
@@ -101,13 +100,15 @@ export class ScripticusBot extends Client implements Scripticus {
     );
   }
 
-  async login(token: string) {
-    await this.loadEvents();
-    await this.loadCommands();
+  async login(token: string): Promise<string> {
     await this.db.connectToDatabase();
     await this.loadGuildSettings();
+    await this.loadEvents();
+    await this.loadCommands();
+    await super.login(token);
 
-    return super.login(token);
+    this.commands.forEach((command) => command.init?.(this));
+    return 'HIDDEN TOKEN';    
   }
 
   async stop() {
