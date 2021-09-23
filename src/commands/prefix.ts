@@ -18,7 +18,7 @@ class PrefixCommand implements Command {
   public async execute(message: Message, args: string[]) {
     const whitelist = ['90598254688874496', '191085842469486592'];
     if (!whitelist.includes(message.author.id)) {
-      message.reply({
+      return message.reply({
         content: 'You cannot use this command!',
         ...noMentions,
       });
