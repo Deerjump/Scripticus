@@ -5,7 +5,7 @@ import {
   Subscriber,
 } from '@customTypes';
 import { GuildSettingsModel, SubscriberModel } from './schemas';
-import { connect, connection } from 'mongoose';
+import { connect, connection, Model } from 'mongoose';
 import { Logger } from '../utils/logger';
 
 export class DatabaseDriver implements Database {
@@ -15,6 +15,17 @@ export class DatabaseDriver implements Database {
   constructor(mongoUrl: string) {
     this.mongoUrl = mongoUrl;
     this.logger = new Logger('MongoDb');
+  }
+
+  private getProjectionFromModel(model: Model<any>) {
+    const projection = Object.keys(model.schema.obj).reduce(
+      (acc, key) => {
+        return { [key]: 1, ...acc };
+      },
+      { _id: 0 }
+    );
+
+    return projection;
   }
 
   public async connectToDatabase() {
@@ -39,22 +50,36 @@ export class DatabaseDriver implements Database {
   }
 
   public async getAllGuildSettings(): Promise<GuildSettingsDto[]> {
-    return await GuildSettingsModel.find().lean();
+    return await GuildSettingsModel.find(
+      {},
+      this.getProjectionFromModel(GuildSettingsModel)
+    ).lean();
   }
 
   public async getGuildSettings(guildId: string): Promise<GuildSettingsDto> {
-    return await GuildSettingsModel.findOne({ guildId }).lean();
+    return await GuildSettingsModel.findOne(
+      { guildId },
+      this.getProjectionFromModel(GuildSettingsModel)
+    ).lean();
   }
 
   public async getSubscribers(): Promise<Subscriber[]> {
-    return await SubscriberModel.find().lean();
+    return await SubscriberModel.find(
+      {},
+      this.getProjectionFromModel(SubscriberModel)
+    ).lean();
   }
 
-  public async getSubscriber(userId: string) {
-    return await SubscriberModel.findOne({ userId }).lean();
+  public async getSubscriber(userId: string): Promise<Subscriber> {
+    return await SubscriberModel.findOne(
+      { userId },
+      this.getProjectionFromModel(SubscriberModel)
+    ).lean();
   }
 
   public async updateGuildSettings(guildId: string, settings: GuildSettings) {
+    if (guildId == undefined || settings == undefined) return;
+    
     await GuildSettingsModel.findOneAndUpdate(
       { guildId },
       { settings },
@@ -63,17 +88,13 @@ export class DatabaseDriver implements Database {
   }
 
   public async updateSubscriber(sub: Subscriber) {
-    if (sub == null) return;
+    if (sub == undefined) return;
 
-    try {
-      await SubscriberModel.findOneAndUpdate(
-        { userId: sub.userId },
-        { hours: sub.hours },
-        { upsert: true }
-      );
-    } catch (err) {
-      this.logger.error(err);
-    }
+    await SubscriberModel.findOneAndUpdate(
+      { userId: sub.userId },
+      { hours: sub.hours },
+      { upsert: true }
+    );
   }
 
   public async updateSubscribers(subscribers: Subscriber[]) {
@@ -100,7 +121,7 @@ export class DatabaseDriver implements Database {
   }
 
   public async removeSubscriber({ userId }: Subscriber) {
-    if (userId == null) return;
+    if (userId == undefined) return;
 
     const result = await SubscriberModel.findOneAndDelete({ userId });
     if (result?.$isDeleted) this.logger.log('Removed 1 Subscriber!');
