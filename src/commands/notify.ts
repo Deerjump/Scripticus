@@ -1,4 +1,9 @@
-import { Command, Scripticus, Subscriber } from '@customTypes';
+import {
+  Command,
+  ProcessedSubscribers,
+  Scripticus,
+  Subscriber,
+} from '@customTypes';
 import { isNumber, noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
 import { Message } from 'discord.js';
@@ -12,7 +17,7 @@ class NotifyCommand implements Command {
   private readonly logger: Logger;
   // TODO: look into Moment/Date
   // TODO: Fix times
-  private readonly cronSchedule = '0 55 */1 * * *';
+  private readonly cronSchedule = '*/3 * * * * *';
   public readonly name = 'notify';
   public readonly description =
     'Subscribe to an hourly Baba Yaga/Spikefall reminder!';
@@ -25,6 +30,21 @@ class NotifyCommand implements Command {
     this.cronJob = new CronJob(this.cronSchedule, () => this.cronFunction());
   }
 
+  private async processSubscribers(
+    subs: Subscriber[]
+  ): Promise<ProcessedSubscribers> {
+    const toUpdate: Subscriber[] = [];
+    const toRemove: Subscriber[] = [];
+    return new Promise((resolve) => {
+      subs.forEach(async (sub, index) => {
+        await this.notifySubscriber(sub.userId);
+        --sub.hours > 0 ? toUpdate.push(sub) : toRemove.push(sub);
+
+        if (index === subs.length - 1) resolve({ toUpdate, toRemove });
+      });
+    });
+  }
+
   private async cronFunction() {
     const { db } = this.client;
     try {
@@ -35,17 +55,7 @@ class NotifyCommand implements Command {
         `Notifying ${subs.length} ${subs.length > 1 ? 'users' : 'user'}.`
       );
 
-      type Acc = { [key: string]: Subscriber[] };
-      const { toRemove, toUpdate } = subs.reduce<Acc>((acc, curr) => {
-        if (acc.toUpdate == null) acc.toUpdate = [];
-        if (acc.toRemove == null) acc.toRemove = [];
-        this.notifySubscriber(curr.userId).catch(err => {throw err});
-        --curr.hours;
-
-        if (curr.hours > 0) acc.toUpdate = [curr, ...acc.toUpdate];
-        else acc.toRemove = [curr, ...acc.toRemove];
-        return acc;
-      }, {});
+      const { toUpdate, toRemove } = await this.processSubscribers(subs);
 
       db.removeSubscribers(toRemove);
       db.updateSubscribers(toUpdate);
@@ -55,17 +65,13 @@ class NotifyCommand implements Command {
   }
 
   private async notifySubscriber(id: string) {
-    try {
-      const user = await this.client.users.fetch(id);
-      if (user) {
-        // TODO: rework pathing variable
-        return user.send({
-          files: [path.join(__dirname + '/../../../resources/spike-baba-alert.gif')],
-        });
-      }
-    } catch (error) {
-      this.logger.error(error);
+    const user = await this.client.users.fetch(id);
+    if (user) {
+      return user.send({
+        files: ['resources/spike-baba-alert.gif'],
+      });
     }
+    this.logger.error(`Error fetching user: ${id}`);
   }
 
   public init(client: Scripticus) {
@@ -90,7 +96,7 @@ class NotifyCommand implements Command {
       if (param === 'check') {
         return message.reply({
           content:
-            subscriber != null
+            subscriber != undefined
               ? `You have ${subscriber.hours} hours left!`
               : "You aren't subscribed to notifications!",
           ...noMentions,
@@ -98,7 +104,7 @@ class NotifyCommand implements Command {
       }
 
       if (this.stopKeywords.includes(param)) {
-        if (subscriber == null) {
+        if (subscriber == undefined) {
           return message.reply({
             content: "You're not subscribed!",
             ...noMentions,
@@ -126,7 +132,7 @@ class NotifyCommand implements Command {
       });
     }
 
-    if (subscriber != null && subscriber.hours >= hours) {
+    if (subscriber != undefined && subscriber.hours >= hours) {
       return message.reply({
         content: `You're already subscribed! You have ${subscriber.hours} hours left`,
         ...noMentions,
