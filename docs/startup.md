@@ -1,3 +1,5 @@
+# THIS IS CURRENTLY OUT OF DATE!!!
+
 # Running your own test version of the bot
 1. Download the code
 2. You'll need to go [here](https://discord.com/developers/applications) 
@@ -17,12 +19,11 @@
 TOKEN=YOUR_TOKEN_HERE
 
 /* 
-  OPTIONAL: Only if you need database functionality for your feature.
+  REQUIRED: The database(currently MongoDB) is used for guild settings and the NotifyCommand.
   This file is not commited to GitHub and therefore safe to keep 
   your username, password and token safe.
 */
-MONGO_USER=YOUR_MONGO_USER
-MONGO_PASS=YOUR_MONGO_PASS
+DATABASE_URL=DATABASE_
 ```
 6. Make sure you have [node.js](https://nodejs.org/) installed
 7. You should navigate to the `root directory` of the project and run: `npm install` in your terminal
