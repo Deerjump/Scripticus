@@ -23,7 +23,7 @@ class CraftCommand implements Command {
     const amount = isPositive ? Number(lastArg) : 1;
     const item = itemRepository.getItem(userInput);
 
-    if (item == null) {
+    if (item == undefined) {
       return message.reply({
         embeds: [
           new MessageEmbed().setDescription(
@@ -34,7 +34,7 @@ class CraftCommand implements Command {
       });
     }
 
-    if (item.recipeData == null) {
+    if (item.recipeData == undefined) {
       return message.reply({
         content: `${item.displayName} doesn't have a crafting recipe!`,
         ...noMentions,
@@ -146,7 +146,7 @@ class CraftCommand implements Command {
     recipeTextArr: string[] = []
   ) {
     const sorted = Object.values(recipe).sort((a) => {
-      return a.recipe == null ? -1 : 1;
+      return a.recipe == undefined ? -1 : 1;
     });
 
     for (const item of sorted) {
@@ -155,7 +155,7 @@ class CraftCommand implements Command {
       const line = `${indent}- ${item.name} (x${amount})`;
       recipeTextArr.push(line);
 
-      if (item.recipe == null) continue;
+      if (item.recipe == undefined) continue;
       this.generateRecipeText(item.recipe, depth + 1, amount, recipeTextArr);
     }
     return recipeTextArr.join('\n');
@@ -170,7 +170,7 @@ class CraftCommand implements Command {
         name: item.displayName,
         amount: Number(itemQty),
         recipe:
-          item.recipeData == null
+          item.recipeData == undefined
             ? undefined
             : this.generateRecipe(item.recipeData),
       };

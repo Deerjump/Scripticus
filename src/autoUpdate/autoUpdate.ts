@@ -15,7 +15,7 @@ class WebhookListener {
   private readonly secret: string;
 
   constructor(client: Scripticus, secret: string, { branch, port }: AutoUpdateOptions) {
-    if (secret == null) throw TypeError('secret cannot be null!\nConsider disabling auto-update in the options.')
+    if (secret == undefined) throw TypeError('secret cannot be undefined!\nConsider disabling auto-update in the options.')
     this.secret = secret;
     this.PORT = port;
     this.client = client;

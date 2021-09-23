@@ -9,10 +9,10 @@ function isOnCooldown(
   userId: string,
   cooldowns: Collection<string, number> | undefined
 ) {
-  if (cooldowns == null || cooldowns.size === 0) return false;
+  if (cooldowns == undefined || cooldowns.size === 0) return false;
   const expiration = cooldowns.get(userId);
 
-  return expiration != null && Date.now() < expiration;
+  return expiration != undefined && Date.now() < expiration;
 }
 
 function putOnCooldown(
@@ -20,7 +20,7 @@ function putOnCooldown(
   command: Command | undefined,
   { defaultCooldown, cooldowns }: Scripticus
 ) {
-  if (command == null) return;
+  if (command == undefined) return;
   const cmdCooldowns = cooldowns.get(command.name)!;
   const cooldown = (command.cooldown ?? defaultCooldown) * 1000;
 
@@ -71,15 +71,15 @@ const event: Event = {
     const command =
       client.commands.get(commandName) ||
       client.commands.find(
-        (cmd) => cmd.aliases != null && cmd.aliases.includes(commandName)
+        (cmd) => cmd.aliases != undefined && cmd.aliases.includes(commandName)
       );
 
-    if (command == null) return;
+    if (command == undefined) return;
 
     // Handles command uses with missing arguments
     if (command.args && args.length === 0) {
       let reply = `You didn't provide any arguments, ${message.author}`;
-      if (command.usage != null) {
+      if (command.usage != undefined) {
         reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
       }
 

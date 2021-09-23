@@ -50,9 +50,9 @@ class HelpCommand implements Command {
     const name = args[0].toLowerCase();
     const command =
       commands.get(name) ||
-      commands.find((c) => c.aliases != null && c.aliases.includes(name));
+      commands.find((c) => c.aliases != undefined && c.aliases.includes(name));
 
-    if (command == null) {
+    if (command == undefined) {
       return message.reply({
         content: "That's not a valid command",
         ...noMentions,
@@ -61,11 +61,11 @@ class HelpCommand implements Command {
 
     embed.setTitle(`**Command**: *${command.name}*`);
     embed.addField('Description:', command.description);
-    if (command.aliases != null)
+    if (command.aliases != undefined)
       embed.addField('Aliases:', command.aliases.join(', '));
-    if (command.usage != null)
+    if (command.usage != undefined)
       embed.addField('Usage:', `<prefix>${command.name} ${command.usage}`);
-    if (command.options != null) embed.addField('Options:', command.options);
+    if (command.options != undefined) embed.addField('Options:', command.options);
 
     embed.addField(
       'Cooldown:',

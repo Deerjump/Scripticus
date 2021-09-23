@@ -18,7 +18,7 @@ class MonsterRepository {
         // Filter out the world bosses, placeholder enemies, and special non enemy things
         .filter(
           ([monsterId, monster]) =>
-            monster.Attacks != null &&
+            monster.Attacks != undefined &&
             monster.Type !== 'FISH_TYPE' &&
             !(monster.MoveSPEED == 0 && monster.AFKtype === 'FIGHTING') &&
             !ignoredEnemies.includes(monsterId)
@@ -35,7 +35,7 @@ class MonsterRepository {
     return (
       Object.entries(monsters)
         // Filter for the world bosses
-        .filter(([, value]) => value.Attacks == null)
+        .filter(([, value]) => value.Attacks == undefined)
         .reduce((acc, [key, boss]) => {
           return { ...acc, [key]: boss };
         }, {})
@@ -53,7 +53,7 @@ class MonsterRepository {
 
   getMonster(name: string) {
     const boss = this.searchObjFor(this.bosses, name);
-    if (boss != null) return boss;
+    if (boss != undefined) return boss;
 
     return this.searchObjFor(this.monsters, name);
   }

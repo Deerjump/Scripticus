@@ -119,7 +119,7 @@ class InfoCommand implements Command {
           { name: '\u200B', value: '\u200B', inline: true },
           { name: '⭐ Base XP', value: monster.ExpGiven, inline: true }
         );
-        if (monster.Attacks == null)
+        if (monster.Attacks == undefined)
           fields.push(
             {
               name: '⚰️ Respawn Time',
@@ -177,24 +177,24 @@ class InfoCommand implements Command {
     );
     const fields: EmbedFieldData[] = [];
 
-    if (item.description != null)
+    if (item.description != undefined)
       embed.setDescription(item.description.join(' '));
 
     if (item.typeGen === 'aWeapon')
       fields.push({ name: 'Type', value: item.Type });
 
-    if (item.Class != null) {
+    if (item.Class != undefined) {
       fields.push({ name: 'Class', value: item.Class });
       fields.push({ name: 'Stats', value: '--------------------------------' });
-      if (item.Weapon_Power != null)
+      if (item.Weapon_Power != undefined)
         fields.push({ name: '⚔️ WP', value: item.Weapon_Power, inline: true });
-      if (item.STR != null)
+      if (item.STR != undefined)
         fields.push({ name: '✊ STR', value: item.STR, inline: true });
-      if (item.AGI != null)
+      if (item.AGI != undefined)
         fields.push({ name: '🦶 AGI', value: item.AGI, inline: true });
-      if (item.WIS != null)
+      if (item.WIS != undefined)
         fields.push({ name: '📘 WIS', value: item.WIS, inline: true });
-      if (item.LUK != null)
+      if (item.LUK != undefined)
         fields.push({ name: '🍀 LUK', value: item.LUK, inline: true });
       if (item.Defence)
         fields.push({ name: '🛡️ Defence', value: item.Defence, inline: true });
@@ -204,9 +204,9 @@ class InfoCommand implements Command {
           value: item.Upgrade_Slots_Left,
           inline: true,
         });
-      if (item.miscUp1 != null)
+      if (item.miscUp1 != undefined)
         fields.push({ name: 'Misc', value: item.miscUp1, inline: true });
-      if (item.miscUp2 != null)
+      if (item.miscUp2 != undefined)
         fields.push({ name: '\u200B', value: item.miscUp2, inline: true });
     }
 
@@ -233,7 +233,7 @@ class InfoCommand implements Command {
         value: this.parseCurrency(Number(item.sellPrice)),
       });
 
-    if (item.sources != null) {
+    if (item.sources != undefined) {
       fields.push({ name: 'Sources', value: item.sources.join(', ') });
     }
 
@@ -280,7 +280,7 @@ class InfoCommand implements Command {
 
       if (interaction.customId === 'monsterBtn') {
         await interaction.update({
-          content: null,
+          content: undefined,
           embeds: [this.getMonsterDetailsEmbed(monster)],
           components: [],
         });
@@ -289,7 +289,7 @@ class InfoCommand implements Command {
 
       if (interaction.customId === 'itemBtn') {
         await interaction.update({
-          content: null,
+          content: undefined,
           embeds: [this.getItemDetailsEmbed(item)],
           components: [],
         });

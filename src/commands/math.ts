@@ -21,7 +21,7 @@ class MathCommand implements Command {
 
     const formula = formulas[option as keyof LavaFormulas];
 
-    if (formula == null) {
+    if (formula == undefined) {
       return message.reply({
         content: `\`${option}\` is not a valid option\n**Options**: ${this.options}`,
         ...noMentions,
