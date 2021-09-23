@@ -72,7 +72,7 @@ class CraftCommand implements Command {
   }
 
   private createMessage(title: string, text: string, row: MessageActionRow) {
-    const description = `${'```'}${text}${'```'}`;
+    const description = `\`\`\`${text}\`\`\``;
     return {
       embeds: [new MessageEmbed().setTitle(title).setDescription(description)],
       components: [row],
