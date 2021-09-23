@@ -3,8 +3,8 @@ import { Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { formulas, LavaFormulas } from '../resources/formulas';
 
-class MathCommand implements Command {
-  public readonly name = 'math';
+class LavaMathCommand implements Command {
+  public readonly name = 'lavamath';
   public readonly description =
     'A few helpful math calculations that LavaFlame2 uses!';
   public readonly options: string;
@@ -47,4 +47,4 @@ class MathCommand implements Command {
   }
 }
 
-export const command = new MathCommand();
+export const command = new LavaMathCommand();
