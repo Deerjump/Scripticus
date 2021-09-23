@@ -1,8 +1,12 @@
 import { Client, Collection, Intents, Message, PartialTypes } from 'discord.js';
-import { Logger } from 'utils/logger';
 
 export interface GuildSettings {
   prefix?: string;
+}
+
+export interface GuildSettingsDto {
+  guildId: string;
+  settings: GuildSettings;
 }
 
 export interface Subscriber {
@@ -10,9 +14,9 @@ export interface Subscriber {
   hours: number;
 }
 
-export interface GuildSettingsDto {
-  guildId: string;
-  settings: GuildSettings;
+export interface ProcessedSubscribers {
+  toUpdate: Subscriber[];
+  toRemove: Subscriber[];
 }
 
 export interface Event {
@@ -58,7 +62,7 @@ export interface Database {
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
   getSubscribers: () => Promise<Subscriber[]>;
-  getSubscriber: (userId: string) => Promise<Subscriber | null>;
+  getSubscriber: (userId: string) => Promise<Subscriber>;
   updateGuildSettings: (
     guildId: string,
     settings: GuildSettings

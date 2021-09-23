@@ -7,11 +7,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 async function main() {
-  const database = new DatabaseDriver(process.env.DATABASE_URL!);
-  const scripticus = new ScripticusBot(database, clientOptions);
-  
+  const scripticus = new ScripticusBot(
+    new DatabaseDriver(process.env.DATABASE_URL!),
+    clientOptions
+  );
+
   if (autoUpdateOptions.enabled) {
-    new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
+    new WebhookListener(
+      scripticus,
+      process.env.SECRET!,
+      autoUpdateOptions
+    ).start();
   }
 
   await scripticus.login(process.env.TOKEN!);

@@ -18,9 +18,10 @@ const GuildSettingsSchema = new Schema<GuildSettings>({
 });
 
 export const GuildSettingsModel = model(
-  "setting",
+  "guildSettings",
   new Schema<GuildSettingsDto>({
     guildId: { type: String, required: true },
     settings: { type: GuildSettingsSchema, required: true },
   })
 );
+  
