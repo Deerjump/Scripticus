@@ -1,6 +1,4 @@
-export interface LavaFormulas {
-  [key: string]: (...args: number[]) => number;
-}
+import { LavaFormulas } from "@customTypes";
 
 export const formulas: LavaFormulas = {
   add: (b, c, e) =>
