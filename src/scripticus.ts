@@ -5,18 +5,22 @@ import * as fs from 'fs';
 import {
   GuildSettings,
   Scripticus,
-  Command,
   Event,
   ScripticusOptions,
-  CommandImport,
   Database,
+  iUserCommand,
+  iMessageCommand,
+  iSlashCommand,
 } from '@customTypes';
 
 export class ScripticusBot extends Client implements Scripticus {
+  private canRegisterCommands = true;
   private readonly logger: Logger;
   readonly defaultPrefix: string;
   readonly defaultCooldown: number;
-  readonly commands: Collection<string, Command>;
+  readonly commands: Collection<string, iSlashCommand>;
+  readonly userCommands: Collection<string, iUserCommand>;
+  readonly messageCommands: Collection<string, iMessageCommand>;
   readonly guildSettings: Collection<string, GuildSettings>;
   readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
@@ -30,7 +34,9 @@ export class ScripticusBot extends Client implements Scripticus {
     const { defaultPrefix, defaultCooldown, startupDisplay } = options;
     this.guildSettings = new Collection<string, GuildSettings>();
     this.cooldowns = new Collection<string, Collection<string, number>>();
-    this.commands = new Collection<string, Command>();
+    this.commands = new Collection<string, iSlashCommand>();
+    this.userCommands = new Collection<string, iUserCommand>();
+    this.messageCommands = new Collection<string, iMessageCommand>();
     this.defaultCooldown = defaultCooldown;
     this.logger = new Logger('Scripticus');
     this.defaultPrefix = defaultPrefix;
@@ -58,23 +64,82 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   private async loadCommands() {
-    this.logger.log('Loading commands...');
-
-    const commandFiles = fs
-      .readdirSync(`${__dirname}/commands`)
-      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
-
-    for (const file of commandFiles) {
-      const { command }: CommandImport = await import(`./commands/${file}`);
-
+    const slashCommands = await this.loadCommandsOf<iSlashCommand>('slash');
+    slashCommands.forEach((command) => {
       this.commands.set(command.name, command);
       this.cooldowns.set(command.name, new Collection<string, number>());
+    });
+
+    // const userCommands = await this.loadCommandsOf<UserCommand>('user');
+    // userCommands.forEach(command => this.userCommands.set(command.name, command));
+
+    // const messageCommands = await this.loadCommandsOf<MessageCommand>('message');
+    // messageCommands.forEach(command => this.messageCommands.set(command.name, command))
+  }
+
+  private async loadCommandsOf<T>(folder: string): Promise<T[]> {
+    this.logger.log(`Loading ${folder} commands...`);
+
+    const promises = await Promise.allSettled(
+      fs
+        .readdirSync(`${__dirname}/commands/${folder}/`)
+        .filter((file) => file.endsWith('.js'))
+        .map(async (file) => await import(`./commands/${folder}/${file}`))
+    );
+
+    const commands = promises
+      .filter((promise) => {
+        if (promise.status === 'rejected') {
+          this.logger.error(promise.reason);
+        }
+        return promise.status === 'fulfilled';
+      })
+      .map(
+        (promise) =>
+          new (promise as PromiseFulfilledResult<any>).value.command(this)
+      );
+
+    this.logger.log(`Loaded ${commands.length} ${folder} commands`);
+    return commands;
+  }
+
+  async registerApplicationCommands() {
+    if (!this.canRegisterCommands) return;
+    this.logger.log('Registering application commands...');
+
+    const devGuildId = '791017497997606922';
+    const toRegister = [
+      ...this.commands /*...this.userCommands, ...this.messageCommands*/,
+    ];
+
+    // register all available slash commands
+    for (const [, command] of toRegister) {
+      if (command.details == null) continue;
+      try {
+        const result = await this.application?.commands.create(command.details, devGuildId);
+        if(result?.name === 'restart') {
+          result.permissions.add({ permissions: [{
+            id: '191085842469486592',
+            type: 'USER',
+            permission: true
+          }]});
+        }
+        this.logger.log(`${command.name} registered`);
+      } catch (err) {
+        this.logger.error(err);
+      }
     }
 
-    this.logger.log(`Loaded ${this.commands.size} commands`);
+    const guild = await this.guilds.fetch(devGuildId);
+    const commands = await guild.commands.fetch();
+    this.canRegisterCommands = false;
+    this.logger.log(
+      `Registered ${commands?.size} command${commands?.size === 1 ? '' : 's'}.`
+    );
   }
 
   private async loadGuildSettings() {
+    await this.db.connectToDatabase();
     this.logger.log('Loading guild specific settings...');
 
     const results = await this.db.getAllGuildSettings();
@@ -101,14 +166,12 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   async login(token: string): Promise<string> {
-    await this.db.connectToDatabase();
     await this.loadGuildSettings();
     await this.loadEvents();
     await this.loadCommands();
     await super.login(token);
 
-    this.commands.forEach((command) => command.init?.(this));
-    return 'HIDDEN TOKEN';    
+    return 'HIDDEN TOKEN';
   }
 
   async stop() {
@@ -116,11 +179,9 @@ export class ScripticusBot extends Client implements Scripticus {
       this.logger.log('-----Stopping Scripticus-----');
       await this.db.disconnect();
 
-      this.logger.log('Running command stop() methods');
-      this.commands.forEach((command) => command.stop?.());
-
       this.logger.log('-----Destroying client-----');
       this.destroy();
+
       this.logger.log('-----Exiting process-----');
       process.exit(0);
     } catch (err) {
