@@ -103,7 +103,7 @@ class WebhookListener {
     this.app.all('*', (req, res) => res.status(404).end());
   }
 
-  public start() {
+  start() {
     this.logger.log('Starting WebHookListener');
     this.app.listen(this.PORT, async () => {
       this.logger.log(`Listening on ${this.PORT}`);

@@ -27,7 +27,7 @@ export class DatabaseDriver implements Database {
     return projection;
   }
 
-  public async connectToDatabase() {
+  async connectToDatabase() {
     this.logger.log('Connecting to database...');
 
     try {
@@ -38,7 +38,7 @@ export class DatabaseDriver implements Database {
     }
   }
 
-  public async disconnect() {
+  async disconnect() {
     this.logger.log('Disconecting Mongo');
     try {
       await connection.close();
@@ -48,21 +48,21 @@ export class DatabaseDriver implements Database {
     }
   }
 
-  public async getAllGuildSettings(): Promise<GuildSettingsDto[]> {
+  async getAllGuildSettings(): Promise<GuildSettingsDto[]> {
     return await GuildSettingsModel.find(
       {},
       this.getProjectionFromModel(GuildSettingsModel)
     ).lean();
   }
 
-  public async getGuildSettings(guildId: string): Promise<GuildSettingsDto> {
+  async getGuildSettings(guildId: string): Promise<GuildSettingsDto> {
     return await GuildSettingsModel.findOne(
       { guildId },
       this.getProjectionFromModel(GuildSettingsModel)
     ).lean();
   }
 
-  public async updateGuildSettings(guildId: string, settings: GuildSettings) {
+  async updateGuildSettings(guildId: string, settings: GuildSettings) {
     if (guildId == undefined || settings == undefined) return;
     
     await GuildSettingsModel.findOneAndUpdate(
