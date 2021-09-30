@@ -20,15 +20,21 @@ export abstract class ApplicationCommand {
     const regex = /^[[a-z0-9_\]-]{1,32}$/;
     if (!regex.test(name)) {
       throw new TypeError(
-        '"name" must be all lower case without spaces and <32 characters long'
+        '"name" must be all lower case without spaces and less than 32 characters long'
       );
     }
     this.name = name;
   }
 
-  abstract get details(): ApplicationCommandData;
+  get details(): ApplicationCommandData {
+    return {
+      name: this.name,
+      defaultPermission: this.defaultPermission,
+      description: ''
+    };
+  }
+
   abstract execute(...args: any[]): any;
-  abstract handleInteract(interaction: any): any;
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
@@ -50,10 +56,9 @@ export abstract class SlashCommand extends ApplicationCommand {
 
   get details(): ChatInputApplicationCommandData {
     return {
+      ...super.details,
       type: 'CHAT_INPUT',
-      name: this.name,
       description: this.description,
-      defaultPermission: this.defaultPermission,
       options: this.options,
     };
   }
@@ -69,9 +74,8 @@ export abstract class ContextMenuCommand extends ApplicationCommand {
 export abstract class UserCommand extends ContextMenuCommand {
   get details(): UserApplicationCommandData {
     return {
+      ...super.details,
       type: 'USER',
-      name: this.name,
-      defaultPermission: this.defaultPermission,
     };
   }
 }
@@ -79,9 +83,8 @@ export abstract class UserCommand extends ContextMenuCommand {
 export abstract class MessageCommand extends ContextMenuCommand {
   get details(): MessageApplicationCommandData {
     return {
+      ...super.details,
       type: 'MESSAGE',
-      name: this.name,
-      defaultPermission: this.defaultPermission,
     };
   }
 }

@@ -21,7 +21,7 @@ class CommandsCommand extends SlashCommand {
     ];
   }
 
-  handleMessage(message: Message, args: string[]) {
+  handleMessage() {
     return;
   }
 
