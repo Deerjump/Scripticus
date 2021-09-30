@@ -1,35 +1,30 @@
-import { Scripticus, iSlashCommand } from '@customTypes';
+import { OptionBuilder } from '../../utils/builders/optionBuilder';
+import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
+import { Scripticus } from '@customTypes';
 import {
-  ChatInputApplicationCommandData,
+  ApplicationCommandOptionData,
   CommandInteraction,
   Message,
 } from 'discord.js';
 
-class PrefixCommand implements iSlashCommand {
-  readonly name = 'prefix';
-  readonly description = 'Changes prefix for current server';
+class PrefixCommand extends SlashCommand {
+  protected get options(): ApplicationCommandOptionData[] {
+    return [
+      new OptionBuilder('prefix', 'STRING')
+        .withDescription('The new bot prefix for your guild')
+        .require()
+        .build(),
+    ];
+  }
+
   readonly args = true;
   readonly usage = '<new prefix>';
-  readonly details: ChatInputApplicationCommandData;
-  private readonly logger: Logger;
+  private readonly logger = new Logger('Prefix');
 
   constructor() {
-    this.details = {
-      name: this.name,
-      description: this.description,
-      type: 'CHAT_INPUT',
-      options: [
-        {
-          name: 'prefix',
-          description: 'The new bot prefix for your guild',
-          type: 'STRING',
-          required: true,
-        },
-      ],
-    };
-    this.logger = new Logger('Prefix');
+    super('prefix', 'Changes prefix for current server');
   }
 
   async execute(

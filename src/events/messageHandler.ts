@@ -1,7 +1,8 @@
-import { Event, Scripticus, iSlashCommand } from '@customTypes';
+import { Event, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
+import { SlashCommand } from 'src/commands/commandClasses';
 
 const logger = new Logger('MessageCreate');
 
@@ -17,7 +18,7 @@ function isOnCooldown(
 
 function putOnCooldown(
   userId: string,
-  command: iSlashCommand | undefined,
+  command: SlashCommand | undefined,
   { defaultCooldown, cooldowns }: Scripticus
 ) {
   if (command == undefined) return;

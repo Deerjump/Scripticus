@@ -1,5 +1,5 @@
-import { Scripticus, iSlashCommand } from '@customTypes';
 import { hidden, noMentions } from '../../utils/utils';
+import { Scripticus } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
 import {
   ApplicationCommandOptionData,
@@ -24,13 +24,12 @@ class HelpCommand extends SlashCommand {
       hidden,
     ];
   }
-  private readonly client: Scripticus;
-  constructor(client: Scripticus) {
+  constructor(private client: Scripticus) {
     super('help', 'List all of my commands or info about a specific command');
     this.client = client;
   }
 
-  execute(option: string, commands: Collection<string, iSlashCommand>) {
+  execute(option: string, commands: Collection<string, SlashCommand>) {
     const embed = new MessageEmbed().setColor('#00FF00');
 
     if (option == undefined) {

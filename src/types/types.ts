@@ -1,16 +1,9 @@
+import { Client, Collection, Intents, Message, PartialTypes } from 'discord.js';
 import {
-  ApplicationCommandData,
-  ChatInputApplicationCommandData,
-  Client,
-  Collection,
-  CommandInteraction,
-  ContextMenuInteraction,
-  Intents,
-  Message,
-  MessageApplicationCommandData,
-  PartialTypes,
-  UserApplicationCommandData,
-} from 'discord.js';
+  SlashCommand,
+  UserCommand,
+  MessageCommand,
+} from 'src/commands/commandClasses';
 
 export interface GuildSettings {
   prefix?: string;
@@ -30,52 +23,18 @@ export interface Event {
 export interface Scripticus extends Client {
   readonly defaultPrefix: string;
   readonly defaultCooldown: number;
-  readonly commands: Collection<string, iSlashCommand>;
-  readonly userCommands: Collection<string, iUserCommand>;
-  readonly messageCommands: Collection<string, iMessageCommand>;
+  readonly commands: Collection<string, SlashCommand>;
+  readonly userCommands: Collection<string, UserCommand>;
+  readonly messageCommands: Collection<string, MessageCommand>;
   readonly guildSettings: Collection<string, GuildSettings>;
   readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
-  registerApplicationCommands: () => Promise<void>;
+  registerApplicationCommands: (botToken: string) => Promise<void>;
   getPrefix: (message: Message) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => Promise<void>;
   stop: () => void;
   login: (token: string) => Promise<string>;
 }
-
-export interface Command {
-  readonly name: string;
-  readonly details?: ApplicationCommandData;
-
-  execute?: (...args: any[]) => any;
-}
-
-export interface iSlashCommand extends Command {
-  readonly description: string;
-  readonly aliases?: string[];
-  readonly usage?: string;
-  readonly args?: boolean;
-  readonly details?: ChatInputApplicationCommandData;
-
-  handleMessage: (message: Message, args: string[]) => any;
-  handleInteract?: (interaction: CommandInteraction) => any;
-}
-
-export interface iUserCommand extends iContextMenuCommand {
-  readonly details: UserApplicationCommandData;
-}
-
-export interface iMessageCommand extends iContextMenuCommand {
-  readonly details: MessageApplicationCommandData;
-}
-
-export interface iContextMenuCommand extends Command {
-  handleInteract: (interaction: ContextMenuInteraction) => any;
-}
-
-export type CommandImport = {
-  command: Command;
-};
 
 export interface Database {
   connectToDatabase: () => Promise<void>;
