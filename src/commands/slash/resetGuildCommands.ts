@@ -1,23 +1,20 @@
-import { Scripticus, iSlashCommand } from '@customTypes';
+import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
+import { Scripticus } from '@customTypes';
 import {
   Message,
   CommandInteraction,
   Guild,
-  ChatInputApplicationCommandData,
+  ApplicationCommandOptionData,
 } from 'discord.js';
 
-class ResetCommand implements iSlashCommand {
-  readonly name = 'commandsreset';
-  readonly description = 'Reset the application commands in the current server';
-  details: ChatInputApplicationCommandData;
+class ResetCommand extends SlashCommand {
+  protected get options(): ApplicationCommandOptionData[] {
+    return [];
+  }
 
   constructor() {
-    this.details = {
-      name: this.name,
-      description: this.description,
-      type: 'CHAT_INPUT',
-    };
+    super('commandsreset', 'Reset the application commands in the current server');
   }
 
   async execute(client: Scripticus, guild: Guild | null) {
