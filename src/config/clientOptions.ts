@@ -23,3 +23,7 @@ export const clientOptions: ScripticusOptions = {
     "*********************************************************",
   ].join("\n")
 };
+
+export const runOptions = {
+  registerCommands: false
+}

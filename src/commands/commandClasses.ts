@@ -12,7 +12,7 @@ import {
 
 export abstract class ApplicationCommand {
   protected defaultPermission = true;
-  protected permissions: ApplicationCommandPermissions[] = [];
+  permissions: ApplicationCommandPermissions[] = [];
   name: string;
 
   constructor(name: string) {

@@ -1,6 +1,6 @@
 import { autoUpdateOptions } from './config/autoUpdateOptions';
 import { WebhookListener } from './autoUpdate/autoUpdate';
-import { clientOptions } from './config/clientOptions';
+import { clientOptions, runOptions } from './config/clientOptions';
 import { DatabaseDriver } from './database/mongo';
 import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
@@ -21,6 +21,9 @@ async function main() {
   }
 
   await scripticus.login(process.env.TOKEN!);
+  if (runOptions.registerCommands) {
+    await scripticus.registerApplicationCommands(process.env.TOKEN!);
+  }
 }
 
 main();

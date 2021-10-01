@@ -7,8 +7,6 @@ const event: Event = {
   name: 'ready',
   once: true,
   async execute(client: Scripticus) {
-    await client.registerApplicationCommands();
-
     logger.log(`${client.user?.username} is ready!`);
   }
 } 

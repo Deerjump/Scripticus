@@ -8,39 +8,33 @@ import {
   Event,
   ScripticusOptions,
   Database,
-  iUserCommand,
-  iMessageCommand,
-  iSlashCommand,
 } from '@customTypes';
+import {
+  MessageCommand,
+  SlashCommand,
+  UserCommand,
+} from './commands/commandClasses';
 
 export class ScripticusBot extends Client implements Scripticus {
-  private canRegisterCommands = true;
-  private readonly logger: Logger;
-  readonly defaultPrefix: string;
+  readonly cooldowns = new Collection<string, Collection<string, number>>();
+  readonly messageCommands = new Collection<string, MessageCommand>();
+  readonly guildSettings = new Collection<string, GuildSettings>();
+  readonly userCommands = new Collection<string, UserCommand>();
+  readonly commands = new Collection<string, SlashCommand>();
+  private logger = new Logger('Scripticus');
   readonly defaultCooldown: number;
-  readonly commands: Collection<string, iSlashCommand>;
-  readonly userCommands: Collection<string, iUserCommand>;
-  readonly messageCommands: Collection<string, iMessageCommand>;
-  readonly guildSettings: Collection<string, GuildSettings>;
-  readonly db: Database;
-  readonly cooldowns: Collection<string, Collection<string, number>>;
+  readonly defaultPrefix: string;
 
-  constructor(db: Database, options: ScripticusOptions) {
+  constructor(public readonly db: Database, options: ScripticusOptions) {
     super({
       intents: options.intents,
       partials: options.partials,
     });
 
     const { defaultPrefix, defaultCooldown, startupDisplay } = options;
-    this.guildSettings = new Collection<string, GuildSettings>();
-    this.cooldowns = new Collection<string, Collection<string, number>>();
-    this.commands = new Collection<string, iSlashCommand>();
-    this.userCommands = new Collection<string, iUserCommand>();
-    this.messageCommands = new Collection<string, iMessageCommand>();
     this.defaultCooldown = defaultCooldown;
-    this.logger = new Logger('Scripticus');
     this.defaultPrefix = defaultPrefix;
-    this.db = db;
+
     console.log(chalk.yellow(startupDisplay));
   }
 
@@ -64,7 +58,7 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   private async loadCommands() {
-    const slashCommands = await this.loadCommandsOf<iSlashCommand>('slash');
+    const slashCommands = await this.loadCommandsOf<SlashCommand>('slash');
     slashCommands.forEach((command) => {
       this.commands.set(command.name, command);
       this.cooldowns.set(command.name, new Collection<string, number>());
@@ -80,59 +74,60 @@ export class ScripticusBot extends Client implements Scripticus {
   private async loadCommandsOf<T>(folder: string): Promise<T[]> {
     this.logger.log(`Loading ${folder} commands...`);
 
-    const promises = await Promise.allSettled(
+    const imports = await Promise.all(
       fs
         .readdirSync(`${__dirname}/commands/${folder}/`)
         .filter((file) => file.endsWith('.js'))
-        .map(async (file) => await import(`./commands/${folder}/${file}`))
+        .map(async (file) => {
+          try {
+            return await import(`./commands/${folder}/${file}`);
+          } catch (err) {
+            this.logger.error(`Error loading ${file}`);
+            this.logger.error(err);
+          }
+        })
     );
 
-    const commands = promises
-      .filter((promise) => {
-        if (promise.status === 'rejected') {
-          this.logger.error(promise.reason);
-        }
-        return promise.status === 'fulfilled';
-      })
-      .map(
-        (promise) =>
-          new (promise as PromiseFulfilledResult<any>).value.command(this)
-      );
+    const commands = imports.map(
+      (imported) => new imported.command(this)
+    );
 
     this.logger.log(`Loaded ${commands.length} ${folder} commands`);
     return commands;
   }
 
-  async registerApplicationCommands() {
-    if (!this.canRegisterCommands) return;
+  // The token will potentially be necessary. Just leaving it for now.
+  async registerApplicationCommands(botToken: string) {
     this.logger.log('Registering application commands...');
-
     const devGuildId = '791017497997606922';
     const toRegister = [
       ...this.commands /*...this.userCommands, ...this.messageCommands*/,
     ];
 
-    // register all available slash commands
-    for (const [, command] of toRegister) {
-      if (command.details == null) continue;
-      try {
-        const result = await this.application?.commands.create(command.details, devGuildId);
-        if(result?.name === 'restart') {
-          result.permissions.add({ permissions: [{
-            id: '191085842469486592',
-            type: 'USER',
-            permission: true
-          }]});
+    const promises = toRegister
+      .filter(([, command]) => command.details != null)
+      .map(async ([, command]) => {
+        try {
+          const result = await this.application?.commands.create(
+            command.details,
+            devGuildId
+          );
+          this.logger.log(`${command.name} registered`);
+
+          if (command.permissions.length > 0) {
+            await result?.permissions.add({ permissions: command.permissions });
+            this.logger.log(`Added permissions to ${command.name}`);
+          }
+        } catch (err) {
+          this.logger.error(err);
         }
-        this.logger.log(`${command.name} registered`);
-      } catch (err) {
-        this.logger.error(err);
-      }
-    }
+      });
+
+    await Promise.all(promises);
 
     const guild = await this.guilds.fetch(devGuildId);
     const commands = await guild.commands.fetch();
-    this.canRegisterCommands = false;
+
     this.logger.log(
       `Registered ${commands?.size} command${commands?.size === 1 ? '' : 's'}.`
     );
