@@ -74,24 +74,23 @@ export class ScripticusBot extends Client implements Scripticus {
   private async loadCommandsOf<T>(folder: string): Promise<T[]> {
     this.logger.log(`Loading ${folder} commands...`);
 
-    const promises = await Promise.allSettled(
+    const imports = await Promise.all(
       fs
         .readdirSync(`${__dirname}/commands/${folder}/`)
         .filter((file) => file.endsWith('.js'))
-        .map(async (file) => await import(`./commands/${folder}/${file}`))
+        .map(async (file) => {
+          try {
+            return await import(`./commands/${folder}/${file}`);
+          } catch (err) {
+            this.logger.error(`Error loading ${file}`);
+            this.logger.error(err);
+          }
+        })
     );
 
-    const commands = promises
-      .filter((promise) => {
-        if (promise.status === 'rejected') {
-          this.logger.error(promise.reason);
-        }
-        return promise.status === 'fulfilled';
-      })
-      .map(
-        (promise) =>
-          new (promise as PromiseFulfilledResult<any>).value.command(this)
-      );
+    const commands = imports.map(
+      (imported) => new imported.command(this)
+    );
 
     this.logger.log(`Loaded ${commands.length} ${folder} commands`);
     return commands;
