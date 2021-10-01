@@ -1,11 +1,15 @@
 import { autoUpdateOptions } from './config/autoUpdateOptions';
 import { WebhookListener } from './autoUpdate/autoUpdate';
-import { clientOptions, runOptions } from './config/clientOptions';
+import { clientOptions } from './config/clientOptions';
 import { DatabaseDriver } from './database/mongo';
 import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
 dotenv.config();
 
+/**
+ * @description this won't register commands. 
+ * @see registerApplicationCommands.ts
+ */
 async function main() {
   const scripticus = new ScripticusBot(
     new DatabaseDriver(process.env.DATABASE_URL!),
@@ -21,9 +25,6 @@ async function main() {
   }
 
   await scripticus.login(process.env.TOKEN!);
-  if (runOptions.registerCommands) {
-    await scripticus.registerApplicationCommands(process.env.TOKEN!);
-  }
 }
 
 main();

@@ -12,6 +12,7 @@ import {
 
 export abstract class ApplicationCommand {
   protected defaultPermission = true;
+  // You can't set permissions on global commands yet, (only guild specific commands) s
   permissions: ApplicationCommandPermissions[] = [];
   name: string;
 
@@ -30,6 +31,7 @@ export abstract class ApplicationCommand {
     return {
       name: this.name,
       defaultPermission: this.defaultPermission,
+      // This description is just to satisfy ApplicationCommandData. Will never be used.
       description: ''
     };
   }

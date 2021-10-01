@@ -41,9 +41,7 @@ class HelpCommand extends SlashCommand {
             (command) =>
               `**${command.name}**: ${
                 command.description
-              }\n    SlashCommand: **${
-                command.details != undefined ? 'Yes' : 'No'
-              }**`
+              }\n`
           )
           .join('\n')
       );

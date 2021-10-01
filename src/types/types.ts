@@ -3,7 +3,7 @@ import {
   SlashCommand,
   UserCommand,
   MessageCommand,
-} from 'src/commands/commandClasses';
+} from '../commands/commandClasses';
 
 export interface GuildSettings {
   prefix?: string;
@@ -29,7 +29,7 @@ export interface Scripticus extends Client {
   readonly guildSettings: Collection<string, GuildSettings>;
   readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
-  registerApplicationCommands: (botToken: string) => Promise<void>;
+  registerApplicationCommands: (devGuildId?: string) => Promise<void>;
   getPrefix: (message: Message) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => Promise<void>;
   stop: () => void;
@@ -51,6 +51,7 @@ export interface ScripticusOptions {
   intents: Intents;
   partials: PartialTypes[];
   defaultPrefix: string;
+  devGuildId?: string;
   defaultCooldown: number;
   startupDisplay: string;
 }
