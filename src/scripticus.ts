@@ -88,48 +88,32 @@ export class ScripticusBot extends Client implements Scripticus {
         })
     );
 
-    const commands = imports.map(
-      (imported) => new imported.command(this)
-    );
+    const commands = imports
+      .filter((imported) => imported != undefined)
+      .map((imported) => new imported.command(this));
 
     this.logger.log(`Loaded ${commands.length} ${folder} commands`);
     return commands;
   }
 
-  // The token will potentially be necessary. Just leaving it for now.
-  async registerApplicationCommands(botToken: string) {
+  async registerApplicationCommands(devGuildId?: string) {
     this.logger.log('Registering application commands...');
-    const devGuildId = '791017497997606922';
-    const toRegister = [
+    const commands = [
       ...this.commands /*...this.userCommands, ...this.messageCommands*/,
     ];
 
-    const promises = toRegister
-      .filter(([, command]) => command.details != null)
-      .map(async ([, command]) => {
-        try {
-          const result = await this.application?.commands.create(
-            command.details,
-            devGuildId
-          );
-          this.logger.log(`${command.name} registered`);
+    const commandManager: any =
+      devGuildId == undefined
+        ? this.application?.commands
+        : (await this.guilds.fetch(devGuildId)).commands;
 
-          if (command.permissions.length > 0) {
-            await result?.permissions.add({ permissions: command.permissions });
-            this.logger.log(`Added permissions to ${command.name}`);
-          }
-        } catch (err) {
-          this.logger.error(err);
-        }
-      });
+    const toRegister = commands
+      .filter(([, command]) => command.details != undefined)
+      .map(([, command]) => command.details);
 
-    await Promise.all(promises);
-
-    const guild = await this.guilds.fetch(devGuildId);
-    const commands = await guild.commands.fetch();
-
+    const results = await commandManager.set(toRegister);
     this.logger.log(
-      `Registered ${commands?.size} command${commands?.size === 1 ? '' : 's'}.`
+      `Registered ${results.size} command${results.size === 1 ? '' : 's'}`
     );
   }
 

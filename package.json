@@ -14,6 +14,7 @@
     "delete": "pm2 delete ecosystem.config.js",
     "logs": "pm2 logs Scripticus",
     "dev": "npm run build && node .",
+    "commandregister": "npm run build && node dist/src/registerCommands.js",
     "updatepm2": "pm2 update",
     "build": "tsc  --project tsconfig.json"
   },
@@ -32,6 +33,7 @@
     "pm2": "^5.1.1"
   },
   "devDependencies": {
+    "@types/node": "^16.10.2",
     "@types/node-fetch": "^2.5.12",
     "typescript": "^4.4.3"
   }

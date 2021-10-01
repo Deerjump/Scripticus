@@ -13,10 +13,9 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "baseUrl": "./",
     /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or JS modules */
     "paths": {
-      "@customTypes": ["src/types/types.ts"]
+      "@customTypes": ["./src/types/types.ts"]
     },
     "lib": ["DOM", "ES2021"]
   },
