@@ -2,7 +2,7 @@ import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
-import { Scripticus } from '@customTypes';
+import { ModerationLevel, Scripticus } from '@customTypes';
 import {
   ApplicationCommandOptionData,
   CommandInteraction,
@@ -10,9 +10,12 @@ import {
 } from 'discord.js';
 
 class PrefixCommand extends SlashCommand {
-  readonly args = true;
-  readonly usage = '<new prefix>';
   private readonly logger = new Logger('Prefix');
+  readonly roleRequired: ModerationLevel = 'MODERATOR';
+  readonly defaultPermission = false;
+  readonly usage = '<new prefix>';
+  readonly global = false;
+  readonly args = true;
 
   protected get options(): ApplicationCommandOptionData[] {
     return [
@@ -25,12 +28,11 @@ class PrefixCommand extends SlashCommand {
 
   constructor() {
     super('prefix', 'Changes prefix for current server');
-    this.defaultPermission = false;
-    // this.permissions.push({
-    //   id: '191085842469486592',
-    //   type: 'USER',
-    //   permission: true,
-    // });
+    this.permissions.push({
+      id: '191085842469486592',
+      type: 'USER',
+      permission: true,
+    });
   }
 
   async execute(prefix: string, client: Scripticus, guildId?: string | null) {
@@ -52,7 +54,8 @@ class PrefixCommand extends SlashCommand {
 
   async handleInteract(interaction: CommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
-    const prefix = interaction.options.getString('prefix')!;``
+    const prefix = interaction.options.getString('prefix')!;
+    ``;
     const { client, guildId } = interaction;
     const response = await this.execute(prefix, client as Scripticus, guildId);
 
@@ -61,13 +64,13 @@ class PrefixCommand extends SlashCommand {
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const newPrefix = args[0];
-    
+
     // const canUse = this.permissions.some((permission) => {
     //   permission.id === message.author.id;
     // });
     const canUse = message.author.id === '191085842469486592';
     if (!canUse) return;
-    
+
     const response = await this.execute(
       newPrefix,
       message.client as Scripticus,

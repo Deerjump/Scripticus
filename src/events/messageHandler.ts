@@ -1,4 +1,4 @@
-import { Event, Scripticus } from '@customTypes';
+import { EventHandler, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
@@ -58,9 +58,9 @@ function handleCooldowns(message: Message, commandName: string): boolean {
   return true;
 }
 
-const event: Event = {
-  name: 'messageCreate',
-  execute: (message: Message) => {
+const event: EventHandler = {
+  event: 'messageCreate',
+  handle: (message: Message) => {
     const client = message.client as Scripticus;
     const prefix = client.getPrefix(message);
 

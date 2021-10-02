@@ -1,12 +1,12 @@
-import { Event, Scripticus } from "@customTypes";
+import { EventHandler, Scripticus } from "@customTypes";
 import { Interaction } from "discord.js";
 import { Logger } from "../utils/logger";
 
 const logger = new Logger('UserCommandHandler');
 
-const event: Event = {
-  name: "interactionCreate",
-  async execute(interaction: Interaction) {
+const event: EventHandler = {
+  event: "interactionCreate",
+  async handle(interaction: Interaction) {
   //   if(!interaction.isContextMenu()) return;
   //   const client = interaction.client as Scripticus;
   //   const command = client.userCommands.get(interaction.commandName);

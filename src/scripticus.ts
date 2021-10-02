@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import {
   GuildSettings,
   Scripticus,
-  Event,
+  EventHandler,
   ScripticusOptions,
   Database,
 } from '@customTypes';
@@ -47,10 +47,10 @@ export class ScripticusBot extends Client implements Scripticus {
 
     let count = 0;
     for (const file of eventFiles) {
-      const { once, name, execute } = (await import(
+      const { once, event, handle } = (await import(
         `./events/${file}`
-      )) as Event;
-      once ? this.once(name, execute) : this.on(name, execute);
+      )) as EventHandler;
+      once ? this.once(event, handle) : this.on(event, handle);
       count++;
     }
 
@@ -108,7 +108,7 @@ export class ScripticusBot extends Client implements Scripticus {
         : (await this.guilds.fetch(devGuildId)).commands;
 
     const toRegister = commands
-      .filter(([, command]) => command.details != undefined)
+      .filter(([, command]) => command.details != undefined && command.global)  
       .map(([, command]) => command.details);
 
     const results = await commandManager.set(toRegister);

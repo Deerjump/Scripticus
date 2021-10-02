@@ -1,3 +1,4 @@
+import { ModerationLevel } from '@customTypes';
 import {
   ChatInputApplicationCommandData,
   MessageApplicationCommandData,
@@ -12,9 +13,11 @@ import {
 
 export abstract class ApplicationCommand {
   protected defaultPermission = true;
-  // You can't set permissions on global commands yet, (only guild specific commands) s
+  // You can't set permissions on global commands yet, (only guild specific commands)
   permissions: ApplicationCommandPermissions[] = [];
   name: string;
+  roleRequired: ModerationLevel = 'EVERYONE';
+  global = true;
 
   constructor(name: string) {
     // https://discord.com/developers/docs/interactions/application-commands#application-commands

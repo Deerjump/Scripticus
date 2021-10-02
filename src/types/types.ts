@@ -1,4 +1,4 @@
-import { Client, Collection, Intents, Message, PartialTypes } from 'discord.js';
+import { Client, ClientEvents, Collection, Intents, Message, PartialTypes } from 'discord.js';
 import {
   SlashCommand,
   UserCommand,
@@ -14,10 +14,10 @@ export interface GuildSettingsDto {
   settings: GuildSettings;
 }
 
-export interface Event {
-  name: string;
+export interface EventHandler {
+  event: keyof ClientEvents;
   once?: boolean;
-  execute: (...args: any[]) => void;
+  handle: (...args: any[]) => void;
 }
 
 export interface Scripticus extends Client {
@@ -126,7 +126,7 @@ export interface Monsters {
   [monsterCode: string]: MonsterData;
 }
 
-export type TotalRecipe = {
+export interface TotalRecipe {
   [itemCode: string]: {
     name: string;
     amount: number;
@@ -137,3 +137,5 @@ export type TotalRecipe = {
 export interface LavaFormulas {
   [key: string]: (...args: number[]) => number;
 }
+
+export type ModerationLevel = 'ADMINISTRATOR' | 'MODERATOR' | 'EVERYONE';

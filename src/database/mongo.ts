@@ -35,6 +35,8 @@ export class DatabaseDriver implements Database {
       this.logger.log('Connected!');
     } catch (err) {
       this.logger.error(err);
+      this.logger.log('Stopping process...');
+      process.exit();
     }
   }
 
