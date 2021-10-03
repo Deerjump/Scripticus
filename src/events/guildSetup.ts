@@ -4,7 +4,7 @@ import { Logger } from '../utils/logger';
 
 const logger = new Logger('GuildSetup');
 
-const event: EventHandler = {
+const eventHandler: EventHandler = {
   // When the bot joins a guild
   event: 'guildCreate',
   once: true,
@@ -53,4 +53,4 @@ const event: EventHandler = {
   },
 };
 
-export = event;
+export = eventHandler;

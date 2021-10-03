@@ -3,7 +3,7 @@ import { Logger } from "../utils/logger";
 
 const logger = new Logger('Ready');
 
-const event: EventHandler = {
+const eventHandler: EventHandler = {
   event: 'ready',
   once: true,
   async handle(client: Scripticus) {
@@ -11,4 +11,4 @@ const event: EventHandler = {
   }
 } 
 
-export = event;
+export = eventHandler;

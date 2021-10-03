@@ -4,7 +4,7 @@ import { Logger } from "../utils/logger";
 
 const logger = new Logger('MessageCommandHandler');
 
-const event: EventHandler = {
+const eventHandler: EventHandler = {
   event: "interactionCreate",
   async handle(interaction: Interaction) {
     // if(!interaction.isContextMenu()) return;
@@ -23,4 +23,4 @@ const event: EventHandler = {
   }
 }
 
-export = event;
+export = eventHandler;

@@ -58,7 +58,7 @@ function handleCooldowns(message: Message, commandName: string): boolean {
   return true;
 }
 
-const event: EventHandler = {
+const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: (message: Message) => {
     const client = message.client as Scripticus;
@@ -101,4 +101,4 @@ const event: EventHandler = {
   },
 };
 
-export = event;
+export = eventHandler;

@@ -7,7 +7,7 @@ const logger = new Logger('DevCommands');
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features
-const event: EventHandler = {
+const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: async (message: Message) => {
     const whitelist = ['191085842469486592'];
@@ -53,4 +53,4 @@ async function resetCommands(client: Scripticus, guildId: string) {
   logger.log(`${commands.size - remaining.size} commands deleted`);
 }
 
-export = event;
+export = eventHandler;
