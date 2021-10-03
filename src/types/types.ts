@@ -1,4 +1,4 @@
-import { Client, ClientEvents, Collection, Intents, Message, PartialTypes } from 'discord.js';
+import { Client, ClientEvents, Collection, Guild, Intents, Message, PartialTypes } from 'discord.js';
 import {
   SlashCommand,
   UserCommand,
@@ -29,7 +29,7 @@ export interface Scripticus extends Client {
   readonly guildSettings: Collection<string, GuildSettings>;
   readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
-  registerApplicationCommands: (devGuildId?: string) => Promise<void>;
+  registerGlobalCommands: () => Promise<void>;
   getPrefix: (message: Message) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => Promise<void>;
   stop: () => void;
@@ -138,4 +138,9 @@ export interface LavaFormulas {
   [key: string]: (...args: number[]) => number;
 }
 
-export type ModerationLevel = 'ADMINISTRATOR' | 'MODERATOR' | 'EVERYONE';
+export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';
+
+export interface CommandDependencies {
+  client?: Scripticus,
+  guild?: Guild,
+}

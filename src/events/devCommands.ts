@@ -26,7 +26,7 @@ const event: EventHandler = {
       }
       case 'registerglobals': {
         await message.reply({ ...noMentions, content: 'Registering commands' });
-        await client.registerApplicationCommands();
+        await client.registerGlobalCommands();
         break;
       }
       case 'resetcommands': {

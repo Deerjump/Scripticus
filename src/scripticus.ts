@@ -96,22 +96,17 @@ export class ScripticusBot extends Client implements Scripticus {
     return commands;
   }
 
-  async registerApplicationCommands(devGuildId?: string) {
+  async registerGlobalCommands() {
     this.logger.log('Registering application commands...');
     const commands = [
       ...this.commands /*...this.userCommands, ...this.messageCommands*/,
     ];
 
-    const commandManager: any =
-      devGuildId == undefined
-        ? this.application?.commands
-        : (await this.guilds.fetch(devGuildId)).commands;
-
     const toRegister = commands
-      .filter(([, command]) => command.details != undefined && command.global)  
+      .filter(([, command]) => command.details != undefined && command.global)
       .map(([, command]) => command.details);
 
-    const results = await commandManager.set(toRegister);
+    const results = await this.application?.commands.set(toRegister)!;
     this.logger.log(
       `Registered ${results.size} command${results.size === 1 ? '' : 's'}`
     );

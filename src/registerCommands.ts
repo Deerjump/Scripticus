@@ -11,7 +11,7 @@ async function registerCommands() {
   );
 
   await scripticus.login(process.env.TOKEN!);
-  await scripticus.registerApplicationCommands();
+  await scripticus.registerGlobalCommands();
   scripticus.stop();
 }
 
