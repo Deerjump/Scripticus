@@ -1,9 +1,6 @@
-import { Client, ClientEvents, Collection, Guild, Intents, Message, PartialTypes } from 'discord.js';
-import {
-  SlashCommand,
-  UserCommand,
-  MessageCommand,
-} from '../commands/commandClasses';
+import { Client, ClientEvents, Collection, Guild, Intents, PartialTypes } from 'discord.js';
+import { ApplicationCommandTypes } from 'discord.js/typings/enums';
+import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 
 export interface GuildSettings {
   prefix?: string;
@@ -30,8 +27,8 @@ export interface Scripticus extends Client {
   readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
   registerGlobalCommands: () => Promise<void>;
-  getPrefix: (message: Message) => string;
-  updateGuildPrefix: (guildId: string, prefix: string) => Promise<void>;
+  getPrefix: (guild: Guild) => string;
+  updateGuildPrefix: (guildId: string, prefix: string) => Promise<string>;
   stop: () => void;
   login: (token: string) => Promise<string>;
 }
@@ -41,10 +38,7 @@ export interface Database {
   disconnect: () => Promise<void>;
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
-  updateGuildSettings: (
-    guildId: string,
-    settings: GuildSettings
-  ) => Promise<void>;
+  updateGuildSettings: (guildId: string, settings: GuildSettings) => Promise<GuildSettings>;
 }
 
 export interface ScripticusOptions {
@@ -132,7 +126,7 @@ export interface TotalRecipe {
     amount: number;
     recipe?: TotalRecipe;
   };
-};
+}
 
 export interface LavaFormulas {
   [key: string]: (...args: number[]) => number;
@@ -140,7 +134,9 @@ export interface LavaFormulas {
 
 export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';
 
-export interface CommandDependencies {
-  client?: Scripticus,
-  guild?: Guild,
-}
+export type CommandType =
+  | ('CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT)
+  | ('MESSAGE' | ApplicationCommandTypes.MESSAGE)
+  | ('USER' | ApplicationCommandTypes.USER);
+
+export type OptionallyAsync<T> = Promise<T> | T;

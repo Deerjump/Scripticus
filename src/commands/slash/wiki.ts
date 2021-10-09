@@ -19,7 +19,7 @@ class WikiCommand extends SlashCommand {
     super('wiki', 'Seach the Legends of Idleon Wiki!');
   }
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('query', 'STRING')
         .withDescription('What you want to search for')

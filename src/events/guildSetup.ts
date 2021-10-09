@@ -4,6 +4,13 @@ import { Logger } from '../utils/logger';
 
 const logger = new Logger('GuildSetup');
 
+// TODO: Move this to config file
+const joinMessage = [
+  'Thanks for adding me to your server!',
+  'To configure me, use the `/settings` command!',
+  'To start out, you are the only one that can access this command.',
+];
+
 const eventHandler: EventHandler = {
   // When the bot joins a guild
   event: 'guildCreate',
@@ -14,42 +21,34 @@ const eventHandler: EventHandler = {
 
     logger.log(`Joined ${guild.name}!`);
     logger.log(`Configuring guild-specific commands...`);
-    const probablyModRoles = guild.roles.cache.filter(
-      (role) =>
-        role.permissions.has('MANAGE_MESSAGES', true) ||
-        role.permissions.has('MANAGE_ROLES', true)
-    );
 
-    const toRegister = commands
-      .filter((cmd) => !cmd.global)
-      .map((cmd) => cmd.details);
+    const owner = await guild.fetchOwner();
+    const toRegister = await Promise.all(
+      commands
+        .filter((cmd) => !cmd.global)
+        .map(async (cmd) => await cmd.generateDetails(guild))
+    );
 
     const registered = await guild.commands.set(toRegister);
 
     logger.log(`Registered ${registered.size} guild command(s)`);
 
-    const permissions = commands
-      .filter((cmd) => cmd.details != undefined && cmd.permissions.length !== 0)
-      .map((cmd) => {
-        const { id } = registered.find((c) => c.name === cmd.name)!;
-        let perms = [...cmd.permissions];
+    for (const [name, command] of commands) {
+      const { id } = registered.find((c) => c.name === name)!;
+      if (command.roleRequired === 'ADMIN') {
+        await guild.commands.permissions.add({
+          command: id,
+          permissions: [{ id: owner.id, type: 'USER', permission: true }],
+        });
+      }
+    }
 
-        if (cmd.roleRequired != 'EVERYONE') {
-          probablyModRoles.forEach((role) => {
-            perms.push({ id: role.id, type: 'ROLE', permission: true });
-          });
-        }
-
-        return { id: id!, permissions: perms };
-      });
-
-    const results = await client.application?.commands.permissions.set({
-      guild: guild,
-      fullPermissions: permissions,
-    });
-
-    const numPerms = results?.reduce((acc, curr) => acc + curr.length, 0);
-    logger.log(`Added ${numPerms} permissions`);
+    try {
+      owner.send({ content: joinMessage.join('\n') });
+    } catch (err) {
+      logger.error(err);
+      logger.error(`Error sending DM to ${owner.user.username}`);
+    }
   },
 };
 

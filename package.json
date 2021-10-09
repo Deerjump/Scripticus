@@ -14,7 +14,7 @@
     "delete": "pm2 delete ecosystem.config.js",
     "logs": "pm2 logs Scripticus",
     "dev": "npm run build && node .",
-    "commandregister": "npm run build && node dist/src/registerCommands.js",
+    "commandregister": "npm run build && node dist/src/registerGlobalCommands.js",
     "updatepm2": "pm2 update",
     "build": "tsc  --project tsconfig.json"
   },

@@ -10,7 +10,7 @@ import {
 } from 'discord.js';
 
 class LavaMathCommand extends SlashCommand {
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return Object.entries(formulas).map(([key, formula]) => {
       const params =
         formula.length === 1

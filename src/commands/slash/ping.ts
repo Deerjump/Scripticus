@@ -2,13 +2,12 @@ import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
 import { isNumber } from '../../utils/utils';
 import {
-  ApplicationCommandOptionData,
   CommandInteraction,
   Message,
 } from 'discord.js';
 
 class PingCommand extends SlashCommand {
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions() {
     return [
       new OptionBuilder('delay', 'NUMBER')
         .withDescription('How long to wait before responding')

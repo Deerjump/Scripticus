@@ -21,7 +21,7 @@ class AliasCommand extends SlashCommand {
     super('alias', 'Find all the accepted aliases for a monster or item!');
   }
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions() {
     return [
       new OptionBuilder('target', 'STRING')
         .withDescription('What you want to view aliases for')
@@ -33,11 +33,15 @@ class AliasCommand extends SlashCommand {
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const target = args.join(' ').toLowerCase();
-    const { response, collector } = await this.execute(target, message.author.id, message.channel);
-    
+    const { response, collector } = await this.execute(
+      target,
+      message.author.id,
+      message.channel
+    );
+
     collector.on('end', async () => {
       await message.edit({ components: [] });
-    })
+    });
     await message.reply({ ...response, ...noMentions });
   }
 
@@ -67,12 +71,12 @@ class AliasCommand extends SlashCommand {
     const aliasEmbed = this.getAliasEmbed(title, aliases);
 
     const collector = channel.createMessageComponentCollector({
-      filter: (i) => i.customId === 'aliasPrevPage' || i.customId === 'aliasNextPage',
+      filter: (i) =>
+        i.customId === 'aliasPrevPage' || i.customId === 'aliasNextPage',
       componentType: 'BUTTON',
       time: 60000,
     });
 
-    
     let currentIndex = 0;
     collector.on('collect', (interaction) => {
       if (interaction.user.id !== authorId) {
@@ -142,7 +146,7 @@ class AliasCommand extends SlashCommand {
 
     return {
       embeds: [embed],
-      components: [row]
+      components: [row],
     };
   }
 }

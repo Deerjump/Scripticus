@@ -11,13 +11,13 @@ import {
 
 class PrefixCommand extends SlashCommand {
   private readonly logger = new Logger('Prefix');
-  readonly roleRequired: ModerationLevel = 'MODERATOR';
+  readonly roleRequired: ModerationLevel = 'MOD';
   readonly defaultPermission = false;
   readonly usage = '<new prefix>';
   readonly global = false;
   readonly args = true;
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('prefix', 'STRING')
         .withDescription('The new bot prefix for your guild')
@@ -28,11 +28,6 @@ class PrefixCommand extends SlashCommand {
 
   constructor() {
     super('prefix', 'Changes prefix for current server');
-    this.permissions.push({
-      id: '191085842469486592',
-      type: 'USER',
-      permission: true,
-    });
   }
 
   async execute(prefix: string, client: Scripticus, guildId?: string | null) {

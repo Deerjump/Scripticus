@@ -30,7 +30,7 @@ class InfoCommand extends SlashCommand {
     super('info', 'Find information on monsters or items');
   }
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('what', 'STRING')
         .withDescription('what you want information about')

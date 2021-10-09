@@ -62,7 +62,7 @@ const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: (message: Message) => {
     const client = message.client as Scripticus;
-    const prefix = client.getPrefix(message);
+    const prefix = client.getPrefix(message.guild!);
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 

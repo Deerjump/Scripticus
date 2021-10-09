@@ -18,7 +18,7 @@ class CraftCommand extends SlashCommand {
   readonly usage = '<item name> <item quantity>';
   readonly args = true;
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('itemname', 'STRING')
         .withDescription("The item's name")

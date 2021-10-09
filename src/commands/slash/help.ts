@@ -11,7 +11,7 @@ import {
 
 class HelpCommand extends SlashCommand {
   readonly usage = '<commandName>';
-  get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       {
         name: 'command',
@@ -37,12 +37,7 @@ class HelpCommand extends SlashCommand {
       embed.addField(
         'Commands:',
         commands
-          .map(
-            (command) =>
-              `**${command.name}**: ${
-                command.description
-              }\n`
-          )
+          .map((command) => `**${command.name}**: ${command.description}\n`)
           .join('\n')
       );
       return { embeds: [embed] };
@@ -66,10 +61,7 @@ class HelpCommand extends SlashCommand {
       embed.addField('Aliases:', command.aliases.join(', '));
     if (command.usage != undefined)
       embed.addField('Usage:', `<prefix>${command.name} ${command.usage}`);
-    embed.addField(
-      'SlashCommand:',
-      command.details != undefined ? 'Yes' : 'No'
-    );
+
     return { embeds: [embed] };
   }
 

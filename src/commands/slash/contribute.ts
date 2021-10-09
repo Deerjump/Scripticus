@@ -3,7 +3,7 @@ import { SlashCommand } from '../commandClasses';
 import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
 
 class ContributeCommand extends SlashCommand {
-  get options() {
+  protected generateOptions() {
     return [hidden];
   }
 

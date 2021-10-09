@@ -15,7 +15,7 @@ class RollCommand extends SlashCommand {
     super('roll', 'Roll a dice! 🎲');
   }
 
-  protected get options(): ApplicationCommandOptionData[] {
+  protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('max', 'NUMBER')
         .withDescription('How high you can roll!')

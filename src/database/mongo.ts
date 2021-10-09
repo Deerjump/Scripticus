@@ -1,8 +1,4 @@
-import {
-  Database,
-  GuildSettings,
-  GuildSettingsDto,
-} from '@customTypes';
+import { Database, GuildSettings, GuildSettingsDto } from '@customTypes';
 import { GuildSettingsModel } from './schemas';
 import { connect, connection, Model } from 'mongoose';
 import { Logger } from '../utils/logger';
@@ -66,11 +62,13 @@ export class DatabaseDriver implements Database {
 
   async updateGuildSettings(guildId: string, settings: GuildSettings) {
     if (guildId == undefined || settings == undefined) return;
-    
-    await GuildSettingsModel.findOneAndUpdate(
+
+    const result = await GuildSettingsModel.findOneAndUpdate(
       { guildId },
       { settings },
-      { upsert: true }
-    );
+      { upsert: true, new: true, projection: { _id: 0, settings: { _id: 0 } } }
+    ).lean();
+
+    return result.settings;
   }
 }

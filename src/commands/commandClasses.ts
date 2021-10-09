@@ -1,23 +1,24 @@
-import { ModerationLevel } from '@customTypes';
+import { CommandType, ModerationLevel, OptionallyAsync } from '@customTypes';
 import {
   ChatInputApplicationCommandData,
   MessageApplicationCommandData,
   ApplicationCommandOptionData,
   UserApplicationCommandData,
-  ApplicationCommandData,
   ContextMenuInteraction,
   CommandInteraction,
   Message,
-  ApplicationCommandPermissions,
+  Guild,
+  BaseApplicationCommandData,
 } from 'discord.js';
+import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 
 export abstract class ApplicationCommand {
   protected defaultPermission = true;
   // You can't set permissions on global commands yet, (only guild specific commands)
-  permissions: ApplicationCommandPermissions[] = [];
+  abstract type: CommandType;
   name: string;
   roleRequired: ModerationLevel = 'EVERYONE';
-  global = true;
+  global = false;
 
   constructor(name: string) {
     // https://discord.com/developers/docs/interactions/application-commands#application-commands
@@ -30,22 +31,21 @@ export abstract class ApplicationCommand {
     this.name = name;
   }
 
-  get details(): ApplicationCommandData {
+  abstract generateDetails(): Promise<BaseApplicationCommandData>;
+
+  protected get details(): BaseApplicationCommandData {
     return {
       name: this.name,
       defaultPermission: this.defaultPermission,
-      // This description is just to satisfy ApplicationCommandData. Will never be used.
-      description: ''
     };
   }
 
-  abstract execute(...args: any[]): any;
+  protected abstract execute(...args: any[]): any;
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
+  type: 'CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT = 'CHAT_INPUT';
   description: string;
-  // this isn't a property to allow for dynamic stuff like help's ability to see all commands.
-  protected abstract get options(): ApplicationCommandOptionData[];
   usage?: string;
   args?: boolean;
   aliases?: string[];
@@ -54,17 +54,21 @@ export abstract class SlashCommand extends ApplicationCommand {
     super(name);
     if (description.length < 1 || description.length > 100)
       throw new TypeError(
-        `"description" field must be betweeen 1 and 100 characters! Provided${description.length}`
+        `"description" field must be betweeen 1 and 100 characters! Provided ${description.length}`
       );
     this.description = description;
   }
 
-  get details(): ChatInputApplicationCommandData {
+  protected generateOptions(guild?: Guild): OptionallyAsync<ApplicationCommandOptionData[]> {
+    return [];
+  }
+
+  async generateDetails(guild?: Guild): Promise<ChatInputApplicationCommandData> {
     return {
       ...super.details,
-      type: 'CHAT_INPUT',
+      type: this.type,
       description: this.description,
-      options: this.options,
+      options: await this.generateOptions(guild),
     };
   }
 
@@ -77,19 +81,23 @@ export abstract class ContextMenuCommand extends ApplicationCommand {
 }
 
 export abstract class UserCommand extends ContextMenuCommand {
-  get details(): UserApplicationCommandData {
+  type: 'USER' | ApplicationCommandTypes.USER = 'USER';
+
+  async generateDetails(): Promise<UserApplicationCommandData> {
     return {
       ...super.details,
-      type: 'USER',
-    };
+      type: this.type,
+    }
   }
 }
 
 export abstract class MessageCommand extends ContextMenuCommand {
-  get details(): MessageApplicationCommandData {
+  type: 'MESSAGE' | ApplicationCommandTypes.MESSAGE = 'MESSAGE';
+
+  async generateDetails(): Promise<MessageApplicationCommandData> {
     return {
       ...super.details,
-      type: 'MESSAGE',
-    };
-  }
+      type: this.type
+    }
+  } 
 }
