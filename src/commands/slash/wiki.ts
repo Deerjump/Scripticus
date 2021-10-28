@@ -7,7 +7,7 @@ import {
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
-import fetch from 'node-fetch';
+import axios from 'axios';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 
 class WikiCommand extends SlashCommand {
@@ -21,17 +21,15 @@ class WikiCommand extends SlashCommand {
 
   protected generateOptions(): ApplicationCommandOptionData[] {
     return [
-      new OptionBuilder('query', 'STRING')
-        .withDescription('What you want to search for')
-        .build(),
-        hidden
+      new OptionBuilder('query', 'STRING').withDescription('What you want to search for').build(),
+      hidden,
     ];
   }
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const response = await this.execute(args.join(' '));
 
-    await message.reply({ ...response, ...noMentions})
+    await message.reply({ ...response, ...noMentions });
   }
 
   async handleInteract(interaction: CommandInteraction) {
@@ -52,20 +50,17 @@ class WikiCommand extends SlashCommand {
             .setColor('#FF0000')
             .setTitle(this.wikiUrl)
             .setURL(this.wikiUrl)
-            .addField(
-              'You could also:',
-              'Supply a search term!\n!wiki Mafioso'
-            ),
+            .addField('You could also:', 'Supply a search term!\n!wiki Mafioso'),
         ],
       };
     }
 
     try {
-      const params = new URLSearchParams({ search: query });
-      const res = await fetch(
-        `https://idleon.info/w/index.php?${params.toString()}`
-      );
-      return { content: res.url };
+      const response = await axios.get(`https://idleon.info/w/index.php`, {
+        params: { search: query },
+      });
+
+      return { content: response.request.res.responseUrl };
     } catch (err) {
       this.logger.error(err);
       return { content: 'An error occured while executing your query' };
