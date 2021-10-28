@@ -1,4 +1,4 @@
-import { ItemData, RecipeData, TotalRecipe } from '@customTypes';
+import { InteractionFilter, ItemData, RecipeData, TotalRecipe } from '@customTypes';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import itemRepository from '../../repositories/itemRepository';
 import { hidden, noMentions } from '../../utils/utils';
@@ -12,21 +12,26 @@ import {
   CommandInteraction,
   ApplicationCommandOptionData,
   TextBasedChannels,
+  InteractionCollector,
 } from 'discord.js';
+
+interface CommanDetails {
+  itemName: string;
+  amount: number;
+  authorId: string;
+}
 
 class CraftCommand extends SlashCommand {
   readonly usage = '<item name> <item quantity>';
   readonly args = true;
+  private readonly COLLECTOR_TIMEOUT = 60000;
+  private readonly COLLECTOR_FILTER = (i: ButtonInteraction) =>
+    i.customId === 'recipe' || i.customId === 'materials';
 
   protected generateOptions(): ApplicationCommandOptionData[] {
     return [
-      new OptionBuilder('itemname', 'STRING')
-        .withDescription("The item's name")
-        .require()
-        .build(),
-      new OptionBuilder('amount', 'NUMBER')
-        .withDescription('How many you want to craft')
-        .build(),
+      new OptionBuilder('itemname', 'STRING').withDescription("The item's name").require().build(),
+      new OptionBuilder('amount', 'NUMBER').withDescription('How many you want to craft').build(),
       hidden,
     ];
   }
@@ -36,41 +41,28 @@ class CraftCommand extends SlashCommand {
   }
 
   async execute(
-    itemName: string,
-    amount: number,
-    authorId: string,
-    channel: TextBasedChannels
+    { itemName, amount, authorId }: CommanDetails,
+    collector: InteractionCollector<ButtonInteraction>
   ) {
     const item = itemRepository.getItem(itemName);
 
     if (item == undefined) {
       return {
-        response: {
-          embeds: [
-            new MessageEmbed().setDescription(
-              'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
-            ),
-          ],
-        },
+        embeds: [
+          new MessageEmbed().setDescription(
+            'Invalid item, please try again! Check the [wiki](https://idleon.miraheze.org/wiki/Smithing) for a list of all craftable items!'
+          ),
+        ],
       };
     }
 
     if (item.recipeData == undefined) {
       return {
-        response: {
-          content: `${item.displayName} doesn't have a crafting recipe!`,
-        },
+        content: `${item.displayName} doesn't have a crafting recipe!`,
       };
     }
 
     const recipeEmbed = this.generateRecipeEmbed(item, amount);
-
-    const collector = channel.createMessageComponentCollector({
-      filter: (i: ButtonInteraction) =>
-        i.customId === 'recipe' || i.customId === 'materials',
-      componentType: 'BUTTON',
-      time: 60000,
-    })!;
 
     collector.on('collect', async (interaction) => {
       if (interaction.user.id !== authorId) {
@@ -80,56 +72,66 @@ class CraftCommand extends SlashCommand {
         });
       }
 
-      if (interaction.customId === 'recipe')
-        await interaction.update(recipeEmbed);
+      if (interaction.customId === 'recipe') await interaction.update(recipeEmbed);
       if (interaction.customId === 'materials')
         await interaction.update(this.generateMaterialsEmbed(item, amount));
     });
 
-    return { response: recipeEmbed, collector };
+    return recipeEmbed;
   }
 
   async handleInteract(interaction: CommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
-
     const itemName = interaction.options.getString('itemname', true);
     const amount = interaction.options.getNumber('amount') ?? 1;
 
-    const { response, collector } = await this.execute(
-      itemName,
-      amount,
-      interaction.user.id,
-      interaction.channel!
+    const collector = this.createButtonCollector(
+      interaction.channel!,
+      (i) => i.message.interaction?.id == interaction.id
     );
-    if (!interaction.replied) await interaction.followUp(response);
-
-    if (collector == undefined) return;
 
     collector.on('end', async () => {
       await interaction.editReply({ components: [] });
     });
+
+    const commandDetails = { itemName, amount, authorId: interaction.user.id };
+
+    const response = await this.execute(commandDetails, collector);
+
+    if (!interaction.replied) await interaction.followUp(response);
   }
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const lastArg = args[args.length - 1];
     const isPositive = this.isPosInteger(lastArg);
-    const userInput = isPositive ? args.slice(0, -1).join(' ') : args.join(' ');
+    const itemName = isPositive ? args.slice(0, -1).join(' ') : args.join(' ');
     const amount = isPositive ? Number(lastArg) : 1;
 
-    const { response, collector } = await this.execute(
-      userInput,
-      amount,
-      message.author.id,
-      message.channel
+    const collector = this.createButtonCollector(
+      message.channel,
+      (i) => i.message.id == message.id
     );
-
-    await message.reply({ ...response, ...noMentions });
-
-    if (collector == undefined) return;
 
     collector.on('end', async () => {
       await message.edit({ components: [] });
+    });
+
+    const commandDetails = { itemName, amount, authorId: message.author.id };
+    const response = await this.execute(commandDetails, collector);
+
+    await message.reply({ ...response, ...noMentions });
+  }
+
+  private createButtonCollector(
+    channel: TextBasedChannels,
+    filter: InteractionFilter<ButtonInteraction>,
+    time = this.COLLECTOR_TIMEOUT
+  ) {
+    return channel.createMessageComponentCollector({
+      filter: (i: ButtonInteraction) => filter(i) && this.COLLECTOR_FILTER(i),
+      componentType: 'BUTTON',
+      time,
     });
   }
 
@@ -147,10 +149,7 @@ class CraftCommand extends SlashCommand {
     const text = this.generateMaterialsText(materials);
 
     const row = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId('recipe')
-        .setLabel('Show Tiered Recipe')
-        .setStyle('PRIMARY')
+      new MessageButton().setCustomId('recipe').setLabel('Show Tiered Recipe').setStyle('PRIMARY')
     );
 
     return this.createMessage(title, text, row);
@@ -158,10 +157,7 @@ class CraftCommand extends SlashCommand {
 
   private generateMaterialsText(materialsObj: any) {
     return Object.entries(materialsObj)
-      .map(
-        ([itemCode, qty]) =>
-          `- ${itemRepository.getItem(itemCode)!.displayName} (x${qty})`
-      )
+      .map(([itemCode, qty]) => `- ${itemRepository.getItem(itemCode)!.displayName} (x${qty})`)
       .join('\n');
   }
 
@@ -175,11 +171,7 @@ class CraftCommand extends SlashCommand {
 
   private generateRecipeEmbed(item: ItemData, amount: number) {
     const title = `Crafting recipe for ${item.displayName} (x${amount})`;
-    const text = this.generateRecipeText(
-      this.generateRecipe(item.recipeData!),
-      0,
-      amount
-    );
+    const text = this.generateRecipeText(this.generateRecipe(item.recipeData!), 0, amount);
 
     const row = new MessageActionRow().addComponents(
       new MessageButton()
@@ -221,10 +213,7 @@ class CraftCommand extends SlashCommand {
       const ingredientInfo = {
         name: item.displayName,
         amount: Number(itemQty),
-        recipe:
-          item.recipeData == undefined
-            ? undefined
-            : this.generateRecipe(item.recipeData),
+        recipe: item.recipeData == undefined ? undefined : this.generateRecipe(item.recipeData),
       };
 
       totalRecipe[itemCode] = ingredientInfo;

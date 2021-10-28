@@ -1,4 +1,12 @@
-import { Client, ClientEvents, Collection, Guild, Intents, PartialTypes } from 'discord.js';
+import {
+  ButtonInteraction,
+  Client,
+  ClientEvents,
+  Collection,
+  Guild,
+  Intents,
+  PartialTypes,
+} from 'discord.js';
 import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 
@@ -140,3 +148,5 @@ export type CommandType =
   | ('USER' | ApplicationCommandTypes.USER);
 
 export type OptionallyAsync<T> = Promise<T> | T;
+
+export type InteractionFilter<T> = (interaction: T) => boolean;
