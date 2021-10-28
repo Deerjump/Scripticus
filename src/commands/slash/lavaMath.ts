@@ -3,36 +3,18 @@ import { formulas } from '../../resources/formulas';
 import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
 import { LavaFormulas } from '@customTypes';
-import {
-  ApplicationCommandOptionData,
-  CommandInteraction,
-  Message,
-} from 'discord.js';
+import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
 
 class LavaMathCommand extends SlashCommand {
   protected generateOptions(): ApplicationCommandOptionData[] {
     return Object.entries(formulas).map(([key, formula]) => {
       const params =
         formula.length === 1
-          ? [
-              new OptionBuilder('x', 'NUMBER')
-                .withDescription('x')
-                .require()
-                .build(),
-            ]
+          ? [new OptionBuilder('x', 'NUMBER').withDescription('x').require().build()]
           : [
-              new OptionBuilder('x', 'NUMBER')
-                .withDescription('x')
-                .require()
-                .build(),
-              new OptionBuilder('y', 'NUMBER')
-                .withDescription('y')
-                .require()
-                .build(),
-              new OptionBuilder('z', 'NUMBER')
-                .withDescription('z')
-                .require()
-                .build(),
+              new OptionBuilder('x', 'NUMBER').withDescription('x').require().build(),
+              new OptionBuilder('y', 'NUMBER').withDescription('y').require().build(),
+              new OptionBuilder('z', 'NUMBER').withDescription('z').require().build(),
             ];
       return new OptionBuilder(key, 'SUB_COMMAND')
         .withDescription(formula.toString())
@@ -59,9 +41,7 @@ class LavaMathCommand extends SlashCommand {
 
     if (args.length < argsNeeded) {
       return {
-        content: `That formula needs ${argsNeeded} ${
-          argsNeeded === 1 ? 'number' : 'numbers'
-        }!`,
+        content: `That formula needs ${argsNeeded} ${argsNeeded === 1 ? 'number' : 'numbers'}!`,
       };
     }
 

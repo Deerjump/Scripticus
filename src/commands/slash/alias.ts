@@ -3,20 +3,24 @@ import aliasRepository from '../../repositories/aliasRepository';
 import { hidden, noMentions } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
 import {
-  ApplicationCommandOptionData,
+  ButtonInteraction,
   CommandInteraction,
+  InteractionCollector,
   Message,
   MessageActionRow,
   MessageButton,
   MessageEmbed,
   TextBasedChannels,
 } from 'discord.js';
+import { InteractionFilter } from '@customTypes';
 
 class AliasCommand extends SlashCommand {
   readonly usage = '<item or monster name>';
   readonly args = true;
   private readonly pageSize = 10;
-
+  private readonly COLLECTOR_TIMEOUT = 60000;
+  private readonly COLLECTOR_FILTER = (i: ButtonInteraction) =>
+    i.customId === 'aliasPrevPage' || i.customId === 'aliasNextPage';
   constructor() {
     super('alias', 'Find all the accepted aliases for a monster or item!');
   }
@@ -31,17 +35,31 @@ class AliasCommand extends SlashCommand {
     ];
   }
 
+  private createButtonCollector(
+    channel: TextBasedChannels,
+    filter: InteractionFilter<ButtonInteraction>,
+    time = this.COLLECTOR_TIMEOUT
+  ) {
+    return channel.createMessageComponentCollector({
+      filter: (i: ButtonInteraction) => filter(i) && this.COLLECTOR_FILTER(i),
+      componentType: 'BUTTON',
+      time,
+    });
+  }
+
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const target = args.join(' ').toLowerCase();
-    const { response, collector } = await this.execute(
-      target,
-      message.author.id,
-      message.channel
+
+    const collector = this.createButtonCollector(
+      message.channel,
+      (i) => i.message.interaction?.id === message.id
     );
 
     collector.on('end', async () => {
       await message.edit({ components: [] });
     });
+
+    const response = await this.execute(target, message.author.id, collector);
     await message.reply({ ...response, ...noMentions });
   }
 
@@ -49,33 +67,32 @@ class AliasCommand extends SlashCommand {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const target = interaction.options.getString('target', true);
-    const { response, collector } = await this.execute(
-      target,
-      interaction.user.id,
-      interaction.channel!
-    );
 
-    await interaction.followUp(response);
+    const collector = this.createButtonCollector(
+      interaction.channel!,
+      (i) => i.message.interaction?.id == interaction.id
+    );
 
     collector.on('end', async () => {
       await interaction.editReply({ components: [] });
     });
+
+    const response = await this.execute(target, interaction.user.id, collector);
+
+    await interaction.followUp(response);
   }
 
-  async execute(target: string, authorId: string, channel: TextBasedChannels) {
+  async execute(
+    target: string,
+    authorId: string,
+    collector: InteractionCollector<ButtonInteraction>
+  ) {
     const aliases = aliasRepository
       .getAliases(target)
       .filter((alias) => alias.toLowerCase() !== target);
 
     const title = `Aliases for ${target}`;
     const aliasEmbed = this.getAliasEmbed(title, aliases);
-
-    const collector = channel.createMessageComponentCollector({
-      filter: (i) =>
-        i.customId === 'aliasPrevPage' || i.customId === 'aliasNextPage',
-      componentType: 'BUTTON',
-      time: 60000,
-    });
 
     let currentIndex = 0;
     collector.on('collect', (interaction) => {
@@ -99,16 +116,13 @@ class AliasCommand extends SlashCommand {
 
       interaction.update(this.getAliasEmbed(title, aliases, currentIndex));
     });
-
-    return { response: aliasEmbed, collector };
+    if (aliasEmbed.components?.length === 0) {
+      collector.stop();
+    }
+    return aliasEmbed;
   }
 
-  private getAliasEmbed(
-    target: string,
-    aliases: string[],
-    start = 0,
-    size = 10
-  ) {
+  private getAliasEmbed(target: string, aliases: string[], start = 0, size = 10) {
     if (aliases.length === 0) {
       return {
         content: `No aliases found for ${target}`,
@@ -121,9 +135,9 @@ class AliasCommand extends SlashCommand {
     embed.setTitle(title);
     embed.addFields([
       {
-        name: `${start} to ${
-          aliases.length < pageMax ? aliases.length : pageMax
-        } of ${aliases.length}`,
+        name: `${start} to ${aliases.length < pageMax ? aliases.length : pageMax} of ${
+          aliases.length
+        }`,
         value: aliases.slice(start, start + size).join(', '),
       },
     ]);

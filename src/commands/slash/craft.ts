@@ -88,7 +88,7 @@ class CraftCommand extends SlashCommand {
 
     const collector = this.createButtonCollector(
       interaction.channel!,
-      (i) => i.message.interaction?.id == interaction.id
+      (i) => i.message.interaction?.id === interaction.id
     );
 
     collector.on('end', async () => {
