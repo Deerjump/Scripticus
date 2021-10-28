@@ -3,11 +3,7 @@ import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
 import { ModerationLevel, Scripticus } from '@customTypes';
-import {
-  ApplicationCommandOptionData,
-  CommandInteraction,
-  Message,
-} from 'discord.js';
+import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
 
 class PrefixCommand extends SlashCommand {
   private readonly logger = new Logger('Prefix');
@@ -50,7 +46,6 @@ class PrefixCommand extends SlashCommand {
   async handleInteract(interaction: CommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
     const prefix = interaction.options.getString('prefix')!;
-    ``;
     const { client, guildId } = interaction;
     const response = await this.execute(prefix, client as Scripticus, guildId);
 
@@ -60,17 +55,10 @@ class PrefixCommand extends SlashCommand {
   async handleMessage(message: Message, args: string[]): Promise<void> {
     const newPrefix = args[0];
 
-    // const canUse = this.permissions.some((permission) => {
-    //   permission.id === message.author.id;
-    // });
     const canUse = message.author.id === '191085842469486592';
     if (!canUse) return;
 
-    const response = await this.execute(
-      newPrefix,
-      message.client as Scripticus,
-      message.guildId
-    );
+    const response = await this.execute(newPrefix, message.client as Scripticus, message.guildId);
 
     await message.reply({ ...response, ...noMentions });
   }
