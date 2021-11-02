@@ -16,7 +16,7 @@
     "dev": "npm run build && node .",
     "commandregister": "npm run build && node dist/src/registerGlobalCommands.js",
     "updatepm2": "pm2 update",
-    "build": "tsc  --project tsconfig.json"
+    "build": "tsc --project tsconfig.json"
   },
   "author": "Deerjump",
   "license": "ISC",
