@@ -4,13 +4,6 @@ import { Logger } from '../utils/logger';
 
 const logger = new Logger('GuildSetup');
 
-// TODO: Move this to config file
-const joinMessage = [
-  'Thanks for adding me to your server!',
-  'To configure me, use the `/settings` command!',
-  'To start out, you are the only one that can access this command.',
-];
-
 const eventHandler: EventHandler = {
   // When the bot joins a guild
   event: 'guildCreate',
@@ -24,9 +17,7 @@ const eventHandler: EventHandler = {
 
     const owner = await guild.fetchOwner();
     const toRegister = await Promise.all(
-      commands
-        .filter((cmd) => !cmd.global)
-        .map(async (cmd) => await cmd.generateDetails(guild))
+      commands.filter((cmd) => !cmd.global).map(async (cmd) => await cmd.generateDetails(guild))
     );
 
     const registered = await guild.commands.set(toRegister);
@@ -44,7 +35,7 @@ const eventHandler: EventHandler = {
     }
 
     try {
-      owner.send({ content: joinMessage.join('\n') });
+      owner.send({ content: client.joinMessage });
     } catch (err) {
       logger.error(err);
       logger.error(`Error sending DM to ${owner.user.username}`);

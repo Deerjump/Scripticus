@@ -26,14 +26,15 @@ export interface EventHandler {
 }
 
 export interface Scripticus extends Client {
-  readonly defaultPrefix: string;
-  readonly defaultCooldown: number;
-  readonly commands: Collection<string, SlashCommand>;
-  readonly userCommands: Collection<string, UserCommand>;
+  readonly cooldowns: Collection<string, Collection<string, number>>;
   readonly messageCommands: Collection<string, MessageCommand>;
   readonly guildSettings: Collection<string, GuildSettings>;
+  readonly userCommands: Collection<string, UserCommand>;
+  readonly commands: Collection<string, SlashCommand>;
+  readonly defaultCooldown: number;
+  readonly defaultPrefix: string;
+  readonly joinMessage: string;
   readonly db: Database;
-  readonly cooldowns: Collection<string, Collection<string, number>>;
   registerGlobalCommands: () => Promise<void>;
   getPrefix: (guild: Guild) => string;
   updateGuildPrefix: (guildId: string, prefix: string) => Promise<string>;
@@ -56,6 +57,7 @@ export interface ScripticusOptions {
   devGuildId?: string;
   defaultCooldown: number;
   startupDisplay: string;
+  joinMessage: string;
 }
 
 export interface AutoUpdateOptions {

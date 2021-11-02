@@ -1,9 +1,9 @@
-import { ApplicationCommandData, Client, Collection, Guild, Message } from 'discord.js';
+import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database } from '@customTypes';
+import { MessageCommand, SlashCommand, UserCommand } from './commands/commandClasses';
+import { Client, Collection, Guild } from 'discord.js';
 import { Logger } from './utils/logger';
 import chalk from 'chalk';
 import * as fs from 'fs';
-import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database } from '@customTypes';
-import { MessageCommand, SlashCommand, UserCommand } from './commands/commandClasses';
 
 export class ScripticusBot extends Client implements Scripticus {
   readonly cooldowns = new Collection<string, Collection<string, number>>();
@@ -14,6 +14,7 @@ export class ScripticusBot extends Client implements Scripticus {
   private logger = new Logger('Scripticus');
   readonly defaultCooldown: number;
   readonly defaultPrefix: string;
+  readonly joinMessage: string;
 
   constructor(public readonly db: Database, options: ScripticusOptions) {
     super({
@@ -24,6 +25,7 @@ export class ScripticusBot extends Client implements Scripticus {
     const { defaultPrefix, defaultCooldown, startupDisplay } = options;
     this.defaultCooldown = defaultCooldown;
     this.defaultPrefix = defaultPrefix;
+    this.joinMessage = options.joinMessage;
 
     console.log(chalk.yellow(startupDisplay));
   }
