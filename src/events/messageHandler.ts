@@ -1,7 +1,8 @@
-import { Command, Event, Scripticus } from '@customTypes';
+import { EventHandler, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
+import { SlashCommand } from '../commands/commandClasses';
 
 const logger = new Logger('MessageCreate');
 
@@ -17,12 +18,12 @@ function isOnCooldown(
 
 function putOnCooldown(
   userId: string,
-  command: Command | undefined,
+  command: SlashCommand | undefined,
   { defaultCooldown, cooldowns }: Scripticus
 ) {
   if (command == undefined) return;
   const cmdCooldowns = cooldowns.get(command.name)!;
-  const cooldown = (command.cooldown ?? defaultCooldown) * 1000;
+  const cooldown = defaultCooldown * 1000;
 
   cmdCooldowns.set(userId, Date.now() + cooldown);
   setTimeout(() => cmdCooldowns.delete(userId), cooldown);
@@ -57,11 +58,11 @@ function handleCooldowns(message: Message, commandName: string): boolean {
   return true;
 }
 
-const event: Event = {
-  name: 'messageCreate',
-  execute: (message: Message) => {
+const eventHandler: EventHandler = {
+  event: 'messageCreate',
+  handle: (message: Message) => {
     const client = message.client as Scripticus;
-    const prefix = client.getPrefix(message);
+    const prefix = client.getPrefix(message.guild!);
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -89,7 +90,7 @@ const event: Event = {
     if (handleCooldowns(message, command.name)) return;
 
     try {
-      command.execute(message, args);
+      command.handleMessage(message, args);
     } catch (error) {
       logger.error(error);
       message.reply({
@@ -100,4 +101,4 @@ const event: Event = {
   },
 };
 
-export = event;
+export = eventHandler;

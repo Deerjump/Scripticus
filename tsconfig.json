@@ -13,12 +13,11 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "baseUrl": "src",
     /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or JS modules */
     "paths": {
-      "@customTypes": ["types/types.ts"]
+      "@customTypes": ["./src/types/types.ts"]
     },
     "lib": ["DOM", "ES2021"]
   },
-  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch.js"]
+  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch/scratch.js", "tests/**/*", "jest.config.js"]
 }

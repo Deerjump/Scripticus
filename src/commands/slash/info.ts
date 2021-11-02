@@ -1,55 +1,118 @@
+import monsterRepository from '../../repositories/monsterRepository';
+import { OptionBuilder } from '../../utils/builders/optionBuilder';
+import itemRepository from '../../repositories/itemRepository';
+import { ItemData, MonsterData } from '@customTypes';
+import { SlashCommand } from '../commandClasses';
+import { hidden, noMentions } from '../../utils/utils';
+import { Logger } from '../../utils/logger';
 import {
   MessageEmbed,
   MessageActionRow,
   MessageButton,
   Message,
   EmbedFieldData,
+  ApplicationCommandOptionData,
+  CommandInteraction,
+  TextBasedChannels,
+  ReplyMessageOptions,
+  InteractionCollector,
+  ButtonInteraction,
 } from 'discord.js';
-import monsterRepository from '../repositories/monsterRepository';
-import itemRepository from '../repositories/itemRepository';
-import { Command, ItemData, MonsterData } from '@customTypes';
-import { Logger } from '../utils/logger';
-import { noMentions } from '../utils/utils';
 
-class InfoCommand implements Command {
-  public readonly name = 'info';
-  public readonly description = 'Find information on monsters or items!';
-  public readonly usage = '<item or monster name>';
-  public readonly args = true;
-  private readonly logger: Logger;
+class InfoCommand extends SlashCommand {
+  readonly name = 'info';
+  readonly description = 'Find information on monsters or items!';
+  readonly usage = '<item or monster name>';
+  readonly args = true;
+  private readonly logger = new Logger('Info');
 
   constructor() {
-    this.logger = new Logger('Info');
+    super('info', 'Find information on monsters or items');
   }
 
-  public execute(message: Message, args: string[]) {
-    const item = itemRepository.getItem(args.join(' '));
-    const monster = monsterRepository.getMonster(args.join(' '));
+  protected generateOptions(): ApplicationCommandOptionData[] {
+    return [
+      new OptionBuilder('what', 'STRING')
+        .withDescription('what you want information about')
+        .require()
+        .build(),
+      hidden,
+    ];
+  }
 
-    if (item && monster) {
-      return this.chooseOption(message, item, monster);
+  async handleInteract(interaction: CommandInteraction) {
+    const hidden = interaction.options.getBoolean('hidden') ?? true;
+    await interaction.deferReply({ ephemeral: hidden });
+    const what = interaction.options.getString('what', true);
+
+    const { response, collector } = await this.execute(
+      what,
+      interaction.user.id,
+      interaction.channel!
+    );
+
+    await interaction.followUp(response);
+
+    if (collector == undefined) return;
+    collector.on('end', async () => {
+      await interaction.editReply({ components: [] });
+    });  }
+
+  async execute(
+    searchTerm: string,
+    authorId: string,
+    channel: TextBasedChannels
+  ): Promise<{
+    response: ReplyMessageOptions;
+    collector?: InteractionCollector<ButtonInteraction>;
+  }> {
+    const item = itemRepository.getItem(searchTerm);
+    const monster = monsterRepository.getMonster(searchTerm);
+
+    if (item != undefined && monster != undefined) {
+      return await this.chooseOption(authorId, channel, item, monster);
     }
 
     if (item) {
-      return message.reply({
-        embeds: [this.getItemDetailsEmbed(item)],
-        ...noMentions,
-      });
+      return {
+        response: {
+          embeds: [this.getItemDetailsEmbed(item)],
+        },
+      };
     }
 
     if (monster) {
-      return message.reply({
-        embeds: [this.getMonsterDetailsEmbed(monster)],
-        ...noMentions,
-      });
+      return {
+        response: {
+          embeds: [this.getMonsterDetailsEmbed(monster)],
+        },
+      };
     }
 
     if (!item && !monster) {
-      return message.reply({
-        content: "That item/monster doesn't exist!",
-        ...noMentions
-      });
+      return {
+        response: {
+          content: "That item/monster doesn't exist!",
+        },
+      };
     }
+
+    return {
+      response: { content: 'Something went wrong!' },
+      collector: undefined,
+    };
+  }
+
+  async handleMessage(message: Message, args: string[]): Promise<void> {
+    const { response, collector } = await this.execute(args.join(), message.author.id, message.channel);
+
+    await message.reply({ ...response, ...noMentions})
+
+    if (collector == undefined) return;
+
+    collector.on('end', async () => {
+      await message.edit({ components: [] });
+    });
   }
 
   private getProwessReq(defense: number, level: number) {
@@ -241,10 +304,14 @@ class InfoCommand implements Command {
   }
 
   private async chooseOption(
-    message: Message,
+    authorId: string,
+    channel: TextBasedChannels,
     item: ItemData,
     monster: MonsterData
-  ) {
+  ): Promise<{
+    response: ReplyMessageOptions;
+    collector: InteractionCollector<ButtonInteraction>;
+  }> {
     const dynamicLabel =
       monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';
     const monsterBtn = new MessageButton()
@@ -257,20 +324,19 @@ class InfoCommand implements Command {
       .setStyle('PRIMARY');
     const row = new MessageActionRow().addComponents(monsterBtn, itemBtn);
 
-    const sentMsg = await message.reply({
+    const questionReply = {
       content: 'Which do you want?',
       components: [row],
-      ...noMentions
-    });
+    };
 
-    const collector = sentMsg.createMessageComponentCollector({
-      filter: (i) => i.customId === 'monsterBtn' || i.customId === 'itemBtn',
+    const collector = channel.createMessageComponentCollector({
+      filter: (i: ButtonInteraction) => i.customId === 'monsterBtn' || i.customId === 'itemBtn',
       componentType: 'BUTTON',
       time: 10000,
     });
 
     collector.on('collect', async (interaction) => {
-      if (interaction.user.id !== message.author.id) {
+      if (interaction.user.id !== authorId) {
         collector.dispose(interaction);
         return interaction.reply({
           content: "❌ You cannot interact with someone else's command!",
@@ -297,11 +363,8 @@ class InfoCommand implements Command {
       }
     });
 
-    collector.on('end', async (collected) => {
-      if (collected.size !== 0) return;
-      await sentMsg.edit({ content: '❌ Message Timeout', components: [] });
-    });
+    return { response: questionReply, collector };
   }
 }
 
-export const command = new InfoCommand();
+export const command = InfoCommand;

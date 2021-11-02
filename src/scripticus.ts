@@ -1,40 +1,32 @@
-import { Client, Collection, Message } from 'discord.js';
+import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database } from '@customTypes';
+import { MessageCommand, SlashCommand, UserCommand } from './commands/commandClasses';
+import { Client, Collection, Guild } from 'discord.js';
 import { Logger } from './utils/logger';
 import chalk from 'chalk';
 import * as fs from 'fs';
-import {
-  GuildSettings,
-  Scripticus,
-  Command,
-  Event,
-  ScripticusOptions,
-  CommandImport,
-  Database,
-} from '@customTypes';
 
 export class ScripticusBot extends Client implements Scripticus {
-  private readonly logger: Logger;
-  readonly defaultPrefix: string;
+  readonly cooldowns = new Collection<string, Collection<string, number>>();
+  readonly messageCommands = new Collection<string, MessageCommand>();
+  readonly guildSettings = new Collection<string, GuildSettings>();
+  readonly userCommands = new Collection<string, UserCommand>();
+  readonly commands = new Collection<string, SlashCommand>();
+  private logger = new Logger('Scripticus');
   readonly defaultCooldown: number;
-  readonly commands: Collection<string, Command>;
-  readonly guildSettings: Collection<string, GuildSettings>;
-  readonly db: Database;
-  readonly cooldowns: Collection<string, Collection<string, number>>;
+  readonly defaultPrefix: string;
+  readonly joinMessage: string;
 
-  constructor(db: Database, options: ScripticusOptions) {
+  constructor(public readonly db: Database, options: ScripticusOptions) {
     super({
       intents: options.intents,
       partials: options.partials,
     });
 
     const { defaultPrefix, defaultCooldown, startupDisplay } = options;
-    this.guildSettings = new Collection<string, GuildSettings>();
-    this.cooldowns = new Collection<string, Collection<string, number>>();
-    this.commands = new Collection<string, Command>();
     this.defaultCooldown = defaultCooldown;
-    this.logger = new Logger('Scripticus');
     this.defaultPrefix = defaultPrefix;
-    this.db = db;
+    this.joinMessage = options.joinMessage;
+
     console.log(chalk.yellow(startupDisplay));
   }
 
@@ -47,10 +39,8 @@ export class ScripticusBot extends Client implements Scripticus {
 
     let count = 0;
     for (const file of eventFiles) {
-      const { once, name, execute } = (await import(
-        `./events/${file}`
-      )) as Event;
-      once ? this.once(name, execute) : this.on(name, execute);
+      const { once, event, handle } = (await import(`./events/${file}`)) as EventHandler;
+      once ? this.once(event, handle) : this.on(event, handle);
       count++;
     }
 
@@ -58,57 +48,89 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   private async loadCommands() {
-    this.logger.log('Loading commands...');
-
-    const commandFiles = fs
-      .readdirSync(`${__dirname}/commands`)
-      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
-
-    for (const file of commandFiles) {
-      const { command }: CommandImport = await import(`./commands/${file}`);
-
+    const slashCommands = await this.loadCommandsOf<SlashCommand>('slash');
+    slashCommands.forEach((command) => {
       this.commands.set(command.name, command);
       this.cooldowns.set(command.name, new Collection<string, number>());
-    }
+    });
 
-    this.logger.log(`Loaded ${this.commands.size} commands`);
+    // const userCommands = await this.loadCommandsOf<UserCommand>('user');
+    // userCommands.forEach(command => this.userCommands.set(command.name, command));
+
+    // const messageCommands = await this.loadCommandsOf<MessageCommand>('message');
+    // messageCommands.forEach(command => this.messageCommands.set(command.name, command))
+  }
+
+  private async loadCommandsOf<T>(folder: string): Promise<T[]> {
+    this.logger.log(`Loading ${folder} commands...`);
+
+    const imports = await Promise.all(
+      fs
+        .readdirSync(`${__dirname}/commands/${folder}/`)
+        .filter((file) => file.endsWith('.js'))
+        .map(async (file) => {
+          try {
+            return await import(`./commands/${folder}/${file}`);
+          } catch (err) {
+            this.logger.error(`Error loading ${file}`);
+            this.logger.error(err);
+          }
+        })
+    );
+
+    const commands = imports
+      .filter((imported) => imported != undefined)
+      .map((imported) => new imported.command(this));
+
+    this.logger.log(`Loaded ${commands.length} ${folder} commands`);
+    return commands;
+  }
+
+  async registerGlobalCommands() {
+    this.logger.log('Registering application commands...');
+    const commands = [...this.commands /*...this.userCommands, ...this.messageCommands*/];
+
+    const toRegister = await Promise.all(
+      commands
+        .filter(([, command]) => command.global)
+        .map(([, command]) => command.generateDetails())
+    );
+
+    const results = await this.application?.commands.set(toRegister)!;
+    this.logger.log(`Registered ${results.size} command${results.size === 1 ? '' : 's'}`);
   }
 
   private async loadGuildSettings() {
+    await this.db.connectToDatabase();
     this.logger.log('Loading guild specific settings...');
 
     const results = await this.db.getAllGuildSettings();
-    results.forEach((result) =>
-      this.guildSettings.set(result.guildId, result.settings)
-    );
+    results.forEach((result) => this.guildSettings.set(result.guildId, result.settings));
 
     this.logger.log(`Loaded settings for ${results.length} servers`);
   }
 
-  async updateGuildPrefix(guildId: string, prefix: string) {
+  async updateGuildPrefix(guildId: string, prefix: string = this.defaultPrefix) {
     const settings = this.guildSettings.get(guildId) ?? {};
-    settings.prefix = prefix;
-    this.guildSettings.set(guildId, settings);
+    const newSettings = { ...settings, prefix };
+    this.guildSettings.set(guildId, newSettings);
 
-    await this.db.updateGuildSettings(guildId, settings);
+    const results = await this.db.updateGuildSettings(guildId, newSettings);
+    return results.prefix!;
   }
 
-  getPrefix(message: Message): string {
-    if (message.channel.type === 'DM') return '';
-    return (
-      this.guildSettings.get(message.guildId!)?.prefix ?? this.defaultPrefix
-    );
+  getPrefix(guild?: Guild): string {
+    if (guild == undefined) return '';
+    return this.guildSettings.get(guild.id)?.prefix ?? this.defaultPrefix;
   }
 
   async login(token: string): Promise<string> {
-    await this.db.connectToDatabase();
     await this.loadGuildSettings();
     await this.loadEvents();
     await this.loadCommands();
     await super.login(token);
 
-    this.commands.forEach((command) => command.init?.(this));
-    return 'HIDDEN TOKEN';    
+    return 'HIDDEN TOKEN';
   }
 
   async stop() {
@@ -116,11 +138,9 @@ export class ScripticusBot extends Client implements Scripticus {
       this.logger.log('-----Stopping Scripticus-----');
       await this.db.disconnect();
 
-      this.logger.log('Running command stop() methods');
-      this.commands.forEach((command) => command.stop?.());
-
       this.logger.log('-----Destroying client-----');
       this.destroy();
+
       this.logger.log('-----Exiting process-----');
       process.exit(0);
     } catch (err) {

@@ -1,8 +1,8 @@
-# Scratch file
-scratch.js
+# Scratch files (for testing)
+scratch/
 
 # vscode config files
-.vscode/settings.json
+.vscode/
 
 # Logs
 logs

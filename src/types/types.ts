@@ -1,4 +1,14 @@
-import { Client, Collection, Intents, Message, PartialTypes } from 'discord.js';
+import {
+  ButtonInteraction,
+  Client,
+  ClientEvents,
+  Collection,
+  Guild,
+  Intents,
+  PartialTypes,
+} from 'discord.js';
+import { ApplicationCommandTypes } from 'discord.js/typings/enums';
+import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 
 export interface GuildSettings {
   prefix?: string;
@@ -9,60 +19,45 @@ export interface GuildSettingsDto {
   settings: GuildSettings;
 }
 
-export interface Event {
-  name: string;
+export interface EventHandler {
+  event: keyof ClientEvents;
   once?: boolean;
-  execute: (...args: any[]) => void;
+  handle: (...args: any[]) => void;
 }
 
 export interface Scripticus extends Client {
-  readonly defaultPrefix: string;
-  readonly defaultCooldown: number;
-  readonly commands: Collection<string, Command>;
-  readonly guildSettings: Collection<string, GuildSettings>;
-  readonly db: Database;
   readonly cooldowns: Collection<string, Collection<string, number>>;
-  getPrefix: (message: Message) => string;
-  updateGuildPrefix: (guildId: string, prefix: string) => void;
+  readonly messageCommands: Collection<string, MessageCommand>;
+  readonly guildSettings: Collection<string, GuildSettings>;
+  readonly userCommands: Collection<string, UserCommand>;
+  readonly commands: Collection<string, SlashCommand>;
+  readonly defaultCooldown: number;
+  readonly defaultPrefix: string;
+  readonly joinMessage: string;
+  readonly db: Database;
+  registerGlobalCommands: () => Promise<void>;
+  getPrefix: (guild: Guild) => string;
+  updateGuildPrefix: (guildId: string, prefix: string) => Promise<string>;
   stop: () => void;
   login: (token: string) => Promise<string>;
 }
-
-export interface Command {
-  readonly name: string;
-  readonly description: string;
-  readonly aliases?: string[];
-  readonly usage?: string;
-  readonly options?: string;
-  readonly cooldown?: number;
-  readonly args?: boolean;
-
-  execute: (message: Message, args: string[]) => void;
-  init?: (client: Scripticus) => void;
-  stop?: () => void;
-}
-
-export type CommandImport = {
-  command: Command;
-};
 
 export interface Database {
   connectToDatabase: () => Promise<void>;
   disconnect: () => Promise<void>;
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
-  updateGuildSettings: (
-    guildId: string,
-    settings: GuildSettings
-  ) => Promise<void>;
+  updateGuildSettings: (guildId: string, settings: GuildSettings) => Promise<GuildSettings>;
 }
 
 export interface ScripticusOptions {
   intents: Intents;
   partials: PartialTypes[];
   defaultPrefix: string;
+  devGuildId?: string;
   defaultCooldown: number;
   startupDisplay: string;
+  joinMessage: string;
 }
 
 export interface AutoUpdateOptions {
@@ -135,10 +130,25 @@ export interface Monsters {
   [monsterCode: string]: MonsterData;
 }
 
-export type TotalRecipe = {
+export interface TotalRecipe {
   [itemCode: string]: {
     name: string;
     amount: number;
     recipe?: TotalRecipe;
   };
-};
+}
+
+export interface LavaFormulas {
+  [key: string]: (...args: number[]) => number;
+}
+
+export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';
+
+export type CommandType =
+  | ('CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT)
+  | ('MESSAGE' | ApplicationCommandTypes.MESSAGE)
+  | ('USER' | ApplicationCommandTypes.USER);
+
+export type OptionallyAsync<T> = Promise<T> | T;
+
+export type InteractionFilter<T> = (interaction: T) => boolean;
