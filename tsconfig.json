@@ -19,7 +19,7 @@
     },
     "lib": ["DOM", "ES2021"]
   },
-  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch/scratch.js", "tests/**/*", "jest.config.js"],
+  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch/scratch.js"],
   "buildOptions": {
     "verbose": true
   }
