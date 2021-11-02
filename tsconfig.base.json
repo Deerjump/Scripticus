@@ -2,9 +2,7 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "target": "es2020",
-    "module": "Commonjs",
-    "allowJs": true,
-    "rootDir": ".",
+    "module": "CommonJS",
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,15 +10,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "sourceMap": true,
     /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or JS modules */
     "paths": {
       "@customTypes": ["./src/types/types.ts"]
     },
     "lib": ["DOM", "ES2021"]
   },
-  "exclude": ["docs/**/*", "ecosystem.config.js", "dist/**/*", "scratch/scratch.js"],
-  "buildOptions": {
-    "verbose": true
-  }
+  "exclude": ["docs/**/*", "dist/**/*", "resources/**/*"]
 }
