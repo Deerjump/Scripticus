@@ -61,7 +61,7 @@ export class DatabaseDriver implements Database {
   }
 
   async updateGuildSettings(guildId: string, settings: GuildSettings) {
-    if (guildId == undefined || settings == undefined) return;
+    if (guildId == undefined || settings == undefined) return {};
 
     const result = await GuildSettingsModel.findOneAndUpdate(
       { guildId },
