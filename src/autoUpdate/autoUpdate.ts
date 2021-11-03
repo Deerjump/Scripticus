@@ -84,6 +84,7 @@ class WebhookListener {
         await this.runCommand(`git reset --hard origin/${this.branch}`);
         await this.runCommand('npm install');
         await this.runCommand('npm audit fix');
+        await this.runCommand('npm run build');
         this.logger.log('Updated to new commit from Github!');
       } catch (err) {
         return this.logger.error(err);
