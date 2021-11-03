@@ -4,14 +4,15 @@ import { exec } from 'child_process';
 import express from 'express';
 import crypto from 'crypto';
 
+const SIG_HEADER_NAME = 'X-Hub-Signature-256';
+const SIG_HASH_ALG = 'sha256';
+
 class WebhookListener {
-  private readonly sigHeaderName = 'X-Hub-Signature-256';
-  private readonly sigHashAlg = 'sha256';
-  private readonly app: express.Express;
+  private readonly logger = new Logger('AutoUpdate');;
+  private readonly app = express();
   private readonly branch: string;
   private readonly client: Scripticus;
   private readonly PORT: number;
-  private readonly logger: Logger;
   private readonly secret: string;
 
   constructor(client: Scripticus, secret: string, { branch, port }: AutoUpdateOptions) {
@@ -20,8 +21,6 @@ class WebhookListener {
     this.PORT = port;
     this.client = client;
     this.branch = branch;
-    this.logger = new Logger('AutoUpdate');
-    this.app = express();
     this.init();
   }
 
@@ -31,15 +30,15 @@ class WebhookListener {
       return next('Request body empty');
     }
 
-    const sig = Buffer.from(req.get(this.sigHeaderName) ?? '', 'utf8');
-    const hmac = crypto.createHmac(this.sigHashAlg, this.secret);
+    const sig = Buffer.from(req.get(SIG_HEADER_NAME) ?? '', 'utf8');
+    const hmac = crypto.createHmac(SIG_HASH_ALG, this.secret);
     const digest = Buffer.from(
-      `${this.sigHashAlg}=${hmac.update(req.rawBody).digest('hex')}`,
+      `${SIG_HASH_ALG}=${hmac.update(req.rawBody).digest('hex')}`,
       'utf8'
     );
     if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
       return next(
-        `Request body digest (${digest}) did not match ${this.sigHeaderName} (${sig})`
+        `Request body digest (${digest}) did not match ${SIG_HEADER_NAME} (${sig})`
       );
     }
 
