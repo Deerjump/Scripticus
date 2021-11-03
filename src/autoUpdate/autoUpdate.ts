@@ -70,7 +70,7 @@ class WebhookListener {
       })
     );
 
-    this.app.post('/hook', this.verifyPostData, async (req: any, res: any) => {
+    this.app.post('/hook', (...args) => this.verifyPostData(...args), async (req: any, res: any) => {
       res.status(200).send('Request body was signed!');
 
       const body = JSON.parse(req.rawBody);
