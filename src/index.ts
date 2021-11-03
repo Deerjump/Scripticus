@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 /**
- * @description this won't register commands. 
+ * @description this won't register commands.
  * @see registerApplicationCommands.ts
  */
 async function main() {
@@ -15,13 +15,9 @@ async function main() {
     new DatabaseDriver(process.env.DATABASE_URL!),
     clientOptions
   );
-
+  let autoUpdater;
   if (autoUpdateOptions.enabled) {
-    new WebhookListener(
-      scripticus,
-      process.env.SECRET!,
-      autoUpdateOptions
-    ).start();
+    autoUpdater = new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
   }
 
   await scripticus.login(process.env.TOKEN!);

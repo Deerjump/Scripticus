@@ -4,11 +4,10 @@ import { exec } from 'child_process';
 import express from 'express';
 import crypto from 'crypto';
 
-const SIG_HEADER_NAME = 'X-Hub-Signature-256';
-const SIG_HASH_ALG = 'sha256';
-
 class WebhookListener {
-  private readonly logger = new Logger('AutoUpdate');;
+  private readonly SIG_HEADER_NAME = 'X-Hub-Signature-256';
+  private readonly SIG_HASH_ALG = 'sha256';
+  private readonly logger = new Logger('AutoUpdate');
   private readonly app = express();
   private readonly branch: string;
   private readonly client: Scripticus;
@@ -16,7 +15,10 @@ class WebhookListener {
   private readonly secret: string;
 
   constructor(client: Scripticus, secret: string, { branch, port }: AutoUpdateOptions) {
-    if (secret == undefined) throw TypeError('secret cannot be undefined!\nConsider disabling auto-update in the options.')
+    if (secret == undefined)
+      throw TypeError(
+        'secret cannot be undefined!\nConsider disabling auto-update in the options.'
+      );
     this.secret = secret;
     this.PORT = port;
     this.client = client;
@@ -30,16 +32,14 @@ class WebhookListener {
       return next('Request body empty');
     }
 
-    const sig = Buffer.from(req.get(SIG_HEADER_NAME) ?? '', 'utf8');
-    const hmac = crypto.createHmac(SIG_HASH_ALG, this.secret);
+    const sig = Buffer.from(req.get(this.SIG_HEADER_NAME) ?? '', 'utf8');
+    const hmac = crypto.createHmac(this.SIG_HASH_ALG, this.secret);
     const digest = Buffer.from(
-      `${SIG_HASH_ALG}=${hmac.update(req.rawBody).digest('hex')}`,
+      `${this.SIG_HASH_ALG}=${hmac.update(req.rawBody).digest('hex')}`,
       'utf8'
     );
     if (sig.length !== digest.length || !crypto.timingSafeEqual(digest, sig)) {
-      return next(
-        `Request body digest (${digest}) did not match ${SIG_HEADER_NAME} (${sig})`
-      );
+      return next(`Request body digest (${digest}) did not match ${this.SIG_HEADER_NAME} (${sig})`);
     }
 
     return next();
@@ -94,9 +94,7 @@ class WebhookListener {
 
     this.app.use((err: any, req: any, res: any, next: any) => {
       if (err) this.logger.error(err);
-      res
-        .status(403)
-        .send('Request body was not signed or verification failed!');
+      res.status(403).send('Request body was not signed or verification failed!');
     });
 
     this.app.all('*', (req, res) => res.status(404).end());
@@ -107,6 +105,7 @@ class WebhookListener {
     this.app.listen(this.PORT, async () => {
       this.logger.log(`Listening on ${this.PORT}`);
     });
+    return this;
   }
 }
 
