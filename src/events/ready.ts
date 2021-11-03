@@ -43,7 +43,7 @@ const eventHandler: EventHandler = {
         { guildTotal: 0, commandTotal: 0 }
       );
     logger.log(`Registered ${commandTotal} commands for ${guildTotal} guilds`);
-    logger.log(`${client.user?.username} is ready!`);
+    logger.log(`${client.user?.username} is very ready!`);
   },
 };
 
