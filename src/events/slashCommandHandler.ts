@@ -14,7 +14,6 @@ const eventHandler: EventHandler = {
     if (command == undefined) return;
 
     try {
-      logger.log(`Executing command: ${command.name}`);
       await command.handleInteract(interaction);
     } catch (error) {
       logger.error(error);
