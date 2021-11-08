@@ -40,24 +40,6 @@ class InfoCommand extends SlashCommand {
     ];
   }
 
-  async handleInteract(interaction: CommandInteraction) {
-    const hidden = interaction.options.getBoolean('hidden') ?? true;
-    await interaction.deferReply({ ephemeral: hidden });
-    const what = interaction.options.getString('what', true);
-
-    const { response, collector } = await this.execute(
-      what,
-      interaction.user.id,
-      interaction.channel!
-    );
-
-    await interaction.followUp(response);
-
-    if (collector == undefined) return;
-    collector.on('end', async () => {
-      await interaction.editReply({ components: [] });
-    });  }
-
   async execute(
     searchTerm: string,
     authorId: string,
@@ -103,15 +85,38 @@ class InfoCommand extends SlashCommand {
     };
   }
 
-  async handleMessage(message: Message, args: string[]): Promise<void> {
-    const { response, collector } = await this.execute(args.join(), message.author.id, message.channel);
+  async handleInteract(interaction: CommandInteraction) {
+    const hidden = interaction.options.getBoolean('hidden') ?? true;
+    await interaction.deferReply({ ephemeral: hidden });
+    const what = interaction.options.getString('what', true);
 
-    await message.reply({ ...response, ...noMentions})
+    const { response, collector } = await this.execute(
+      what,
+      interaction.user.id,
+      interaction.channel!
+    );
+
+    await interaction.followUp(response);
+
+    if (collector == undefined) return;
+    collector.on('end', async () => {
+      await interaction.editReply({ components: [] });
+    });
+  }
+
+  async handleMessage(message: Message, args: string[]): Promise<void> {
+    const { response, collector } = await this.execute(
+      args.join(),
+      message.author.id,
+      message.channel
+    );
+
+    const msgResponse = await message.reply({ ...response, ...noMentions });
 
     if (collector == undefined) return;
 
     collector.on('end', async () => {
-      await message.edit({ components: [] });
+      await msgResponse.edit({ components: [] });
     });
   }
 
@@ -192,9 +197,7 @@ class InfoCommand extends SlashCommand {
             },
             { name: '\u200B', value: '\u200B', inline: true }
           );
-        embed.setURL(
-          `https://idleon.info/wiki/${monster.Name.replaceAll(' ', '_')}`
-        );
+        embed.setURL(`https://idleon.info/wiki/${monster.Name.replaceAll(' ', '_')}`);
         break;
       case 'MINING':
       case 'CHOPPIN':
@@ -220,9 +223,7 @@ class InfoCommand extends SlashCommand {
           value: `${monster.ExpGiven}`,
           inline: true,
         });
-        embed.setFooter(
-          'All values are base values (no Prowess bonuses included!)'
-        );
+        embed.setFooter('All values are base values (no Prowess bonuses included!)');
         embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
         break;
       default:
@@ -235,32 +236,23 @@ class InfoCommand extends SlashCommand {
   private getItemDetailsEmbed(item: ItemData) {
     const embed = new MessageEmbed();
     embed.setTitle(item.displayName);
-    embed.setURL(
-      `https://idleon.info/wiki/${item.displayName.replaceAll(' ', '_')}`
-    );
+    embed.setURL(`https://idleon.info/wiki/${item.displayName.replaceAll(' ', '_')}`);
     const fields: EmbedFieldData[] = [];
 
-    if (item.description != undefined)
-      embed.setDescription(item.description.join(' '));
+    if (item.description != undefined) embed.setDescription(item.description.join(' '));
 
-    if (item.typeGen === 'aWeapon')
-      fields.push({ name: 'Type', value: item.Type });
+    if (item.typeGen === 'aWeapon') fields.push({ name: 'Type', value: item.Type });
 
     if (item.Class != undefined) {
       fields.push({ name: 'Class', value: item.Class });
       fields.push({ name: 'Stats', value: '--------------------------------' });
       if (item.Weapon_Power != undefined)
         fields.push({ name: '⚔️ WP', value: item.Weapon_Power, inline: true });
-      if (item.STR != undefined)
-        fields.push({ name: '✊ STR', value: item.STR, inline: true });
-      if (item.AGI != undefined)
-        fields.push({ name: '🦶 AGI', value: item.AGI, inline: true });
-      if (item.WIS != undefined)
-        fields.push({ name: '📘 WIS', value: item.WIS, inline: true });
-      if (item.LUK != undefined)
-        fields.push({ name: '🍀 LUK', value: item.LUK, inline: true });
-      if (item.Defence)
-        fields.push({ name: '🛡️ Defence', value: item.Defence, inline: true });
+      if (item.STR != undefined) fields.push({ name: '✊ STR', value: item.STR, inline: true });
+      if (item.AGI != undefined) fields.push({ name: '🦶 AGI', value: item.AGI, inline: true });
+      if (item.WIS != undefined) fields.push({ name: '📘 WIS', value: item.WIS, inline: true });
+      if (item.LUK != undefined) fields.push({ name: '🍀 LUK', value: item.LUK, inline: true });
+      if (item.Defence) fields.push({ name: '🛡️ Defence', value: item.Defence, inline: true });
       if (item.Upgrade_Slots_Left)
         fields.push({
           name: '⏫ Upgrade Slots',
@@ -312,16 +304,12 @@ class InfoCommand extends SlashCommand {
     response: ReplyMessageOptions;
     collector: InteractionCollector<ButtonInteraction>;
   }> {
-    const dynamicLabel =
-      monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';
+    const dynamicLabel = monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';
     const monsterBtn = new MessageButton()
       .setCustomId('monsterBtn')
       .setLabel(dynamicLabel)
       .setStyle('PRIMARY');
-    const itemBtn = new MessageButton()
-      .setCustomId('itemBtn')
-      .setLabel('Item')
-      .setStyle('PRIMARY');
+    const itemBtn = new MessageButton().setCustomId('itemBtn').setLabel('Item').setStyle('PRIMARY');
     const row = new MessageActionRow().addComponents(monsterBtn, itemBtn);
 
     const questionReply = {

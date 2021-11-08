@@ -113,14 +113,15 @@ class CraftCommand extends SlashCommand {
       (i) => i.message.id == message.id
     );
 
-    collector.on('end', async () => {
-      await message.edit({ components: [] });
-    });
-
     const commandDetails = { itemName, amount, authorId: message.author.id };
     const response = await this.execute(commandDetails, collector);
 
-    await message.reply({ ...response, ...noMentions });
+    const msgResponse = await message.reply({ ...response, ...noMentions });
+
+    collector.on('end', async () => {
+      await msgResponse.edit({ components: [] });
+    });
+
   }
 
   private createButtonCollector(
