@@ -13,7 +13,7 @@
     "poststop": "npm run delete",
     "delete": "pm2 delete ./dist/ecosystem.config.js",
     "logs": "pm2 logs Scripticus",
-    "dev": "npm run clean && tsc --project tsconfig.development.json && node .",
+    "dev": "npm run clean && tsc --project tsconfig.json && node .",
     "commandregister": "npm run build && node dist/src/registerGlobalCommands.js",
     "updatepm2": "pm2 update",
     "prebuild": "npm run clean",
