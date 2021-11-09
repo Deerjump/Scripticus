@@ -1,5 +1,6 @@
 import chalk from "chalk";
 
+import { ILogger } from '../types/types';
 // const createFormat = function(tag) {
 //   return winston.format.printf((info) => {
 //     let level = info.level.toUpperCase() + ': ';
@@ -26,7 +27,7 @@ import chalk from "chalk";
 //   })
 // }
 
-export class Logger {
+export class ConsoleLogger implements ILogger {
   tag: string;
   constructor(tag: string) {
     // TODO: fix the custom logger
@@ -38,19 +39,19 @@ export class Logger {
     this.tag = tag;
   }
   
-  log(message: any): void {
+  Log(message: any): void {
     // this.logger.info(message);
-    console.log(this.getPrefix(), message);
+    console.log(this.GetPrefix(), message);
   }
-  error(message: any): void {
+  Error(message: any): void {
     // this.logger.error(message);
-    console.error(this.getPrefix(), message);
+    console.error(this.GetPrefix(), message);
   }
-  warn(message: any): void {
+  Warn(message: any): void {
     // this.logger.warn(message);
-    console.warn(this.getPrefix(), message);
+    console.warn(this.GetPrefix(), message);
   }
-  getPrefix(): string {
+  GetPrefix(): string {
     const date = new Date();
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -59,4 +60,39 @@ export class Logger {
 
     return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`
   }
+}
+  
+  export class MongoDBLogger implements ILogger {
+    tag: string;
+    constructor(tag: string) {
+      // TODO: fix the custom logger
+  
+      // this.logger = winston.createLogger({
+      //   format: createFormat(tag),
+      //   transports: [new winston.transports.Console()]
+      // })
+      this.tag = tag;
+    }
+    
+    Log(message: any): void {
+      // this.logger.info(message);
+      console.log(this.GetPrefix(), message);
+    }
+    Error(message: any): void {
+      // this.logger.error(message);
+      console.error(this.GetPrefix(), message);
+    }
+    Warn(message: any): void {
+      // this.logger.warn(message);
+      console.warn(this.GetPrefix(), message);
+    }
+    GetPrefix(): string {
+      const date = new Date();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const time = date.toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit' });
+      const dateString = `${month}/${day}|${time}`;
+  
+      return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`
+    }
 }

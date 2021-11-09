@@ -142,6 +142,17 @@ export interface LavaFormulas {
   [key: string]: (...args: number[]) => number;
 }
 
+export interface ILogger {
+  
+  Error (message: any):void;
+  
+  Warn(message: any):void;
+  
+  Log (message: any) :void;
+  
+  GetPrefix() : string;
+}
+
 export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';
 
 export type CommandType =

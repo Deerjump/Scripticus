@@ -6,7 +6,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOptionData,
 } from 'discord.js';
-import { Logger } from '../logger';
+import { Logger } from '../loggers';
 
 export class OptionBuilder {
   private choices: ApplicationCommandOptionChoice[] = [];

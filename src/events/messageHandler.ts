@@ -1,7 +1,7 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
-import { Logger } from '../utils/logger';
+import { Logger } from '../utils/loggers';
 import { SlashCommand } from '../commands/commandClasses';
 
 const logger = new Logger('MessageCreate');

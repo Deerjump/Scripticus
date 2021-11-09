@@ -1,7 +1,7 @@
-import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database } from '@customTypes';
+import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database, ILogger } from '@customTypes';
 import { MessageCommand, SlashCommand, UserCommand } from './commands/commandClasses';
 import { Client, Collection, Guild } from 'discord.js';
-import { Logger } from './utils/logger';
+import LoggerFactory from './factories/loggerfactory';
 import chalk from 'chalk';
 import * as fs from 'fs';
 
@@ -11,7 +11,8 @@ export class ScripticusBot extends Client implements Scripticus {
   readonly guildSettings = new Collection<string, GuildSettings>();
   readonly userCommands = new Collection<string, UserCommand>();
   readonly commands = new Collection<string, SlashCommand>();
-  private logger = new Logger('Scripticus');
+
+  private logger :ILogger;
   readonly defaultCooldown: number;
   readonly defaultPrefix: string;
   readonly joinMessage: string;
@@ -27,6 +28,8 @@ export class ScripticusBot extends Client implements Scripticus {
     this.defaultPrefix = defaultPrefix;
     this.joinMessage = options.joinMessage;
 
+    loggerFactory: LoggerFactory = LoggerFactory.getInstance();
+    this.logger = loggerFactory.
     console.log(chalk.yellow(startupDisplay));
   }
 

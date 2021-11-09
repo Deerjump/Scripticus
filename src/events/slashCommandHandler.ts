@@ -1,6 +1,6 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Interaction } from 'discord.js';
-import { Logger } from '../utils/logger';
+import { Logger } from '../utils/loggers';
 
 const logger = new Logger('SlashCommandHandler');
 

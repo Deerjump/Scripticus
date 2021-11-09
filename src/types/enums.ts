@@ -1,0 +1,4 @@
+enum LogType {
+    Console,
+    Mongo
+}

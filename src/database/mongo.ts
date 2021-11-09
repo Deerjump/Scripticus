@@ -1,7 +1,7 @@
 import { Database, GuildSettings, GuildSettingsDto } from '@customTypes';
 import { GuildSettingsModel } from './schemas';
 import { connect, connection, Model } from 'mongoose';
-import { Logger } from '../utils/logger';
+import { Logger } from '../utils/loggers';
 
 export class DatabaseDriver implements Database {
   private mongoUrl: string;
@@ -37,7 +37,7 @@ export class DatabaseDriver implements Database {
   }
 
   async disconnect() {
-    this.logger.log('Disconecting Mongo');
+    this.logger.log('Disconnecting Mongo');
     try {
       await connection.close();
       this.logger.log('Disconnected!');

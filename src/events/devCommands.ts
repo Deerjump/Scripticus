@@ -1,7 +1,7 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
-import { Logger } from '../utils/logger';
+import { Logger } from '../utils/loggers';
 
 const logger = new Logger('DevCommands');
 

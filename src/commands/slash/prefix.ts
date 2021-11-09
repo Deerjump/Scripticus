@@ -1,7 +1,7 @@
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
-import { Logger } from '../../utils/logger';
+import { Logger } from '../../utils/loggers';
 import { ModerationLevel, Scripticus } from '@customTypes';
 import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
 

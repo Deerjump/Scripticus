@@ -1,0 +1,41 @@
+
+
+import '../utils/loggers';
+import { ILogger } from '../types/types';
+import '../types/enums';
+import { ConsoleLogger, MongoDBLogger } from '../utils/loggers';
+
+
+    
+export class LoggerFactory {
+
+    private static instance: LoggerFactory;
+    
+    private constructor() { }
+
+    public static getInstance(): LoggerFactory {
+        if (!LoggerFactory.instance) {
+            LoggerFactory.instance = new LoggerFactory();
+        }
+
+        return LoggerFactory.instance;
+    }
+    Logger(tag:string, logtype:LogType): ILogger {
+        
+        switch (logtype)
+        {
+        case LogType.Console:
+            
+            return new ConsoleLogger(tag);
+
+        case LogType.Mongo:
+            
+            return new MongoDBLogger(tag);
+        
+        default:
+            //NullLogger for best practice?
+            return new ConsoleLogger(tag);
+        }
+
+    }
+}

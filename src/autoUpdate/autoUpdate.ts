@@ -1,5 +1,5 @@
 import { AutoUpdateOptions, Scripticus } from '@customTypes';
-import { Logger } from '../utils/logger';
+import { Logger } from '../utils/loggers';
 import { exec } from 'child_process';
 import express from 'express';
 import crypto from 'crypto';

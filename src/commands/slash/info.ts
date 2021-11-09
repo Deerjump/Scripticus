@@ -4,7 +4,7 @@ import itemRepository from '../../repositories/itemRepository';
 import { ItemData, MonsterData } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
-import { Logger } from '../../utils/logger';
+import { Logger } from '../../utils/loggers';
 import {
   MessageEmbed,
   MessageActionRow,

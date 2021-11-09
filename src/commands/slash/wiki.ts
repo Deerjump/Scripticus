@@ -6,7 +6,7 @@ import {
 } from 'discord.js';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
-import { Logger } from '../../utils/logger';
+import { Logger } from '../../utils/loggers';
 import axios from 'axios';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 
