@@ -1,15 +1,19 @@
 import { Database, GuildSettings, GuildSettingsDto } from '@customTypes';
 import { GuildSettingsModel } from './schemas';
 import { connect, connection, Model } from 'mongoose';
-import { Logger } from '../utils/loggers';
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 
 export class DatabaseDriver implements Database {
   private mongoUrl: string;
-  private logger: Logger;
+  private logger: ILogger;
 
   constructor(mongoUrl: string) {
     this.mongoUrl = mongoUrl;
-    this.logger = new Logger('MongoDb');
+        
+    const _loggerFactory = LoggerFactory.getInstance();
+    this.logger = _loggerFactory.Logger('MongoDb',format(process.env.LOGGER_TYPE))
   }
 
   private getProjectionFromModel(model: Model<any>) {
@@ -24,25 +28,25 @@ export class DatabaseDriver implements Database {
   }
 
   async connectToDatabase() {
-    this.logger.log('Connecting to database...');
+    this.logger.Log('Connecting to database...');
 
     try {
       await connect(this.mongoUrl);
-      this.logger.log('Connected!');
+      this.logger.Log('Connected!');
     } catch (err) {
-      this.logger.error(err);
-      this.logger.log('Stopping process...');
+      this.logger.Error(err);
+      this.logger.Log('Stopping process...');
       process.exit();
     }
   }
 
   async disconnect() {
-    this.logger.log('Disconnecting Mongo');
+    this.logger.Log('Disconnecting Mongo');
     try {
       await connection.close();
-      this.logger.log('Disconnected!');
+      this.logger.Log('Disconnected!');
     } catch (err) {
-      this.logger.error(err);
+      this.logger.Error(err);
     }
   }
 

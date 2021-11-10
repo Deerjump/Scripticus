@@ -24,6 +24,11 @@ TOKEN=YOUR_TOKEN_HERE
   your username, password and token safe.
 */
 DATABASE_URL=DATABASE_
+
+
+LOGGER_TYPE='Console'
+
+
 ```
 6. Make sure you have [node.js](https://nodejs.org/) installed
 7. You should navigate to the `root directory` of the project and run: `npm install` in your terminal

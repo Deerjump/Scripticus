@@ -1,9 +1,11 @@
 import { EventHandler, Scripticus } from "@customTypes";
 import { Interaction } from "discord.js";
-import { Logger } from "../utils/loggers";
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 
-const logger = new Logger('UserCommandHandler');
-
+const _loggerFactory = LoggerFactory.getInstance();
+const logger = _loggerFactory.Logger('OptionBuilder',format(process.env.LoggerType));
 const eventHandler: EventHandler = {
   event: "interactionCreate",
   async handle(interaction: Interaction) {
@@ -14,10 +16,10 @@ const eventHandler: EventHandler = {
   //   if (command == undefined || command.handleInteract == undefined) return;
   
   //   try {
-  //     logger.log(`Executing command: ${command.name}`)
+  //     logger.Log(`Executing command: ${command.name}`)
   //     await command.handleInteract(interaction);
   //   } catch (error) {
-  //     logger.error(error);
+  //     logger.Error(error);
   //     await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
   //   }
   }

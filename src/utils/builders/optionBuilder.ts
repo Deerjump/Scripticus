@@ -6,8 +6,10 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOptionData,
 } from 'discord.js';
-import { Logger } from '../loggers';
 
+import { format } from 'util';
+import {LoggerFactory} from '../../factories/_loggerfactory';
+import {ILogger} from '../../types/types';
 export class OptionBuilder {
   private choices: ApplicationCommandOptionChoice[] = [];
   private subCommands: ApplicationCommandSubCommandData[] = [];
@@ -15,7 +17,7 @@ export class OptionBuilder {
     | ApplicationCommandChoicesData
     | ApplicationCommandNonOptionsData
   )[] = [];
-  private logger: Logger;
+  private logger: ILogger;
 
   constructor(
     private name: string,
@@ -23,7 +25,10 @@ export class OptionBuilder {
     private description?: string,
     private required: boolean = false
   ) {
-    this.logger = new Logger('OptionBuilder');
+
+    const _loggerFactory = LoggerFactory.getInstance();
+    
+    this.logger = _loggerFactory.Logger('OptionBuilder',format(process.env.LOGGER_TYPE));
   }
 
   private readonly hasChoices = ['NUMBER', 'STRING', 'INTEGER'];

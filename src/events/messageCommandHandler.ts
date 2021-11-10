@@ -1,8 +1,6 @@
 import { EventHandler, Scripticus } from "@customTypes";
 import { Interaction } from "discord.js";
-import { Logger } from "../utils/loggers";
 
-const logger = new Logger('MessageCommandHandler');
 
 const eventHandler: EventHandler = {
   event: "interactionCreate",

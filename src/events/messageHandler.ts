@@ -1,11 +1,12 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
-import { Logger } from '../utils/loggers';
-import { SlashCommand } from '../commands/commandClasses';
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 
-const logger = new Logger('MessageCreate');
-
+const _loggerFactory = LoggerFactory.getInstance();
+const logger = _loggerFactory.Logger('MessageCreate',format(process.env.LoggerType));
 function isOnCooldown(
   userId: string,
   cooldowns: Collection<string, number> | undefined
@@ -92,7 +93,7 @@ const eventHandler: EventHandler = {
     try {
       command.handleMessage(message, args);
     } catch (error) {
-      logger.error(error);
+      logger.Error(error);
       message.reply({
         content: 'there was an error trying to execute that command!',
         ...noMentions,

@@ -1,9 +1,12 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
-import { Logger } from '../utils/loggers';
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 
-const logger = new Logger('DevCommands');
+const _loggerFactory = LoggerFactory.getInstance();
+const logger = _loggerFactory.Logger('DevCommands',format(process.env.LOGGER_TYPE));
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features
@@ -50,7 +53,7 @@ async function resetCommands(client: Scripticus, guildId: string) {
   }
 
   const remaining = await commandManager.fetch()!;
-  logger.log(`${commands.size - remaining.size} commands deleted`);
+  logger.Log(`${commands.size - remaining.size} commands deleted`);
 }
 
 export = eventHandler;

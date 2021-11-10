@@ -2,7 +2,6 @@
 
 import '../utils/loggers';
 import { ILogger } from '../types/types';
-import '../types/enums';
 import { ConsoleLogger, MongoDBLogger } from '../utils/loggers';
 
 
@@ -20,15 +19,15 @@ export class LoggerFactory {
 
         return LoggerFactory.instance;
     }
-    Logger(tag:string, logtype:LogType): ILogger {
+    public Logger(tag:string, logtype:string): ILogger {
         
         switch (logtype)
         {
-        case LogType.Console:
+        case "Console":
             
             return new ConsoleLogger(tag);
 
-        case LogType.Mongo:
+        case "Mongo":
             
             return new MongoDBLogger(tag);
         

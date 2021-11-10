@@ -1,29 +1,35 @@
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
 import { noMentions } from '../../utils/utils';
-import { Logger } from '../../utils/loggers';
+import { format } from 'util';
+import {LoggerFactory} from '../../factories/_loggerfactory';
+import {ILogger} from '../../types/types';
+
+const _loggerFactory = LoggerFactory.getInstance();
 import { ModerationLevel, Scripticus } from '@customTypes';
 import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
 
 class PrefixCommand extends SlashCommand {
-  private readonly logger = new Logger('Prefix');
+  private logger: ILogger;
   readonly roleRequired: ModerationLevel = 'MOD';
   readonly defaultPermission = false;
   readonly usage = '<new prefix>';
   readonly global = false;
   readonly args = true;
-
+  
   protected generateOptions(): ApplicationCommandOptionData[] {
     return [
       new OptionBuilder('prefix', 'STRING')
-        .withDescription('The new bot prefix for your guild')
-        .require()
-        .build(),
+      .withDescription('The new bot prefix for your guild')
+      .require()
+      .build(),
     ];
   }
-
+  
   constructor() {
     super('prefix', 'Changes prefix for current server');
+    this.logger = _loggerFactory.Logger('Prefix',format(process.env.LOGGER_TYPE));
+
   }
 
   async execute(prefix: string, client: Scripticus, guildId?: string | null) {
@@ -38,7 +44,7 @@ class PrefixCommand extends SlashCommand {
 
       return { content: `Prefix is now sent to ${prefix}` };
     } catch (err) {
-      this.logger.log(err);
+      this.logger.Log(err);
       return { content: `Error setting prefix! ${err}` };
     }
   }

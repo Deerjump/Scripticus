@@ -7,12 +7,20 @@ import {
 } from 'discord.js';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 
+
+import { format } from 'util';
+import {LoggerFactory} from '../../factories/_loggerfactory';
+import {ILogger} from '../../types/types';
+
+const _loggerFactory = LoggerFactory.getInstance();
+
 class RollCommand extends SlashCommand {
   readonly usage = '<sides>';
   readonly args = true;
-
+  private logger:ILogger;
   constructor() {
     super('roll', 'Roll a dice! 🎲');
+    this.logger = _loggerFactory.Logger('Roll',format(process.env.LOGGER_TYPE));
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {

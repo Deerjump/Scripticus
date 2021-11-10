@@ -6,17 +6,23 @@ import {
 } from 'discord.js';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
-import { Logger } from '../../utils/loggers';
+import { format } from 'util';
+import {LoggerFactory} from '../../factories/_loggerfactory';
+import {ILogger} from '../../types/types';
+
+const _loggerFactory = LoggerFactory.getInstance();
+
 import axios from 'axios';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 
 class WikiCommand extends SlashCommand {
   readonly usage = '<search word>';
   private readonly wikiUrl = 'https://idleon.info/';
-  private readonly logger = new Logger('Wiki');
+  private logger:ILogger;
 
   constructor() {
-    super('wiki', 'Seach the Legends of Idleon Wiki!');
+    super('wiki', 'Search the Legends of Idleon Wiki!');
+    this.logger = _loggerFactory.Logger('Wiki',format(process.env.LOGGER_TYPE));
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {

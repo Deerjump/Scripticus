@@ -10,6 +10,8 @@ import {
 import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 
+
+
 export interface GuildSettings {
   prefix?: string;
 }

@@ -29,6 +29,7 @@
     "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "module-alias": "^2.2.2",
     "mongoose": "^6.0.6",
     "pm2": "^5.1.1"
   },
@@ -49,5 +50,9 @@
   "bugs": {
     "url": "https://github.com/Balthius/Scripticus/issues"
   },
-  "homepage": "https://github.com/Balthius/Scripticus#readme"
+  "homepage": "https://github.com/Balthius/Scripticus#readme",
+   "_moduleAliases": {
+    "@modules": "dist/rest/modules",
+    "@services": "dist/services"
+  }
 }

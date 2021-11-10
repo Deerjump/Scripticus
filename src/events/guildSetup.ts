@@ -1,9 +1,12 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Guild } from 'discord.js';
-import { Logger } from '../utils/loggers';
 
-const logger = new Logger('GuildSetup');
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 
+const _loggerFactory = LoggerFactory.getInstance();
+const logger = _loggerFactory.Logger('GuildSetup',format(process.env.LOGGER_TYPE));
 const eventHandler: EventHandler = {
   // When the bot joins a guild
   event: 'guildCreate',
@@ -11,9 +14,11 @@ const eventHandler: EventHandler = {
   async handle(guild: Guild) {
     const client = guild.client as Scripticus;
     const { commands } = client;
+    
+    
 
-    logger.log(`Joined ${guild.name}!`);
-    logger.log(`Configuring guild-specific commands...`);
+    logger.Log(`Joined ${guild.name}!`);
+    logger.Log(`Configuring guild-specific commands...`);
 
     const owner = await guild.fetchOwner();
     const toRegister = await Promise.all(
@@ -22,7 +27,7 @@ const eventHandler: EventHandler = {
 
     const registered = await guild.commands.set(toRegister);
 
-    logger.log(`Registered ${registered.size} guild command(s)`);
+    logger.Log(`Registered ${registered.size} guild command(s)`);
 
     for (const [name, command] of commands) {
       const { id } = registered.find((c) => c.name === name)!;
@@ -37,8 +42,8 @@ const eventHandler: EventHandler = {
     try {
       owner.send({ content: client.joinMessage });
     } catch (err) {
-      logger.error(err);
-      logger.error(`Error sending DM to ${owner.user.username}`);
+      logger.Error(err);
+      logger.Error(`Error sending DM to ${owner.user.username}`);
     }
   },
 };
