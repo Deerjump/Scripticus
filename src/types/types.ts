@@ -21,6 +21,13 @@ export interface GuildSettingsDto {
   settings: GuildSettings;
 }
 
+export interface LogDocument {
+  logType: string;
+  timeStamp: Date;
+  message: string;
+  
+}
+
 export interface EventHandler {
   event: keyof ClientEvents;
   once?: boolean;
@@ -50,6 +57,8 @@ export interface Database {
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
   updateGuildSettings: (guildId: string, settings: GuildSettings) => Promise<GuildSettings>;
+  
+  LogToDatabase: (logType: string, log: LogDocument) => Promise<void>;
 }
 
 export interface ScripticusOptions {

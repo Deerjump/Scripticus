@@ -1,5 +1,5 @@
-import { Database, GuildSettings, GuildSettingsDto } from '@customTypes';
-import { GuildSettingsModel } from './schemas';
+import { Database, GuildSettings, GuildSettingsDto, LogDocument } from '@customTypes';
+import { GuildSettingsModel, LoggingModel, LoggingSchema } from './schemas';
 import { connect, connection, Model } from 'mongoose';
 import { format } from 'util';
 import {LoggerFactory} from '../factories/_loggerfactory';
@@ -13,7 +13,7 @@ export class DatabaseDriver implements Database {
     this.mongoUrl = mongoUrl;
         
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('MongoDb',format(process.env.LOGGER_TYPE))
+    this.logger = _loggerFactory.Logger('MongoDb',process.env.LOGGER_TYPE!)
   }
 
   private getProjectionFromModel(model: Model<any>) {
@@ -74,5 +74,12 @@ export class DatabaseDriver implements Database {
     ).lean();
 
     return result.settings;
+  }
+
+  async LogToDatabase(logType: string, log: LogDocument) {
+    const result = await LoggingModel.insertMany(
+      {logType},
+      {log}
+    );
   }
 }

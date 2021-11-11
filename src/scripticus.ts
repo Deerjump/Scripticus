@@ -33,7 +33,7 @@ export class ScripticusBot extends Client implements Scripticus {
     this.joinMessage = options.joinMessage;
 
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('Scripticus',format(process.env.LOGGER_TYPE));
+    this.logger = _loggerFactory.Logger('Scripticus',process.env.LOGGER_TYPE!);
     console.log(chalk.yellow(startupDisplay));
   }
 

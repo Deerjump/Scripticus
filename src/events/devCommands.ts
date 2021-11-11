@@ -6,7 +6,7 @@ import {LoggerFactory} from '../factories/_loggerfactory';
 import {ILogger} from '../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('DevCommands',format(process.env.LOGGER_TYPE));
+const logger = _loggerFactory.Logger('DevCommands',process.env.LOGGER_TYPE!);
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features

@@ -28,7 +28,7 @@ class PrefixCommand extends SlashCommand {
   
   constructor() {
     super('prefix', 'Changes prefix for current server');
-    this.logger = _loggerFactory.Logger('Prefix',format(process.env.LOGGER_TYPE));
+    this.logger = _loggerFactory.Logger('Prefix',process.env.LOGGER_TYPE!);
 
   }
 

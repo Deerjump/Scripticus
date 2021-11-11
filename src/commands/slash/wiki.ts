@@ -22,7 +22,7 @@ class WikiCommand extends SlashCommand {
 
   constructor() {
     super('wiki', 'Search the Legends of Idleon Wiki!');
-    this.logger = _loggerFactory.Logger('Wiki',format(process.env.LOGGER_TYPE));
+    this.logger = _loggerFactory.Logger('Wiki',process.env.LOGGER_TYPE!);
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {

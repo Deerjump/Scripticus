@@ -28,7 +28,7 @@ export class OptionBuilder {
 
     const _loggerFactory = LoggerFactory.getInstance();
     
-    this.logger = _loggerFactory.Logger('OptionBuilder',format(process.env.LOGGER_TYPE));
+    this.logger = _loggerFactory.Logger('OptionBuilder',process.env.LOGGER_TYPE!);
   }
 
   private readonly hasChoices = ['NUMBER', 'STRING', 'INTEGER'];

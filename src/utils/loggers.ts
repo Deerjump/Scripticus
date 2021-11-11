@@ -1,6 +1,7 @@
 import chalk from "chalk";
-
-import { ILogger } from '../types/types';
+import { LoggingSchema} from "../database/schemas";
+import { DatabaseDriver } from '../database/mongo';
+import { ILogger, Database, GuildSettingsDto, GuildSettings } from '@customTypes';
 // const createFormat = function(tag) {
 //   return winston.format.printf((info) => {
 //     let level = info.level.toUpperCase() + ': ';
@@ -64,6 +65,7 @@ export class ConsoleLogger implements ILogger {
   
   export class MongoDBLogger implements ILogger {
     tag: string;
+    private db: Database = new DatabaseDriver(process.env.DATABASE_URL!)
     constructor(tag: string) {
       // TODO: fix the custom logger
   
@@ -75,16 +77,19 @@ export class ConsoleLogger implements ILogger {
     }
     
     Log(message: any): void {
-      // this.logger.info(message);
-      console.log(this.GetPrefix(), message);
+      this.db.connectToDatabase();
+      
+      this.db.LogToDatabase('Log', message);
     }
     Error(message: any): void {
-      // this.logger.error(message);
-      console.error(this.GetPrefix(), message);
+      this.db.connectToDatabase();
+      
+      this.db.LogToDatabase('Error',message);
     }
     Warn(message: any): void {
-      // this.logger.warn(message);
-      console.warn(this.GetPrefix(), message);
+      this.db.connectToDatabase();
+
+      this.db.LogToDatabase('Warn',message);
     }
     GetPrefix(): string {
       const date = new Date();
@@ -95,4 +100,6 @@ export class ConsoleLogger implements ILogger {
   
       return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`
     }
+
+    
 }

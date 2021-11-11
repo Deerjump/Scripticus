@@ -1,7 +1,6 @@
 
-
+import { Database, ILogger } from '@customTypes';
 import '../utils/loggers';
-import { ILogger } from '../types/types';
 import { ConsoleLogger, MongoDBLogger } from '../utils/loggers';
 
 
@@ -9,7 +8,6 @@ import { ConsoleLogger, MongoDBLogger } from '../utils/loggers';
 export class LoggerFactory {
 
     private static instance: LoggerFactory;
-    
     private constructor() { }
 
     public static getInstance(): LoggerFactory {

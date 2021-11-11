@@ -31,7 +31,7 @@ class InfoCommand extends SlashCommand {
   private logger:ILogger;
   constructor() {
     super('info', 'Find information on monsters or items');
-    this.logger = _loggerFactory.Logger('Info',format(process.env.LOGGER_TYPE))
+    this.logger = _loggerFactory.Logger('Info',process.env.LOGGER_TYPE!)
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {

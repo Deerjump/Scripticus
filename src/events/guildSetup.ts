@@ -6,7 +6,7 @@ import {LoggerFactory} from '../factories/_loggerfactory';
 import {ILogger} from '../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('GuildSetup',format(process.env.LOGGER_TYPE));
+const logger = _loggerFactory.Logger('GuildSetup',process.env.LOGGER_TYPE!);
 const eventHandler: EventHandler = {
   // When the bot joins a guild
   event: 'guildCreate',

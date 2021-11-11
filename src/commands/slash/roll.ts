@@ -20,7 +20,7 @@ class RollCommand extends SlashCommand {
   private logger:ILogger;
   constructor() {
     super('roll', 'Roll a dice! 🎲');
-    this.logger = _loggerFactory.Logger('Roll',format(process.env.LOGGER_TYPE));
+    this.logger = _loggerFactory.Logger('Roll',process.env.LOGGER_TYPE!);
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {
