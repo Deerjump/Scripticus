@@ -43,7 +43,7 @@ export class OptionBuilder {
       throw new RangeError('Exceeded 25 ApplicationChoice limit');
     }
     if (!this.hasChoices.includes(this.type)) {
-      this.logger.warn(
+      this.logger.Warn(
         `Tried to add choices to option of type: ${this.type}. They won't be added`
       );
       return this;

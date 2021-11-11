@@ -58,7 +58,7 @@ export interface Database {
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
   updateGuildSettings: (guildId: string, settings: GuildSettings) => Promise<GuildSettings>;
   
-  LogToDatabase: (logType: string, log: LogDocument) => Promise<void>;
+  LogToDatabase: (logType: string, timestamp: Date, message: string)  => Promise<void>;
 }
 
 export interface ScripticusOptions {

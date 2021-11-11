@@ -78,18 +78,17 @@ export class ConsoleLogger implements ILogger {
     
     Log(message: any): void {
       this.db.connectToDatabase();
-      
-      this.db.LogToDatabase('Log', message);
+      this.db.LogToDatabase('Log', new Date(), message);
     }
     Error(message: any): void {
       this.db.connectToDatabase();
       
-      this.db.LogToDatabase('Error',message);
+      this.db.LogToDatabase('Error', new Date(), message);
     }
     Warn(message: any): void {
       this.db.connectToDatabase();
 
-      this.db.LogToDatabase('Warn',message);
+      this.db.LogToDatabase('Warn', new Date(), message);
     }
     GetPrefix(): string {
       const date = new Date();

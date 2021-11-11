@@ -68,7 +68,7 @@ class WikiCommand extends SlashCommand {
 
       return { content: response.request.res.responseUrl };
     } catch (err) {
-      this.logger.error(err);
+      this.logger.Error(err);
       return { content: 'An error occured while executing your query' };
     }
   }

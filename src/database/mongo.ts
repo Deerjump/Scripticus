@@ -1,6 +1,6 @@
 import { Database, GuildSettings, GuildSettingsDto, LogDocument } from '@customTypes';
 import { GuildSettingsModel, LoggingModel, LoggingSchema } from './schemas';
-import { connect, connection, Model } from 'mongoose';
+import { connect, connection, Model} from 'mongoose';
 import { format } from 'util';
 import {LoggerFactory} from '../factories/_loggerfactory';
 import {ILogger} from '../types/types';
@@ -76,10 +76,17 @@ export class DatabaseDriver implements Database {
     return result.settings;
   }
 
-  async LogToDatabase(logType: string, log: LogDocument) {
-    const result = await LoggingModel.insertMany(
-      {logType},
-      {log}
+  async LogToDatabase(logType: string, timestamp: Date, message: string) {
+
+    const result = await LoggingModel.findOneAndUpdate(
+        {logType,
+        timestamp,
+        message},
+        {logType,
+          timestamp,
+          message},
+        { upsert: true, new: true}
+       
     );
   }
 }

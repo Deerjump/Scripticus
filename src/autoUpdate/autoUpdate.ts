@@ -46,7 +46,7 @@ class WebhookListener {
   }
 
   private runCommand(command: string): Promise<void> {
-    this.logger.log(command);
+    this.logger.Log(command);
     return new Promise<void>((resolve, reject) => {
       exec(command, (err, stdout, stderr) => {
         if (err) reject(err);
@@ -58,7 +58,7 @@ class WebhookListener {
   }
 
   private init() {
-    this.logger.log('Configuring WebHookListener');
+    this.logger.Log('Configuring WebHookListener');
 
     this.app.use(
       express.json({
@@ -102,9 +102,9 @@ class WebhookListener {
   }
 
   start() {
-    this.logger.log('Starting WebHookListener');
+    this.logger.Log('Starting WebHookListener');
     this.app.listen(this.PORT, async () => {
-      this.logger.log(`Listening on ${this.PORT}`);
+      this.logger.Log(`Listening on ${this.PORT}`);
     });
     return this;
   }
