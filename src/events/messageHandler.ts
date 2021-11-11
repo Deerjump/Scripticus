@@ -3,6 +3,7 @@ import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { format } from 'util';
 import {LoggerFactory} from '../factories/_loggerfactory';
+import {SlashCommand} from '../commands/commandClasses';
 import {ILogger} from '../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();

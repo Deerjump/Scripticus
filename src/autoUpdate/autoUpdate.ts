@@ -1,5 +1,8 @@
 import { AutoUpdateOptions, Scripticus } from '@customTypes';
-import { Logger } from '../utils/loggers';
+
+import { format } from 'util';
+import {LoggerFactory} from '../factories/_loggerfactory';
+import {ILogger} from '../types/types';
 import { exec } from 'child_process';
 import express from 'express';
 import crypto from 'crypto';
@@ -7,7 +10,8 @@ import crypto from 'crypto';
 class WebhookListener {
   private readonly SIG_HEADER_NAME = 'X-Hub-Signature-256';
   private readonly SIG_HASH_ALG = 'sha256';
-  private readonly logger = new Logger('AutoUpdate');
+  
+  private logger: ILogger;
   private readonly app = express();
   private readonly branch: string;
   private readonly client: Scripticus;
@@ -24,6 +28,9 @@ class WebhookListener {
     this.client = client;
     this.branch = branch;
     this.init();
+    
+    const _loggerFactory = LoggerFactory.getInstance();
+    this.logger = _loggerFactory.Logger('MongoDb',process.env.LOGGER_TYPE!)
   }
 
   // TODO: Arguments might benefit from stricter typings
@@ -50,8 +57,8 @@ class WebhookListener {
     return new Promise<void>((resolve, reject) => {
       exec(command, (err, stdout, stderr) => {
         if (err) reject(err);
-        if (stderr) this.logger.log(stderr);
-        if (stdout) this.logger.log(stdout);
+        if (stderr) this.logger.Log(stderr);
+        if (stdout) this.logger.Log(stdout);
         resolve();
       });
     });
@@ -75,26 +82,26 @@ class WebhookListener {
 
       const body = JSON.parse(req.rawBody);
       if (body.ref !== `refs/heads/${this.branch}`) {
-        return this.logger.log(`Ignoring merge on branch: ${body.ref}`);
+        return this.logger.Log(`Ignoring merge on branch: ${body.ref}`);
       }
 
-      this.logger.log('Github webhook received.');
+      this.logger.Log('Github webhook received.');
       try {
         await this.runCommand('git remote update');
         await this.runCommand(`git reset --hard origin/${this.branch}`);
         await this.runCommand('npm install');
         await this.runCommand('npm audit fix');
         await this.runCommand('npm run build');
-        this.logger.log('Updated to new commit from Github!');
+        this.logger.Log('Updated to new commit from Github!');
       } catch (err) {
-        return this.logger.error(err);
+        return this.logger.Error(err);
       }
 
       this.client.stop();
     });
 
     this.app.use((err: any, req: any, res: any, next: any) => {
-      if (err) this.logger.error(err);
+      if (err) this.logger.Error(err);
       res.status(403).send('Request body was not signed or verification failed!');
     });
 

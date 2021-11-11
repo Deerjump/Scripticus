@@ -51,7 +51,7 @@
     "url": "https://github.com/Balthius/Scripticus/issues"
   },
   "homepage": "https://github.com/Balthius/Scripticus#readme",
-   "_moduleAliases": {
+  "_moduleAliases": {
     "@modules": "dist/rest/modules",
     "@services": "dist/services"
   }
