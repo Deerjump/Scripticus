@@ -4,6 +4,7 @@ import {
   Guild,
   MessageEmbed,
   CommandInteraction,
+  ContextMenuInteraction,
 } from 'discord.js';
 
 class UserInfoCommand extends UserCommand {
@@ -29,7 +30,7 @@ class UserInfoCommand extends UserCommand {
     return { embeds: [embed] };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ContextMenuInteraction) {
     await interaction.deferReply();
 
     const response = await this.execute(interaction.user, interaction.guild!);
