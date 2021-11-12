@@ -13,7 +13,7 @@ export class DatabaseDriver implements Database {
     this.mongoUrl = mongoUrl;
         
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('MongoDb',process.env.LOGGER_TYPE!)
+    this.logger = _loggerFactory.Logger('MongoDb','Console'!);
   }
 
   private getProjectionFromModel(model: Model<any>) {
@@ -76,13 +76,13 @@ export class DatabaseDriver implements Database {
     return result.settings;
   }
 
-  async LogToDatabase(logType: string, timestamp: Date, message: string) {
+  async LogToDatabase(logtype: string, timestamp: Date, message: string) {
 
     const result = await LoggingModel.findOneAndUpdate(
-        {logType,
+        {logtype,
         timestamp,
         message},
-        {logType,
+        {logtype,
           timestamp,
           message},
         { upsert: true, new: true}

@@ -9,6 +9,8 @@ import * as fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import {endpoints} from './utils/utils';
+
 export class ScripticusBot extends Client implements Scripticus {
   readonly cooldowns = new Collection<string, Collection<string, number>>();
   readonly messageCommands = new Collection<string, MessageCommand>();
@@ -33,8 +35,11 @@ export class ScripticusBot extends Client implements Scripticus {
     this.joinMessage = options.joinMessage;
 
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('Scripticus',process.env.LOGGER_TYPE!);
+    this.logger = _loggerFactory.Logger('Scripticus','Console');
     console.log(chalk.yellow(startupDisplay));
+
+    this.logger.Log('DatabaseUrl ' + endpoints.MongoUrl);
+    this.logger.Log('Default Logging Type ' + endpoints.logType);
   }
 
   private async loadEvents() {

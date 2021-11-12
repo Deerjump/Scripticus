@@ -5,7 +5,7 @@ import {LoggerFactory} from '../factories/_loggerfactory';
 import {ILogger} from '../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('Ready',format(process.env.LoggerType));
+const logger = _loggerFactory.Logger('Ready','Console');
 
 
 async function registerCommands(oAuth2Guild: OAuth2Guild) {

@@ -77,7 +77,8 @@ export class ConsoleLogger implements ILogger {
     }
     
     Log(message: any): void {
-      this.db.connectToDatabase();
+      console.log("Attempted Log made");
+      this.db.connectToDatabase(); //Can this be run once in the constructor?
       this.db.LogToDatabase('Log', new Date(), message);
     }
     Error(message: any): void {

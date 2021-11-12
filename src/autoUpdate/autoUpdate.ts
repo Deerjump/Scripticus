@@ -30,7 +30,7 @@ class WebhookListener {
     this.init();
     
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('MongoDb',process.env.LOGGER_TYPE!)
+    this.logger = _loggerFactory.Logger('autoUpdate',process.env.LOGGER_TYPE!)
   }
 
   // TODO: Arguments might benefit from stricter typings

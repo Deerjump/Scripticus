@@ -6,13 +6,17 @@ import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import {endpoints} from './utils/utils';
+
 /**
  * @description this won't register commands.
  * @see registerApplicationCommands.ts
  */
 async function main() {
+
+  
   const scripticus = new ScripticusBot(
-    new DatabaseDriver(process.env.DATABASE_URL!),
+    new DatabaseDriver(endpoints.MongoUrl ),
     clientOptions
   );
   let autoUpdater;

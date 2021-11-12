@@ -50,3 +50,4 @@ node_modules/
 dist
 
 .vscode/launch.json
+src/config/autoUpdateOptions.ts

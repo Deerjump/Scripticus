@@ -14,24 +14,29 @@ export const GuildSettingsModel = model(
   new Schema<GuildSettingsDto>({
     guildId: { type: String, required: true },
     settings: { type: GuildSettingsSchema, required: true }
-  })
+  }
+  // ,{ collection : 'guildsettings' }
+  )
 );
 
-
+// https://stackoverflow.com/questions/40079200/how-to-declare-collection-name-and-model-name-in-mongoose
 export const LoggingSchema = new Schema<LogDocument>({
 
-  logType: { type: String, required: true },
-  timeStamp: { type: Date, required: true },
+  logtype: { type: String, required: true },
+  timestamp: { type: Date, required: true },
   message: { type: String, required: true }
 });
 
 export const LoggingModel = model('Log', 
-
   new Schema<LogDocument>({
-    logType: { type: String, required: true },
-    timeStamp: { type: Date, required: true },
+    logtype: { type: String, required: true },
+    timestamp: { type: Date, required: true },
     message: { type: String, required: true }
-  })
+  }
+  // , { collection : 'logs' }
+  
+  )
+  
 );
 
 

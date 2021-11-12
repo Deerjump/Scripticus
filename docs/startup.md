@@ -12,7 +12,7 @@
 5. Create a `.env` file in the main directory as seen [below](#example-env)
     - If you need to use a database, you'll need to create your own MongoDB to use.
     - You'll place your credentials in the `.env` and you'll need to configure [connection.js](../mongo/connection.js) with your database url.
-
+    - Setting up an environment can also be seen at this [link](https://dev.to/francis04j/how-to-add-env-and-use-process-env-to-your-typescript-project-3d6b)
 ## Example .env
 ```js
 // Your Discord bot's token
@@ -24,7 +24,6 @@ TOKEN=YOUR_TOKEN_HERE
   your username, password and token safe.
 */
 DATABASE_URL=DATABASE_
-
 
 LOGGER_TYPE='Console'
 
@@ -39,6 +38,7 @@ LOGGER_TYPE='Console'
     
     - You can also start up the bot by running the command `npm start`, which will start up the bot using [pm2](https://pm2.io/docs/plus/overview/)
         - Also see [package.json](../package.json) for the other scripts available through `npm run <script>`
+        -note: Deerjump has also provided npm run dev to avoid pm2
 # Just like that you're up and running!
 
  
