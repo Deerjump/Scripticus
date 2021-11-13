@@ -1,6 +1,5 @@
 import { ILogger } from '@customTypes';
-import '../utils/loggers';
-import { ConsoleLogger, MongoDBLogger } from '../utils/loggers';
+import { ConsoleLogger, MongoDBLogger } from '../utils/logger';
 
 export class LoggerFactory {
   private static instance: LoggerFactory;
