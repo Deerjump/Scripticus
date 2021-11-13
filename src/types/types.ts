@@ -144,12 +144,8 @@ export interface LavaFormulas {
 
 export interface ILogger {
   error(message: any): void;
-
   warn(message: any): void;
-
   log(message: any): void;
-
-  getPrefix(): string;
 }
 
 export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';

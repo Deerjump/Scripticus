@@ -14,7 +14,6 @@ export const hidden = new OptionBuilder('hidden', 'BOOLEAN')
 
 // this is currently overkill, but it should cut down on dotnet imports, and a lot of process.env.xxx
 export const endpoints = {
-MongoUrl: process.env.DATABASE_URL ?? '',
-logType: process.env.LOGGER_TYPE ??''
-
-}
+  MongoUrl: process.env.DATABASE_URL ?? '',
+  logType: process.env.LOGGER_TYPE ?? '',
+};
