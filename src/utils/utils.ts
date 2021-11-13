@@ -1,6 +1,6 @@
 import { OptionBuilder } from './builders/optionBuilder';
 import dotenv from 'dotenv';
-import { env } from 'process';
+
 dotenv.config();
 export const noMentions = { allowedMentions: { users: [] } };
 

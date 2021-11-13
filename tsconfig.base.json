@@ -12,10 +12,9 @@
     "moduleResolution": "node",
     /* IMPORTANT: only use these for Types/Interfaces. Do not use them for Classes or JS modules */
     "paths": {
-      "@customTypes": ["./src/types/types.ts"],
-    
+      "@customTypes": ["./src/types/types.ts"]
     },
     "lib": ["es2021"]
   },
-  "exclude": ["docs/**/*", "dist/**/*", "resources/**/*"]
+  "exclude": ["docs/**/*", "dist/**/*", "resources/**/*", "scratch/**/*"]
 }

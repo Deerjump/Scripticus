@@ -121,7 +121,6 @@ class CraftCommand extends SlashCommand {
     collector.on('end', async () => {
       await msgResponse.edit({ components: [] });
     });
-
   }
 
   private createButtonCollector(

@@ -2,16 +2,12 @@ import { EventHandler, Scripticus } from '@customTypes';
 import { Collection, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {SlashCommand} from '../commands/commandClasses';
-import {ILogger} from '../types/types';
+import { LoggerFactory } from '../factories/_loggerfactory';
+import { SlashCommand } from '../commands/commandClasses';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('MessageCreate',format(process.env.LoggerType));
-function isOnCooldown(
-  userId: string,
-  cooldowns: Collection<string, number> | undefined
-) {
+const logger = _loggerFactory.Logger('MessageCreate', format(process.env.LoggerType));
+function isOnCooldown(userId: string, cooldowns: Collection<string, number> | undefined) {
   if (cooldowns == undefined || cooldowns.size === 0) return false;
   const expiration = cooldowns.get(userId);
 
@@ -73,9 +69,7 @@ const eventHandler: EventHandler = {
 
     const command =
       client.commands.get(commandName) ||
-      client.commands.find(
-        (cmd) => cmd.aliases != undefined && cmd.aliases.includes(commandName)
-      );
+      client.commands.find((cmd) => cmd.aliases != undefined && cmd.aliases.includes(commandName));
 
     if (command == undefined) return;
 
@@ -94,7 +88,7 @@ const eventHandler: EventHandler = {
     try {
       command.handleMessage(message, args);
     } catch (error) {
-      logger.Error(error);
+      logger.error(error);
       message.reply({
         content: 'there was an error trying to execute that command!',
         ...noMentions,

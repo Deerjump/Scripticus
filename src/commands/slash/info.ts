@@ -4,9 +4,8 @@ import itemRepository from '../../repositories/itemRepository';
 import { ItemData, MonsterData } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
-import { format } from 'util';
-import {LoggerFactory} from '../../factories/_loggerfactory';
-import {ILogger} from '../../types/types';
+import { LoggerFactory } from '../../factories/_loggerfactory';
+import { ILogger } from '../../types/types';
 const _loggerFactory = LoggerFactory.getInstance();
 
 import {
@@ -28,10 +27,10 @@ class InfoCommand extends SlashCommand {
   readonly description = 'Find information on monsters or items!';
   readonly usage = '<item or monster name>';
   readonly args = true;
-  private logger:ILogger;
+  private logger: ILogger;
   constructor() {
     super('info', 'Find information on monsters or items');
-    this.logger = _loggerFactory.Logger('Info',process.env.LOGGER_TYPE!)
+    this.logger = _loggerFactory.Logger('Info', process.env.LOGGER_TYPE!);
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {
@@ -231,7 +230,7 @@ class InfoCommand extends SlashCommand {
         embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
         break;
       default:
-        this.logger.Error('Unknown AFKtype!');
+        this.logger.error('Unknown AFKtype!');
     }
 
     return embed.addFields(fields);

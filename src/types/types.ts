@@ -1,16 +1,6 @@
-import {
-  ButtonInteraction,
-  Client,
-  ClientEvents,
-  Collection,
-  Guild,
-  Intents,
-  PartialTypes,
-} from 'discord.js';
+import { Client, ClientEvents, Collection, Guild, Intents, PartialTypes } from 'discord.js';
 import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
-
-
 
 export interface GuildSettings {
   prefix?: string;
@@ -25,7 +15,6 @@ export interface LogDocument {
   logtype: string;
   timestamp: Date;
   message: string;
-  
 }
 
 export interface EventHandler {
@@ -57,8 +46,8 @@ export interface Database {
   getAllGuildSettings: () => Promise<GuildSettingsDto[]>;
   getGuildSettings: (guildId: string) => Promise<GuildSettingsDto>;
   updateGuildSettings: (guildId: string, settings: GuildSettings) => Promise<GuildSettings>;
-  
-  LogToDatabase: (logtype: string, timestamp: Date, message: string)  => Promise<void>;
+
+  LogToDatabase: (logtype: string, timestamp: Date, message: string) => Promise<void>;
 }
 
 export interface ScripticusOptions {
@@ -154,14 +143,13 @@ export interface LavaFormulas {
 }
 
 export interface ILogger {
-  
-  Error (message: any):void;
-  
-  Warn(message: any):void;
-  
-  Log (message: any) :void;
-  
-  GetPrefix() : string;
+  error(message: any): void;
+
+  warn(message: any): void;
+
+  log(message: any): void;
+
+  getPrefix(): string;
 }
 
 export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';

@@ -6,9 +6,8 @@ import {
 } from 'discord.js';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
-import { format } from 'util';
-import {LoggerFactory} from '../../factories/_loggerfactory';
-import {ILogger} from '../../types/types';
+import { LoggerFactory } from '../../factories/_loggerfactory';
+import { ILogger } from '../../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
 
@@ -18,11 +17,11 @@ import { OptionBuilder } from '../../utils/builders/optionBuilder';
 class WikiCommand extends SlashCommand {
   readonly usage = '<search word>';
   private readonly wikiUrl = 'https://idleon.info/';
-  private logger:ILogger;
+  private logger: ILogger;
 
   constructor() {
     super('wiki', 'Search the Legends of Idleon Wiki!');
-    this.logger = _loggerFactory.Logger('Wiki',process.env.LOGGER_TYPE!);
+    this.logger = _loggerFactory.Logger('Wiki', process.env.LOGGER_TYPE!);
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {
@@ -68,7 +67,7 @@ class WikiCommand extends SlashCommand {
 
       return { content: response.request.res.responseUrl };
     } catch (err) {
-      this.logger.Error(err);
+      this.logger.error(err);
       return { content: 'An error occured while executing your query' };
     }
   }

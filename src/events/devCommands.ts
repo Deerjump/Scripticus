@@ -1,12 +1,10 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
-import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
+import { LoggerFactory } from '../factories/_loggerfactory';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('DevCommands',process.env.LOGGER_TYPE!);
+const logger = _loggerFactory.Logger('DevCommands', process.env.LOGGER_TYPE!);
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features
@@ -14,8 +12,7 @@ const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: async (message: Message) => {
     const whitelist = ['191085842469486592'];
-    if (message.channel.type != 'DM' && !whitelist.includes(message.author.id))
-      return;
+    if (message.channel.type != 'DM' && !whitelist.includes(message.author.id)) return;
 
     const client = message.client as Scripticus;
     const [option, arg] = message.content.split(/ +/);
@@ -53,7 +50,7 @@ async function resetCommands(client: Scripticus, guildId: string) {
   }
 
   const remaining = await commandManager.fetch()!;
-  logger.Log(`${commands.size - remaining.size} commands deleted`);
+  logger.log(`${commands.size - remaining.size} commands deleted`);
 }
 
 export = eventHandler;

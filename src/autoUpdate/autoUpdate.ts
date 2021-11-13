@@ -1,8 +1,6 @@
 import { AutoUpdateOptions, Scripticus } from '@customTypes';
-
-import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
+import { LoggerFactory } from '../factories/_loggerfactory';
+import { ILogger } from '../types/types';
 import { exec } from 'child_process';
 import express from 'express';
 import crypto from 'crypto';
@@ -10,7 +8,7 @@ import crypto from 'crypto';
 class WebhookListener {
   private readonly SIG_HEADER_NAME = 'X-Hub-Signature-256';
   private readonly SIG_HASH_ALG = 'sha256';
-  
+
   private logger: ILogger;
   private readonly app = express();
   private readonly branch: string;
@@ -28,9 +26,9 @@ class WebhookListener {
     this.client = client;
     this.branch = branch;
     this.init();
-    
+
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('autoUpdate',process.env.LOGGER_TYPE!)
+    this.logger = _loggerFactory.Logger('autoUpdate', process.env.LOGGER_TYPE!);
   }
 
   // TODO: Arguments might benefit from stricter typings
@@ -53,19 +51,19 @@ class WebhookListener {
   }
 
   private runCommand(command: string): Promise<void> {
-    this.logger.Log(command);
+    this.logger.log(command);
     return new Promise<void>((resolve, reject) => {
       exec(command, (err, stdout, stderr) => {
         if (err) reject(err);
-        if (stderr) this.logger.Log(stderr);
-        if (stdout) this.logger.Log(stdout);
+        if (stderr) this.logger.log(stderr);
+        if (stdout) this.logger.log(stdout);
         resolve();
       });
     });
   }
 
   private init() {
-    this.logger.Log('Configuring WebHookListener');
+    this.logger.log('Configuring WebHookListener');
 
     this.app.use(
       express.json({
@@ -77,31 +75,35 @@ class WebhookListener {
       })
     );
 
-    this.app.post('/hook', (...args) => this.verifyPostData(...args), async (req: any, res: any) => {
-      res.status(200).send('Request body was signed!');
+    this.app.post(
+      '/hook',
+      (...args) => this.verifyPostData(...args),
+      async (req: any, res: any) => {
+        res.status(200).send('Request body was signed!');
 
-      const body = JSON.parse(req.rawBody);
-      if (body.ref !== `refs/heads/${this.branch}`) {
-        return this.logger.Log(`Ignoring merge on branch: ${body.ref}`);
+        const body = JSON.parse(req.rawBody);
+        if (body.ref !== `refs/heads/${this.branch}`) {
+          return this.logger.log(`Ignoring merge on branch: ${body.ref}`);
+        }
+
+        this.logger.log('Github webhook received.');
+        try {
+          await this.runCommand('git remote update');
+          await this.runCommand(`git reset --hard origin/${this.branch}`);
+          await this.runCommand('npm install');
+          await this.runCommand('npm audit fix');
+          await this.runCommand('npm run build');
+          this.logger.log('Updated to new commit from Github!');
+        } catch (err) {
+          return this.logger.error(err);
+        }
+
+        this.client.stop();
       }
-
-      this.logger.Log('Github webhook received.');
-      try {
-        await this.runCommand('git remote update');
-        await this.runCommand(`git reset --hard origin/${this.branch}`);
-        await this.runCommand('npm install');
-        await this.runCommand('npm audit fix');
-        await this.runCommand('npm run build');
-        this.logger.Log('Updated to new commit from Github!');
-      } catch (err) {
-        return this.logger.Error(err);
-      }
-
-      this.client.stop();
-    });
+    );
 
     this.app.use((err: any, req: any, res: any, next: any) => {
-      if (err) this.logger.Error(err);
+      if (err) this.logger.error(err);
       res.status(403).send('Request body was not signed or verification failed!');
     });
 
@@ -109,9 +111,9 @@ class WebhookListener {
   }
 
   start() {
-    this.logger.Log('Starting WebHookListener');
+    this.logger.log('Starting WebHookListener');
     this.app.listen(this.PORT, async () => {
-      this.logger.Log(`Listening on ${this.PORT}`);
+      this.logger.log(`Listening on ${this.PORT}`);
     });
     return this;
   }

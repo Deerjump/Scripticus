@@ -7,16 +7,12 @@ import {
   ApplicationCommandOptionData,
 } from 'discord.js';
 
-import { format } from 'util';
-import {LoggerFactory} from '../../factories/_loggerfactory';
-import {ILogger} from '../../types/types';
+import { LoggerFactory } from '../../factories/_loggerfactory';
+import { ILogger } from '../../types/types';
 export class OptionBuilder {
   private choices: ApplicationCommandOptionChoice[] = [];
   private subCommands: ApplicationCommandSubCommandData[] = [];
-  private options: (
-    | ApplicationCommandChoicesData
-    | ApplicationCommandNonOptionsData
-  )[] = [];
+  private options: (ApplicationCommandChoicesData | ApplicationCommandNonOptionsData)[] = [];
   private logger: ILogger;
 
   constructor(
@@ -25,10 +21,9 @@ export class OptionBuilder {
     private description?: string,
     private required: boolean = false
   ) {
-
     const _loggerFactory = LoggerFactory.getInstance();
-    
-    this.logger = _loggerFactory.Logger('OptionBuilder',process.env.LOGGER_TYPE!);
+
+    this.logger = _loggerFactory.Logger('OptionBuilder', process.env.LOGGER_TYPE!);
   }
 
   private readonly hasChoices = ['NUMBER', 'STRING', 'INTEGER'];
@@ -43,9 +38,7 @@ export class OptionBuilder {
       throw new RangeError('Exceeded 25 ApplicationChoice limit');
     }
     if (!this.hasChoices.includes(this.type)) {
-      this.logger.Warn(
-        `Tried to add choices to option of type: ${this.type}. They won't be added`
-      );
+      this.logger.warn(`Tried to add choices to option of type: ${this.type}. They won't be added`);
       return this;
     }
     this.choices = choices;
@@ -61,17 +54,11 @@ export class OptionBuilder {
       throw new RangeError(`Exceeded 25 ApplicationCommand limit`);
     }
     if (this.type === 'SUB_COMMAND_GROUP')
-      this.subCommands = [
-        ...(options as ApplicationCommandSubCommandData[]),
-        ...this.subCommands,
-      ];
+      this.subCommands = [...(options as ApplicationCommandSubCommandData[]), ...this.subCommands];
 
     this.options = [
       ...this.options,
-      ...(options as (
-        | ApplicationCommandChoicesData
-        | ApplicationCommandNonOptionsData
-      )[]),
+      ...(options as (ApplicationCommandChoicesData | ApplicationCommandNonOptionsData)[]),
     ];
 
     return this;

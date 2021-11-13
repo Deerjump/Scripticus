@@ -1,7 +1,6 @@
 import chalk from "chalk";
-import { LoggingSchema} from "../database/schemas";
 import { DatabaseDriver } from '../database/mongo';
-import { ILogger, Database, GuildSettingsDto, GuildSettings } from '@customTypes';
+import { ILogger, Database } from '@customTypes';
 // const createFormat = function(tag) {
 //   return winston.format.printf((info) => {
 //     let level = info.level.toUpperCase() + ': ';
@@ -40,19 +39,19 @@ export class ConsoleLogger implements ILogger {
     this.tag = tag;
   }
   
-  Log(message: any): void {
+  log(message: any): void {
     // this.logger.info(message);
-    console.log(this.GetPrefix(), message);
+    console.log(this.getPrefix(), message);
   }
-  Error(message: any): void {
+  error(message: any): void {
     // this.logger.error(message);
-    console.error(this.GetPrefix(), message);
+    console.error(this.getPrefix(), message);
   }
-  Warn(message: any): void {
+  warn(message: any): void {
     // this.logger.warn(message);
-    console.warn(this.GetPrefix(), message);
+    console.warn(this.getPrefix(), message);
   }
-  GetPrefix(): string {
+  getPrefix(): string {
     const date = new Date();
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -76,22 +75,22 @@ export class ConsoleLogger implements ILogger {
       this.tag = tag;
     }
     
-    Log(message: any): void {
+    log(message: any): void {
       console.log("Attempted Log made");
       this.db.connectToDatabase(); //Can this be run once in the constructor?
       this.db.LogToDatabase('Log', new Date(), message);
     }
-    Error(message: any): void {
+    error(message: any): void {
       this.db.connectToDatabase();
       
       this.db.LogToDatabase('Error', new Date(), message);
     }
-    Warn(message: any): void {
+    warn(message: any): void {
       this.db.connectToDatabase();
 
       this.db.LogToDatabase('Warn', new Date(), message);
     }
-    GetPrefix(): string {
+    getPrefix(): string {
       const date = new Date();
       const month = date.getMonth() + 1;
       const day = date.getDate();

@@ -1,4 +1,4 @@
-import { EventHandler, Scripticus } from "@customTypes";
+import { EventHandler } from "@customTypes";
 import { Interaction } from "discord.js";
 
 

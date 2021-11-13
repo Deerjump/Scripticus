@@ -1,15 +1,18 @@
-import { GuildSettings, Scripticus, EventHandler, ScripticusOptions, Database, ILogger } from '@customTypes';
+import {
+  GuildSettings,
+  Scripticus,
+  EventHandler,
+  ScripticusOptions,
+  Database,
+  ILogger,
+} from '@customTypes';
 import { MessageCommand, SlashCommand, UserCommand } from './commands/commandClasses';
 import { Client, Collection, Guild } from 'discord.js';
-import {LoggerFactory} from './factories/_loggerfactory';
-import { format } from 'util';
-import 'module-alias/register'; //added to fix compile issues for aliases
+import { LoggerFactory } from './factories/_loggerfactory';
 import chalk from 'chalk';
 import * as fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
-
-import {endpoints} from './utils/utils';
 
 export class ScripticusBot extends Client implements Scripticus {
   readonly cooldowns = new Collection<string, Collection<string, number>>();
@@ -35,15 +38,12 @@ export class ScripticusBot extends Client implements Scripticus {
     this.joinMessage = options.joinMessage;
 
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('Scripticus','Console');
+    this.logger = _loggerFactory.Logger('Scripticus', 'Console');
     console.log(chalk.yellow(startupDisplay));
-
-    this.logger.Log('DatabaseUrl ' + endpoints.MongoUrl);
-    this.logger.Log('Default Logging Type ' + endpoints.logType);
   }
 
   private async loadEvents() {
-    this.logger.Log('Loading events...');
+    this.logger.log('Loading events...');
 
     const eventFiles = fs
       .readdirSync(`${__dirname}/events`)
@@ -56,7 +56,7 @@ export class ScripticusBot extends Client implements Scripticus {
       count++;
     }
 
-    this.logger.Log(`Loaded ${count} events`);
+    this.logger.log(`Loaded ${count} events`);
   }
 
   private async loadCommands() {
@@ -74,7 +74,7 @@ export class ScripticusBot extends Client implements Scripticus {
   }
 
   private async loadCommandsOf<T>(folder: string): Promise<T[]> {
-    this.logger.Log(`Loading ${folder} commands...`);
+    this.logger.log(`Loading ${folder} commands...`);
 
     const imports = await Promise.all(
       fs
@@ -84,8 +84,8 @@ export class ScripticusBot extends Client implements Scripticus {
           try {
             return await import(`./commands/${folder}/${file}`);
           } catch (err) {
-            this.logger.Error(`Error loading ${file}`);
-            this.logger.Error(err);
+            this.logger.error(`Error loading ${file}`);
+            this.logger.error(err);
           }
         })
     );
@@ -94,12 +94,12 @@ export class ScripticusBot extends Client implements Scripticus {
       .filter((imported) => imported != undefined)
       .map((imported) => new imported.command(this));
 
-    this.logger.Log(`Loaded ${commands.length} ${folder} commands`);
+    this.logger.log(`Loaded ${commands.length} ${folder} commands`);
     return commands;
   }
 
   async registerGlobalCommands() {
-    this.logger.Log('Registering application commands...');
+    this.logger.log('Registering application commands...');
     const commands = [...this.commands /*...this.userCommands, ...this.messageCommands*/];
 
     const toRegister = await Promise.all(
@@ -109,17 +109,17 @@ export class ScripticusBot extends Client implements Scripticus {
     );
 
     const results = await this.application?.commands.set(toRegister)!;
-    this.logger.Log(`Registered ${results.size} command${results.size === 1 ? '' : 's'}`);
+    this.logger.log(`Registered ${results.size} command${results.size === 1 ? '' : 's'}`);
   }
 
   private async loadGuildSettings() {
     await this.db.connectToDatabase();
-    this.logger.Log('Loading guild specific settings...');
+    this.logger.log('Loading guild specific settings...');
 
     const results = await this.db.getAllGuildSettings();
     results.forEach((result) => this.guildSettings.set(result.guildId, result.settings));
 
-    this.logger.Log(`Loaded settings for ${results.length} servers`);
+    this.logger.log(`Loaded settings for ${results.length} servers`);
   }
 
   async updateGuildPrefix(guildId: string, prefix: string = this.defaultPrefix) {
@@ -147,17 +147,17 @@ export class ScripticusBot extends Client implements Scripticus {
 
   async stop() {
     try {
-      this.logger.Log('-----Stopping Scripticus-----');
+      this.logger.log('-----Stopping Scripticus-----');
       await this.db.disconnect();
 
-      this.logger.Log('-----Destroying client-----');
+      this.logger.log('-----Destroying client-----');
       this.destroy();
 
-      this.logger.Log('-----Exiting process-----');
+      this.logger.log('-----Exiting process-----');
       process.exit(0);
     } catch (err) {
-      this.logger.Error('ERROR:');
-      this.logger.Error(err);
+      this.logger.error('ERROR:');
+      this.logger.error(err);
     }
   }
 }

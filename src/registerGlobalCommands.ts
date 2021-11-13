@@ -4,6 +4,8 @@ import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
+// Since all commands are currently guild-specific this isn't needed right now
 async function registerCommands() {
   const scripticus = new ScripticusBot(
     new DatabaseDriver(process.env.DATABASE_URL!),

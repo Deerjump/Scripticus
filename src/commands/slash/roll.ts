@@ -1,26 +1,19 @@
 import { hidden, isNumber, noMentions } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
-import {
-  ApplicationCommandOptionData,
-  CommandInteraction,
-  Message,
-} from 'discord.js';
+import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
-
-
-import { format } from 'util';
-import {LoggerFactory} from '../../factories/_loggerfactory';
-import {ILogger} from '../../types/types';
+import { LoggerFactory } from '../../factories/_loggerfactory';
+import { ILogger } from '../../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
 
 class RollCommand extends SlashCommand {
   readonly usage = '<sides>';
   readonly args = true;
-  private logger:ILogger;
+  private logger: ILogger;
   constructor() {
     super('roll', 'Roll a dice! 🎲');
-    this.logger = _loggerFactory.Logger('Roll',process.env.LOGGER_TYPE!);
+    this.logger = _loggerFactory.Logger('Roll', process.env.LOGGER_TYPE!);
   }
 
   protected generateOptions(): ApplicationCommandOptionData[] {
@@ -32,7 +25,6 @@ class RollCommand extends SlashCommand {
       hidden,
     ];
   }
-
 
   private diceRoll(num: number): number {
     return Math.ceil(Math.random() * num);

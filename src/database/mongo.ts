@@ -1,9 +1,8 @@
-import { Database, GuildSettings, GuildSettingsDto, LogDocument } from '@customTypes';
-import { GuildSettingsModel, LoggingModel, LoggingSchema } from './schemas';
-import { connect, connection, Model} from 'mongoose';
-import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
+import { Database, GuildSettings, GuildSettingsDto } from '@customTypes';
+import { GuildSettingsModel, LoggingModel } from './schemas';
+import { connect, connection, Model } from 'mongoose';
+import { LoggerFactory } from '../factories/_loggerfactory';
+import { ILogger } from '../types/types';
 
 export class DatabaseDriver implements Database {
   private mongoUrl: string;
@@ -11,9 +10,9 @@ export class DatabaseDriver implements Database {
 
   constructor(mongoUrl: string) {
     this.mongoUrl = mongoUrl;
-        
+
     const _loggerFactory = LoggerFactory.getInstance();
-    this.logger = _loggerFactory.Logger('MongoDb','Console'!);
+    this.logger = _loggerFactory.Logger('MongoDb', 'Console'!);
   }
 
   private getProjectionFromModel(model: Model<any>) {
@@ -28,25 +27,25 @@ export class DatabaseDriver implements Database {
   }
 
   async connectToDatabase() {
-    this.logger.Log('Connecting to database...');
+    this.logger.log('Connecting to database...');
 
     try {
       await connect(this.mongoUrl);
-      this.logger.Log('Connected!');
+      this.logger.log('Connected!');
     } catch (err) {
-      this.logger.Error(err);
-      this.logger.Log('Stopping process...');
+      this.logger.error(err);
+      this.logger.log('Stopping process...');
       process.exit();
     }
   }
 
   async disconnect() {
-    this.logger.Log('Disconnecting Mongo');
+    this.logger.log('Disconnecting Mongo');
     try {
       await connection.close();
-      this.logger.Log('Disconnected!');
+      this.logger.log('Disconnected!');
     } catch (err) {
-      this.logger.Error(err);
+      this.logger.error(err);
     }
   }
 
@@ -77,16 +76,10 @@ export class DatabaseDriver implements Database {
   }
 
   async LogToDatabase(logtype: string, timestamp: Date, message: string) {
-
     const result = await LoggingModel.findOneAndUpdate(
-        {logtype,
-        timestamp,
-        message},
-        {logtype,
-          timestamp,
-          message},
-        { upsert: true, new: true}
-       
+      { logtype, timestamp, message },
+      { logtype, timestamp, message },
+      { upsert: true, new: true }
     );
   }
 }

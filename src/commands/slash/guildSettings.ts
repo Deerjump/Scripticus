@@ -1,12 +1,6 @@
 import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
-import {
-  ApplicationCommandOptionData,
-  Message,
-  CommandInteraction,
-  Guild,
-  CommandInteractionOptionResolver
-} from 'discord.js';
+import { ApplicationCommandOptionData, Message, CommandInteraction, Guild } from 'discord.js';
 import { Scripticus } from '@customTypes';
 
 class GuildSettingsCommand extends SlashCommand {
@@ -75,7 +69,7 @@ class GuildSettingsCommand extends SlashCommand {
     return [...this.getPrefixOptions(), ...(await this.getCommandOptions(guild))];
   }
 
-  async configurePrefix(guild: Guild, options: CommandInteraction["options"]) {
+  async configurePrefix(guild: Guild, options: CommandInteraction['options']) {
     const guildId = guild.id;
 
     switch (options.getSubcommand()) {
@@ -132,7 +126,6 @@ class GuildSettingsCommand extends SlashCommand {
   }
 
   async execute(interaction: CommandInteraction) {
-    interaction.options
     switch (interaction.options.getSubcommandGroup()) {
       case 'prefix': {
         return await this.configurePrefix(interaction.guild!, interaction.options);

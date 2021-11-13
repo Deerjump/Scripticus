@@ -13,15 +13,12 @@ import {endpoints} from './utils/utils';
  * @see registerApplicationCommands.ts
  */
 async function main() {
-
-  
   const scripticus = new ScripticusBot(
     new DatabaseDriver(endpoints.MongoUrl ),
     clientOptions
   );
-  let autoUpdater;
   if (autoUpdateOptions.enabled) {
-    autoUpdater = new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
+    new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
   }
 
   await scripticus.login(process.env.TOKEN!);

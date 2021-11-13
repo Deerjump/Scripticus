@@ -1,12 +1,9 @@
 import { EventHandler, Scripticus } from '@customTypes';
 import { OAuth2Guild } from 'discord.js';
-import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
+import { LoggerFactory } from '../factories/_loggerfactory';
 
 const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('Ready','Console');
-
+const logger = _loggerFactory.Logger('Ready', 'Console');
 
 async function registerCommands(oAuth2Guild: OAuth2Guild) {
   const client = oAuth2Guild.client as Scripticus;
@@ -46,8 +43,8 @@ const eventHandler: EventHandler = {
         },
         { guildTotal: 0, commandTotal: 0 }
       );
-    logger.Log(`Registered ${commandTotal} commands for ${guildTotal} guilds`);
-    logger.Log(`${client.user?.username} is ready!`);
+    logger.log(`Registered ${commandTotal} commands for ${guildTotal} guilds`);
+    logger.log(`${client.user?.username} is ready!`);
   },
 };
 

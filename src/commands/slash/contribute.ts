@@ -21,8 +21,7 @@ class ContributeCommand extends SlashCommand {
           .addFields(
             {
               name: 'Hey!',
-              value:
-                'Want to help out development of this bot?\nFollow the link in the title',
+              value: 'Want to help out development of this bot?\nFollow the link in the title',
             },
             {
               name: 'How to help',

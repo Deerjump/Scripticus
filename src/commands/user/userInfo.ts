@@ -3,7 +3,6 @@ import {
   User,
   Guild,
   MessageEmbed,
-  CommandInteraction,
   ContextMenuInteraction,
 } from 'discord.js';
 

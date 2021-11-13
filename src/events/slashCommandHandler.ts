@@ -3,7 +3,6 @@ import { Interaction } from 'discord.js';
 
 import { format } from 'util';
 import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
 
 const _loggerFactory = LoggerFactory.getInstance();
 const logger = _loggerFactory.Logger('SlashCommandHandler',format(process.env.LoggerType));
@@ -19,7 +18,7 @@ const eventHandler: EventHandler = {
     try {
       await command.handleInteract(interaction);
     } catch (error) {
-      logger.Error(error);
+      logger.error(error);
       await interaction.reply({
         content: 'There was an error while executing this command!',
         ephemeral: true,

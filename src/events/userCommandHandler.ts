@@ -1,11 +1,6 @@
-import { EventHandler, Scripticus } from "@customTypes";
+import { EventHandler } from "@customTypes";
 import { Interaction } from "discord.js";
-import { format } from 'util';
-import {LoggerFactory} from '../factories/_loggerfactory';
-import {ILogger} from '../types/types';
 
-const _loggerFactory = LoggerFactory.getInstance();
-const logger = _loggerFactory.Logger('OptionBuilder',format(process.env.LoggerType));
 const eventHandler: EventHandler = {
   event: "interactionCreate",
   async handle(interaction: Interaction) {
