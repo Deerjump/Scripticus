@@ -1,23 +1,19 @@
-import { CommandType, ModerationLevel, OptionallyAsync } from '@customTypes';
+import { SlashCommandBuilder, ContextMenuCommandBuilder } from '@discordjs/builders';
 import {
-  ChatInputApplicationCommandData,
-  MessageApplicationCommandData,
-  ApplicationCommandOptionData,
-  UserApplicationCommandData,
   ContextMenuInteraction,
   CommandInteraction,
-  Message,
-  Guild,
-  BaseApplicationCommandData,
+  BaseCommandInteraction,
+  MessageContextMenuInteraction,
+  UserContextMenuInteraction,
 } from 'discord.js';
 import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 
 export abstract class ApplicationCommand {
+  protected abstract type: ApplicationCommandTypes;
   protected defaultPermission = true;
-  // You can't set permissions on global commands yet, (only guild specific commands)
-  abstract type: CommandType;
+  abstract commandBuilder: SlashCommandBuilder | ContextMenuCommandBuilder;
   name: string;
-  roleRequired: ModerationLevel = 'EVERYONE';
+  roleRequired: string = 'EVERYONE';
   global = false;
 
   constructor(name: string) {
@@ -31,24 +27,13 @@ export abstract class ApplicationCommand {
     this.name = name;
   }
 
-  abstract generateDetails(): Promise<BaseApplicationCommandData>;
-
-  protected get details(): BaseApplicationCommandData {
-    return {
-      name: this.name,
-      defaultPermission: this.defaultPermission,
-    };
-  }
-
-  protected abstract execute(...args: any[]): any;
+  abstract handleInteract(interaction: BaseCommandInteraction): void;
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
-  type: 'CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT = 'CHAT_INPUT';
+  type: ApplicationCommandTypes.CHAT_INPUT = ApplicationCommandTypes.CHAT_INPUT;
+  commandBuilder = new SlashCommandBuilder();
   description: string;
-  usage?: string;
-  args?: boolean;
-  aliases?: string[];
 
   constructor(name: string, description: string) {
     super(name);
@@ -57,47 +42,35 @@ export abstract class SlashCommand extends ApplicationCommand {
         `"description" field must be betweeen 1 and 100 characters! Provided ${description.length}`
       );
     this.description = description;
+    this.commandBuilder
+      .setName(this.name)
+      .setDefaultPermission(this.defaultPermission)
+      .setDescription(this.description);
   }
 
-  protected generateOptions(guild?: Guild): OptionallyAsync<ApplicationCommandOptionData[]> {
-    return [];
-  }
-
-  async generateDetails(guild?: Guild): Promise<ChatInputApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type,
-      description: this.description,
-      options: await this.generateOptions(guild),
-    };
-  }
-
-  abstract handleMessage(message: Message, args: string[]): any;
-  abstract handleInteract(interaction: CommandInteraction): any;
+  abstract handleInteract(interaction: CommandInteraction): void;
 }
 
 export abstract class ContextMenuCommand extends ApplicationCommand {
-  abstract handleInteract(interaction: ContextMenuInteraction): any;
-}
+  abstract type: Exclude<ApplicationCommandTypes, ApplicationCommandTypes.CHAT_INPUT>;
+  commandBuilder = new ContextMenuCommandBuilder();
 
-export abstract class UserCommand extends ContextMenuCommand {
-  type: 'USER' | ApplicationCommandTypes.USER = 'USER';
+  constructor(name: string) {
+    super(name);
+    this.commandBuilder.setName(this.name).setDefaultPermission(this.defaultPermission);
+  } 
 
-  async generateDetails(): Promise<UserApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type,
-    }
-  }
+  abstract handleInteract(interaction: ContextMenuInteraction): void;
 }
 
 export abstract class MessageCommand extends ContextMenuCommand {
-  type: 'MESSAGE' | ApplicationCommandTypes.MESSAGE = 'MESSAGE';
+  type: ApplicationCommandTypes.MESSAGE = ApplicationCommandTypes.MESSAGE;
 
-  async generateDetails(): Promise<MessageApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type
-    }
-  } 
+  abstract handleInteract(interaction: MessageContextMenuInteraction): void;
+}
+
+export abstract class UserCommand extends ContextMenuCommand {
+  type: ApplicationCommandTypes.USER = ApplicationCommandTypes.USER;
+
+  abstract handleInteract(interaction: UserContextMenuInteraction): void;
 }

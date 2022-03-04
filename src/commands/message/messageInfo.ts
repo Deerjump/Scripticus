@@ -1,31 +1,23 @@
-import {
-  ContextMenuInteraction,
-  Message,
-  MessageEmbed,
-  User,
-} from 'discord.js';
+import { ContextMenuInteraction, Message, MessageEmbed, User } from 'discord.js';
 import { MessageCommand } from '../commandClasses';
 
 class MessageInfoCommand extends MessageCommand {
   constructor() {
-    super('message info')
+    super('message info');
   }
 
   execute(user: User, message: Message) {
     const embed = new MessageEmbed()
-      .setAuthor(
-        `${message.author.username}`,
-        message.author.displayAvatarURL()
-      )
+      .setAuthor({ name: `${message.author.username}`, iconURL: message.author.displayAvatarURL() })
       .setDescription(message.content)
-      .setFooter(`Queried by ${user.username}`, user.displayAvatarURL());
+      .setFooter({ text: `Queried by ${user.username}`, iconURL: user.displayAvatarURL() });
 
     return { embeds: [embed] };
   }
 
   async handleInteract(interaction: ContextMenuInteraction) {
     await interaction.deferReply({ ephemeral: true });
-    const message = interaction.options.data[0].message as Message;
+    const message = interaction.options.resolved.messages?.first() as Message;
 
     const results = this.execute(interaction.user, message);
 

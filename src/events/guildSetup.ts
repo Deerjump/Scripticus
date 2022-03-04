@@ -16,9 +16,7 @@ const eventHandler: EventHandler = {
     logger.log(`Configuring guild-specific commands...`);
 
     const owner = await guild.fetchOwner();
-    const toRegister = await Promise.all(
-      commands.filter((cmd) => !cmd.global).map(async (cmd) => await cmd.generateDetails(guild))
-    );
+    const toRegister = commands.filter((cmd) => !cmd.global).map((cmd) => cmd.commandBuilder.toJSON())
 
     const registered = await guild.commands.set(toRegister);
 

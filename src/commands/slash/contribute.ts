@@ -1,6 +1,6 @@
-import { hidden, noMentions } from '../../utils/utils';
+import { hidden } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
-import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
+import { CommandInteraction, MessageEmbed } from 'discord.js';
 
 class ContributeCommand extends SlashCommand {
   protected generateOptions() {
@@ -30,8 +30,7 @@ class ContributeCommand extends SlashCommand {
                 'Even if you don\'t know how to code you can still help!\nYou can suggest features through GitHub [here](https://github.com/Deerjump/Scripticus/projects/1 "Suggestions!") as well!',
             }
           ),
-      ],
-      ...noMentions,
+      ]
     };
   }
 
@@ -40,12 +39,6 @@ class ContributeCommand extends SlashCommand {
     const response = this.execute();
 
     interaction.reply({ ephemeral: hidden!, ...response });
-  }
-
-  async handleMessage(message: Message) {
-    const response = this.execute();
-
-    message.reply(response);
   }
 }
 

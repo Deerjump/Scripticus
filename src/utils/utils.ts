@@ -1,4 +1,4 @@
-import { OptionBuilder } from './builders/optionBuilder';
+import { SlashCommandBooleanOption } from '@discordjs/builders';
 
 export const noMentions = { allowedMentions: { users: [] } };
 
@@ -6,6 +6,5 @@ export function isNumber(val: string | number): boolean {
   return !isNaN(Number(val));
 }
 
-export const hidden = new OptionBuilder('hidden', 'BOOLEAN')
-  .withDescription('Whether to show the response or not')
-  .build();
+export const hidden: (builder: SlashCommandBooleanOption) => SlashCommandBooleanOption = (option) =>
+  option.setName('hidden').setDescription('Whether to show the response or not');

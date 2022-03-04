@@ -14,7 +14,7 @@ async function registerCommands(oAuth2Guild: OAuth2Guild) {
   );
   if (existingCommands.size !== 0 && existingCommands.size === guildCommands.size) return;
 
-  const toRegister = await Promise.all(clientCommands.map((c) => c.generateDetails(guild)));
+  const toRegister = await Promise.all(clientCommands.map((c) => c.commandBuilder.toJSON()));
   try {
     return await guild.commands.set(toRegister);
   } catch (err) {

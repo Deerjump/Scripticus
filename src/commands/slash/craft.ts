@@ -1,5 +1,4 @@
 import { InteractionFilter, ItemData, RecipeData, TotalRecipe } from '@customTypes';
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import itemRepository from '../../repositories/itemRepository';
 import { hidden, noMentions } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
@@ -11,7 +10,7 @@ import {
   ButtonInteraction,
   CommandInteraction,
   ApplicationCommandOptionData,
-  TextBasedChannels,
+  TextBasedChannel,
   InteractionCollector,
 } from 'discord.js';
 
@@ -28,16 +27,14 @@ class CraftCommand extends SlashCommand {
   private readonly COLLECTOR_FILTER = (i: ButtonInteraction) =>
     i.customId === 'recipe' || i.customId === 'materials';
 
-  protected generateOptions(): ApplicationCommandOptionData[] {
-    return [
-      new OptionBuilder('itemname', 'STRING').withDescription("The item's name").require().build(),
-      new OptionBuilder('amount', 'NUMBER').withDescription('How many you want to craft').build(),
-      hidden,
-    ];
-  }
-
   constructor() {
     super('craft', 'Returns all resources/sub-items needed to craft an item!');
+    this.commandBuilder
+      .addBooleanOption(hidden)
+      .addStringOption((option) => option.setName('itemname').setDescription(`The item's name`))
+      .addIntegerOption((option) =>
+        option.setName('amount').setDescription('How many you want to craft')
+      );
   }
 
   async execute(
@@ -121,11 +118,10 @@ class CraftCommand extends SlashCommand {
     collector.on('end', async () => {
       await msgResponse.edit({ components: [] });
     });
-
   }
 
   private createButtonCollector(
-    channel: TextBasedChannels,
+    channel: TextBasedChannel,
     filter: InteractionFilter<ButtonInteraction>,
     time = this.COLLECTOR_TIMEOUT
   ) {

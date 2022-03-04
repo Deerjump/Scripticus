@@ -1,22 +1,14 @@
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { SlashCommand } from '../commandClasses';
 import { isNumber } from '../../utils/utils';
-import {
-  CommandInteraction,
-  Message,
-} from 'discord.js';
+import { CommandInteraction, Message } from 'discord.js';
 
 class PingCommand extends SlashCommand {
-  protected generateOptions() {
-    return [
-      new OptionBuilder('delay', 'NUMBER')
-        .withDescription('How long to wait before responding')
-        .build()  ,
-    ];
-  }
 
   constructor() {
     super('ping', 'Pong!');
+    this.commandBuilder.addIntegerOption((option) =>
+      option.setName('delay').setDescription('How long to wait before responding')
+    );
   }
 
   private async wait(time: number) {
@@ -33,18 +25,12 @@ class PingCommand extends SlashCommand {
   }
 
   async handleInteract(interaction: CommandInteraction) {
-    const delay = interaction.options.getNumber('delay');
+    const delay = interaction.options.getInteger('delay');
     await interaction.deferReply();
 
     const content = await this.execute(delay!);
 
     interaction.editReply({ content });
-  }
-
-  async handleMessage(message: Message, [delay]: string[]) {
-    const content = await this.execute(delay);
-
-    message.reply({ content });
   }
 }
 

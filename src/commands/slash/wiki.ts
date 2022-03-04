@@ -1,5 +1,4 @@
 import {
-  ApplicationCommandOptionData,
   CommandInteraction,
   Message,
   MessageEmbed,
@@ -8,22 +7,17 @@ import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
 import axios from 'axios';
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 
 class WikiCommand extends SlashCommand {
-  readonly usage = '<search word>';
   private readonly wikiUrl = 'https://idleon.info/';
   private readonly logger = new Logger('Wiki');
 
   constructor() {
     super('wiki', 'Seach the Legends of Idleon Wiki!');
-  }
-
-  protected generateOptions(): ApplicationCommandOptionData[] {
-    return [
-      new OptionBuilder('query', 'STRING').withDescription('What you want to search for').build(),
-      hidden,
-    ];
+    this.commandBuilder.addStringOption((option) =>
+      option.setName('query').setDescription('What you want to search for')
+    )
+    .addBooleanOption(hidden);
   }
 
   async handleMessage(message: Message, args: string[]): Promise<void> {

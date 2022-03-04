@@ -93,7 +93,7 @@ export class ScripticusBot extends Client implements Scripticus {
     const toRegister = await Promise.all(
       commands
         .filter(([, command]) => command.global)
-        .map(([, command]) => command.generateDetails())
+        .map(([, command]) => command.commandBuilder.toJSON())
     );
 
     const results = await this.application?.commands.set(toRegister)!;
