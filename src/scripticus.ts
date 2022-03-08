@@ -54,11 +54,11 @@ export class ScripticusBot extends Client implements Scripticus {
       this.cooldowns.set(command.name, new Collection<string, number>());
     });
 
+    const messageCommands = await this.loadCommandsOf<MessageCommand>('message');
+    messageCommands.forEach(command => this.messageCommands.set(command.name, command))
+
     // const userCommands = await this.loadCommandsOf<UserCommand>('user');
     // userCommands.forEach(command => this.userCommands.set(command.name, command));
-
-    // const messageCommands = await this.loadCommandsOf<MessageCommand>('message');
-    // messageCommands.forEach(command => this.messageCommands.set(command.name, command))
   }
 
   private async loadCommandsOf<T>(folder: string): Promise<T[]> {
@@ -88,7 +88,7 @@ export class ScripticusBot extends Client implements Scripticus {
 
   async registerGlobalCommands() {
     this.logger.log('Registering application commands...');
-    const commands = [...this.commands /*...this.userCommands, ...this.messageCommands*/];
+    const commands = [...this.commands, ...this.messageCommands /*...this.userCommands, */];
 
     const toRegister = await Promise.all(
       commands
