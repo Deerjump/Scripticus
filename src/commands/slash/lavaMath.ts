@@ -1,31 +1,24 @@
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import { formulas } from '../../resources/formulas';
 import { SlashCommand } from '../commandClasses';
-import { noMentions } from '../../utils/utils';
 import { LavaFormulas } from '@customTypes';
-import { ApplicationCommandOptionData, CommandInteraction, Message } from 'discord.js';
+import { CommandInteraction } from 'discord.js';
 
 class LavaMathCommand extends SlashCommand {
-  protected generateOptions(): ApplicationCommandOptionData[] {
-    return Object.entries(formulas).map(([key, formula]) => {
-      const params =
-        formula.length === 1
-          ? [new OptionBuilder('x', 'NUMBER').withDescription('x').require().build()]
-          : [
-              new OptionBuilder('x', 'NUMBER').withDescription('x').require().build(),
-              new OptionBuilder('y', 'NUMBER').withDescription('y').require().build(),
-              new OptionBuilder('z', 'NUMBER').withDescription('z').require().build(),
-            ];
-      return new OptionBuilder(key, 'SUB_COMMAND')
-        .withDescription(formula.toString())
-        .withOptions(...params)
-        .build();
-    });
-  }
-  readonly usage = '<option> <x> <y> <z>';
-  readonly args = true;
   constructor() {
     super('lavamath', 'A few helpful math calculations that LavaFlame2 uses!');
+    Object.entries(formulas).forEach(([key, formula]) => {
+      this.commandBuilder.addSubcommand((command) => {
+        command.setName(key).setDescription(formula.toString());
+        command.addNumberOption(o => o.setName('x').setDescription('x').setRequired(true));
+
+        if (formula.length > 1) {
+          command.addNumberOption(o => o.setName('y').setDescription('y').setRequired(true));
+          command.addNumberOption(o => o.setName('z').setDescription('z').setRequired(true));
+        }
+
+        return command;
+      });
+    });
   }
 
   execute(option: string, ...args: number[]) {
@@ -48,7 +41,6 @@ class LavaMathCommand extends SlashCommand {
     const answer = formula(...args);
     return {
       content: `The answer is ${answer.toFixed(2)}`,
-      ...noMentions,
     };
   }
 
@@ -63,15 +55,6 @@ class LavaMathCommand extends SlashCommand {
     const result = this.execute(option, x, y, z);
 
     interaction.editReply(result);
-  }
-
-  async handleMessage(message: Message, args: string[]): Promise<void> {
-    const option = args.shift()!.toLowerCase();
-    const nums = args.map((arg) => parseFloat(arg));
-
-    const result = this.execute(option, ...nums);
-
-    await message.reply({ ...result, ...noMentions });
   }
 }
 

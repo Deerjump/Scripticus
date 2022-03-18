@@ -1,103 +1,88 @@
-import { CommandType, ModerationLevel, OptionallyAsync } from '@customTypes';
+import { SlashCommandBuilder, ContextMenuCommandBuilder } from '@discordjs/builders';
 import {
-  ChatInputApplicationCommandData,
-  MessageApplicationCommandData,
-  ApplicationCommandOptionData,
-  UserApplicationCommandData,
   ContextMenuInteraction,
   CommandInteraction,
-  Message,
-  Guild,
-  BaseApplicationCommandData,
+  BaseCommandInteraction,
+  MessageContextMenuInteraction,
+  UserContextMenuInteraction,
 } from 'discord.js';
-import { ApplicationCommandTypes } from 'discord.js/typings/enums';
+import { ApplicationCommandType } from 'discord.js/node_modules/discord-api-types';
 
 export abstract class ApplicationCommand {
+  private readonly MAX_NAME_LENGTH = 32;
   protected defaultPermission = true;
-  // You can't set permissions on global commands yet, (only guild specific commands)
-  abstract type: CommandType;
-  name: string;
-  roleRequired: ModerationLevel = 'EVERYONE';
+  abstract commandBuilder: SlashCommandBuilder | ContextMenuCommandBuilder;
+  roleRequired: string = 'EVERYONE';
   global = false;
+  name: string;
 
   constructor(name: string) {
-    // https://discord.com/developers/docs/interactions/application-commands#application-commands
-    const regex = /^[[a-z0-9_\]-]{1,32}$/;
-    if (!regex.test(name)) {
-      throw new TypeError(
-        '"name" must be all lower case without spaces and less than 32 characters long'
-      );
+    if (!name || name === '') {
+      throw new TypeError(`"name" field cannot be null or empty!`);
     }
+    if (name.length > this.MAX_NAME_LENGTH) {
+      throw new RangeError(`"name" field must be less than ${this.MAX_NAME_LENGTH} characters`);
+    }
+
     this.name = name;
   }
 
-  abstract generateDetails(): Promise<BaseApplicationCommandData>;
-
-  protected get details(): BaseApplicationCommandData {
-    return {
-      name: this.name,
-      defaultPermission: this.defaultPermission,
-    };
-  }
-
-  protected abstract execute(...args: any[]): any;
+  abstract handleInteract(interaction: BaseCommandInteraction): void;
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
-  type: 'CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT = 'CHAT_INPUT';
+  type: ApplicationCommandType.ChatInput = ApplicationCommandType.ChatInput;
+  commandBuilder = new SlashCommandBuilder();
   description: string;
-  usage?: string;
-  args?: boolean;
-  aliases?: string[];
 
   constructor(name: string, description: string) {
     super(name);
-    if (description.length < 1 || description.length > 100)
+    const nameRegex = /^[[a-z0-9_\]-]*$/;
+
+    if (!nameRegex.test(name)) {
+      throw new TypeError(`"name" must be all lower case without spaces. Provided: '${name}'`);
+    }
+
+    if (description.length < 1 || description.length > 100) {
       throw new TypeError(
         `"description" field must be betweeen 1 and 100 characters! Provided ${description.length}`
       );
+    }
+
     this.description = description;
+    this.commandBuilder
+      .setName(this.name)
+      .setDefaultPermission(this.defaultPermission)
+      .setDescription(this.description);
   }
 
-  protected generateOptions(guild?: Guild): OptionallyAsync<ApplicationCommandOptionData[]> {
-    return [];
-  }
-
-  async generateDetails(guild?: Guild): Promise<ChatInputApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type,
-      description: this.description,
-      options: await this.generateOptions(guild),
-    };
-  }
-
-  abstract handleMessage(message: Message, args: string[]): any;
-  abstract handleInteract(interaction: CommandInteraction): any;
+  abstract handleInteract(interaction: CommandInteraction): void;
 }
 
 export abstract class ContextMenuCommand extends ApplicationCommand {
-  abstract handleInteract(interaction: ContextMenuInteraction): any;
-}
+  commandBuilder = new ContextMenuCommandBuilder();
 
-export abstract class UserCommand extends ContextMenuCommand {
-  type: 'USER' | ApplicationCommandTypes.USER = 'USER';
-
-  async generateDetails(): Promise<UserApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type,
-    }
+  constructor(name: string) {
+    super(name);
+    this.commandBuilder.setName(this.name).setDefaultPermission(this.defaultPermission);
   }
+
+  abstract handleInteract(interaction: ContextMenuInteraction): void;
 }
 
 export abstract class MessageCommand extends ContextMenuCommand {
-  type: 'MESSAGE' | ApplicationCommandTypes.MESSAGE = 'MESSAGE';
+  type: ApplicationCommandType.Message = ApplicationCommandType.Message;
 
-  async generateDetails(): Promise<MessageApplicationCommandData> {
-    return {
-      ...super.details,
-      type: this.type
-    }
-  } 
+  constructor(name: string) {
+    super(name);
+    this.commandBuilder.setType(this.type);
+  }
+
+  abstract handleInteract(interaction: MessageContextMenuInteraction): void;
+}
+
+export abstract class UserCommand extends ContextMenuCommand {
+  type: ApplicationCommandType.User = ApplicationCommandType.User;
+
+  abstract handleInteract(interaction: UserContextMenuInteraction): void;
 }

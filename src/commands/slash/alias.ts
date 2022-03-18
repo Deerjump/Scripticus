@@ -1,16 +1,14 @@
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import aliasRepository from '../../repositories/aliasRepository';
-import { hidden, noMentions } from '../../utils/utils';
+import { hidden } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
 import {
   ButtonInteraction,
   CommandInteraction,
   InteractionCollector,
-  Message,
   MessageActionRow,
   MessageButton,
   MessageEmbed,
-  TextBasedChannels,
+  TextBasedChannel,
 } from 'discord.js';
 import { InteractionFilter } from '@customTypes';
 
@@ -23,20 +21,15 @@ class AliasCommand extends SlashCommand {
     i.customId === 'aliasPrevPage' || i.customId === 'aliasNextPage';
   constructor() {
     super('alias', 'Find all the accepted aliases for a monster or item!');
-  }
-
-  protected generateOptions() {
-    return [
-      new OptionBuilder('target', 'STRING')
-        .withDescription('What you want to view aliases for')
-        .require()
-        .build(),
-      hidden,
-    ];
+    this.commandBuilder
+      .addBooleanOption(hidden)
+      .addStringOption((option) =>
+        option.setName('target').setDescription('What you want to view aliases for')
+      );
   }
 
   private createButtonCollector(
-    channel: TextBasedChannels,
+    channel: TextBasedChannel,
     filter: InteractionFilter<ButtonInteraction>,
     time = this.COLLECTOR_TIMEOUT
   ) {
@@ -45,22 +38,6 @@ class AliasCommand extends SlashCommand {
       componentType: 'BUTTON',
       time,
     });
-  }
-
-  async handleMessage(message: Message, args: string[]): Promise<void> {
-    const target = args.join(' ').toLowerCase();
-
-    const collector = this.createButtonCollector(
-      message.channel,
-      (i) => i.message.interaction?.id === message.id
-    );
-
-    collector.on('end', async () => {
-      await message.edit({ components: [] });
-    });
-
-    const response = await this.execute(target, message.author.id, collector);
-    await message.reply({ ...response, ...noMentions });
   }
 
   async handleInteract(interaction: CommandInteraction) {

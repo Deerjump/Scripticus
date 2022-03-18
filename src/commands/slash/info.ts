@@ -1,19 +1,16 @@
 import monsterRepository from '../../repositories/monsterRepository';
-import { OptionBuilder } from '../../utils/builders/optionBuilder';
 import itemRepository from '../../repositories/itemRepository';
 import { ItemData, MonsterData } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
-import { hidden, noMentions } from '../../utils/utils';
+import { hidden } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
 import {
   MessageEmbed,
   MessageActionRow,
   MessageButton,
-  Message,
   EmbedFieldData,
-  ApplicationCommandOptionData,
   CommandInteraction,
-  TextBasedChannels,
+  TextBasedChannel,
   ReplyMessageOptions,
   InteractionCollector,
   ButtonInteraction,
@@ -28,22 +25,17 @@ class InfoCommand extends SlashCommand {
 
   constructor() {
     super('info', 'Find information on monsters or items');
-  }
-
-  protected generateOptions(): ApplicationCommandOptionData[] {
-    return [
-      new OptionBuilder('what', 'STRING')
-        .withDescription('what you want information about')
-        .require()
-        .build(),
-      hidden,
-    ];
+    this.commandBuilder
+      .addBooleanOption(hidden)
+      .addStringOption((option) =>
+        option.setName('name').setDescription('The name you want information about')
+      );
   }
 
   async execute(
     searchTerm: string,
     authorId: string,
-    channel: TextBasedChannels
+    channel: TextBasedChannel
   ): Promise<{
     response: ReplyMessageOptions;
     collector?: InteractionCollector<ButtonInteraction>;
@@ -88,10 +80,10 @@ class InfoCommand extends SlashCommand {
   async handleInteract(interaction: CommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
-    const what = interaction.options.getString('what', true);
+    const name = interaction.options.getString('name', true);
 
     const { response, collector } = await this.execute(
-      what,
+      name,
       interaction.user.id,
       interaction.channel!
     );
@@ -101,22 +93,6 @@ class InfoCommand extends SlashCommand {
     if (collector == undefined) return;
     collector.on('end', async () => {
       await interaction.editReply({ components: [] });
-    });
-  }
-
-  async handleMessage(message: Message, args: string[]): Promise<void> {
-    const { response, collector } = await this.execute(
-      args.join(),
-      message.author.id,
-      message.channel
-    );
-
-    const msgResponse = await message.reply({ ...response, ...noMentions });
-
-    if (collector == undefined) return;
-
-    collector.on('end', async () => {
-      await msgResponse.edit({ components: [] });
     });
   }
 
@@ -223,7 +199,7 @@ class InfoCommand extends SlashCommand {
           value: `${monster.ExpGiven}`,
           inline: true,
         });
-        embed.setFooter('All values are base values (no Prowess bonuses included!)');
+        embed.setFooter({ text:'All values are base values (no Prowess bonuses included!)' });
         embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
         break;
       default:
@@ -297,7 +273,7 @@ class InfoCommand extends SlashCommand {
 
   private async chooseOption(
     authorId: string,
-    channel: TextBasedChannels,
+    channel: TextBasedChannel,
     item: ItemData,
     monster: MonsterData
   ): Promise<{

@@ -9,24 +9,24 @@ import {
   MessageEmbed,
 } from 'discord.js';
 
+const test: [name: string, value: string][] = [['test', 'testy']];
+
 class HelpCommand extends SlashCommand {
-  readonly usage = '<commandName>';
-  protected generateOptions(): ApplicationCommandOptionData[] {
-    return [
-      {
-        name: 'command',
-        type: 'STRING',
-        description: 'Which command to show information about',
-        choices: this.client.commands.map((command) => {
-          return { name: command.name, value: command.name };
-        }),
-      },
-      hidden,
-    ];
-  }
+
   constructor(private client: Scripticus) {
     super('help', 'List all of my commands or info about a specific command');
     this.client = client;
+    this.commandBuilder.addBooleanOption(hidden).addStringOption((option) =>
+      option
+        .setName('command')
+        .setDescription('which command to show information about')
+        .setChoices(
+          this.client.commands.map((command) => {
+            const tuple: [name: string, value: string] = [command.name, command.name];
+            return tuple;
+          })
+        )
+    );
   }
 
   execute(option: string, commands: Collection<string, SlashCommand>) {
@@ -36,18 +36,12 @@ class HelpCommand extends SlashCommand {
       embed.setTitle('Help Command');
       embed.addField(
         'Commands:',
-        commands
-          .map((command) => `**${command.name}**: ${command.description}\n`)
-          .join('\n')
+        commands.map((command) => `**${command.name}**: ${command.description}\n`).join('\n')
       );
       return { embeds: [embed] };
     }
 
-    const command =
-      commands.get(option) ||
-      commands.find(
-        (c) => c.aliases != undefined && c.aliases.includes(option)
-      );
+    const command = commands.get(option);
 
     if (command == undefined) {
       return {
@@ -57,10 +51,6 @@ class HelpCommand extends SlashCommand {
 
     embed.setTitle(`**Command**: *${command.name}*`);
     embed.addField('Description:', command.description);
-    if (command.aliases != undefined)
-      embed.addField('Aliases:', command.aliases.join(', '));
-    if (command.usage != undefined)
-      embed.addField('Usage:', `<prefix>${command.name} ${command.usage}`);
 
     return { embeds: [embed] };
   }
@@ -74,13 +64,6 @@ class HelpCommand extends SlashCommand {
     const response = this.execute(command!, client.commands);
 
     interaction.editReply(response);
-  }
-
-  async handleMessage(message: Message, [command]: string[]): Promise<void> {
-    const client = message.client as Scripticus;
-    const response = this.execute(command, client.commands);
-
-    message.reply({ ...response, ...noMentions });
   }
 }
 

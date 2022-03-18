@@ -6,15 +6,27 @@ const logger = new Logger('Ready');
 
 async function registerCommands(oAuth2Guild: OAuth2Guild) {
   const client = oAuth2Guild.client as Scripticus;
-  const clientCommands = client.commands.filter((cmd) => !cmd.global);
+  const allCommands = [...client.commands.values(), ...client.messageCommands.values()];
+  const clientCommands = allCommands.filter((cmd) => !cmd.global);
   const guild = await oAuth2Guild.fetch();
   const guildCommands = await guild.commands.fetch();
-  const existingCommands = clientCommands.filter((command) =>
-    guildCommands.some((c) => c.name === command.name)
+  const extraCommands = guildCommands.filter((command) =>
+    clientCommands.every(({ name }) => name != command.name)
   );
-  if (existingCommands.size !== 0 && existingCommands.size === guildCommands.size) return;
+  const missingCommands = clientCommands.filter((command) =>
+    guildCommands.every(({ name }) => name != command.name)
+  );
 
-  const toRegister = await Promise.all(clientCommands.map((c) => c.generateDetails(guild)));
+  if (
+    missingCommands.length === 0 &&
+    extraCommands.size === 0 &&
+    guildCommands.size === clientCommands.length
+  )
+    return;
+  
+  const toRegister = await Promise.all(clientCommands.map((c) => c.commandBuilder.toJSON()));
+  console.log(toRegister.map((command) => command.name));
+
   try {
     return await guild.commands.set(toRegister);
   } catch (err) {
@@ -28,7 +40,6 @@ const eventHandler: EventHandler = {
   async handle(client: Scripticus) {
     const guilds = await client.guilds.fetch();
     const results = await Promise.all(guilds.map(registerCommands));
-
     interface Total {
       guildTotal: number;
       commandTotal: number;
