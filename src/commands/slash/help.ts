@@ -1,18 +1,11 @@
-import { hidden, noMentions } from '../../utils/utils';
+import { hidden } from '../../utils/utils';
 import { Scripticus } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
-import {
-  ApplicationCommandOptionData,
-  Collection,
-  CommandInteraction,
-  Message,
-  MessageEmbed,
-} from 'discord.js';
+import { Collection, CommandInteraction, MessageEmbed } from 'discord.js';
 
 const test: [name: string, value: string][] = [['test', 'testy']];
 
 class HelpCommand extends SlashCommand {
-
   constructor(private client: Scripticus) {
     super('help', 'List all of my commands or info about a specific command');
     this.client = client;
@@ -61,7 +54,7 @@ class HelpCommand extends SlashCommand {
 
     const client = interaction.client as Scripticus;
     const command = interaction.options.getString('command')!;
-    const response = this.execute(command!, client.commands);
+    const response = this.execute(command, client.commands);
 
     interaction.editReply(response);
   }

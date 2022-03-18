@@ -28,7 +28,10 @@ class InfoCommand extends SlashCommand {
     this.commandBuilder
       .addBooleanOption(hidden)
       .addStringOption((option) =>
-        option.setName('name').setDescription('The name you want information about')
+        option
+          .setName('name')
+          .setDescription('The name you want information about')
+          .setRequired(true)
       );
   }
 
@@ -199,7 +202,7 @@ class InfoCommand extends SlashCommand {
           value: `${monster.ExpGiven}`,
           inline: true,
         });
-        embed.setFooter({ text:'All values are base values (no Prowess bonuses included!)' });
+        embed.setFooter({ text: 'All values are base values (no Prowess bonuses included!)' });
         embed.setURL(`https://idleon.info/wiki/${monster.AFKtype}`);
         break;
       default:

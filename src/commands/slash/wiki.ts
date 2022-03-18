@@ -29,7 +29,7 @@ class WikiCommand extends SlashCommand {
   async handleInteract(interaction: CommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
-    const query = interaction.options.getString('query')!;
+    const query = interaction.options.getString('query') ?? undefined;
 
     const response = await this.execute(query);
 

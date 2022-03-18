@@ -24,7 +24,10 @@ class AliasCommand extends SlashCommand {
     this.commandBuilder
       .addBooleanOption(hidden)
       .addStringOption((option) =>
-        option.setName('target').setDescription('What you want to view aliases for')
+        option
+          .setName('target')
+          .setDescription('What you want to view aliases for')
+          .setRequired(true)
       );
   }
 

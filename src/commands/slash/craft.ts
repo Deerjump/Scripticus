@@ -31,7 +31,9 @@ class CraftCommand extends SlashCommand {
     super('craft', 'Returns all resources/sub-items needed to craft an item!');
     this.commandBuilder
       .addBooleanOption(hidden)
-      .addStringOption((option) => option.setName('itemname').setDescription(`The item's name`))
+      .addStringOption((option) =>
+        option.setName('itemname').setDescription(`The item's name`).setRequired(true)
+      )
       .addIntegerOption((option) =>
         option.setName('amount').setDescription('How many you want to craft')
       );
