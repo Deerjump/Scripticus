@@ -101,7 +101,7 @@ const aliases: AliasData = {
   'crows nest': ['t4 staff', 't4 wand'],
 
   'uninflated glove': ['t5 gloves', 'ice gloves'],
-  'the ice Breaker': ['t5 spear', 't5 axe'],
+  'the ice breaker': ['t5 spear', 't5 axe'],
   'blizzard bow': ['t5 bow'],
   'spriggly storm': ['t5 staff', 't5 wand'],
 
