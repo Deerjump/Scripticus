@@ -82,7 +82,7 @@ class WebhookListener {
       try {
         await this.runCommand('git remote update');
         await this.runCommand(`git reset --hard origin/${this.branch}`);
-        await this.runCommand('yarn install');
+        await this.runCommand('sudo yarn install');
         await this.runCommand('yarn build');
         this.logger.log('Updated to new commit from Github!');
       } catch (err) {
