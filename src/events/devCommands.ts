@@ -33,6 +33,10 @@ const eventHandler: EventHandler = {
         await resetCommands(client, arg);
         break;
       }
+      case 'hardwipecommands': {
+        await resetAllGuildCommands(client);
+        break;
+      }
     }
   },
 };
@@ -51,6 +55,24 @@ async function resetCommands(client: Scripticus, guildId: string) {
 
   const remaining = await commandManager.fetch()!;
   logger.log(`${commands.size - remaining.size} commands deleted`);
+}
+
+async function resetAllGuildCommands(client: Scripticus) {
+  const guilds = await client.guilds.fetch()
+  
+  logger.log(`Resetting commands from ${guilds.size} guilds`);
+
+  for (let [, g] of guilds) {
+    const { id, name } = g;
+    logger.log(`Resetting commands for ${name}`);
+    const guild = await client.guilds.fetch(id);
+    const { size } = await guild.commands.fetch();
+    logger.log(`Deleting ${size} commands from ${name}`);
+    const remaining = await guild.commands.set([]);
+    logger.log(`Deleted ${ size - remaining.size } from ${name}`);
+  }
+
+  logger.log(`Commands reset!`)
 }
 
 export = eventHandler;
