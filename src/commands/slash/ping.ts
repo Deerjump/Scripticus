@@ -1,6 +1,6 @@
 import { SlashCommand } from '../commandClasses';
 import { isNumber } from '../../utils/utils';
-import { CommandInteraction, Message } from 'discord.js';
+import { CommandInteraction } from 'discord.js';
 
 class PingCommand extends SlashCommand {
 

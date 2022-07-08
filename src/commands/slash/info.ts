@@ -11,9 +11,9 @@ import {
   EmbedFieldData,
   CommandInteraction,
   TextBasedChannel,
-  ReplyMessageOptions,
   InteractionCollector,
   ButtonInteraction,
+  InteractionReplyOptions,
 } from 'discord.js';
 
 class InfoCommand extends SlashCommand {
@@ -26,13 +26,13 @@ class InfoCommand extends SlashCommand {
   constructor() {
     super('info', 'Find information on monsters or items');
     this.commandBuilder
-      .addBooleanOption(hidden)
       .addStringOption((option) =>
         option
           .setName('name')
           .setDescription('The name you want information about')
           .setRequired(true)
-      );
+      )
+      .addBooleanOption(hidden);
   }
 
   async execute(
@@ -40,7 +40,7 @@ class InfoCommand extends SlashCommand {
     authorId: string,
     channel: TextBasedChannel
   ): Promise<{
-    response: ReplyMessageOptions;
+    response: InteractionReplyOptions;
     collector?: InteractionCollector<ButtonInteraction>;
   }> {
     const item = itemRepository.getItem(searchTerm);
@@ -124,7 +124,7 @@ class InfoCommand extends SlashCommand {
 
   private parseCurrency(amount: number) {
     const currencies = [];
-    const imgs = ['🟤', '⚪', '🟡', '🔵', '🟣'];
+    const imgs = ['🟤', '⚪', '🟡', '🔵', '🟣', '⚫', '🟢', '🟠', '🔴'];
     for (let i = 0; i < imgs.length; i++) {
       const currency = amount % 100;
       currencies.push(currency);
@@ -280,7 +280,7 @@ class InfoCommand extends SlashCommand {
     item: ItemData,
     monster: MonsterData
   ): Promise<{
-    response: ReplyMessageOptions;
+    response: InteractionReplyOptions;
     collector: InteractionCollector<ButtonInteraction>;
   }> {
     const dynamicLabel = monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';

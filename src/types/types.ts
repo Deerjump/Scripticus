@@ -1,5 +1,4 @@
 import {
-  ButtonInteraction,
   Client,
   ClientEvents,
   Collection,
