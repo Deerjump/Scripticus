@@ -13,7 +13,7 @@ export abstract class ApplicationCommand {
   protected defaultPermission = true;
   abstract commandBuilder: SlashCommandBuilder | ContextMenuCommandBuilder;
   roleRequired: string = 'EVERYONE';
-  global = false;
+  global = true;
   name: string;
 
   constructor(name: string) {
