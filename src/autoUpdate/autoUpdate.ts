@@ -23,7 +23,7 @@ class WebhookListener {
     this.PORT = port;
     this.client = client;
     this.branch = branch;
-    this.init();
+    this.setupEndpoints();
   }
 
   // TODO: Arguments might benefit from stricter typings
@@ -57,7 +57,7 @@ class WebhookListener {
     });
   }
 
-  private init() {
+  private setupEndpoints() {
     this.logger.log('Configuring WebHookListener');
 
     this.app.use(
@@ -105,7 +105,6 @@ class WebhookListener {
     this.app.listen(this.PORT, async () => {
       this.logger.log(`Listening on ${this.PORT}`);
     });
-    return this;
   }
 }
 

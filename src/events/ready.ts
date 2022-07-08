@@ -38,22 +38,22 @@ const eventHandler: EventHandler = {
   event: 'ready',
   once: true,
   async handle(client: Scripticus) {
-    const guilds = await client.guilds.fetch();
-    const results = await Promise.all(guilds.map(registerCommands));
-    interface Total {
-      guildTotal: number;
-      commandTotal: number;
-    }
+    // const guilds = await client.guilds.fetch();
+    // const results = await Promise.all(guilds.map(registerCommands));
+    // interface Total {
+    //   guildTotal: number;
+    //   commandTotal: number;
+    // }
 
-    const { guildTotal, commandTotal } = results
-      .filter((x) => x != undefined)
-      .reduce(
-        (acc, curr): Total => {
-          return { guildTotal: ++acc.guildTotal, commandTotal: acc.commandTotal + curr!.size };
-        },
-        { guildTotal: 0, commandTotal: 0 }
-      );
-    logger.log(`Registered ${commandTotal} commands for ${guildTotal} guilds`);
+    // const { guildTotal, commandTotal } = results
+    //   .filter((x) => x != undefined)
+    //   .reduce(
+    //     (acc, curr): Total => {
+    //       return { guildTotal: ++acc.guildTotal, commandTotal: acc.commandTotal + curr!.size };
+    //     },
+    //     { guildTotal: 0, commandTotal: 0 }
+    //   );
+    // logger.log(`Registered ${commandTotal} commands for ${guildTotal} guilds`);
     logger.log(`${client.user?.username} is ready!`);
   },
 };

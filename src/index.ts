@@ -6,18 +6,19 @@ import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
 /**
  * @description this won't register commands.
- * @see registerApplicationCommands.ts
+ * @see registerGlobalCommands.ts
  */
 async function main() {
   const scripticus = new ScripticusBot(
     new DatabaseDriver(process.env.DATABASE_URL!),
     clientOptions
   );
-  let autoUpdater;
+  
   if (autoUpdateOptions.enabled) {
-    autoUpdater = new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
+    new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
   }
 
   await scripticus.login(process.env.TOKEN!);
