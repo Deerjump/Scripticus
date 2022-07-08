@@ -22,13 +22,13 @@ class AliasCommand extends SlashCommand {
   constructor() {
     super('alias', 'Find all the accepted aliases for a monster or item!');
     this.commandBuilder
-      .addBooleanOption(hidden)
       .addStringOption((option) =>
         option
           .setName('target')
           .setDescription('What you want to view aliases for')
           .setRequired(true)
-      );
+      )
+      .addBooleanOption(hidden);
   }
 
   private createButtonCollector(

@@ -3,8 +3,6 @@ import { Scripticus } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
 import { Collection, CommandInteraction, MessageEmbed } from 'discord.js';
 
-const test: [name: string, value: string][] = [['test', 'testy']];
-
 class HelpCommand extends SlashCommand {
   constructor(private client: Scripticus) {
     super('help', 'List all of my commands or info about a specific command');
@@ -14,9 +12,8 @@ class HelpCommand extends SlashCommand {
         .setName('command')
         .setDescription('which command to show information about')
         .setChoices(
-          this.client.commands.map((command) => {
-            const tuple: [name: string, value: string] = [command.name, command.name];
-            return tuple;
+          ...this.client.commands.map(({ name }) => {
+            return { name, value: name };
           })
         )
     );

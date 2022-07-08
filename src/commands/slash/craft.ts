@@ -9,7 +9,6 @@ import {
   Message,
   ButtonInteraction,
   CommandInteraction,
-  ApplicationCommandOptionData,
   TextBasedChannel,
   InteractionCollector,
 } from 'discord.js';
@@ -30,13 +29,13 @@ class CraftCommand extends SlashCommand {
   constructor() {
     super('craft', 'Returns all resources/sub-items needed to craft an item!');
     this.commandBuilder
-      .addBooleanOption(hidden)
       .addStringOption((option) =>
         option.setName('itemname').setDescription(`The item's name`).setRequired(true)
       )
       .addIntegerOption((option) =>
         option.setName('amount').setDescription('How many you want to craft')
-      );
+      )
+      .addBooleanOption(hidden);
   }
 
   async execute(

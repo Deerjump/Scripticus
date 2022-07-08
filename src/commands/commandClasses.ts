@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ContextMenuCommandBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder, ContextMenuCommandBuilder, ContextMenuCommandType } from '@discordjs/builders';
 import {
   ContextMenuInteraction,
   CommandInteraction,
@@ -6,8 +6,8 @@ import {
   MessageContextMenuInteraction,
   UserContextMenuInteraction,
 } from 'discord.js';
-import { ApplicationCommandType } from 'discord.js/node_modules/discord-api-types';
 
+import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 export abstract class ApplicationCommand {
   private readonly MAX_NAME_LENGTH = 32;
   protected defaultPermission = true;
@@ -31,7 +31,7 @@ export abstract class ApplicationCommand {
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
-  type: ApplicationCommandType.ChatInput = ApplicationCommandType.ChatInput;
+  type: ApplicationCommandTypes.CHAT_INPUT = ApplicationCommandTypes.CHAT_INPUT;
   commandBuilder = new SlashCommandBuilder();
   description: string;
 
@@ -52,7 +52,6 @@ export abstract class SlashCommand extends ApplicationCommand {
     this.description = description;
     this.commandBuilder
       .setName(this.name)
-      .setDefaultPermission(this.defaultPermission)
       .setDescription(this.description);
   }
 
@@ -64,14 +63,14 @@ export abstract class ContextMenuCommand extends ApplicationCommand {
 
   constructor(name: string) {
     super(name);
-    this.commandBuilder.setName(this.name).setDefaultPermission(this.defaultPermission);
+    this.commandBuilder.setName(this.name);
   }
 
   abstract handleInteract(interaction: ContextMenuInteraction): void;
 }
 
 export abstract class MessageCommand extends ContextMenuCommand {
-  type: ApplicationCommandType.Message = ApplicationCommandType.Message;
+  type: ContextMenuCommandType = 3;
 
   constructor(name: string) {
     super(name);
@@ -82,7 +81,7 @@ export abstract class MessageCommand extends ContextMenuCommand {
 }
 
 export abstract class UserCommand extends ContextMenuCommand {
-  type: ApplicationCommandType.User = ApplicationCommandType.User;
+  type: ApplicationCommandTypes.USER = ApplicationCommandTypes.USER;
 
   abstract handleInteract(interaction: UserContextMenuInteraction): void;
 }
