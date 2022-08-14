@@ -1,34 +1,13 @@
 import { MessageContextMenuCommandInteraction } from 'discord.js';
 import { MessageCommand } from '../commandClasses';
-import translate from '@vitalets/google-translate-api';
+import { GoogleTranslator, Translator } from '../../services/translator';
 
 class TranslateCommand extends MessageCommand {
+  private translator: Translator = new GoogleTranslator();
   constructor() {
     super('Translate');
   }
 
-  private trimEmojis(message: string): [string, string[]] {
-    if (!message || message === '') return ['', []];
-    const discordEmojiRegex = /(<:\w+:\d+>)/gm;
-
-    const emojis = message.match(discordEmojiRegex) ?? [];
-
-    emojis.forEach((match, index) => {
-      message = message.replace(match, `<{${index}}>`);
-    });
-
-    return [message.replaceAll(discordEmojiRegex, ''), emojis];
-  }
-
-  private insertEmojis(message: string, emojis: string[]): string {
-    if (emojis.length == 0) return message;
-
-    emojis.forEach((emoji, index) => {
-      message = message.replace(`<{${index}}>`, emoji);
-    });
-
-    return message;
-  }
 
   async handleInteract(interaction: MessageContextMenuCommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
@@ -41,15 +20,13 @@ class TranslateCommand extends MessageCommand {
       });
     }
 
-    const [trimmed, emojis] = this.trimEmojis(targetMessage.content);
-    const result = await translate(trimmed, { to: 'en', autoCorrect: true });
-    const responseString = this.insertEmojis(result.text, emojis);
+    const translated = await this.translator.translate(targetMessage.content, 'en');
 
-    if (responseString.length > 2000) {
-      return await interaction.editReply({ content: `Translated text is too large (2000 characters) to send! It has ${responseString.length}.`})
+    if (translated.length > 2000) {
+      return await interaction.editReply({ content: `Translated text is too large (2000 characters) to send! It has ${translated.length}.`})
     }
 
-    await interaction.editReply({ content: responseString });
+    await interaction.editReply({ content: translated });
   }
 }
 
