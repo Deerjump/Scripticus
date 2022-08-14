@@ -1,8 +1,4 @@
-import {
-  CommandInteraction,
-  Message,
-  MessageEmbed,
-} from 'discord.js';
+import { CommandInteraction, Message, MessageEmbed } from 'discord.js';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
@@ -14,10 +10,11 @@ class WikiCommand extends SlashCommand {
 
   constructor() {
     super('wiki', 'Seach the Legends of Idleon Wiki!');
-    this.commandBuilder.addStringOption((option) =>
-      option.setName('query').setDescription('What you want to search for')
-    )
-    .addBooleanOption(hidden);
+    this.commandBuilder
+      .addStringOption((option) =>
+        option.setName('query').setDescription('What you want to search for')
+      )
+      .addBooleanOption(hidden);
   }
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
@@ -44,7 +41,7 @@ class WikiCommand extends SlashCommand {
             .setColor('#FF0000')
             .setTitle(this.wikiUrl)
             .setURL(this.wikiUrl)
-            .addField('You could also:', 'Supply a search term!\n!wiki Mafioso'),
+            .addFields([{ name: 'You could also:', value: 'Supply a search term!\n /wiki mafioso' }]),
         ],
       };
     }
