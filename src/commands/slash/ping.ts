@@ -1,6 +1,6 @@
 import { SlashCommand } from '../commandClasses';
 import { isNumber } from '../../utils/utils';
-import { CommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction } from 'discord.js';
 
 class PingCommand extends SlashCommand {
 
@@ -24,7 +24,7 @@ class PingCommand extends SlashCommand {
     return 'Pong!';
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const delay = interaction.options.getInteger('delay');
     await interaction.deferReply();
 

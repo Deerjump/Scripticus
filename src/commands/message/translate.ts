@@ -1,4 +1,4 @@
-import { MessageContextMenuInteraction, CacheType, Message } from 'discord.js';
+import { MessageContextMenuCommandInteraction } from 'discord.js';
 import { MessageCommand } from '../commandClasses';
 import translate from '@vitalets/google-translate-api';
 
@@ -30,17 +30,18 @@ class TranslateCommand extends MessageCommand {
     return message;
   }
 
-  async handleInteract(interaction: MessageContextMenuInteraction<CacheType>) {
+  async handleInteract(interaction: MessageContextMenuCommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
-    const message = interaction.options.resolved.messages?.first() as Message;
+    const { targetMessage } = interaction;
+    // const message = interaction.options.resolved.messages?.first() as Message;
 
-    if (message.content.length > 2000) {
+    if (targetMessage.content.length > 2000) {
       return await interaction.editReply({
-        content: `Message must be fewer than 2000 characters! That message has ${message.content.length}`,
+        content: `Message must be fewer than 2000 characters! That message has ${targetMessage.content.length}`,
       });
     }
 
-    const [trimmed, emojis] = this.trimEmojis(message.content);
+    const [trimmed, emojis] = this.trimEmojis(targetMessage.content);
     const result = await translate(trimmed, { to: 'en', autoCorrect: true });
     const responseString = this.insertEmojis(result.text, emojis);
 

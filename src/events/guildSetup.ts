@@ -10,10 +10,10 @@ const eventHandler: EventHandler = {
   event: 'guildCreate',
   once: true,
   async handle(guild: Guild) {
-    const client = guild.client as Scripticus;
-    const { commands } = client;
-
     logger.log(`Joined ${guild.name}!`);
+    // const client = guild.client as Scripticus;
+    // const { commands } = client;
+
     // logger.log(`Configuring guild-specific commands...`);
 
     // const owner = await guild.fetchOwner();
