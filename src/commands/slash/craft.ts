@@ -150,7 +150,10 @@ class CraftCommand extends SlashCommand {
     const text = this.generateMaterialsText(materials);
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      new ButtonBuilder().setCustomId('recipe').setLabel('Show Tiered Recipe').setStyle(ButtonStyle.Primary)
+      new ButtonBuilder()
+        .setCustomId('recipe')
+        .setLabel('Show Tiered Recipe')
+        .setStyle(ButtonStyle.Primary)
     );
 
     return this.createMessage(title, text, row);

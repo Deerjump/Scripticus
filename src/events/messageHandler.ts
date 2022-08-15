@@ -3,7 +3,7 @@ import { Message } from 'discord.js';
 
 const eventHandler: EventHandler = {
   event: 'messageCreate',
-  handle: (message: Message) => {}
+  handle: (message: Message) => {},
 };
 
 export = eventHandler;

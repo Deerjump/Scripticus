@@ -26,7 +26,9 @@ class HelpCommand extends SlashCommand {
       embed.setTitle('Help Command');
       embed.addFields({
         name: 'Commands:',
-        value: commands.map((command) => `**${command.name}**: ${command.description}\n`).join('\n')
+        value: commands
+          .map((command) => `**${command.name}**: ${command.description}\n`)
+          .join('\n'),
       });
       return { embeds: [embed] };
     }
@@ -41,7 +43,8 @@ class HelpCommand extends SlashCommand {
 
     embed.setTitle(`**Command**: *${command.name}*`);
     embed.addFields({
-      name: 'Description:',  value: command.description
+      name: 'Description:',
+      value: command.description,
     });
 
     return { embeds: [embed] };

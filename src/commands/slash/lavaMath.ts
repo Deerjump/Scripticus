@@ -9,11 +9,11 @@ class LavaMathCommand extends SlashCommand {
     Object.entries(formulas).forEach(([key, formula]) => {
       this.commandBuilder.addSubcommand((command) => {
         command.setName(key).setDescription(formula.toString());
-        command.addNumberOption(o => o.setName('x').setDescription('x').setRequired(true));
+        command.addNumberOption((o) => o.setName('x').setDescription('x').setRequired(true));
 
         if (formula.length > 1) {
-          command.addNumberOption(o => o.setName('y').setDescription('y').setRequired(true));
-          command.addNumberOption(o => o.setName('z').setDescription('z').setRequired(true));
+          command.addNumberOption((o) => o.setName('y').setDescription('y').setRequired(true));
+          command.addNumberOption((o) => o.setName('z').setDescription('z').setRequired(true));
         }
 
         return command;

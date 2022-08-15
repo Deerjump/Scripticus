@@ -55,7 +55,7 @@ export class ScripticusBot extends Client implements Scripticus {
     });
 
     const messageCommands = await this.loadCommandsOf<MessageCommand>('message');
-    messageCommands.forEach(command => this.messageCommands.set(command.name, command))
+    messageCommands.forEach((command) => this.messageCommands.set(command.name, command));
 
     // const userCommands = await this.loadCommandsOf<UserCommand>('user');
     // userCommands.forEach(command => this.userCommands.set(command.name, command));

@@ -45,7 +45,7 @@ class MonsterRepository {
   private searchObjFor(object: Monsters, name: string) {
     for (const monster of Object.values(object)) {
       const displayName = monster.Name.toLowerCase();
-  
+
       if (displayName === name) return monster;
       if (aliasRepository.find(name, monster, displayName)) return monster;
     }

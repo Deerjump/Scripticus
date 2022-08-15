@@ -1,4 +1,4 @@
-import aliasData from "../resources/aliases";
+import aliasData from '../resources/aliases';
 
 class AliasRepository {
   aliases: any;
@@ -27,9 +27,7 @@ class AliasRepository {
     const newEntries = [name, ...list];
 
     for (const alias of newEntries) {
-      this.aliases[alias] = Array.from(
-        new Set([...newEntries, ...(this.aliases[alias] ?? [])])
-      );
+      this.aliases[alias] = Array.from(new Set([...newEntries, ...(this.aliases[alias] ?? [])]));
     }
   }
 
@@ -40,11 +38,7 @@ class AliasRepository {
    * @param targetName the displayed name of the target object, included because monster names have underscores
    * @returns boolean
    */
-  find(
-    name: string,
-    target: any,
-    targetName: string = target.displayName.toLowerCase()
-  ) {
+  find(name: string, target: any, targetName: string = target.displayName.toLowerCase()) {
     name = name.toLowerCase();
     // first try finding the whole name to catch special cases
     if (this.aliases[name]) {
@@ -56,13 +50,13 @@ class AliasRepository {
       return false;
     }
     // e.g. name = "t3 mat bag"
-    const parts = name.split(" ");
+    const parts = name.split(' ');
     const candidates = parts.map((part) =>
       this.aliases[part]?.length > 0 ? this.aliases[part] : [part]
     );
     const aliases = this.cartesian(candidates);
     for (const al of aliases) {
-      if (al.join(" ") === targetName) {
+      if (al.join(' ') === targetName) {
         return true;
       }
     }
@@ -77,14 +71,12 @@ class AliasRepository {
     const aliases = this.aliases[name];
     if (aliases) return aliases.filter((str: string) => str !== name);
 
-    const parts = name.split(" ");
+    const parts = name.split(' ');
     const candidates = parts.map((part) =>
-      this.aliases[part] && this.aliases[part].length > 0
-        ? this.aliases[part]
-        : [part]
+      this.aliases[part] && this.aliases[part].length > 0 ? this.aliases[part] : [part]
     );
     return Array.from(this.cartesian(candidates))
-      .map((a: any) => a.join(" "))
+      .map((a: any) => a.join(' '))
       .filter((a: string) => a !== name);
   }
 

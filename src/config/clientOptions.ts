@@ -2,14 +2,17 @@ import { ScripticusOptions } from '@customTypes';
 import { IntentsBitField, Partials } from 'discord.js';
 
 export const clientOptions: ScripticusOptions = {
-  intents: new IntentsBitField(['Guilds', 'GuildMessages', 'DirectMessages', 'GuildMessageReactions']),
+  intents: new IntentsBitField([
+    'Guilds',
+    'GuildMessages',
+    'DirectMessages',
+    'GuildMessageReactions',
+  ]),
   partials: [Partials.Channel],
   devGuildId: '791017497997606922',
   defaultPrefix: '!',
   defaultCooldown: 2,
-  joinMessage: [
-    'Thanks for adding me to your server!',
-  ].join('\n'),
+  joinMessage: ['Thanks for adding me to your server!'].join('\n'),
   startupDisplay: [
     '*********************************************************',
     '*   ______             _            _                   *',

@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 
 // const createFormat = function(tag) {
 //   return winston.format.printf((info) => {
@@ -21,7 +21,7 @@ import chalk from "chalk";
 //     }
 //     const timestamp = chalk.green(getDate());
 //     const label = chalk.blue(tag);
-  
+
 //     return `${timestamp}[${label}]${level}${message}`;
 //   })
 // }
@@ -37,7 +37,7 @@ export class Logger {
     // })
     this.tag = tag;
   }
-  
+
   log(message: any): void {
     // this.logger.info(message);
     console.log(this.getPrefix(), message);
@@ -54,9 +54,13 @@ export class Logger {
     const date = new Date();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const time = date.toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit' });
+    const time = date.toLocaleTimeString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    });
     const dateString = `${month}/${day}|${time}`;
 
-    return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`
+    return `${chalk.green(dateString)}[${chalk.blue(this.tag)}]`;
   }
 }

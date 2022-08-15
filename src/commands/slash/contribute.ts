@@ -21,8 +21,7 @@ class ContributeCommand extends SlashCommand {
           .addFields(
             {
               name: 'Hey!',
-              value:
-                'Want to help out development of this bot?\nFollow the link in the title',
+              value: 'Want to help out development of this bot?\nFollow the link in the title',
             },
             {
               name: 'How to help',
@@ -30,7 +29,7 @@ class ContributeCommand extends SlashCommand {
                 'Even if you don\'t know how to code you can still help!\nYou can suggest features through GitHub [here](https://github.com/Deerjump/Scripticus/projects/1 "Suggestions!") as well!',
             }
           ),
-      ]
+      ],
     };
   }
 
