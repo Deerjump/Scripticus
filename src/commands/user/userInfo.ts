@@ -1,41 +1,43 @@
-import { UserCommand } from '../commandClasses';
-import {
-  User,
-  Guild,
-  MessageEmbed,
-  UserContextMenuInteraction,
-} from 'discord.js';
+// import { UserCommand } from '../commandClasses';
+// import {
+//   User,
+//   Guild,
+//   EmbedBuilder,
+//   UserContextMenuCommandInteraction,
+// } from 'discord.js';
 
-class UserInfoCommand extends UserCommand {
-  constructor() {
-    super('User Details');
-  }
+// class UserInfoCommand extends UserCommand {
+//   constructor() {
+//     super('User Details');
+//   }
 
-  async execute(user: User, guild: Guild) {
-    const member = guild.members.cache.get(user.id);
-    const embed = new MessageEmbed()
-      .setAuthor(`User info for ${user.username}`, user.displayAvatarURL())
-      .addFields([
-        {
-          name: 'Acount created:',
-          value: `${user.createdAt.toLocaleDateString()}`,
-        },
-        {
-          name: 'Joined Server:',
-          value: `${member!.joinedAt!.toLocaleDateString()}`,
-        },
-      ]);
+//   async execute(user: User, guild: Guild) {
+//     const member = guild.members.cache.get(user.id);
+//     const embed = new EmbedBuilder()
+//       .setAuthor({
+//         name: `User info for ${user.username}`,
+//       })
+//       .addFields([
+//         {
+//           name: 'Acount created:',
+//           value: `${user.createdAt.toLocaleDateString()}`,
+//         },
+//         {
+//           name: 'Joined Server:',
+//           value: `${member!.joinedAt!.toLocaleDateString()}`,
+//         },
+//       ]);
 
-    return { embeds: [embed] };
-  }
+//     return { embeds: [embed] };
+//   }
 
-  async handleInteract(interaction: UserContextMenuInteraction) {
-    await interaction.deferReply();
+//   async handleInteract(interaction: UserContextMenuCommandInteraction) {
+//     await interaction.deferReply();
 
-    const response = await this.execute(interaction.user, interaction.guild!);
+//     const response = await this.execute(interaction.user, interaction.guild!);
 
-    interaction.editReply(response);
-  }
-}
+//     interaction.editReply(response);
+//   }
+// }
 
-export const command = UserInfoCommand;
+// export const command = UserInfoCommand;
