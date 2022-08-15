@@ -7,10 +7,12 @@ const logger = new Logger('DevCommands');
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features
+const whitelist = ['191085842469486592'];
+
 const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: async (message: Message) => {
-    const whitelist = ['191085842469486592'];
+
     if (message.channel.type === ChannelType.DM && !whitelist.includes(message.author.id))
       return;
 
