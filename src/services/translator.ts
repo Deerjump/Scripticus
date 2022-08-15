@@ -1,11 +1,10 @@
 import translate from '@vitalets/google-translate-api';
 
 export interface Translator {
-  translate(text: string, language: string): Promise<string>
+  translate(text: string, language: string): Promise<string>;
 }
 
 export class GoogleTranslator implements Translator {
-
   private trimEmojis(message: string): [string, string[]] {
     if (!message || message === '') return ['', []];
     const discordEmojiRegex = /(<:\w+:\d+>)/gm;

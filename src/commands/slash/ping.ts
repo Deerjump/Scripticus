@@ -3,7 +3,6 @@ import { isNumber } from '../../utils/utils';
 import { ChatInputCommandInteraction } from 'discord.js';
 
 class PingCommand extends SlashCommand {
-
   constructor() {
     super('ping', 'Pong!');
     this.commandBuilder.addIntegerOption((option) =>

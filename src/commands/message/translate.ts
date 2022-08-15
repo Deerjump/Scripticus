@@ -8,11 +8,9 @@ class TranslateCommand extends MessageCommand {
     super('Translate');
   }
 
-
   async handleInteract(interaction: MessageContextMenuCommandInteraction) {
     await interaction.deferReply({ ephemeral: true });
     const { targetMessage } = interaction;
-    // const message = interaction.options.resolved.messages?.first() as Message;
 
     if (targetMessage.content.length > 2000) {
       return await interaction.editReply({
@@ -23,7 +21,9 @@ class TranslateCommand extends MessageCommand {
     const translated = await this.translator.translate(targetMessage.content, 'en');
 
     if (translated.length > 2000) {
-      return await interaction.editReply({ content: `Translated text is too large (2000 characters) to send! It has ${translated.length}.`})
+      return await interaction.editReply({
+        content: `Translated text is too large (2000 characters) to send! It has ${translated.length}.`,
+      });
     }
 
     await interaction.editReply({ content: translated });

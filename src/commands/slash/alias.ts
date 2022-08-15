@@ -10,7 +10,7 @@ import {
   EmbedBuilder,
   TextBasedChannel,
   ButtonStyle,
-  ComponentType
+  ComponentType,
 } from 'discord.js';
 import { InteractionFilter } from '@customTypes';
 

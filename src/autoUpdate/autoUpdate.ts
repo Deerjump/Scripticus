@@ -70,27 +70,31 @@ class WebhookListener {
       })
     );
 
-    this.app.post('/hook', (...args) => this.verifyPostData(...args), async (req: any, res: any) => {
-      res.status(200).send('Request body was signed!');
+    this.app.post(
+      '/hook',
+      (...args) => this.verifyPostData(...args),
+      async (req: any, res: any) => {
+        res.status(200).send('Request body was signed!');
 
-      const body = JSON.parse(req.rawBody);
-      if (body.ref !== `refs/heads/${this.branch}`) {
-        return this.logger.log(`Ignoring merge on branch: ${body.ref}`);
+        const body = JSON.parse(req.rawBody);
+        if (body.ref !== `refs/heads/${this.branch}`) {
+          return this.logger.log(`Ignoring merge on branch: ${body.ref}`);
+        }
+
+        this.logger.log('Github webhook received.');
+        try {
+          await this.runCommand('git remote update');
+          await this.runCommand(`git reset --hard origin/${this.branch}`);
+          await this.runCommand('sudo yarn install');
+          await this.runCommand('yarn build');
+          this.logger.log('Updated to new commit from Github!');
+        } catch (err) {
+          return this.logger.error(err);
+        }
+
+        this.client.stop();
       }
-
-      this.logger.log('Github webhook received.');
-      try {
-        await this.runCommand('git remote update');
-        await this.runCommand(`git reset --hard origin/${this.branch}`);
-        await this.runCommand('sudo yarn install');
-        await this.runCommand('yarn build');
-        this.logger.log('Updated to new commit from Github!');
-      } catch (err) {
-        return this.logger.error(err);
-      }
-
-      this.client.stop();
-    });
+    );
 
     this.app.use((err: any, req: any, res: any, next: any) => {
       if (err) this.logger.error(err);

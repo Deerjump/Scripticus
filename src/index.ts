@@ -6,7 +6,6 @@ import { ScripticusBot } from './scripticus';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
 /**
  * @description this won't register commands.
  * @see registerGlobalCommands.ts
@@ -16,7 +15,7 @@ async function main() {
     new DatabaseDriver(process.env.DATABASE_URL!),
     clientOptions
   );
-  
+
   if (autoUpdateOptions.enabled) {
     new WebhookListener(scripticus, process.env.SECRET!, autoUpdateOptions).start();
   }

@@ -12,9 +12,7 @@ const whitelist = ['191085842469486592'];
 const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: async (message: Message) => {
-
-    if (message.channel.type === ChannelType.DM && !whitelist.includes(message.author.id))
-      return;
+    if (message.channel.type === ChannelType.DM && !whitelist.includes(message.author.id)) return;
 
     const client = message.client as Scripticus;
     const [option, arg] = message.content.split(/ +/);
@@ -60,8 +58,8 @@ async function resetCommands(client: Scripticus, guildId: string) {
 }
 
 async function resetAllGuildCommands(client: Scripticus) {
-  const guilds = await client.guilds.fetch()
-  
+  const guilds = await client.guilds.fetch();
+
   logger.log(`Resetting commands from ${guilds.size} guilds`);
 
   for (let [, g] of guilds) {
@@ -71,10 +69,10 @@ async function resetAllGuildCommands(client: Scripticus) {
     const { size } = await guild.commands.fetch();
     logger.log(`Deleting ${size} commands from ${name}`);
     const remaining = await guild.commands.set([]);
-    logger.log(`Deleted ${ size - remaining.size } from ${name}`);
+    logger.log(`Deleted ${size - remaining.size} from ${name}`);
   }
 
-  logger.log(`Commands reset!`)
+  logger.log(`Commands reset!`);
 }
 
 export = eventHandler;

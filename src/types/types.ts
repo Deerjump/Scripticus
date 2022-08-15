@@ -1,11 +1,4 @@
-import {
-  Client,
-  ClientEvents,
-  Collection,
-  Guild,
-  IntentsBitField,
-  Partials,
-} from 'discord.js';
+import { Client, ClientEvents, Collection, Guild, IntentsBitField, Partials } from 'discord.js';
 
 import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 

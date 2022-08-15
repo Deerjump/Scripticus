@@ -294,8 +294,7 @@ class InfoCommand extends SlashCommand {
       .setCustomId('itemBtn')
       .setLabel('Item')
       .setStyle(ButtonStyle.Primary);
-    const row = new ActionRowBuilder<ButtonBuilder>()
-      .addComponents(monsterBtn, itemBtn);
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(monsterBtn, itemBtn);
 
     const questionReply = {
       content: 'Which do you want?',

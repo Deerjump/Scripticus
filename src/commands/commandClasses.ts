@@ -52,9 +52,7 @@ export abstract class SlashCommand extends ApplicationCommand {
     }
 
     this.description = description;
-    this.commandBuilder
-      .setName(this.name)
-      .setDescription(this.description);
+    this.commandBuilder.setName(this.name).setDescription(this.description);
   }
 
   abstract handleInteract(interaction: ChatInputCommandInteraction): void;
@@ -80,7 +78,6 @@ export abstract class MessageCommand extends ContextMenuCommand {
 }
 
 export abstract class UserCommand extends ContextMenuCommand {
-  
   constructor(name: string) {
     super(name, ApplicationCommandType.User);
   }

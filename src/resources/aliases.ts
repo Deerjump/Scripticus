@@ -56,26 +56,9 @@ const aliases: AliasData = {
 
   // Equip name aliases
   helmet: ['helm', 'head', 'hat', 'beanie'],
-  platebody: [
-    'chest',
-    'chestplate',
-    'platbody',
-    'bodyplate',
-    'ribcage',
-    'body',
-    'shirt',
-    'tee',
-  ],
+  platebody: ['chest', 'chestplate', 'platbody', 'bodyplate', 'ribcage', 'body', 'shirt', 'tee'],
   platelegs: ['legs', 'pants', 'shins', 'hinds', 'hipilium', 'leggings'],
-  boots: [
-    'shoes',
-    'paws',
-    'feet',
-    'trekkers',
-    'heels',
-    'broken ankles',
-    'kicks',
-  ],
+  boots: ['shoes', 'paws', 'feet', 'trekkers', 'heels', 'broken ankles', 'kicks'],
   ring: ['band'],
 
   // weapons
@@ -114,16 +97,8 @@ const aliases: AliasData = {
   'copper netted net': ['copper net', 't1 net'],
   'reinforced net': ['iron net', 't2 net'],
   platinet: ['plat net', 't4 net'],
-  'bleached designer wode patch pants': [
-    'wood pants',
-    'chop pants',
-    'chopping pants',
-  ],
-  'dirty coal miner baggy soot pants': [
-    'ore pants',
-    'mine pants',
-    'mining pants',
-  ],
+  'bleached designer wode patch pants': ['wood pants', 'chop pants', 'chopping pants'],
+  'dirty coal miner baggy soot pants': ['ore pants', 'mine pants', 'mining pants'],
   steel: ['silver'],
   trunculus: ['ring'],
 

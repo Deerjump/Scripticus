@@ -41,7 +41,9 @@ class WikiCommand extends SlashCommand {
             .setColor('#FF0000')
             .setTitle(this.wikiUrl)
             .setURL(this.wikiUrl)
-            .addFields([{ name: 'You could also:', value: 'Supply a search term!\n /wiki mafioso' }]),
+            .addFields([
+              { name: 'You could also:', value: 'Supply a search term!\n /wiki mafioso' },
+            ]),
         ],
       };
     }
