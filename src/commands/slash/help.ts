@@ -1,7 +1,7 @@
 import { hidden } from '../../utils/utils';
 import { Scripticus } from '@customTypes';
 import { SlashCommand } from '../commandClasses';
-import { Collection, CommandInteraction, MessageEmbed } from 'discord.js';
+import { ChatInputCommandInteraction, Collection, EmbedBuilder } from 'discord.js';
 
 class HelpCommand extends SlashCommand {
   constructor(private client: Scripticus) {
@@ -20,14 +20,14 @@ class HelpCommand extends SlashCommand {
   }
 
   execute(option: string, commands: Collection<string, SlashCommand>) {
-    const embed = new MessageEmbed().setColor('#00FF00');
+    const embed = new EmbedBuilder().setColor('#00FF00');
 
     if (option == undefined) {
       embed.setTitle('Help Command');
-      embed.addField(
-        'Commands:',
-        commands.map((command) => `**${command.name}**: ${command.description}\n`).join('\n')
-      );
+      embed.addFields({
+        name: 'Commands:',
+        value: commands.map((command) => `**${command.name}**: ${command.description}\n`).join('\n')
+      });
       return { embeds: [embed] };
     }
 
@@ -40,12 +40,14 @@ class HelpCommand extends SlashCommand {
     }
 
     embed.setTitle(`**Command**: *${command.name}*`);
-    embed.addField('Description:', command.description);
+    embed.addFields({
+      name: 'Description:',  value: command.description
+    });
 
     return { embeds: [embed] };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
 

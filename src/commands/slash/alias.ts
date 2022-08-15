@@ -3,12 +3,14 @@ import { hidden } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
 import {
   ButtonInteraction,
-  CommandInteraction,
+  ChatInputCommandInteraction,
   InteractionCollector,
-  MessageActionRow,
-  MessageButton,
-  MessageEmbed,
+  ActionRowBuilder,
+  ButtonBuilder,
+  EmbedBuilder,
   TextBasedChannel,
+  ButtonStyle,
+  ComponentType
 } from 'discord.js';
 import { InteractionFilter } from '@customTypes';
 
@@ -37,13 +39,13 @@ class AliasCommand extends SlashCommand {
     time = this.COLLECTOR_TIMEOUT
   ) {
     return channel.createMessageComponentCollector({
-      filter: (i: ButtonInteraction) => filter(i) && this.COLLECTOR_FILTER(i),
-      componentType: 'BUTTON',
+      filter: (i) => filter(i) && this.COLLECTOR_FILTER(i),
+      componentType: ComponentType.Button,
       time,
     });
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const target = interaction.options.getString('target', true);
@@ -77,10 +79,11 @@ class AliasCommand extends SlashCommand {
     let currentIndex = 0;
     collector.on('collect', (interaction) => {
       if (interaction.user.id !== authorId) {
-        return interaction.reply({
+        interaction.reply({
           content: "❌ You cannot interact with someone else's command!",
           ephemeral: true,
         });
+        return;
       }
 
       switch (interaction.customId) {
@@ -96,6 +99,7 @@ class AliasCommand extends SlashCommand {
 
       interaction.update(this.getAliasEmbed(title, aliases, currentIndex));
     });
+
     if (aliasEmbed.components?.length === 0) {
       collector.stop();
     }
@@ -110,7 +114,7 @@ class AliasCommand extends SlashCommand {
     }
 
     const pageMax = start + size;
-    const embed = new MessageEmbed();
+    const embed = new EmbedBuilder();
     const title = `Aliases for ${target}`;
     embed.setTitle(title);
     embed.addFields([
@@ -122,19 +126,19 @@ class AliasCommand extends SlashCommand {
       },
     ]);
 
-    const row = new MessageActionRow();
+    const row = new ActionRowBuilder<ButtonBuilder>();
     const isStart = start === 0;
-    const backBtn = new MessageButton()
+    const backBtn = new ButtonBuilder()
       .setCustomId('aliasPrevPage')
       .setLabel('◄')
-      .setStyle(isStart ? 'SECONDARY' : 'PRIMARY')
+      .setStyle(isStart ? ButtonStyle.Secondary : ButtonStyle.Primary)
       .setDisabled(isStart);
 
     const isEnd = aliases.length <= pageMax;
-    const nextBtn = new MessageButton()
+    const nextBtn = new ButtonBuilder()
       .setCustomId('aliasNextPage')
       .setLabel('►')
-      .setStyle(isEnd ? 'SECONDARY' : 'PRIMARY')
+      .setStyle(isEnd ? ButtonStyle.Secondary : ButtonStyle.Primary)
       .setDisabled(isEnd);
     row.addComponents(backBtn, nextBtn);
 

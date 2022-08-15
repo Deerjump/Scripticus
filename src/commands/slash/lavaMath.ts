@@ -1,7 +1,7 @@
 import { formulas } from '../../resources/formulas';
 import { SlashCommand } from '../commandClasses';
 import { LavaFormulas } from '@customTypes';
-import { CommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, CommandInteraction } from 'discord.js';
 
 class LavaMathCommand extends SlashCommand {
   constructor() {
@@ -44,7 +44,7 @@ class LavaMathCommand extends SlashCommand {
     };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hiddden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const option = interaction.options.getSubcommand();
