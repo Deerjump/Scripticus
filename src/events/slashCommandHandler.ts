@@ -7,7 +7,7 @@ const logger = new Logger('SlashCommandHandler');
 const eventHandler: EventHandler = {
   event: 'interactionCreate',
   async handle(interaction: Interaction) {
-    if (!interaction.isCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
     const client = interaction.client as Scripticus;
     const command = client.commands.get(interaction.commandName);
 

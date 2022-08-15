@@ -1,5 +1,5 @@
 import { EventHandler, Scripticus } from '@customTypes';
-import { Message } from 'discord.js';
+import { ChannelType, Message } from 'discord.js';
 import { noMentions } from '../utils/utils';
 import { Logger } from '../utils/logger';
 
@@ -7,11 +7,13 @@ const logger = new Logger('DevCommands');
 
 // This will listen to DMs from Deerjump for dev commands.
 // Add your user id to the whitelist if needed while developing new features
+const whitelist = ['191085842469486592'];
+
 const eventHandler: EventHandler = {
   event: 'messageCreate',
   handle: async (message: Message) => {
-    const whitelist = ['191085842469486592'];
-    if (message.channel.type != 'DM' && !whitelist.includes(message.author.id))
+
+    if (message.channel.type === ChannelType.DM && !whitelist.includes(message.author.id))
       return;
 
     const client = message.client as Scripticus;

@@ -1,13 +1,15 @@
-import { SlashCommandBuilder, ContextMenuCommandBuilder, ContextMenuCommandType } from '@discordjs/builders';
 import {
-  ContextMenuInteraction,
+  ContextMenuCommandInteraction,
   CommandInteraction,
-  BaseCommandInteraction,
-  MessageContextMenuInteraction,
-  UserContextMenuInteraction,
+  MessageContextMenuCommandInteraction,
+  UserContextMenuCommandInteraction,
+  ChatInputCommandInteraction,
+  SlashCommandBuilder,
+  ContextMenuCommandBuilder,
+  ApplicationCommandType,
+  ContextMenuCommandType,
 } from 'discord.js';
 
-import { ApplicationCommandTypes } from 'discord.js/typings/enums';
 export abstract class ApplicationCommand {
   private readonly MAX_NAME_LENGTH = 32;
   protected defaultPermission = true;
@@ -27,11 +29,11 @@ export abstract class ApplicationCommand {
     this.name = name;
   }
 
-  abstract handleInteract(interaction: BaseCommandInteraction): void;
+  abstract handleInteract(interaction: CommandInteraction): void;
 }
 
 export abstract class SlashCommand extends ApplicationCommand {
-  type: ApplicationCommandTypes.CHAT_INPUT = ApplicationCommandTypes.CHAT_INPUT;
+  type = ApplicationCommandType.ChatInput;
   commandBuilder = new SlashCommandBuilder();
   description: string;
 
@@ -55,33 +57,33 @@ export abstract class SlashCommand extends ApplicationCommand {
       .setDescription(this.description);
   }
 
-  abstract handleInteract(interaction: CommandInteraction): void;
+  abstract handleInteract(interaction: ChatInputCommandInteraction): void;
 }
 
 export abstract class ContextMenuCommand extends ApplicationCommand {
   commandBuilder = new ContextMenuCommandBuilder();
-
-  constructor(name: string) {
+  constructor(name: string, type: ContextMenuCommandType) {
     super(name);
     this.commandBuilder.setName(this.name);
+    this.commandBuilder.setType(type);
   }
 
-  abstract handleInteract(interaction: ContextMenuInteraction): void;
+  abstract handleInteract(interaction: ContextMenuCommandInteraction): void;
 }
 
 export abstract class MessageCommand extends ContextMenuCommand {
-  type: ContextMenuCommandType = 3;
-
   constructor(name: string) {
-    super(name);
-    this.commandBuilder.setType(this.type);
+    super(name, ApplicationCommandType.Message);
   }
 
-  abstract handleInteract(interaction: MessageContextMenuInteraction): void;
+  abstract handleInteract(interaction: MessageContextMenuCommandInteraction): void;
 }
 
 export abstract class UserCommand extends ContextMenuCommand {
-  type: ApplicationCommandTypes.USER = ApplicationCommandTypes.USER;
+  
+  constructor(name: string) {
+    super(name, ApplicationCommandType.User);
+  }
 
-  abstract handleInteract(interaction: UserContextMenuInteraction): void;
+  abstract handleInteract(interaction: UserContextMenuCommandInteraction): void;
 }

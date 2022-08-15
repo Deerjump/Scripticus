@@ -3,10 +3,10 @@ import {
   ClientEvents,
   Collection,
   Guild,
-  Intents,
-  PartialTypes,
+  IntentsBitField,
+  Partials,
 } from 'discord.js';
-import { ApplicationCommandTypes } from 'discord.js/typings/enums';
+
 import { SlashCommand, UserCommand, MessageCommand } from '../commands/commandClasses';
 
 export interface GuildSettings {
@@ -50,8 +50,8 @@ export interface Database {
 }
 
 export interface ScripticusOptions {
-  intents: Intents;
-  partials: PartialTypes[];
+  intents: IntentsBitField;
+  partials: Partials[];
   defaultPrefix: string;
   devGuildId?: string;
   defaultCooldown: number;
@@ -140,13 +140,6 @@ export interface TotalRecipe {
 export interface LavaFormulas {
   [key: string]: (...args: number[]) => number;
 }
-
-export type ModerationLevel = 'ADMIN' | 'MOD' | 'EVERYONE';
-
-export type CommandType =
-  | ('CHAT_INPUT' | ApplicationCommandTypes.CHAT_INPUT)
-  | ('MESSAGE' | ApplicationCommandTypes.MESSAGE)
-  | ('USER' | ApplicationCommandTypes.USER);
 
 export type OptionallyAsync<T> = Promise<T> | T;
 

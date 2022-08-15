@@ -1,8 +1,4 @@
-import {
-  CommandInteraction,
-  Message,
-  MessageEmbed,
-} from 'discord.js';
+import { Message, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { SlashCommand } from '../commandClasses';
 import { hidden, noMentions } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
@@ -14,10 +10,11 @@ class WikiCommand extends SlashCommand {
 
   constructor() {
     super('wiki', 'Seach the Legends of Idleon Wiki!');
-    this.commandBuilder.addStringOption((option) =>
-      option.setName('query').setDescription('What you want to search for')
-    )
-    .addBooleanOption(hidden);
+    this.commandBuilder
+      .addStringOption((option) =>
+        option.setName('query').setDescription('What you want to search for')
+      )
+      .addBooleanOption(hidden);
   }
 
   async handleMessage(message: Message, args: string[]): Promise<void> {
@@ -26,7 +23,7 @@ class WikiCommand extends SlashCommand {
     await message.reply({ ...response, ...noMentions });
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const query = interaction.options.getString('query') ?? undefined;
@@ -40,17 +37,17 @@ class WikiCommand extends SlashCommand {
     if (query == undefined || !query.length) {
       return {
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setColor('#FF0000')
             .setTitle(this.wikiUrl)
             .setURL(this.wikiUrl)
-            .addField('You could also:', 'Supply a search term!\n!wiki Mafioso'),
+            .addFields([{ name: 'You could also:', value: 'Supply a search term!\n /wiki mafioso' }]),
         ],
       };
     }
 
     try {
-      const response = await axios.get(`https://idleon.info/w/index.php`, {
+      const response = await axios.get(`https://idleon.info/wiki/index.php`, {
         params: { search: query },
       });
 

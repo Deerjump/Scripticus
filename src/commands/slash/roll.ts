@@ -1,6 +1,6 @@
 import { hidden, isNumber, noMentions } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
-import { CommandInteraction, Message } from 'discord.js';
+import { ChatInputCommandInteraction, Message } from 'discord.js';
 
 class RollCommand extends SlashCommand {
   readonly usage = '<sides>';
@@ -32,7 +32,7 @@ class RollCommand extends SlashCommand {
     };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hiddden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const max = interaction.options.getInteger('max', true);

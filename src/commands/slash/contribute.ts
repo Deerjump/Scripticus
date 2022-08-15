@@ -1,6 +1,6 @@
 import { hidden } from '../../utils/utils';
 import { SlashCommand } from '../commandClasses';
-import { CommandInteraction, MessageEmbed } from 'discord.js';
+import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 
 class ContributeCommand extends SlashCommand {
   protected generateOptions() {
@@ -14,7 +14,7 @@ class ContributeCommand extends SlashCommand {
   execute() {
     return {
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setColor('#0000FF') // blue
           .setTitle('Click here to contribute to Scripticus!')
           .setURL('https://github.com/Deerjump/Scripticus')
@@ -34,7 +34,7 @@ class ContributeCommand extends SlashCommand {
     };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? false;
     const response = this.execute();
 

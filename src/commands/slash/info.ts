@@ -5,15 +5,17 @@ import { SlashCommand } from '../commandClasses';
 import { hidden } from '../../utils/utils';
 import { Logger } from '../../utils/logger';
 import {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton,
-  EmbedFieldData,
-  CommandInteraction,
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
   TextBasedChannel,
   InteractionCollector,
   ButtonInteraction,
   InteractionReplyOptions,
+  ChatInputCommandInteraction,
+  ButtonStyle,
+  ComponentType,
+  APIEmbedField,
 } from 'discord.js';
 
 class InfoCommand extends SlashCommand {
@@ -80,7 +82,7 @@ class InfoCommand extends SlashCommand {
     };
   }
 
-  async handleInteract(interaction: CommandInteraction) {
+  async handleInteract(interaction: ChatInputCommandInteraction) {
     const hidden = interaction.options.getBoolean('hidden') ?? true;
     await interaction.deferReply({ ephemeral: hidden });
     const name = interaction.options.getString('name', true);
@@ -139,10 +141,10 @@ class InfoCommand extends SlashCommand {
   }
 
   private getMonsterDetailsEmbed(monster: MonsterData) {
-    const embed = new MessageEmbed().setTitle(monster.Name);
+    const embed = new EmbedBuilder().setTitle(monster.Name);
     const defense = Number(monster.Defence);
 
-    let fields: EmbedFieldData[] = [];
+    let fields: APIEmbedField[] = [];
     switch (monster.AFKtype) {
       case 'FIGHTING':
         fields.push(
@@ -213,10 +215,10 @@ class InfoCommand extends SlashCommand {
   }
 
   private getItemDetailsEmbed(item: ItemData) {
-    const embed = new MessageEmbed();
-    embed.setTitle(item.displayName);
-    embed.setURL(`https://idleon.info/wiki/${item.displayName.replaceAll(' ', '_')}`);
-    const fields: EmbedFieldData[] = [];
+    const embed = new EmbedBuilder()
+      .setTitle(item.displayName)
+      .setURL(`https://idleon.info/wiki/${item.displayName.replaceAll(' ', '_')}`);
+    const fields: APIEmbedField[] = [];
 
     if (item.description != undefined) embed.setDescription(item.description.join(' '));
 
@@ -284,12 +286,16 @@ class InfoCommand extends SlashCommand {
     collector: InteractionCollector<ButtonInteraction>;
   }> {
     const dynamicLabel = monster.AFKtype === 'FIGHTING' ? 'Monster' : 'Skilling';
-    const monsterBtn = new MessageButton()
+    const monsterBtn = new ButtonBuilder()
       .setCustomId('monsterBtn')
       .setLabel(dynamicLabel)
-      .setStyle('PRIMARY');
-    const itemBtn = new MessageButton().setCustomId('itemBtn').setLabel('Item').setStyle('PRIMARY');
-    const row = new MessageActionRow().addComponents(monsterBtn, itemBtn);
+      .setStyle(ButtonStyle.Primary);
+    const itemBtn = new ButtonBuilder()
+      .setCustomId('itemBtn')
+      .setLabel('Item')
+      .setStyle(ButtonStyle.Primary);
+    const row = new ActionRowBuilder<ButtonBuilder>()
+      .addComponents(monsterBtn, itemBtn);
 
     const questionReply = {
       content: 'Which do you want?',
@@ -297,18 +303,19 @@ class InfoCommand extends SlashCommand {
     };
 
     const collector = channel.createMessageComponentCollector({
-      filter: (i: ButtonInteraction) => i.customId === 'monsterBtn' || i.customId === 'itemBtn',
-      componentType: 'BUTTON',
+      filter: (i) => i.customId === 'monsterBtn' || i.customId === 'itemBtn',
+      componentType: ComponentType.Button,
       time: 10000,
     });
 
     collector.on('collect', async (interaction) => {
       if (interaction.user.id !== authorId) {
         collector.dispose(interaction);
-        return interaction.reply({
+        interaction.reply({
           content: "❌ You cannot interact with someone else's command!",
           ephemeral: true,
         });
+        return;
       }
 
       if (interaction.customId === 'monsterBtn') {
